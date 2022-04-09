@@ -1,0 +1,42 @@
+MATH	115	Calculus I 	1	25	Not open to students who have completed MATH 116, MATH 120, MATH 205 or the equivalent. Not open to students whose placement is MATH 205 or MATH 206.	Staff	MM - Mathematical Modeling and Problem Solving	Summer; Spring; Fall	Spring; Fall
+MATH	115Z	Applied Calculus I 	1	20	 Not open to students who have completed MATH 116, MATH 120, MATH 205 or the equivalent. Not open to students whose placement is MATH 205 or MATH 206.	 O. Fernandez	MM - Mathematical Modeling and Problem Solving		Fall
+MATH	116	Calculus II 	1	25	MATH 115, Math 115Z, or the equivalent. Not open to students who have completed MATH 120 or MATH 205. Not open to students whose math placement is MATH 206.	Staff	MM - Mathematical Modeling and Problem Solving	Summer; Spring; Fall	Spring; Fall
+MATH	116Z	Applied Calculus II 	1	25		 O. Fernandez	MM - Mathematical Modeling and Problem Solving		Spring
+MATH	120	Calculus IIA 	1	25	Open by permission of the department to students who have completed a year of high school calculus. Students who have studied Taylor series should elect MATH 205. Not open to students who have completed MATH 116, MATH 205 or the equivalent.	Hirschhorn	MM - Mathematical Modeling and Problem Solving	Fall	Fall
+MATH	123	Mathematics and Politics 	1	15	 None.	 Volic	MM - Mathematical Modeling and Problem Solving	Every other year	Fall
+			1	15	 None.	 Volic	MM - Mathematical Modeling and Problem Solving	Every other year	Fall
+MATH	123Y	FYS: Mathematics and Politics 	1	15	 None. Open to First-Years only.	 Volic	MM - Mathematical Modeling and Problem Solving	Every other year	Not Offered
+MATH	124Y	FYS: Discrete Mathematics 	1	20	 None. Open to First-Years only.	 Chang, Sohie Lee (Computer Science)	MM - Mathematical Modeling and Problem Solving	Fall	Not Offered
+MATH	203	Math for Economics and Finance 	1	25	 MATH 116 or the equivalent.	 Bu	MM - Mathematical Modeling and Problem Solving		Spring
+MATH	205	Multivariable Calculus 	1	25	 MATH 116 or MATH 120, or the equivalent. Not open to students who have completed PHYS 216.	 H. Wang, C. Chan, Bu (Fall); Kerr, Hirschhorn (Spring)	MM - Mathematical Modeling and Problem Solving	Spring; Fall	Fall; Spring
+MATH	206	Linear Algebra 	1	25	 MATH 205 or MATH 215; or, with permission of the instructor, MATH 116, MATH 120, or the equivalent. At most two of the three courses MATH 206, MATH 210, and MATH 215 can be counted toward the major or minor.	 S. Chang, Lauer (Fall); Yacoubou Djima, Schultz (Spring)	MM - Mathematical Modeling and Problem Solving	Spring; Fall	Fall; Spring
+MATH	207Y	FYS: Knots, Molecules, Universe 	1	15	 MATH 116 or the equivalent. Open to First-Years only.	 Kerr	MM - Mathematical Modeling and Problem Solving	Fall	Not Offered
+MATH	215	Diff Equations with Applied Linear Alg 	1	25	 MATH 116 or MATH 120, or the equivalent. Not open to students who have completed MATH 210.	 Kerr (Fall); Diesl (Spring)	MM - Mathematical Modeling and Problem Solving	Spring; Fall	Fall; Spring
+MATH	220	Probability 	1	25	 MATH 205	 Schultz	MM - Mathematical Modeling and Problem Solving		Fall
+STAT	220	Probability	1	25	 MATH 205	 Schultz	MM - Mathematical Modeling and Problem Solving		Fall
+MATH	223	Number Theory 	1	25	 MATH 116 or MATH 120, or the equivalent; or CS 230 together with permission of the instructor.	 Lauer	MM - Mathematical Modeling and Problem Solving	Spring	Spring
+MATH	223Y	FYS: Number Theory 	1	15	 Open to First-Years only.	 Lange	MM - Mathematical Modeling and Problem Solving	Fall	Not Offered
+MATH	225	Combinatorics & Graph Theory 	1	25	 MATH 116 or MATH 120, or the equivalent; or CS 230 together with permission of the instructor.	 Lauer (Fall), Trenk (Fall &amp; Spring), Schultz (Spring)	MM - Mathematical Modeling and Problem Solving	Spring; Fall	Fall; Spring
+MATH	250	Research or Individual Study 	1	25					Fall; Spring
+MATH	302	Elements of Analysis I 	1	25	 MATH 205 and MATH 206.	 Kerr (Fall), H. Wang (Spring)	MM - Mathematical Modeling and Problem Solving	Spring; Fall	Fall; Spring
+			1	15	 MATH 302	 S. Chang	MM - Mathematical Modeling and Problem Solving	Spring	Spring
+MATH	305	Abstract Algebra 	1	25	 MATH 206	 Volic (Fall), Tannenhauser (Spring)	MM - Mathematical Modeling and Problem Solving	Spring; Fall	Fall; Spring
+MATH	306	Topics in Abstract Algebra 	1	15	 MATH 305	 Hirschhorn	MM - Mathematical Modeling and Problem Solving		Not Offered
+MATH	307	Topology 	1	15	 MATH 302. Co-requisite - MATH 305.	 Hirschhor	MM - Mathematical Modeling and Problem Solving	Spring; Fall	Fall
+MATH	309	Foundations of Mathematics 	1	15	 MATH 302 or MATH 305.	 S. Chang	MM - Mathematical Modeling and Problem Solving	Every other year	Spring
+MATH	310	Complex Analysis 	1	15	 MATH 302	 Schultz	MM - Mathematical Modeling and Problem Solving		Fall
+MATH	312	Differential Geometry 	1	15	MATH 302.	Tannenhauser	MM - Mathematical Modeling and Problem Solving	Every other year	Not Offered
+MATH	313	Diff. Geometry & General Relativity 	1	20	 At least one 300-level course in mathematics or physics, or permission of the instructor. MATH 302 or MATH 305 is recommended. Students can receive major credit for both MATH 312 and MATH 313.	 Tannenhauser	MM - Mathematical Modeling and Problem Solving		Not Offered
+PHYS	313	Diff. Geometry & General Relativity	1	20	 At least one 300-level course in mathematics or physics, or permission of the instructor. MATH 302 or MATH 305 is recommended. Students can receive major credit for both MATH 312 and MATH 313.	 Tannenhauser	MM - Mathematical Modeling and Problem Solving		Not Offered
+MATH	314	Theory of Pi 	1	20	 Math 302 or 305; open to advanced physics and computer science students with permission.	 Tannenhauser	MM - Mathematical Modeling and Problem Solving	Fall	Not Offered
+MATH	316	Algebraic Geometry 	1	25	 MATH 305	 Diesl	MM - Mathematical Modeling and Problem Solving	Spring	Not Offered
+MATH	322	Advanced Linear Algebra 	1	15	 MATH 305.	 S. Chang	MM - Mathematical Modeling and Problem Solving	Every other year	Fall
+MATH	325	Graph Theory 	1	15	 MATH 225 and either MATH 305 or MATH 302. Students lacking one of these prerequisites may enroll with permission of the instructor.	 Trenk	MM - Mathematical Modeling and Problem Solving	Every other year	Spring
+MATH	326	Advanced Combinatorics 	1	15	 MATH 225. Co-requisite - MATH 305.	 Trenk	MM - Mathematical Modeling and Problem Solving	Every other year	Not Offered
+MATH	340	CSPW: Explaining Math 	1	12	 MATH 302 and MATH 305, or permission of the instructor.	 Lange	MM - Mathematical Modeling and Problem Solving	Spring	Fall
+			1	15	 MATH 305 or permission of the instructor.	 C. Chan	MM - Mathematical Modeling and Problem Solving	Fall	Spring
+MATH	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
+MATH	355	Thesis Research 	1	15	 Permission of the Department. GPA in Mathematics Courses above 100-level must exceed 3.0.	 Staff		Fall and Spring	Spring; Fall
+MATH	360	Senior Thesis Research 	1	25	Permission of the department.			Spring; Fall	Fall; Spring
+MATH	365	Thesis 	1	15	 MATH 355 and permission of the Department.	 Staff		Fall and Spring	Spring; Fall
+MATH	370	Senior Thesis 	1	25	MATH 360 and permission of the department.			Spring; Fall	Fall; Spring

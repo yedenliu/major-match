@@ -1,19 +1,12 @@
-# -*- coding: utf-8 -*-
-'''
-CS304 Course Catalog Scraping
-
-INSTALL:
-pip install bs4 --> NEED TO UPDATE OR ELSE FIND FUNCTIONS DON'T WORK
-pip install soupsieve
-'''
 ########################################################################################################
 #   IMPORT MODULES
 ########################################################################################################
 from bs4 import BeautifulSoup as BS 
 import requests, csv, os
+import xml
 
 ########################################################################################################
-#   GETTERS & HELPER FUNCTIONS
+#   CREATING SOUP OBJECT
 ########################################################################################################
 def html_object(url):
     page = requests.get(url) 
@@ -25,11 +18,17 @@ def html_object(url):
 def find_sections(soup):
     return soup.find_all('section')
 
+########################################################################################################
+#   GETTERS & HELPER FUNCTIONS
+########################################################################################################
 '''
 Find <div> with the corresponding class to the course name
 Param - The <section> (html type) that the course resides in
 Return - String of the full course name, marked by the <div> tag and 'coursename_big' class
 '''
+def remove_tags(text):
+    return ''.join(xml.etree.ElementTree.fromstring(text).itertext())
+
 def find_name_tag(section):
     tag = section.find('div',{'class': 'coursename_big'})
     s = tag.string
@@ -42,12 +41,15 @@ Return - List of strings of the course name items
 '''
 def get_name_list(s):
     name_list = [] 
-    content = s.split(' - ')
-    long_name = content[1]
-    short_name = content[0].split(' ')
-    dept = short_name[0].replace('\n', '') 
-    cnum = short_name[1].replace('/', '')
-    name_list = [dept, cnum, long_name]
+    try:
+        content = s.split(' - ')
+        long_name = content[1]
+        short_name = content[0].split(' ')
+        dept = short_name[0].replace('\n', '') 
+        cnum = short_name[1].replace('/', '')
+        name_list = [dept, cnum, long_name]
+    except:
+        print(Exception)
     return name_list
 
 def is_crosslisted(section):
@@ -55,12 +57,15 @@ def is_crosslisted(section):
 
 def get_cross_list(s):
     name_list2 = [] 
-    content = s.split(' - ')
-    long_name = content[1].strip()
-    short_name = content[0].split(' ')
-    dept2 = short_name[2]
-    cnum2 = short_name[3]
-    name_list2 = [dept2, cnum2, long_name]
+    try:
+        content = s.split(' - ')
+        long_name = content[1].strip()
+        short_name = content[0].split(' ')
+        dept2 = short_name[2]
+        cnum2 = short_name[3]
+        name_list2 = [dept2, cnum2, long_name]
+    except:
+        print(Exception)
     return name_list2
 
 '''
@@ -120,16 +125,26 @@ def get_course_dict(section, iteration):
     info_list = get_info_list(s_list)
     
     # defining variables
+    dept = None
+    cnum = None
+    name = None
     if iteration == 2:
-        name_list = get_cross_list(s)
-        dept = name_list[0]
-        cnum = name_list[1]
-        name = name_list[2]
+        try:
+            name_list = get_cross_list(s)
+            dept = name_list[0]
+            cnum = name_list[1]
+            name = name_list[2]
+        except:
+            print(Exception)
     else:
-        name_list = get_name_list(s)
-        dept = name_list[0]
-        cnum = name_list[1]
-        name = name_list[2]
+        try:
+            name_list = get_name_list(s)
+            dept = name_list[0]
+            cnum = name_list[1]
+            name = name_list[2]
+        except:
+            
+            print(Exception)
     
     units = info_list[0]
     max_enroll = info_list[1]
@@ -161,48 +176,3 @@ def all_courses(sections):
             course2 = get_course_dict(section, 2)
             course_list.append(course2)
     return course_list
-########################################################################################################
-#   FUNCTIONS TO COMPILE DATA
-########################################################################################################
-
-fields=['Department', 
-        'Course Number', 
-        'Course Name',
-        'Units', 
-        'Max Enrollment', 
-        'Prerequisites', 
-        'Instructor', 
-        'Distribution Requirements', 
-        'Typical Periods Offered', 
-        'Semesters Offered this Academic Year']
-
-def create_tsv(dept, url):
-    file_name = dept + '_courses.tsv'
-    soup = html_object(url)
-    sections = find_sections(soup)
-    data = all_courses(sections)
-    with open(os.path.join('DDL', 'tsv_files',file_name), 'w', encoding='UTF8', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=fields, delimiter='\t')
-        # write the data
-        writer.writerows(data)
-
-########################################################################################################
-#   DATA IMPORT + EXPORT
-########################################################################################################
-# def parse_majors(csv):
-#     # iterate through the csv file for (1) dept name (2) catalog page URL
-
-
-#TESTING 
-# sourcing urls
-cs_url = 'https://catalog.wellesley.edu/courses.php?pos=25&doc_type=cs+-+computer+science+courses'
-chem_url = 'https://catalog.wellesley.edu/courses.php?pos=17&doc_type=chem+-+chemistry+courses'
-french_url = 'https://catalog.wellesley.edu/courses.php?pos=36&doc_type=frst+-+french+cultural+studies+courses'
-econ_url = 'https://catalog.wellesley.edu/courses.php?pos=28&doc_type=econ+-+economics+courses'
-
-# export tsv files
-create_tsv('cs', cs_url)
-create_tsv('chem', chem_url)
-create_tsv('french', french_url)
-create_tsv('econ', econ_url)
-
