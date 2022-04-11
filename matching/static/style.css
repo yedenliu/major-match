@@ -1,0 +1,57 @@
+/********** HTML FILE **********/
+* {
+    box-sizing: border-box;
+    font-family: 'Gill Sans';
+}
+
+/********** STYLE BASE TEMPLATE **********/
+h1 {
+    color:rgb(74, 87, 206);
+    margin-left: 8px;
+}
+
+h2 {
+    color:rgb(74, 87, 206);
+    margin-left: 8px;
+}
+
+p {
+    margin-left: 8px;
+    font-size: 17px;
+}
+
+#messages {
+    margin-left: 8px;
+    color: red;
+}
+
+
+/********** STYLE FORM **********/
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 200px;
+  }
+
+  .flex-container div{
+      border-style: solid;
+      border-radius: 10px;
+      border-width: 1px;
+      border-color: black;
+      background-color: aliceblue;
+  }
+/* Text input on forms */
+input[type=text] {
+    width: 100px;
+}
+input[type=number] {
+    width: 50px;
+    margin-right: 10px;
+}
+
+/* Form submit button */
+input[type='submit'] {
+    background-color: rgb(206, 241, 255);
+    font-family: 'Gill Sans';
+    font-size: large;
+  }

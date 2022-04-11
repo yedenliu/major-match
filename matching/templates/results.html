@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1>Results Page</h1>
+{% endblock %}
+
+{% block main_content %}
+<ul> 
+    {% for class in classes %}
+    <li>{{ class[0] }} {{ class[1] }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

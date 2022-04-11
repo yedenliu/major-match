@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1>Homepage</h1>
+{% endblock %}
+
+{% block main_content %}
+<form method=POST action="">
+    
+    <div class="flex-container">
+        <!-- YEAR 1 (8 courses) -->
+        <div>
+        <p>
+            <label>Dept:</label>
+            <input type="text" name="dept-1">
+            <label>Course #:</label>
+            <input type="number" name="cnum-1">
+        </p>
+        
+        <p>
+            <label>Dept:</label>
+            <input type="text" name="dept-2">
+            <label>Course #:</label>
+            <input type="number" name="cnum-2">
+        </p>
+        
+        <p>
+            <label>Dept:</label>
+            <input type="text" name="dept-3">
+            <label>Course #:</label>
+            <input type="number" name="cnum-3">
+        </p>
+    
+        <P>
+            <label>Dept:</label>
+            <input type="text" name="dept-4">
+            <label>Course #:</label>
+            <input type="number" name="cnum-4">
+        </P>
+        
+        <p>
+            <label>Dept:</label>
+            <input type="text" name="dept-5">
+            <label>Course #:</label>
+            <input type="number" name="cnum-5">
+        </p>
+    
+        <P>
+            <label>Dept:</label>
+            <input type="text" name="dept-6">
+            <label>Course #:</label>
+            <input type="number" name="cnum-6">
+        </P>
+        
+        <p>
+            <label>Dept:</label>
+            <input type="text" name="dept-7">
+            <label>Course #:</label>
+            <input type="number" name="cnum-7">
+        </p>
+
+        <P>
+            <label>Dept:</label>
+            <input type="text" name="dept-8">
+            <label>Course #:</label>
+            <input type="number" name="cnum-8">
+        </P>
+        </div>
+    </div>
+    <p> <input type='submit' value='results'> </p>
+    </form>
+{% endblock %}
