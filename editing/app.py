@@ -38,12 +38,20 @@ def departments():
                             page_title='Departments',
                             departments = departments)
 
-@app.route('/departments/<dept_id>')
+@app.route('/departments/<dept_id>', methods=['GET', 'POST'])
 def department_page(dept_id):
     conn = dbi.connect()
     name = find_dept_name(conn, dept_id) 
     courses = find_dept_courses(conn, dept_id) # dept, cnum, courses.name, cid
-    print(repr(courses))
+    if request.method == 'GET':
+        pass
+    else:
+        dept = request.form.get('dept')
+        cnum = request.form.get('cnum')
+        cid = find_cid(conn, dept, cnum)
+        add_pair(conn, dept_id, cid)
+        flash('Course successfully paired to this major!')
+        return redirect(url_for('department_page', dept_id = dept_id))
     return render_template('department_page.html',
                             page_title = name + ' Department Page',
                             name = name,
@@ -67,6 +75,7 @@ def update(cid):
         type = info[11]
         type_notes = info[12]
         major_freq = info[13]
+        majors = find_pairs(conn, cid)
         return render_template('update.html',
                                 page_title='Update Course',
                                 dept = dept,
@@ -82,7 +91,8 @@ def update(cid):
                                 type = type,
                                 type_notes = type_notes,
                                 major_freq = major_freq,
-                                cid = cid)
+                                cid = cid,
+                                majors = majors)
     else:
         if request.form['submit'] == 'update':
             # must be able to update TT but must be a unique cid
@@ -100,6 +110,7 @@ def update(cid):
             type = request.form.get('type')
             type_notes = request.form.get('type_notes')
             major_freq = request.form.get('major_freq')
+            majors = find_pairs(conn, cid)
 
             update_course(conn, cid, dept, cnum, name, units, max_enroll, 
             prereq, instruct, dr, sem_offered, year_offered, type, 
@@ -121,7 +132,8 @@ def update(cid):
                                 type = type,
                                 type_notes = type_notes,
                                 major_freq = major_freq,
-                                cid = cid)
+                                cid = cid,
+                                majors = majors)
         elif request.form['submit'] == 'delete':
             delete_course(conn, cid)
             flash("Movie successfully deleted!")

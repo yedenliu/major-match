@@ -19,6 +19,18 @@
           <td><label for="name">Course Name</label></td>
           <td><input type="text" name='name' value="{{ name }}"></td>
         </tr>
+
+        <tr>
+          <td><label>Counted Majors</label></td>
+          <td><ul>
+            {% for major in majors %}
+              <li>{{ major }}</li>
+            {% endfor %}
+          </ul></td>
+        </tr>
+      </table>
+
+      <table class="table-form">
         <tr>
           <td><label for="units">Units</label></td>
           <td><input type="text" name='units' value="{{ units }}"></td> 

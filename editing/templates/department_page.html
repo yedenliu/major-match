@@ -5,6 +5,22 @@
 {% endblock %}
 
 {% block main_content %}
+
+<p>Add courses that belong to this page</p>
+<form method=POST action="">
+    <table class="table-form">
+      <tr>
+        <td><label for="dept">Dept.</label></td>
+        <td><input type="text" name='dept' value="{{ dept }}"></td> 
+        <!-- make this a drop down -->
+      </tr>
+      <tr>
+        <td><label for="cnum">Course #</label></td>
+        <td><input type="text" name='cnum' value="{{ cnum }}"></td> 
+      </tr>
+    </table>
+    <input type="submit" name="submit" value="submit">
+</form>
 <p>Courses that count for this major</p>
 <table>
     {% for course in courses %}
@@ -12,4 +28,5 @@
         <td>{{ course[2] }}</td></tr>
     {% endfor %}
 </table>
+
 {% endblock %}

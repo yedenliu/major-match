@@ -1,6 +1,7 @@
 use majormatch_db;
 
 -- drop in reverse order
+drop table if exists form_data;
 drop table if exists major_pairs;
 drop table if exists programs;
 drop table if exists courses;
@@ -45,3 +46,10 @@ create table major_pairs (
         on update cascade
 )
 ENGINE = InnoDB;
+
+
+create table form_data (
+    dept varchar(10),
+    cnum varchar(10)
+);
+
