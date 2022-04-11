@@ -24,7 +24,7 @@
           <td><label>Counted Majors</label></td>
           <td><ul>
             {% for major in majors %}
-              <li>{{ major }}</li>
+              <li><a href="{{url_for('department_page', dept_id=major[1])}}">{{ major[0] }}</a></li>
             {% endfor %}
           </ul></td>
         </tr>
