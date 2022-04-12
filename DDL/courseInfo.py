@@ -64,6 +64,8 @@ for key in majors:
 
 #print(majors)
 
+''' creates a dataframe with columns = each course and then the
+majors it counts towards'''
 df2 = pd.DataFrame.from_dict(majors, orient = 'index')
 #print(df2)
 
@@ -72,4 +74,10 @@ towards, sorted from most majors to least majors.'''
 df = pd.DataFrame(list(freq.items()), columns = ['course','freq'])
 sortedDF = df.sort_values(by='freq', ascending=False)
 countDF = sortedDF['freq'].value_counts()
-print(sortedDF.head(50))
+#print(sortedDF.head(50))
+
+'''Courses with the majors they fullfil as a TSV'''
+df2.to_csv('/students/kswint/major-match/DDL/coursesToMajors.tsv', sep = '\t')
+
+'''Courses with the number of majors they fullfil as a TSV'''
+df.to_csv('/students/kswint/major-match/DDL/courseMajFreq.tsv', sep = '\t')
