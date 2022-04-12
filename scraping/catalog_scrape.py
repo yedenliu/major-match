@@ -34,7 +34,7 @@ def create_tsv(dept_id, url):
     sections = find_sections(soup)
     data = all_courses(sections)
     cwd = '/students/majormatch/project/'
-    with open(os.path.join(cwd, 'DDL', 'tsv_files',file_name), 'w', encoding='UTF8', newline='') as f:
+    with open(os.path.join(cwd, 'DDL', 'tsv_files', file_name), 'a', encoding='UTF8', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=fields, delimiter='\t')
         # write the data
         writer.writerows(data)

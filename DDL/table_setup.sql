@@ -50,6 +50,11 @@ ENGINE = InnoDB;
 
 create table form_data (
     dept varchar(10),
-    cnum varchar(10)
-);
+    cnum varchar(10),
+    cid int,
+    foreign key (cid) references courses(cid)
+        on delete restrict
+        on update cascade
+)
+ENGINE = InnoDB;
 

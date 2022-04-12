@@ -157,7 +157,6 @@ def add_pair(conn, dept_id, cid):
     curs.execute(sql, [dept_id, cid])
     conn.commit()
 
-
 # function to remove major/course pair 
 def remove_pair(conn, dept_id, cid):
     curs = dbi.cursor(conn)
@@ -183,13 +182,10 @@ def find_pairs(conn, cid):
 
 def find_cid(conn, dept, cnum):
     curs = dbi.cursor(conn)
-    print(repr(dept))
-    print(repr(cnum))
     sql = '''   select cid from courses
                 where dept = %s and cnum = %s
             '''
     curs.execute(sql, [dept, cnum])
     row = curs.fetchone()
-    print(repr(row[0]))
     return row[0]
 
