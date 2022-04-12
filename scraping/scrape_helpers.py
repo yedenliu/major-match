@@ -4,6 +4,7 @@
 from bs4 import BeautifulSoup as BS 
 import requests, csv, os
 import xml
+import traceback # for exceptions
 
 ########################################################################################################
 #   CREATING SOUP OBJECT
@@ -49,7 +50,7 @@ def get_name_list(s):
         cnum = short_name[1].replace('/', '')
         name_list = [dept, cnum, long_name]
     except:
-        print(Exception)
+        traceback.print_exc()
     return name_list
 
 def is_crosslisted(section):
@@ -65,7 +66,7 @@ def get_cross_list(s):
         cnum2 = short_name[3]
         name_list2 = [dept2, cnum2, long_name]
     except:
-        print(Exception)
+        traceback.print_exc()
     return name_list2
 
 '''
@@ -135,7 +136,7 @@ def get_course_dict(section, iteration):
             cnum = name_list[1]
             name = name_list[2]
         except:
-            print(Exception)
+            traceback.print_exc()
     else:
         try:
             name_list = get_name_list(s)
@@ -143,8 +144,7 @@ def get_course_dict(section, iteration):
             cnum = name_list[1]
             name = name_list[2]
         except:
-            
-            print(Exception)
+            traceback.print_exc()
     
     units = info_list[0]
     max_enroll = info_list[1]

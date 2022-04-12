@@ -30,6 +30,53 @@ app.config['TRAP_BAD_REQUEST_ERRORS'] = True
 def index():
     return render_template('index.html',page_title='Mainpage')
 
+@app.route('/insert/', methods=['GET','POST'])
+def insert():
+    conn = dbi.connect()
+    if request.method == 'GET':
+        return render_template('insert.html',page_title='Insert New Course')
+    else:
+        dept = request.form.get('dept') # required
+        cnum = request.form.get('cnum') # required
+        name = request.form.get('name') # required
+        units = request.form.get('units')
+        max_enroll = request.form.get('max_enroll')
+        prereq = request.form.get('prereq')
+        instruct = request.form.get('instruct')
+        dr = request.form.get('dr')
+        sem_offered = request.form.get('sem_offered')
+        year_offered = request.form.get('year_offered')
+        
+        # all required fields must be filled out
+        if len(dept) == 0 or len(cnum) == 0 or len(name) == 0:
+            flash('Missing required field(s)')
+            return render_template('insert.html',page_title='Insert New Course')
+        if not (course_exists(conn, dept, cnum)): # if movie doesn't exist
+            insert_course(conn, dept, cnum, name, units, max_enroll, prereq, 
+                          instruct, dr, sem_offered, year_offered)
+            cid = find_cid(conn, dept, cnum)
+            return redirect(url_for('update', cid=cid))
+        flash('Course already exists')
+        return render_template('insert.html',page_title='Insert New Course')
+
+
+@app.route('/select/', methods=['GET','POST'])
+def select():
+    '''
+    on GET shows a menu of incomplete courses 
+    on POST redirects to the /update/<cid> page for that course.
+    Incomplete means as either the director or the release date is null
+    '''
+    conn = dbi.connect()
+    if request.method == 'GET':
+        course_list = find_incomplete(conn)
+        return render_template('select.html',
+                                page_title='Select Incomplete Courses', 
+                                course_list = course_list)
+    else: 
+        cid = request.form['cid']
+        return redirect(url_for('update', cid=cid))
+
 @app.route('/departments/')
 def departments():
     conn = dbi.connect()
@@ -38,12 +85,20 @@ def departments():
                             page_title='Departments',
                             departments = departments)
 
-@app.route('/departments/<dept_id>')
+@app.route('/departments/<dept_id>', methods=['GET', 'POST'])
 def department_page(dept_id):
     conn = dbi.connect()
     name = find_dept_name(conn, dept_id) 
     courses = find_dept_courses(conn, dept_id) # dept, cnum, courses.name, cid
-    print(repr(courses))
+    if request.method == 'GET':
+        pass
+    else:
+        dept = request.form.get('dept')
+        cnum = request.form.get('cnum')
+        cid = find_cid(conn, dept, cnum)
+        add_pair(conn, dept_id, cid)
+        flash('Course successfully paired to this major!')
+        return redirect(url_for('department_page', dept_id = dept_id))
     return render_template('department_page.html',
                             page_title = name + ' Department Page',
                             name = name,
@@ -67,6 +122,7 @@ def update(cid):
         type = info[11]
         type_notes = info[12]
         major_freq = info[13]
+        majors = find_pairs(conn, cid)
         return render_template('update.html',
                                 page_title='Update Course',
                                 dept = dept,
@@ -82,11 +138,11 @@ def update(cid):
                                 type = type,
                                 type_notes = type_notes,
                                 major_freq = major_freq,
-                                cid = cid)
+                                cid = cid,
+                                majors = majors)
     else:
         if request.form['submit'] == 'update':
             # must be able to update TT but must be a unique cid
-            tt = request.form.get('movie-tt')
             dept = request.form.get('dept')
             cnum = request.form.get('cnum')
             name = request.form.get('name')
@@ -100,7 +156,11 @@ def update(cid):
             type = request.form.get('type')
             type_notes = request.form.get('type_notes')
             major_freq = request.form.get('major_freq')
-
+            majors = find_pairs(conn, cid)
+            
+            if course_exists(conn, dept, cnum): # if course already exists
+                flash("The Department & Course Number pair you entered already exists")
+                return redirect(url_for('update', cid=cid))
             update_course(conn, cid, dept, cnum, name, units, max_enroll, 
             prereq, instruct, dr, sem_offered, year_offered, type, 
             type_notes, major_freq)
@@ -121,7 +181,8 @@ def update(cid):
                                 type = type,
                                 type_notes = type_notes,
                                 major_freq = major_freq,
-                                cid = cid)
+                                cid = cid,
+                                majors = majors)
         elif request.form['submit'] == 'delete':
             delete_course(conn, cid)
             flash("Movie successfully deleted!")

@@ -21,17 +21,23 @@ app.config['TRAP_BAD_REQUEST_ERRORS'] = True
 ################################################################################
 @app.route('/', methods=['GET','POST'])
 def index():
+    conn = dbi.connect()
     if request.method == 'GET':
         return render_template('index.html',page_title='Home')
     else:
         classes = []
-        for n in range(8):
+        for n in range(8): # range is the number of total courses they can input
             dept = request.form.get('dept-'+str(n))
             cnum = request.form.get('cnum-'+str(n))
-            classes.append((dept,cnum))
+            if dept not in [None, ''] and cnum not in [None, '']:
+                classes.append((dept,cnum))
+                insert_data(conn, dept, cnum)
+                results = major_match(conn)
+        delete_form_data(conn)
         return render_template('results.html',
                                 page_title='Results',
-                                classes = classes)
+                                classes = classes,
+                                results = results)
 
 @app.route('/results/')
 def departments():

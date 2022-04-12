@@ -11,15 +11,15 @@
     <table class="table-form">
       <tr>
         <td><label for="dept">Department</label></td>
-        <td><input type="text" name='dept' value="{{ dept }}"></td> 
+        <td><input type="text" name='dept' value="{{ dept }}" required></td> 
       </tr>
       <tr>
         <td><label for="cnum">Course Number</label></td>
-        <td><input type="text" name='cnum' value="{{ cnum }}"></td>
+        <td><input type="text" name='cnum' value="{{ cnum }}" required></td>
       </tr>
       <tr>
         <td><label for="name">Course Name</label></td>
-        <td><input type="text" name='name' value="{{ name }}"></td>
+        <td><input type="text" name='name' value="{{ name }}" required></td>
       </tr>
       <tr>
         <td><label for="units">Units</label></td>
@@ -62,8 +62,7 @@
         <td><input type="text" name='major_freq' value="{{ major_freq }}"></td> 
       </tr>
     </table>
-    <input type="submit" name="submit" value="update">
-    <input type="submit" name="submit" value="delete">
+    <input type="submit" name="submit" value="submit">
   </form>
 
 {% endblock %}
