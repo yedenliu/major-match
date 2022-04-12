@@ -10,6 +10,11 @@
 </head>
 
 <body>
+{% block navbar %}
+<nav>
+    <a href="{{ url_for('index') }}"><button class="home-btn">HOME</button></a>
+</nav>
+{% endblock %}
 
 {% block header %}
 <!-- insert title of page -->
