@@ -83,8 +83,9 @@ def padMajorList(majorList):
 
 ''' creates a dataframe with columns = each course and then the
 majors it counts towards'''
-df2 = pd.DataFrame.from_dict(uncrossedCourses, orient = 'index')
-print(df2)
+
+df2 = pd.DataFrame.from_dict(majors, orient = 'index')
+#print(df2)
 
 ''' creates a dataframe with columns = each course and the number of majors it counts
 towards, sorted from most majors to least majors.'''
