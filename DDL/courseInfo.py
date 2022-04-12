@@ -45,6 +45,20 @@ countFrequency(allCourses,freq)
 df = pd.read_csv('/students/kswint/cs304/project/personal/majorReqs.csv')
 # print(df)
 
+uncrossedCourses = {}
+def uncross(courseDict):
+    for key in courseDict:
+        if '/' in key:
+            first = key.split('/')[0]          # gets first department
+            second = key.split('/')[1]
+            uncrossedCourses[first] = courseDict[key]
+            uncrossedCourses[second] = courseDict[key]
+            if len(key.split('/')) > 2:
+                third = key.split('/')[2]
+                uncrossedCourses[third] = courseDict[key]
+        else:
+            uncrossedCourses[key] = courseDict[key]
+
 ''' create a dictionary where the keys are the courses and the values are a list of majors
 the course counts towards. '''
 majors = {}
@@ -53,21 +67,24 @@ for course in allCourses:
     majors[course] = list(currentDF['Major'])
 # print(majors)
 
+uncross(majors)
+#print(uncrossedCourses)
+
 def padMajorList(majorList):
     if len(majorList) <= 65:
         majorList.append('')
         padMajorList(majorList)
     return majorList
 
-for key in majors:
-    padMajorList(majors[key])
+#for key in majors:
+#    padMajorList(majors[key])
 
 #print(majors)
 
 ''' creates a dataframe with columns = each course and then the
 majors it counts towards'''
-df2 = pd.DataFrame.from_dict(majors, orient = 'index')
-#print(df2)
+df2 = pd.DataFrame.from_dict(uncrossedCourses, orient = 'index')
+print(df2)
 
 ''' creates a dataframe with columns = each course and the number of majors it counts
 towards, sorted from most majors to least majors.'''
@@ -77,7 +94,15 @@ countDF = sortedDF['freq'].value_counts()
 #print(sortedDF.head(50))
 
 '''Courses with the majors they fullfil as a TSV'''
-df2.to_csv('/students/kswint/major-match/DDL/coursesToMajors.tsv', sep = '\t')
+#df2.to_csv('/students/kswint/major-match/DDL/coursesToMajors.tsv', sep = '\t')
 
 '''Courses with the number of majors they fullfil as a TSV'''
-df.to_csv('/students/kswint/major-match/DDL/courseMajFreq.tsv', sep = '\t')
+#df.to_csv('/students/kswint/major-match/DDL/courseMajFreq.tsv', sep = '\t')
+
+tuplefy = [(k, v) for k, v in majors.items()]
+#print(tuplefy)
+# masterDF = pd.DataFrame(tuplefy, columns = ['course','majors'])
+# masterDF = pd.merge(df, masterDF, on ='course', how ="inner")
+# masterDF[['abrev','num']] = masterDF.course.str.split(" ", expand = True)
+# masterDF = masterDF.reindex(columns=['course', 'majors', 'freq'])
+# print(masterDF)
