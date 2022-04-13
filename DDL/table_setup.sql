@@ -37,16 +37,16 @@ ENGINE = InnoDB;
 
 create table major_pairs (
     dept_id int,
-    cid int,
-    foreign key (dept_id) references programs(dept_id)
-        on delete restrict
-        on update cascade,
-    foreign key (cid) references courses(cid)
-        on delete restrict
-        on update cascade
+    cid int
 )
 ENGINE = InnoDB;
-
+-- DO I NEED REF INT?? doesnt work with it
+    -- foreign key (dept_id) references programs(dept_id)
+    --     on delete restrict
+    --     on update cascade,
+    -- foreign key (cid) references courses(cid)
+    --     on delete restrict
+    --     on update cascade
 
 create table form_data (
     dept varchar(10),

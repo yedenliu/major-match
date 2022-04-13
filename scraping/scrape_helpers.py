@@ -90,34 +90,37 @@ def get_info_list(s_list):
     dr = ''
     sem_offer = ''
     year_offer = '' 
-    for item in s_list:
-        item = item.replace('<', '')
-        item = item.replace('>', '')
-        if 'Units' in item:
-            units = item.split(': ')
-            units = units[1]
-        if 'Max Enroll' in item:
-            max_enroll = item.split(': ')
-            max_enroll = max_enroll[1]
-        if 'Prerequisites' in item:
-            item = item.strip('<span>')
-            prereq = item.split(': ')
-            prereq = prereq[1]
-        if 'Instructor' in item:
-            instruct = item.split(': ')
-            instruct = instruct[1]
-        if 'Distribution' in item:
-            dr = item.split(': ')
-            dr = dr[1]
-        if 'Typical' in item:
-            sem_offer = item.split(': ')
-            sem_offer = sem_offer[1]
-        if 'Semesters' in item:
-            year_offer = item.split(': ')
-            year_offer = year_offer[1]
-        else:
-            pass
-    return [units, max_enroll, prereq, instruct, dr, sem_offer, year_offer]
+    try:
+        for item in s_list:
+            item = item.replace('<', '')
+            item = item.replace('>', '')
+            if 'Units' in item:
+                units = item.split(': ')
+                units = units[1]
+            if 'Max Enroll' in item:
+                max_enroll = item.split(': ')
+                max_enroll = max_enroll[1]
+            if 'Prerequisites' in item:
+                item = item.strip('<span>')
+                prereq = item.split(': ')
+                prereq = prereq[1]
+            if 'Instructor' in item:
+                instruct = item.split(': ')
+                instruct = instruct[1]
+            if 'Distribution' in item:
+                dr = item.split(': ')
+                dr = dr[1]
+            if 'Typical' in item:
+                sem_offer = item.split(': ')
+                sem_offer = sem_offer[1]
+            if 'Semesters' in item:
+                year_offer = item.split(': ')
+                year_offer = year_offer[1]
+            else:
+                pass
+            return [units, max_enroll, prereq, instruct, dr, sem_offer, year_offer]
+    except:
+        traceback.print_exc()
 
 def get_course_dict(section, iteration):
     # run helper functions

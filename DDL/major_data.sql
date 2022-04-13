@@ -1,3 +1,5 @@
+use majormatch_db;
+
 load data local infile 'majors.csv'
 into table programs 
 fields terminated by ',' 
