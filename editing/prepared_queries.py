@@ -3,7 +3,6 @@
 ################################################################################
 from tkinter import ttk
 import cs304dbi as dbi
-from flask import flash
 
 ################################################################################
 #   Helpers for courses table 
@@ -11,6 +10,11 @@ from flask import flash
 
 def insert_course(conn, dept, cnum, name, units, max_enroll, 
                   prereq, instruct, dr, sem_offered, year_offered):
+    '''
+    Insert course into the major match database
+
+    Param - connection object + all the course information from catalog 
+    '''
     curs = dbi.cursor(conn)
     # prepared query
     sql = '''   insert into courses(dept, cnum, `name`, units, max_enroll, 
@@ -24,7 +28,9 @@ def insert_course(conn, dept, cnum, name, units, max_enroll,
 def course_exists(conn, dept, cnum):
     '''
     Checks if course already exists in database
-    Return true if course already exists
+
+    Param - connection ojbect, department abbreviation + course number
+    Return - true if course already exists
     '''
     curs = dbi.cursor(conn)
     sql = ''' select * from courses where dept = %s and cnum = %s '''
@@ -33,6 +39,12 @@ def course_exists(conn, dept, cnum):
     return len(movie) > 0
 
 def get_course_info(conn, cid):
+    '''
+    Getter for course info based on the course ID
+
+    Param - connection ojbect, course ID 
+    Return - course info (in list object)
+    '''
     curs = dbi.cursor(conn)
     sql = '''   select * from courses
                 where cid = %s
@@ -42,6 +54,12 @@ def get_course_info(conn, cid):
 
 def update_course(conn, cid, dept, cnum, name, units, max_enroll, prereq, 
 instruct, dr, sem_offered, year_offered, type, type_notes, major_freq):
+    '''
+    Checks if course already exists in database
+
+    Param - connection object + all the course information from catalog 
+    Return - true if course already exists
+    '''
     curs = dbi.cursor(conn)
     # prepared query
     sql = '''   update courses
@@ -115,12 +133,24 @@ def find_incomplete(conn):
 ################################################################################
 
 def get_departments(conn):
+    '''
+    Finds the courses that count towards majors in a department 
+    
+    Param - connection object
+    Return - list of departments 
+    '''
     curs = dbi.cursor(conn)
     sql = 'select * from programs'
     curs.execute(sql)
     return curs.fetchall()
 
 def find_dept_name(conn, dept_id):
+    '''
+    Finds a department's name from their department ID
+    
+    Param - connection object, department ID
+    Return - department name 
+    '''
     curs = dbi.cursor(conn)
     sql = '''   select name from programs
                 where dept_id = %s
@@ -132,10 +162,13 @@ def find_dept_name(conn, dept_id):
 def find_dept_courses(conn, dept_id):
     '''
     Finds the courses that count towards majors in a department 
+    
+    Param - connection object, department 
+    Return - list of courses 
     '''
     curs = dbi.cursor(conn)
     
-    sql = '''   select dept, cnum, courses.name, courses.cid 
+    sql =   ''' select dept, cnum, courses.name, courses.cid 
                 from courses 
                 inner join major_pairs using(cid)
                 inner join programs using (dept_id)
@@ -148,8 +181,12 @@ def find_dept_courses(conn, dept_id):
 #   Helpers for major_pairs table 
 ################################################################################
 
-# function to add major/course pair
 def add_pair(conn, dept_id, cid):
+    '''
+    Adds a pair of dept ID and course ID to the major pairs table 
+    
+    Param - connection object, department ID, course ID
+    '''
     curs = dbi.cursor(conn)
     sql = '''   insert into major_pairs(dept_id, cid)
                 values (%s, %s)
@@ -157,8 +194,12 @@ def add_pair(conn, dept_id, cid):
     curs.execute(sql, [dept_id, cid])
     conn.commit()
 
-# function to remove major/course pair 
 def remove_pair(conn, dept_id, cid):
+    '''
+    Removes a pair of dept ID and course ID to the major pairs table
+    
+    Param - connection object, department ID, course ID
+    '''
     curs = dbi.cursor(conn)
     sql = '''   delete from major_pairs
                 where dept_id = %s and cid = %s
@@ -166,10 +207,15 @@ def remove_pair(conn, dept_id, cid):
     curs.execute(sql, [dept_id, cid])
     conn.commit()
 
-# function to find majors that a course counts towards given its cid
 def find_pairs(conn, cid):
+    '''
+    Finds majors that a course counts towards given its cid
+    
+    Param - connection object, course ID
+    Return - tuple of department name and dept ID
+    '''
     curs = dbi.cursor(conn)
-    sql = '''   select `name`, dept_id from programs 
+    sql =   ''' select `name`, dept_id from programs 
                 inner join major_pairs using(dept_id)
                 where major_pairs.cid = %s
             '''
@@ -181,6 +227,12 @@ def find_pairs(conn, cid):
 
 
 def find_cid(conn, dept, cnum):
+    '''
+    Finds a course ID based on the department abbreviation and course number
+    
+    Param - connection object, dept abbrev, course number
+    Return - course ID
+    '''
     curs = dbi.cursor(conn)
     sql = '''   select cid from courses
                 where dept = %s and cnum = %s
@@ -189,3 +241,17 @@ def find_cid(conn, dept, cnum):
     row = curs.fetchone()
     return row[0]
 
+def find_dept_id(conn, dept_name):
+    '''
+    Finds a dept ID based on the department name
+    
+    Param - connection object, department name
+    Return - dept ID
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   select dept_id from programs
+                where `name` = %s
+            '''
+    curs.execute(sql, [dept_name])
+    row = curs.fetchone()
+    return row
