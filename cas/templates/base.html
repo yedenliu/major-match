@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name=author content="Scott D. Anderson">
+    <title>{{ page_title }}</title>
+    {% block head_stuff %} {% endblock %}
+</head>
+<body>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div id="messages">
+        {% for msg in messages %}
+            <p>{{msg}}</p>
+        {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+            
+{% if username %}
+
+        <form method="GET" action="{{url_for('cas.logout')}}">
+          <button>logout {{username}}</button>
+        </form>
+   <p>CAS username: {{username}}</p>
+   <p>CAS attributes:</p>
+   <ul>
+       {% for key,val in cas_attributes.items() %}
+       <li>{{key}} &rArr; {{val}}</li>
+       {% endfor %}
+   </ul>
+
+{% else %}
+
+   <form method="GET" action="{{url_for('cas.login')}}">
+     <button>login</button>
+   </form>
+
+{% endif %}   
+
+{% block main_content %}
+<h1>Welcome!</h1>
+{% endblock %}
+
+</body>
+</html>
