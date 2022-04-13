@@ -20,16 +20,13 @@ freq = {}
 """ countFrequency(courseList, freqDict) is a function that takes a list of courses and
 a dictionary in which to store their frequencies, and then determines the number of times
 each course appears in the given list and assigns their frequencies as their values. """
-def countFrequency(courseList, freqDict):
+def countFrequency(courseList, majorDict, freqDict):
     for course in courseList:
-        if (course in freqDict):
-            freqDict[course] += 1
-        else:
-            freqDict[course] = 1
+        freqDict[course] = len(majorDict[course])
 
 ''' using pandas to read the CSV into a dataframe'''
 df = pd.read_csv('/students/kswint/major-match/DDL/majorReqs.csv', sep = ',', lineterminator = '\n', error_bad_lines = False)
-print(df)
+#print(df)
 
 ''' create a dictionary where the keys are the courses and the values are a list of majors
 the course counts towards. '''
@@ -38,13 +35,13 @@ for course in allCourses:
     currentDF = df[(df == course).any(axis = 1)]
     majors[course] = list(currentDF['Major'])
 
-countFrequency(allCourses,freq)
+countFrequency(allCourses,majors,freq)
 
 ''' creates a dataframe with columns = each course and then the
 majors it counts towards'''
 df2 = pd.DataFrame.from_dict(majors, orient = 'index')
 #df2 = df2.sort_values(df2.columns[0])                               # sort the courses lexicographically
-print(df2.head(50))
+#print(df2.head(50))
 
 ''' creates a dataframe with columns = each course and the number of majors it counts
 towards, sorted from most majors to least majors.'''
@@ -54,10 +51,10 @@ countDF = sortedDF['freq'].value_counts()
 #print(sortedDF)
 
 '''Courses with the majors they fullfil as a TSV'''
-#df2.to_csv('/students/kswint/major-match/DDL/coursesToMajors.tsv', sep = '\t')
+df2.to_csv('/students/kswint/major-match/DDL/coursesToMajors.tsv', sep = '\t')
 
 '''Courses with the number of majors they fullfil as a TSV'''
-#df.to_csv('/students/kswint/major-match/DDL/courseMajFreq.tsv', sep = '\t')
+df.to_csv('/students/kswint/major-match/DDL/courseMajFreq.tsv', sep = '\t')
 
 tuplefy = [(k, v) for k, v in majors.items()]
 #print(tuplefy)
