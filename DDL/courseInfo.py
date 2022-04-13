@@ -51,15 +51,22 @@ countDF = sortedDF['freq'].value_counts()
 #print(sortedDF)
 
 '''Courses with the majors they fullfil as a TSV'''
-df2.to_csv('/students/kswint/major-match/DDL/coursesToMajors.tsv', sep = '\t')
+#df2.to_csv('/students/kswint/major-match/DDL/coursesToMajors.tsv', sep = '\t')
 
 '''Courses with the number of majors they fullfil as a TSV'''
-df.to_csv('/students/kswint/major-match/DDL/courseMajFreq.tsv', sep = '\t')
+#df.to_csv('/students/kswint/major-match/DDL/courseMajFreq.tsv', sep = '\t')
 
-tuplefy = [(k, v) for k, v in majors.items()]
-#print(tuplefy)
-masterDF = pd.DataFrame(tuplefy, columns = ['course','majors'])
-masterDF = pd.merge(df, masterDF, on ='course', how ="inner")
-# masterDF[['abrev','num']] = masterDF.course.str.split(" ", expand = True)
-# masterDF = masterDF.reindex(columns=['course', 'majors', 'freq'])
-#print(masterDF)
+'''Create the master dataframe for export!'''
+tuplefy = [(k, v) for k, v in majors.items()]           # converts the dictionary of majors a course counts towards
+                                                        # into a list for easy MySQL parsing. Otherwise, each major
+                                                        # would be its own column.
+masterDF = pd.DataFrame(tuplefy, columns = ['course','majors'])      # begin the dataframe! use courses and majors
+masterDF = pd.merge(df, masterDF, on ='course', how ="inner")        # use an inner join to add the frequency column
+masterDF[['abrev','num']] = masterDF.course.str.split(expand = True) # create two new columns; one for the department
+                                                                     # ("abrev") and one for the course number.
+masterDF = masterDF.reindex(columns=['course', 'abrev', 'num', 'freq', 'majors'])   # rearrange the rows for aesthetic purposes
+print(masterDF)
+
+''' Master TSV! Columns are the course, the department (abrev), the course number (three digit, not CRN),
+the number of majors that course counts towards, and a list of the majors that course counts towards.'''
+masterDF.to_csv('/students/kswint/major-match/DDL/completeMajorTable.tsv', sep = '\t')
