@@ -124,4 +124,4 @@ print(masterDF)
 
 ''' Master TSV! Columns are the course, the department (abrev), the course number (three digit, not CRN),
 the number of majors that course counts towards, and a list of the majors that course counts towards.'''
-masterDF.to_csv('/students/kswint/major-match/DDL/completeMajorTable.tsv', sep = '\t')
+# masterDF.to_csv('/students/kswint/major-match/DDL/completeMajorTable.tsv', sep = '\t')
