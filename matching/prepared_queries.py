@@ -2,6 +2,7 @@ from tkinter import ttk
 import cs304dbi as dbi
 
 def find_cid(conn, dept, cnum):
+    '''finds course id number based on department and course number from db'''
     curs = dbi.cursor(conn)
     sql = '''   select cid from courses
                 where dept = %s and cnum = %s
@@ -11,6 +12,7 @@ def find_cid(conn, dept, cnum):
     return row
 
 def insert_data(conn, dept, cnum):
+    '''insersts form data (department, course number, course id into db'''
     curs = dbi.cursor(conn)
     if dept != None and cnum != None:
         cid = find_cid(conn, dept, cnum)
@@ -21,17 +23,20 @@ def insert_data(conn, dept, cnum):
         conn.commit()
 
 def major_match(conn):
+    '''getting top five matches for each major; ordered by count'''
     curs = dbi.cursor(conn)
     sql = '''   select programs.name, count(major_pairs.dept_id) from programs
                 inner join major_pairs using(dept_id)
                 inner join form_data using(cid)
                 group by major_pairs.dept_id
+                order by count DESC
                 limit 5
             ''' 
     curs.execute(sql)
     return curs.fetchall()
 
 def delete_form_data(conn):
+    '''deletes form data from db'''
     curs = dbi.cursor(conn)
     sql = 'delete from form_data'
     curs.execute(sql)
