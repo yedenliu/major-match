@@ -1,13 +1,6 @@
 from tkinter import ttk
 import cs304dbi as dbi
 
-'''
-1. Accept the dept abbr and course number from form data --> put into DB 
-2. Match course to database courses 
-Get majors on matched courses 
-Get count of each major that is listed the most 
-'''
-
 def find_cid(conn, dept, cnum):
     curs = dbi.cursor(conn)
     sql = '''   select cid from courses
