@@ -26,10 +26,13 @@ def index():
         return render_template('index.html',page_title='Home')
     else:
         classes = []
-        for n in range(8): # range is the number of total courses they can input
+        for n in range(33): # range is the number of total courses they can input
             dept = request.form.get('dept-'+str(n))
             cnum = request.form.get('cnum-'+str(n))
+            
             if dept not in [None, ''] and cnum not in [None, '']:
+                dept = dept.upper().strip()
+                cnum = cnum.upper().strip()
                 classes.append((dept,cnum))
                 insert_data(conn, dept, cnum)
                 results = major_match(conn)

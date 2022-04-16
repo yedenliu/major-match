@@ -29,7 +29,7 @@ def major_match(conn):
                 inner join major_pairs using(dept_id)
                 inner join form_data using(cid)
                 group by major_pairs.dept_id
-                order by count DESC
+                order by count(major_pairs.dept_id) DESC
                 limit 5
             ''' 
     curs.execute(sql)
