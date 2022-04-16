@@ -10,7 +10,7 @@ pip install soupsieve
 #   IMPORT MODULES
 ########################################################################################################
 from bs4 import BeautifulSoup as BS 
-import requests, csv, os
+import csv, os
 from scrape_helpers import *
 
 ########################################################################################################
