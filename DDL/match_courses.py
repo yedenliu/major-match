@@ -5,42 +5,96 @@ import cs304dbi as dbi
 import os, csv
 
 ################################################################################
-#   Create 
+#   Helper Functions 
+################################################################################
+    
+def find_cid(conn, abbrev, cnum):
+    '''
+    Given the dept abbreviation and course number, find the course ID
+    
+    Param - connection object, dept abbrev, course number
+    Return - course ID (cid)
+    '''
+    curs = dbi.cursor(conn)
+    # prepared query
+    sql =   ''' select cid from courses
+                where dept = %s and cnum = %s
+            '''
+    curs.execute(sql, [abbrev, cnum])
+    return curs.fetchone()
+
+def update_freq(conn, freq, cid):
+    '''
+    Update the major frequency attribute of a given course
+    (i.e., how many majors it counts towards)
+    
+    Param - connection oject, major frequency, course ID
+    '''
+    curs = dbi.cursor(conn)
+    # prepared query
+    sql =   ''' update courses
+                set major_freq = %s
+                where cid = %s
+            '''
+    curs.execute(sql, [freq, cid])
+    conn.commit()
+
+def find_dept_id(conn, dept_name):
+    '''
+    Finds a dept ID based on the department name
+    
+    Param - connection object, department name
+    Return - dept ID
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   select dept_id from programs
+                where `name` = %s
+            '''
+    curs.execute(sql, [dept_name])
+    row = curs.fetchone()
+    return row
+
+def insert_pair(conn, dept_id, cid):
+    '''
+    Adds a pair of dept ID and course ID to the major pairs table 
+    
+    Param - connection object, department ID, course ID
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   insert into major_pairs(dept_id, cid)
+                values (%s, %s)
+            ''' 
+    curs.execute(sql, [dept_id, cid])
+    conn.commit()
+
+################################################################################
+#   Match
 ################################################################################
 
-def insert_cid(conn, abbrev):
-    curs = dbi.cursor(conn)
-    # prepared query
-    sql =   ''' insert into major_pairs(cid, dept)
-                select cid, dept from courses
-                where dept = 'AFR' or dept = %s
-            '''
-    curs.execute(sql, [abbrev])
-    conn.commit()
-
-def update_dept(conn, dept_id, abbrev):
-    curs = dbi.cursor(conn)
-    # prepared query
-    sql =   ''' update major_pairs
-                set dept_id = %s
-                where dept = %s
-            '''
-    curs.execute(sql, [dept_id, abbrev])
-    conn.commit()
-
 def match(conn):
-    with open('abbrev.tsv', 'r') as file:
+    with open('completeMajorTable.tsv', 'r') as file:
         tsv_reader = csv.reader(file, delimiter='\t')
         for row in tsv_reader:
-            dept_id = row[0]
             abbrev = row[1]
-            try:
-                insert_cid(conn, abbrev)
-                update_dept(conn, dept_id, abbrev)
-                print("SUCCESS! Dept: " + abbrev + " worked!")
-            except:
-                print("Department " + abbrev + " did not work")
-    drop_col(conn)
+            cnum = row[2]
+            freq = row[3]
+            majors = row[4]
+            # clean major column
+            majors = majors.strip('[').strip(']')
+            majors = majors.split(',')
+            
+            # update the courses table with the major freq
+            cid = find_cid(conn, abbrev, cnum)
+            #update_freq(conn, freq, cid)
+            
+            for major in majors:
+                dept_name = major.strip().strip("'").strip()
+                try:
+                    # insert into major_pairs table
+                    dept_id = find_dept_id(conn, dept_name)
+                    insert_pair(conn, dept_id, cid)
+                except:
+                    print("FAIL: " + str(abbrev) + str(cnum))
 
 dbi.cache_cnf()
 dbi.use('majormatch_db')
