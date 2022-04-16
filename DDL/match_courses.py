@@ -2,29 +2,11 @@
 #   Import Modules
 ################################################################################
 import cs304dbi as dbi
-import os
-import csv
+import os, csv
+
 ################################################################################
 #   Create 
 ################################################################################
-
-def temp_col(conn):
-    curs = dbi.cursor(conn)
-    # prepared query
-    sql =   ''' alter table major_pairs
-                add dept varchar(10)
-            '''
-    curs.execute(sql)
-    conn.commit()
-
-def drop_col(conn):
-    curs = dbi.cursor(conn)
-    # prepared query
-    sql =   ''' alter table major_pairs
-                drop dept
-            '''
-    curs.execute(sql)
-    conn.commit()
 
 def insert_cid(conn, abbrev):
     curs = dbi.cursor(conn)
@@ -47,7 +29,6 @@ def update_dept(conn, dept_id, abbrev):
     conn.commit()
 
 def match(conn):
-    temp_col(conn)
     with open('abbrev.tsv', 'r') as file:
         tsv_reader = csv.reader(file, delimiter='\t')
         for row in tsv_reader:
