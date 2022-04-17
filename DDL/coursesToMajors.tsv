@@ -1,5 +1,4 @@
 	course	0	1	2	3	4	5	6	7
-1555	 SPAN 302	Medieval Renaissance Studies							
 0	AFR 105	Africana Studies - Africa Concentration	Africana Studies - General Africana Studies Concentration	Africana Studies - The Caribbean and Latin America Concentration	Africana Studies - United States Concentration	Education Studies			
 63	AFR 201	Africana Studies - United States Concentration	International Relations - History	International Relations - Political Science					
 25	AFR 202	Africana Studies - Africa Concentration							
@@ -70,7 +69,7 @@
 974	AMST 161	Education Studies	Latin American Studies						
 900	AMST 212	East Asian Studies							
 60	AMST 215	Africana Studies - United States Concentration							
-1507	AMST 217	Latin American Studies							
+1507	AMST 217	Latin American Studies	Music						
 1297	AMST 220	International Relations - Economics	International Relations - History	International Relations - Political Science					
 975	AMST 222	Education Studies							
 977	AMST 225	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies			
@@ -84,7 +83,7 @@
 984	AMST 281	Education Studies							
 985	AMST 290	Education Studies	Latin American Studies						
 1011	AMST 296	English	English and Creative Writing						
-61	AMST 315	Africana Studies - United States Concentration	Education Studies						
+61	AMST 315	Africana Studies - United States Concentration	Education Studies	Music					
 1509	AMST 323	Latin American Studies							
 1510	AMST 327	Latin American Studies							
 1313	AMST 348	International Relations - Economics	International Relations - History	International Relations - Political Science					
@@ -143,18 +142,18 @@
 263	ANTH 350H	Anthropology	International Relations - History	International Relations - Political Science					
 264	ANTH 360	Anthropology	International Relations - History	International Relations - Political Science					
 265	ANTH 370	Anthropology	International Relations - History	International Relations - Political Science					
-1561	ARAB 201	Middle Eastern Studies							
-1562	ARAB 202	Middle Eastern Studies							
-1563	ARAB 250	Middle Eastern Studies							
-1564	ARAB 250H	Middle Eastern Studies							
-1565	ARAB 301	Middle Eastern Studies							
-1566	ARAB 302	Middle Eastern Studies							
-1567	ARAB 305	Middle Eastern Studies							
-1568	ARAB 307	Middle Eastern Studies							
-1569	ARAB 310	Middle Eastern Studies							
-1570	ARAB 350	Middle Eastern Studies							
-1571	ARAB 350H	Middle Eastern Studies							
-1573	ARAB 368	Middle Eastern Studies							
+1560	ARAB 201	Middle Eastern Studies							
+1561	ARAB 202	Middle Eastern Studies							
+1562	ARAB 250	Middle Eastern Studies							
+1563	ARAB 250H	Middle Eastern Studies							
+1564	ARAB 301	Middle Eastern Studies							
+1565	ARAB 302	Middle Eastern Studies							
+1566	ARAB 305	Middle Eastern Studies							
+1567	ARAB 307	Middle Eastern Studies							
+1568	ARAB 310	Middle Eastern Studies							
+1569	ARAB 350	Middle Eastern Studies							
+1570	ARAB 350H	Middle Eastern Studies							
+1572	ARAB 368	Middle Eastern Studies							
 266	ARTH 100	Architecture	Art History	Studio Art - students entering before Fall 2021	Media Arts and Sciences				
 306	ARTH 109	Art History							
 330	ARTH 110Y	Art History	Medieval Renaissance Studies						
@@ -310,17 +309,18 @@
 504	BIOC 223	Biochemistry							
 506	BIOC 320	Biochemistry							
 507	BIOC 323	Biochemistry							
+1649	BIOC 325	Neuroscience							
 509	BIOC 331	Biochemistry							
 1020	BISC 108	Environmental Studies							
-491	BISC 110	Biochemistry	Biological Sciences						
-492	BISC 110P	Biochemistry	Biological Sciences						
+491	BISC 110	Biochemistry	Biological Sciences	Neuroscience					
+492	BISC 110P	Biochemistry	Biological Sciences	Neuroscience					
 510	BISC 111	Biological Sciences	Environmental Studies						
 511	BISC 111T	Biological Sciences							
-493	BISC 112	Biochemistry	Biological Sciences						
-494	BISC 112Y	Biochemistry	Biological Sciences						
+493	BISC 112	Biochemistry	Biological Sciences	Neuroscience					
+494	BISC 112Y	Biochemistry	Biological Sciences	Neuroscience					
 512	BISC 113	Biological Sciences	Environmental Studies						
 513	BISC 113Y	Biological Sciences							
-495	BISC 116	Biochemistry	Biological Sciences	Environmental Studies					
+495	BISC 116	Biochemistry	Biological Sciences	Environmental Studies	Neuroscience				
 837	BISC 198	Data Science	Environmental Studies						
 519	BISC 201	Biological Sciences	Environmental Studies						
 520	BISC 202	Biological Sciences	Environmental Studies						
@@ -331,21 +331,21 @@
 523	BISC 210	Biological Sciences	Environmental Studies						
 524	BISC 214	Biological Sciences							
 518	BISC 216	Biological Sciences							
-514	BISC 219	Biological Sciences							
-515	BISC 220	Biological Sciences							
+514	BISC 219	Biological Sciences	Neuroscience						
+515	BISC 220	Biological Sciences	Neuroscience						
 525	BISC 247	Biological Sciences							
 1339	BISC 274	International Relations - History	International Relations - Political Science						
-452	BISC 302	Astronomy							
+452	BISC 302	Astronomy	Neuroscience						
 453	BISC 303	Astronomy							
 454	BISC 305	Astronomy							
-455	BISC 306	Astronomy							
+455	BISC 306	Astronomy	Neuroscience						
 456	BISC 307	Astronomy							
 457	BISC 308	Astronomy							
 458	BISC 310	Astronomy	Environmental Studies						
 459	BISC 311	Astronomy	Biochemistry						
 460	BISC 312	Astronomy							
 461	BISC 314	Astronomy	Biochemistry	Environmental Studies					
-462	BISC 315	Astronomy							
+462	BISC 315	Astronomy	Neuroscience						
 463	BISC 316	Astronomy	Biochemistry						
 464	BISC 317	Astronomy							
 465	BISC 318	Astronomy	Biochemistry						
@@ -366,67 +366,82 @@
 480	BISC 365	Astronomy							
 481	BISC 370	Astronomy							
 508	BOC 324	Biochemistry							
-530	CAMS 101	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences				
+530	CAMS 101	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences	Music			
+1625	CAMS 107Y	Music							
 1520	CAMS 115	Media Arts and Sciences							
-310	CAMS 135	Art History	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences			
-305	CAMS 138	Art History	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences			
-531	CAMS 201	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-532	CAMS 202	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-538	CAMS 203	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	East Asian Languages and Cultures	East Asian Studies				
+310	CAMS 135	Art History	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences	Music		
+305	CAMS 138	Art History	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences	Music		
+531	CAMS 201	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
+532	CAMS 202	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
+538	CAMS 203	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	East Asian Languages and Cultures	East Asian Studies	Music			
 1013	CAMS 204	English and Creative Writing							
-89	CAMS 207	American Studies	Art History	Media Arts and Sciences					
-536	CAMS 208	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	English and Creative Writing	Media Arts and Sciences				
+89	CAMS 207	American Studies	Art History	Media Arts and Sciences	Music				
+536	CAMS 208	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	English and Creative Writing	Media Arts and Sciences	Music			
+1626	CAMS 210	Music							
 539	CAMS 212	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
 540	CAMS 216	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
 541	CAMS 217	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-542	CAMS 218	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-543	CAMS 219	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-544	CAMS 221	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-95	CAMS 222	American Studies	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences				
-545	CAMS 225	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-96	CAMS 227	American Studies	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after					
+542	CAMS 218	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
+543	CAMS 219	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
+1627	CAMS 220	Music							
+544	CAMS 221	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
+95	CAMS 222	American Studies	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music			
+1628	CAMS 224	Music							
+545	CAMS 225	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
+96	CAMS 227	American Studies	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music				
 546	CAMS 228	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-547	CAMS 230	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences					
-84	CAMS 232	American Studies	International Relations - History	International Relations - Political Science	Media Arts and Sciences				
-549	CAMS 233	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-534	CAMS 234	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences					
-551	CAMS 235	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences					
-553	CAMS 238	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences					
-290	CAMS 239	Architecture	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences				
-97	CAMS 240	American Studies	Latin American Studies						
-99	CAMS 241	American Studies							
-293	CAMS 255	Architecture	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences				
-555	CAMS 261	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
+547	CAMS 230	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
+84	CAMS 232	American Studies	International Relations - History	International Relations - Political Science	Media Arts and Sciences	Music			
+549	CAMS 233	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
+534	CAMS 234	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
+551	CAMS 235	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
+553	CAMS 238	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
+290	CAMS 239	Architecture	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music			
+97	CAMS 240	American Studies	Latin American Studies	Music					
+99	CAMS 241	American Studies	Music						
+1629	CAMS 243	Music							
+1630	CAMS 250	Music							
+1631	CAMS 250H	Music							
+293	CAMS 255	Architecture	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music			
+555	CAMS 261	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
 556	CAMS 270	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-1254	CAMS 271	International Relations - Economics	International Relations - History	International Relations - Political Science					
+1254	CAMS 271	International Relations - Economics	International Relations - History	International Relations - Political Science	Music				
 101	CAMS 272	American Studies	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after					
 988	CAMS 276	Education Studies							
-559	CAMS 277	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-557	CAMS 286	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	German Studies					
+559	CAMS 277	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
+557	CAMS 286	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	German Studies	Music				
 102	CAMS 292	American Studies							
 561	CAMS 300	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-563	CAMS 301	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-1341	CAMS 305	International Relations - History	International Relations - Political Science						
-564	CAMS 310	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
+563	CAMS 301	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
+1632	CAMS 302	Music							
+1633	CAMS 304	Music							
+1341	CAMS 305	International Relations - History	International Relations - Political Science	Music					
+1634	CAMS 308	Music							
+564	CAMS 310	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
 565	CAMS 312	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-566	CAMS 313	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences					
+566	CAMS 313	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
 1525	CAMS 318	Media Arts and Sciences							
 568	CAMS 320	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-299	CAMS 321	Architecture	Media Arts and Sciences						
-569	CAMS 324	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-570	CAMS 327	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-571	CAMS 335	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences					
-573	CAMS 338	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences					
-575	CAMS 366	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences					
+299	CAMS 321	Architecture	Media Arts and Sciences	Music					
+569	CAMS 324	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
+570	CAMS 327	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
+571	CAMS 335	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
+573	CAMS 338	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
+1635	CAMS 350	Music							
+1636	CAMS 350H	Music							
+1637	CAMS 360	Music							
+575	CAMS 366	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
+1638	CAMS 370	Music							
 1021	CHEM 103	Environmental Studies							
 487	CHEM 105	Biochemistry	Biological Sciences	Chemical Physics	Chemistry	Environmental Studies			
 488	CHEM 105P	Biochemistry	Biological Sciences						
 489	CHEM 116	Biochemistry	Biological Sciences	Environmental Studies					
 490	CHEM 120	Biochemistry	Biological Sciences	Chemical Physics	Chemistry				
 500	CHEM 205	Biochemistry	Chemical Physics	Chemistry					
-501	CHEM 211	Biochemistry	Chemical Physics	Chemistry					
+501	CHEM 211	Biochemistry	Chemical Physics	Chemistry	Neuroscience				
 528	CHEM 212	Chemistry							
-529	CHEM 223	Chemistry							
+529	CHEM 223	Chemistry	Neuroscience						
+1647	CHEM 227	Neuroscience							
 432	CHEM 302	Astronomy	Chemistry	Education Studies					
 433	CHEM 303	Astronomy	Chemistry						
 434	CHEM 304	Astronomy	Chemistry						
@@ -438,7 +453,7 @@
 427	CHEM 320	Astronomy	Chemistry						
 428	CHEM 323	Astronomy	Chemistry						
 429	CHEM 324	Astronomy	Chemistry						
-430	CHEM 325	Astronomy	Chemistry						
+430	CHEM 325	Astronomy	Chemistry	Neuroscience					
 440	CHEM 330	Astronomy	Chemical Physics	Chemistry					
 441	CHEM 330X	Astronomy	Chemistry						
 431	CHEM 331	Astronomy	Chemistry						
@@ -511,7 +526,7 @@
 689	CLSC 316	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies						
 901	CPLT 236	East Asian Studies							
 1032	CPLT 238	Environmental Studies							
-659	CS 111	Cognitive and Linguistic Sciences - Computer Science Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Computer Science	Data Science	Media Arts and Sciences			
+659	CS 111	Cognitive and Linguistic Sciences - Computer Science Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Computer Science	Data Science	Media Arts and Sciences	Music		
 690	CS 112	Cognitive and Linguistic Sciences - Psychology Concentration							
 1522	CS 121	Media Arts and Sciences							
 810	CS 203	Computer Science	Media Arts and Sciences						
@@ -520,7 +535,7 @@
 812	CS 221	Computer Science	Media Arts and Sciences						
 660	CS 230	Cognitive and Linguistic Sciences - Computer Science Concentration	Computer Science	Data Science	Media Arts and Sciences				
 663	CS 231	Cognitive and Linguistic Sciences - Computer Science Concentration	Computer Science	Media Arts and Sciences					
-661	CS 232	Cognitive and Linguistic Sciences - Computer Science Concentration	Computer Science	Data Science	Education Studies	Media Arts and Sciences			
+661	CS 232	Cognitive and Linguistic Sciences - Computer Science Concentration	Computer Science	Data Science	Education Studies	Media Arts and Sciences	Neuroscience		
 813	CS 234	Computer Science	Data Science	Media Arts and Sciences					
 664	CS 235	Cognitive and Linguistic Sciences - Computer Science Concentration	Cognitive and Linguistic Sciences - Linguistics Concentration	Computer Science					
 809	CS 240	Computer Science							
@@ -530,7 +545,7 @@
 665	CS 251	Cognitive and Linguistic Sciences - Computer Science Concentration	Computer Science						
 817	CS 301	Computer Science							
 818	CS 304	Computer Science	Data Science	Media Arts and Sciences					
-666	CS 305	Cognitive and Linguistic Sciences - Computer Science Concentration	Computer Science	Data Science	Media Arts and Sciences				
+666	CS 305	Cognitive and Linguistic Sciences - Computer Science Concentration	Computer Science	Data Science	Media Arts and Sciences	Neuroscience			
 819	CS 307	Computer Science	Media Arts and Sciences						
 820	CS 313	Computer Science	Data Science						
 821	CS 315	Computer Science	Data Science	Media Arts and Sciences					
@@ -539,7 +554,7 @@
 824	CS 321	Computer Science	Media Arts and Sciences						
 667	CS 323	Cognitive and Linguistic Sciences - Computer Science Concentration	Computer Science	Media Arts and Sciences					
 825	CS 331	Computer Science							
-668	CS 332	Cognitive and Linguistic Sciences - Computer Science Concentration	Media Arts and Sciences						
+668	CS 332	Cognitive and Linguistic Sciences - Computer Science Concentration	Media Arts and Sciences	Neuroscience					
 826	CS 333	Computer Science							
 827	CS 341	Computer Science							
 828	CS 342	Computer Science	Data Science						
@@ -597,6 +612,7 @@
 1345	ECON 350	International Relations - History	International Relations - Political Science						
 1346	ECON 360	International Relations - History	International Relations - Political Science						
 1347	ECON 370	International Relations - History	International Relations - Political Science						
+1703	EDUC 102	Philosophy							
 949	EDUC 103Y	Education Studies							
 951	EDUC 117Y	Education Studies							
 952	EDUC 200	Education Studies							
@@ -1003,7 +1019,7 @@
 1402	ITAS 350	Italian Studies							
 1403	ITAS 360	Italian Studies							
 1404	ITAS 370	Italian Studies							
-1575	JEST 104	Middle Eastern Studies							
+1574	JEST 104	Middle Eastern Studies							
 891	JPN 201	East Asian Studies							
 892	JPN 202	East Asian Studies							
 893	JPN 231	East Asian Studies							
@@ -1081,20 +1097,25 @@
 672	LING 312	Cognitive and Linguistic Sciences - Linguistics Concentration	Education Studies						
 673	LING 315	Cognitive and Linguistic Sciences - Linguistics Concentration							
 219	LING 338	Anthropology	Cognitive and Linguistic Sciences - Linguistics Concentration	Education Studies					
-1521	MAS 115	Media Arts and Sciences							
-334	MAS 222	Art History	Media Arts and Sciences						
-1337	MAS 246	International Relations - History	International Relations - Political Science	Media Arts and Sciences					
-1527	MAS 250	Media Arts and Sciences							
-1528	MAS 250H	Media Arts and Sciences							
-1529	MAS 360	Media Arts and Sciences							
-1530	MAS 370	Media Arts and Sciences							
+1521	MAS 115	Media Arts and Sciences	Music						
+1639	MAS 121	Music							
+1640	MAS 221	Music							
+334	MAS 222	Art History	Media Arts and Sciences	Music					
+1337	MAS 246	International Relations - History	International Relations - Political Science	Media Arts and Sciences	Music				
+1527	MAS 250	Media Arts and Sciences	Music						
+1528	MAS 250H	Media Arts and Sciences	Music						
+1641	MAS 260	Music							
+1642	MAS 350	Music							
+1643	MAS 350H	Music							
+1529	MAS 360	Media Arts and Sciences	Music						
+1530	MAS 370	Media Arts and Sciences	Music						
 484	MATH 115	Astrophysics	Mathematics						
 1121	MATH 115Z	Mathematics							
 485	MATH 116	Astrophysics	Biochemistry	Mathematics					
 499	MATH 120	Biochemistry	Mathematics						
 486	MATH 205	Astrophysics	Chemistry	Data Science	Mathematics				
 844	MATH 206	Data Science	Mathematics						
-378	MATH 215	Astronomy	Astrophysics	Chemical Physics	Chemistry				
+378	MATH 215	Astronomy	Astrophysics	Chemical Physics	Chemistry	Neuroscience			
 808	MATH 225	Computer Science							
 1123	MATH 302	Mathematics							
 1124	MATH 305	Mathematics							
@@ -1123,97 +1144,172 @@
 1230	MER 293	International Relations - Economics							
 1541	MER 311	Medieval Renaissance Studies							
 1010	MER 314	English	English and Creative Writing						
-1591	MES 250	Middle Eastern Studies							
-1592	MES 250H	Middle Eastern Studies							
-1593	MES 260	Middle Eastern Studies							
+1590	MES 250	Middle Eastern Studies							
+1591	MES 250H	Middle Eastern Studies							
+1592	MES 260	Middle Eastern Studies							
 1543	MES 261	Medieval Renaissance Studies	Middle Eastern Studies						
-1594	MES 263	Middle Eastern Studies							
+1593	MES 263	Middle Eastern Studies							
 1410	MES 264	Jewish Studies	Middle Eastern Studies						
 1412	MES 265	Jewish Studies	Middle Eastern Studies						
-1595	MES 267	Middle Eastern Studies							
-1596	MES 270H	Middle Eastern Studies							
+1594	MES 267	Middle Eastern Studies							
+1595	MES 270H	Middle Eastern Studies							
 1200	MES 293	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Middle Eastern Studies			
-1572	MES 310	Middle Eastern Studies							
-1597	MES 347	Middle Eastern Studies							
-1598	MES 350	Middle Eastern Studies							
-1599	MES 350H	Middle Eastern Studies							
+1571	MES 310	Middle Eastern Studies							
+1596	MES 347	Middle Eastern Studies							
+1597	MES 350	Middle Eastern Studies							
+1598	MES 350H	Middle Eastern Studies							
 1236	MES 358	International Relations - Economics	International Relations - History	Jewish Studies	Middle Eastern Studies				
-1600	MES 359	Middle Eastern Studies							
-1601	MES 360	Middle Eastern Studies							
-1602	MES 361	Middle Eastern Studies							
-1603	MES 362	Middle Eastern Studies							
-1604	MES 363	Middle Eastern Studies							
+1599	MES 359	Middle Eastern Studies							
+1600	MES 360	Middle Eastern Studies							
+1601	MES 361	Middle Eastern Studies							
+1602	MES 362	Middle Eastern Studies							
+1603	MES 363	Middle Eastern Studies							
 1214	MES 364	History	International Relations - Economics	International Relations - History	Jewish Studies	Middle Eastern Studies			
 1545	MES 365	Medieval Renaissance Studies	Middle Eastern Studies						
 1217	MES 366	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Middle Eastern Studies		
-1605	MES 367	Middle Eastern Studies							
+1604	MES 367	Middle Eastern Studies							
 1221	MES 369	History	International Relations - Economics	International Relations - Political Science	Jewish Studies	Middle Eastern Studies			
-1606	MES 370	Middle Eastern Studies							
-1547	MUS 200	Medieval Renaissance Studies							
-34	MUS 209	Africana Studies - Africa Concentration	Africana Studies - United States Concentration	American Studies	Anthropology	Architecture			
-220	MUS 210	Anthropology	Latin American Studies						
+1605	MES 370	Middle Eastern Studies							
+1606	MUS 100	Music							
+1607	MUS 122	Music							
+1612	MUS 199	Music							
+1547	MUS 200	Medieval Renaissance Studies	Music						
+1609	MUS 201	Music							
+1610	MUS 202	Music							
+34	MUS 209	Africana Studies - Africa Concentration	Africana Studies - United States Concentration	American Studies	Anthropology	Architecture	Music		
+220	MUS 210	Anthropology	Latin American Studies	Music					
+1617	MUS 212	Music							
 1531	MUS 213	Media Arts and Sciences							
 1516	MUS 214H	Latin American Studies							
-1517	MUS 215	Latin American Studies							
-155	MUS 220	American Studies	Architecture						
-86	MUS 245	American Studies	International Relations - History	International Relations - Political Science	Latin American Studies				
-560	MUS 275	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences					
-156	MUS 276	American Studies	Architecture	Media Arts and Sciences					
-587	MUS 277	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences					
-66	MUS 300	Africana Studies - United States Concentration	Jewish Studies	Media Arts and Sciences					
-1447	MUS 314	Latin American Studies							
+1517	MUS 215	Latin American Studies	Music						
+155	MUS 220	American Studies	Architecture	Music					
+1620	MUS 222	Music							
+1608	MUS 244	Music							
+86	MUS 245	American Studies	International Relations - History	International Relations - Political Science	Latin American Studies	Music			
+1622	MUS 250	Music							
+1615	MUS 250H	Music							
+560	MUS 275	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
+156	MUS 276	American Studies	Architecture	Media Arts and Sciences	Music				
+587	MUS 277	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
+1618	MUS 298	Music							
+1613	MUS 299	Music							
+66	MUS 300	Africana Studies - United States Concentration	Jewish Studies	Media Arts and Sciences	Music				
+1624	MUS 301	Music							
+1616	MUS 309	Music							
+1447	MUS 314	Latin American Studies	Music						
+1611	MUS 315	Music							
+1621	MUS 322	Music							
 302	MUS 336	Architecture	Media Arts and Sciences						
-1511	MUS 345	Latin American Studies							
-505	NEUR 332	Biochemistry							
-991	PEAC 104	Education Studies							
+1614	MUS 344	Music							
+1511	MUS 345	Latin American Studies	Music						
+1623	MUS 350	Music							
+1619	MUS 398	Music							
+1644	NEUR 100	Neuroscience							
+1645	NEUR 200	Neuroscience							
+1646	NEUR 300	Neuroscience							
+1650	NEUR 305	Neuroscience							
+1651	NEUR 306	Neuroscience							
+1654	NEUR 310	Neuroscience							
+1652	NEUR 315	Neuroscience							
+1655	NEUR 325	Neuroscience							
+505	NEUR 332	Biochemistry	Neuroscience						
+1656	NEUR 335	Neuroscience							
+991	PEAC 104	Education Studies	Peace and Justice Studies						
 913	PEAC 119Y	East Asian Studies							
-1317	PEAC 201	International Relations - Economics							
-1378	PEAC 205	International Relations - History							
-992	PEAC 206	Education Studies	International Relations - History						
+1317	PEAC 201	International Relations - Economics	Peace and Justice Studies						
+1657	PEAC 204	Peace and Justice Studies							
+1378	PEAC 205	International Relations - History	Peace and Justice Studies						
+992	PEAC 206	Education Studies	International Relations - History	Peace and Justice Studies					
 1290	PEAC 207	International Relations - Economics	International Relations - History	International Relations - Political Science					
+1659	PEAC 207/	Peace and Justice Studies							
 1351	PEAC 209	International Relations - History	International Relations - Political Science						
-119	PEAC 215	American Studies	Education Studies						
-1268	PEAC 217	International Relations - Economics	International Relations - History	Middle Eastern Studies					
-1292	PEAC 219	International Relations - Economics							
-1333	PEAC 220	International Relations - History	International Relations - Political Science						
-1277	PEAC 221	International Relations - Economics							
-924	PEAC 222	Economics	International Relations - History	International Relations - Political Science					
-1185	PEAC 224	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
-987	PEAC 231	Education Studies	International Relations - History	International Relations - Political Science	Latin American Studies				
-157	PEAC 240	American Studies	Architecture	International Relations - Economics					
-74	PEAC 243	American Studies	International Relations - Economics	International Relations - History	International Relations - Political Science				
-1258	PEAC 261	International Relations - Economics	International Relations - History	International Relations - Political Science					
-986	PEAC 290	Education Studies	Latin American Studies						
-1375	PEAC 304	International Relations - History							
-990	PEAC 305	Education Studies							
+1663	PEAC 210	Peace and Justice Studies							
+119	PEAC 215	American Studies	Education Studies	Peace and Justice Studies					
+1268	PEAC 217	International Relations - Economics	International Relations - History	Middle Eastern Studies	Peace and Justice Studies				
+1292	PEAC 219	International Relations - Economics	Peace and Justice Studies						
+1333	PEAC 220	International Relations - History	International Relations - Political Science	Peace and Justice Studies					
+1277	PEAC 221	International Relations - Economics	Peace and Justice Studies						
+924	PEAC 222	Economics	International Relations - History	International Relations - Political Science	Peace and Justice Studies				
+1664	PEAC 223	Peace and Justice Studies							
+1185	PEAC 224	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Peace and Justice Studies			
+1665	PEAC 225	Peace and Justice Studies							
+987	PEAC 231	Education Studies	International Relations - History	International Relations - Political Science	Latin American Studies	Peace and Justice Studies			
+1662	PEAC 235	Peace and Justice Studies							
+157	PEAC 240	American Studies	Architecture	International Relations - Economics	Peace and Justice Studies				
+74	PEAC 243	American Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Peace and Justice Studies			
+1666	PEAC 250	Peace and Justice Studies							
+1658	PEAC 250H	Peace and Justice Studies							
+1660	PEAC 259	Peace and Justice Studies							
+1258	PEAC 261	International Relations - Economics	International Relations - History	International Relations - Political Science	Peace and Justice Studies				
+1661	PEAC 264	Peace and Justice Studies							
+986	PEAC 290	Education Studies	Latin American Studies	Peace and Justice Studies					
+1375	PEAC 304	International Relations - History	Peace and Justice Studies						
+990	PEAC 305	Education Studies	Peace and Justice Studies						
 962	PEAC 312	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies			
-1285	PEAC 318	International Relations - Economics							
-1245	PEAC 357	International Relations - Economics	International Relations - History						
+1667	PEAC 312/	Peace and Justice Studies							
+1285	PEAC 318	International Relations - Economics	Peace and Justice Studies						
+1669	PEAC 350	Peace and Justice Studies							
+1670	PEAC 350H	Peace and Justice Studies							
+1245	PEAC 357	International Relations - Economics	International Relations - History	Peace and Justice Studies					
 1237	PEAC 358	International Relations - Economics	International Relations - History	Jewish Studies					
-1012	PEAC 388	English	English and Creative Writing						
-1024	PHIL 105	Environmental Studies							
-1548	PHIL 200	Medieval Renaissance Studies							
-651	PHIL 201	Classical Civilization							
+1668	PEAC 358/	Peace and Justice Studies							
+1671	PEAC 360	Peace and Justice Studies							
+1672	PEAC 370	Peace and Justice Studies							
+1012	PEAC 388	English	English and Creative Writing	Peace and Justice Studies					
+1673	PHIL 102	Philosophy							
+1701	PHIL 103	Philosophy							
+1024	PHIL 105	Environmental Studies	Philosophy						
+1680	PHIL 106	Philosophy							
+1681	PHIL 108	Philosophy							
+1682	PHIL 111	Philosophy							
+1702	PHIL 112	Philosophy							
+1683	PHIL 115	Philosophy							
+1548	PHIL 200	Medieval Renaissance Studies	Philosophy						
+651	PHIL 201	Classical Civilization	Philosophy						
 26	PHIL 202	Africana Studies - Africa Concentration							
-1532	PHIL 203	Media Arts and Sciences							
-677	PHIL 207	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration						
-678	PHIL 216	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration	Cognitive and Linguistic Sciences - Psychology Concentration					
-683	PHIL 218	Cognitive and Linguistic Sciences - Philosophy Concentration							
-684	PHIL 221	Cognitive and Linguistic Sciences - Philosophy Concentration	Medieval Renaissance Studies						
+1532	PHIL 203	Media Arts and Sciences	Philosophy						
+1684	PHIL 205	Philosophy							
+677	PHIL 207	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration	Philosophy					
+1685	PHIL 213	Philosophy							
+1648	PHIL 215	Neuroscience	Philosophy						
+678	PHIL 216	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Philosophy				
+683	PHIL 218	Cognitive and Linguistic Sciences - Philosophy Concentration	Philosophy						
+1687	PHIL 22	Philosophy							
+1686	PHIL 220	Philosophy							
+684	PHIL 221	Cognitive and Linguistic Sciences - Philosophy Concentration	Medieval Renaissance Studies	Philosophy					
 1526	PHIL 222	Media Arts and Sciences							
-1331	PHIL 228	International Relations - History	International Relations - Political Science						
-1026	PHIL 233	Environmental Studies							
-1028	PHIL 234	Environmental Studies							
-685	PHIL 245	Cognitive and Linguistic Sciences - Philosophy Concentration							
-1549	PHIL 300	Medieval Renaissance Studies							
-652	PHIL 310	Classical Civilization							
-686	PHIL 311	Cognitive and Linguistic Sciences - Philosophy Concentration							
-81	PHIL 319	American Studies	International Relations - History	International Relations - Political Science					
-687	PHIL 323	Cognitive and Linguistic Sciences - Philosophy Concentration							
-679	PHIL 333	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration						
-1043	PHIL 338	Environmental Studies							
-688	PHIL 345	Cognitive and Linguistic Sciences - Philosophy Concentration							
-1585	PHIL 366	Middle Eastern Studies							
+1688	PHIL 226	Philosophy							
+1331	PHIL 228	International Relations - History	International Relations - Political Science	Philosophy					
+1689	PHIL 229	Philosophy							
+1674	PHIL 231	Philosophy							
+1026	PHIL 233	Environmental Studies	Philosophy						
+1028	PHIL 234	Environmental Studies	Philosophy						
+1690	PHIL 236	Philosophy							
+685	PHIL 245	Cognitive and Linguistic Sciences - Philosophy Concentration	Philosophy						
+1691	PHIL 249	Philosophy							
+1549	PHIL 300	Medieval Renaissance Studies	Philosophy						
+1676	PHIL 301	Philosophy							
+1692	PHIL 303	Philosophy							
+1693	PHIL 304	Philosophy							
+1677	PHIL 305	Philosophy							
+1678	PHIL 306	Philosophy							
+1679	PHIL 307	Philosophy							
+652	PHIL 310	Classical Civilization	Philosophy						
+686	PHIL 311	Cognitive and Linguistic Sciences - Philosophy Concentration	Philosophy						
+1694	PHIL 316	Philosophy							
+1695	PHIL 317	Philosophy							
+81	PHIL 319	American Studies	International Relations - History	International Relations - Political Science	Philosophy				
+687	PHIL 323	Cognitive and Linguistic Sciences - Philosophy Concentration	Philosophy						
+1675	PHIL 325	Philosophy							
+1696	PHIL 330	Philosophy							
+1697	PHIL 331	Philosophy							
+679	PHIL 333	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration	Philosophy					
+1043	PHIL 338	Environmental Studies	Philosophy						
+1698	PHIL 340	Philosophy							
+1699	PHIL 341	Philosophy							
+1700	PHIL 342	Philosophy							
+688	PHIL 345	Cognitive and Linguistic Sciences - Philosophy Concentration	Philosophy						
+1584	PHIL 366	Middle Eastern Studies	Philosophy						
 379	PHYS 100	Astronomy	Astrophysics	Biochemistry					
 496	PHYS 104	Biochemistry	Chemistry						
 497	PHYS 106	Biochemistry	Chemistry						
@@ -1224,8 +1320,8 @@
 383	PHYS 205	Astronomy	Astrophysics						
 384	PHYS 207	Astronomy	Astrophysics	Chemical Physics					
 482	PHYS 208	Astrophysics	Chemical Physics						
-483	PHYS 210	Astrophysics	Chemical Physics						
-1122	PHYS 216	Mathematics							
+483	PHYS 210	Astrophysics	Chemical Physics	Neuroscience					
+1122	PHYS 216	Mathematics	Neuroscience						
 413	PHYS 302	Astronomy	Astrophysics	Chemical Physics	Physics - entering after Fall 2018				
 409	PHYS 304	Astronomy	Astrophysics	Physics - entering after Fall 2018					
 414	PHYS 305	Astronomy	Astrophysics	Chemical Physics	Physics - entering after Fall 2018				
@@ -1334,33 +1430,34 @@
 1449	PORT 350	Latin American Studies							
 700	PSUC 318	Cognitive and Linguistic Sciences - Psychology Concentration							
 996	PSYC 101	Education Studies							
-691	PSYC 205	Cognitive and Linguistic Sciences - Psychology Concentration	Data Science						
+691	PSYC 205	Cognitive and Linguistic Sciences - Psychology Concentration	Data Science	Neuroscience					
 997	PSYC 207	Education Studies							
 998	PSYC 210	Education Studies							
-695	PSYC 215	Cognitive and Linguistic Sciences - Psychology Concentration							
-658	PSYC 216	Cognitive and Linguistic Sciences - Computer Science Concentration	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies			
-696	PSYC 217	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies						
-697	PSYC 218	Cognitive and Linguistic Sciences - Psychology Concentration	Media Arts and Sciences						
+695	PSYC 215	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience						
+658	PSYC 216	Cognitive and Linguistic Sciences - Computer Science Concentration	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies	Neuroscience		
+696	PSYC 217	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies	Neuroscience					
+697	PSYC 218	Cognitive and Linguistic Sciences - Psychology Concentration	Media Arts and Sciences	Neuroscience					
 698	PSYC 219	Cognitive and Linguistic Sciences - Psychology Concentration							
 976	PSYC 222	Education Studies							
 1003	PSYC 244	Education Studies							
 999	PSYC 245	Education Studies							
 1329	PSYC 255	International Relations - History	International Relations - Political Science						
 699	PSYC 301	Cognitive and Linguistic Sciences - Psychology Concentration							
-692	PSYC 314R	Cognitive and Linguistic Sciences - Psychology Concentration							
-693	PSYC 315R	Cognitive and Linguistic Sciences - Psychology Concentration							
-680	PSYC 316	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies					
-701	PSYC 319	Cognitive and Linguistic Sciences - Psychology Concentration							
+692	PSYC 314R	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience						
+693	PSYC 315R	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience						
+680	PSYC 316	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies	Neuroscience				
+1653	PSYC 317	Neuroscience							
+701	PSYC 319	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience						
 1000	PSYC 325	Education Studies							
 1001	PSYC 326	Education Studies							
-702	PSYC 328	Cognitive and Linguistic Sciences - Psychology Concentration							
+702	PSYC 328	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience						
 1002	PSYC 333	Education Studies							
 177	PSYC 337	American Studies	Architecture	Education Studies					
 178	PSYC 338	American Studies	Architecture						
 179	PSYC 341	American Studies	Architecture						
 703	PSYC 345	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies						
 180	PSYC 346	American Studies	Architecture						
-841	QR 260	Data Science	Environmental Studies						
+841	QR 260	Data Science	Environmental Studies	Neuroscience					
 848	QR 309	Data Science							
 588	RAST 222	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
 589	RAST 322	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
@@ -1383,33 +1480,33 @@
 904	REL 254	East Asian Studies							
 905	REL 255	East Asian Studies							
 906	REL 257	East Asian Studies							
-1576	REL 260	Middle Eastern Studies							
+1575	REL 260	Middle Eastern Studies							
 1544	REL 261	Medieval Renaissance Studies	Middle Eastern Studies						
 1552	REL 262	Medieval Renaissance Studies	Middle Eastern Studies						
-1577	REL 263	Middle Eastern Studies							
+1576	REL 263	Middle Eastern Studies							
 1411	REL 264	Jewish Studies	Middle Eastern Studies						
 1413	REL 265	Jewish Studies	Middle Eastern Studies						
 1198	REL 266	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies			
-1578	REL 267	Middle Eastern Studies							
-1587	REL 268	Middle Eastern Studies							
-1588	REL 269	Middle Eastern Studies							
+1577	REL 267	Middle Eastern Studies							
+1586	REL 268	Middle Eastern Studies							
+1587	REL 269	Middle Eastern Studies							
 1551	REL 270	Medieval Renaissance Studies	Middle Eastern Studies						
 1506	REL 326	Latin American Studies							
-1589	REL 330	Middle Eastern Studies							
+1588	REL 330	Middle Eastern Studies							
 1418	REL 342	Jewish Studies	Middle Eastern Studies						
 1419	REL 345	Jewish Studies							
-1579	REL 347	Middle Eastern Studies							
-1590	REL 348	Middle Eastern Studies							
+1578	REL 347	Middle Eastern Studies							
+1589	REL 348	Middle Eastern Studies							
 907	REL 353	East Asian Studies							
-1580	REL 359	Middle Eastern Studies							
-1581	REL 361	Middle Eastern Studies							
-1582	REL 362	Middle Eastern Studies							
-1583	REL 363	Middle Eastern Studies							
+1579	REL 359	Middle Eastern Studies							
+1580	REL 361	Middle Eastern Studies							
+1581	REL 362	Middle Eastern Studies							
+1582	REL 363	Middle Eastern Studies							
 1553	REL 364	Medieval Renaissance Studies	Middle Eastern Studies						
 1546	REL 365	Medieval Renaissance Studies	Middle Eastern Studies						
-1586	REL 366	Middle Eastern Studies							
-1584	REL 367	Middle Eastern Studies							
-1574	REL 368	Middle Eastern Studies							
+1585	REL 366	Middle Eastern Studies							
+1583	REL 367	Middle Eastern Studies							
+1573	REL 368	Middle Eastern Studies							
 714	RUSS 251	Comparative Literary Studies							
 715	RUSS 276	Comparative Literary Studies							
 1300	SAS 232	International Relations - Economics	International Relations - History	International Relations - Political Science					
@@ -1499,7 +1596,7 @@
 1475	SPAN 293	Latin American Studies							
 1476	SPAN 299	Latin American Studies							
 1477	SPAN 301	Latin American Studies							
-1478	SPAN 302	Latin American Studies							
+1478	SPAN 302	Latin American Studies	Medieval Renaissance Studies						
 1479	SPAN 303	Latin American Studies							
 197	SPAN 305	American Studies	Architecture	Latin American Studies					
 1480	SPAN 307	Latin American Studies	Medieval Renaissance Studies						
@@ -1525,11 +1622,11 @@
 1499	SPAN 377	Latin American Studies							
 835	STAT 101	Data Science							
 1044	STAT 160	Environmental Studies							
-836	STAT 218	Data Science	Mathematics						
+836	STAT 218	Data Science	Mathematics	Neuroscience					
 845	STAT 220	Data Science	Mathematics						
 846	STAT 221	Data Science	Mathematics						
 847	STAT 228	Data Science	Mathematics						
-842	STAT 260	Data Science	Environmental Studies	Mathematics					
+842	STAT 260	Data Science	Environmental Studies	Mathematics	Neuroscience				
 849	STAT 309	Data Science							
 843	STAT 318	Data Science	Mathematics						
 1045	SUST 201	Environmental Studies							
@@ -1593,16 +1690,16 @@
 1369	WGST 370	International Relations - History	International Relations - Political Science						
 303	WRIT 107	Art History							
 1006	WRIT 110	Education Studies							
-966	WRIT 114	Education Studies							
+966	WRIT 114	Education Studies	Philosophy						
 1147	WRIT 115	Studio Art - students entering before Fall 2021							
 1007	WRIT 120	English	English and Creative Writing						
-1556	WRIT 141	Medieval Renaissance Studies							
-1557	WRIT 143	Medieval Renaissance Studies							
-1558	WRIT 147	Medieval Renaissance Studies							
+1555	WRIT 141	Medieval Renaissance Studies							
+1556	WRIT 143	Medieval Renaissance Studies							
+1557	WRIT 147	Medieval Renaissance Studies							
 363	WRIT 149	Art History							
-1559	WRIT 153	Medieval Renaissance Studies							
+1558	WRIT 153	Medieval Renaissance Studies							
 1048	WRIT 162	Environmental Studies							
 1049	WRIT 171	Environmental Studies							
-1560	WRIT 187	Medieval Renaissance Studies							
+1559	WRIT 187	Medieval Renaissance Studies							
 1340	WRIT 277	International Relations - History	International Relations - Political Science						
 187	WRIT 307	American Studies	Architecture						
