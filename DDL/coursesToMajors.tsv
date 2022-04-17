@@ -1347,79 +1347,81 @@
 159	POL 121	American Studies	Architecture	International Relations - Economics					
 1262	POL 230	International Relations - Economics	International Relations - History						
 839	POL 299	Data Science	International Relations - History						
-160	POL1 200	American Studies	Architecture	International Relations - Economics	International Relations - History				
-1263	POL1 210	International Relations - Economics	International Relations - History						
-161	POL1 215	American Studies	Architecture	International Relations - Economics	International Relations - History				
+160	POL1 200	American Studies	Architecture	International Relations - Economics	International Relations - History	Political Science			
+1263	POL1 210	International Relations - Economics	International Relations - History	Political Science					
+161	POL1 215	American Studies	Architecture	International Relations - Economics	International Relations - History	Political Science			
 1332	POL1 231	International Relations - History	International Relations - Political Science						
 162	POL1 233	American Studies	Architecture						
-163	POL1 247	American Studies	Architecture	International Relations - Economics	International Relations - History				
-164	POL1 300	American Studies	Architecture	International Relations - Economics	International Relations - History				
+163	POL1 247	American Studies	Architecture	International Relations - Economics	International Relations - History	Political Science			
+164	POL1 300	American Studies	Architecture	International Relations - Economics	International Relations - History	Political Science			
 165	POL1 303	American Studies	Architecture						
-166	POL1 317	American Studies	Architecture	International Relations - Economics	International Relations - History				
+166	POL1 317	American Studies	Architecture	International Relations - Economics	International Relations - History	Political Science			
 167	POL1 324	American Studies	Architecture						
-994	POL1 328	Education Studies	International Relations - Economics	International Relations - History					
-168	POL1 329	American Studies	Architecture	International Relations - History					
-169	POL1 333	American Studies	Architecture	International Relations - Economics	International Relations - History				
-62	POL1 337	Africana Studies - United States Concentration	Education Studies	International Relations - Economics	International Relations - History				
-1232	POL1 381	International Relations - Economics	International Relations - History						
+994	POL1 328	Education Studies	International Relations - Economics	International Relations - History	Political Science				
+168	POL1 329	American Studies	Architecture	International Relations - History	Political Science				
+169	POL1 333	American Studies	Architecture	International Relations - Economics	International Relations - History	Political Science			
+62	POL1 337	Africana Studies - United States Concentration	Education Studies	International Relations - Economics	International Relations - History	Political Science			
+1232	POL1 381	International Relations - Economics	International Relations - History	Political Science					
+1704	POL1 385	Political Science							
 170	POL1 388	American Studies	Architecture						
-1370	POL2 202	International Relations - History							
-1371	POL2 204	International Relations - History							
-1264	POL2 207	International Relations - Economics	International Relations - History	Latin American Studies					
-915	POL2 208	East Asian Studies	International Relations - Economics	International Relations - History					
-1266	POL2 211	International Relations - Economics	International Relations - History						
+1370	POL2 202	International Relations - History	Political Science						
+1371	POL2 204	International Relations - History	Political Science						
+1264	POL2 207	International Relations - Economics	International Relations - History	Latin American Studies	Political Science				
+915	POL2 208	East Asian Studies	International Relations - Economics	International Relations - History	Political Science				
+1266	POL2 211	International Relations - Economics	International Relations - History	Political Science					
 1373	POL2 213	International Relations - History							
-1372	POL2 214	International Relations - History							
-1267	POL2 217	International Relations - Economics	International Relations - History	Middle Eastern Studies					
-993	POL2 220	Education Studies	International Relations - History						
-14	POL2 231	Africana Studies - Africa Concentration	International Relations - Economics						
-1515	POL2 253	Latin American Studies							
-1374	POL2 301	International Relations - History							
-916	POL2 304	East Asian Studies	International Relations - Economics	International Relations - History					
-1269	POL2 306	International Relations - Economics	International Relations - History	Latin American Studies					
-1233	POL2 310	International Relations - Economics	International Relations - History						
-1235	POL2 312	International Relations - Economics	International Relations - History						
+1372	POL2 214	International Relations - History	Political Science						
+1267	POL2 217	International Relations - Economics	International Relations - History	Middle Eastern Studies	Political Science				
+993	POL2 220	Education Studies	International Relations - History	Political Science					
+14	POL2 231	Africana Studies - Africa Concentration	International Relations - Economics	Political Science					
+1515	POL2 253	Latin American Studies	Political Science						
+1374	POL2 301	International Relations - History	Political Science						
+916	POL2 304	East Asian Studies	International Relations - Economics	International Relations - History	Political Science				
+1269	POL2 306	International Relations - Economics	International Relations - History	Latin American Studies	Political Science				
+1233	POL2 310	International Relations - Economics	International Relations - History	Political Science					
+1235	POL2 312	International Relations - Economics	International Relations - History	Political Science					
 1518	POL2 320	Latin American Studies							
 1238	POL2 359	International Relations - Economics	International Relations - History	Jewish Studies					
-1270	POL2 362	International Relations - Economics	International Relations - History						
-1239	POL2 364	International Relations - Economics	International Relations - History						
-1271	POL2 368	International Relations - Economics	International Relations - History	Latin American Studies					
-1272	POL3 203H	International Relations - Economics	International Relations - History						
-1376	POL3 209H	International Relations - History							
-1228	POL3 221	International Relations - Economics	International Relations - History	International Relations - Political Science					
-1273	POL3 223	International Relations - Economics	International Relations - History						
-1274	POL3 224	International Relations - Economics	International Relations - History						
-1275	POL3 227	International Relations - Economics	International Relations - History						
-1276	POL3 232	International Relations - Economics	International Relations - History						
-1377	POL3 236	International Relations - History							
-1251	POL3 245	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies				
-1278	POL3 251	International Relations - Economics	International Relations - History						
-1240	POL3 302	International Relations - Economics	International Relations - History	International Relations - Political Science					
-1279	POL3 315	International Relations - Economics	International Relations - History						
-1242	POL3 325	International Relations - Economics	International Relations - History						
-171	POL3 326	American Studies	Architecture	International Relations - Economics	International Relations - History				
-1280	POL3 338	International Relations - Economics	International Relations - History						
-1281	POL3 339	International Relations - Economics	International Relations - History						
-1243	POL3 351	International Relations - Economics	International Relations - History						
-1282	POL3 352	International Relations - Economics	International Relations - History						
-1244	POL3 354	International Relations - Economics	International Relations - History						
-1246	POL3 357	International Relations - Economics	International Relations - History						
-1247	POL3 369	International Relations - Economics	International Relations - History						
-1248	POL3 371	International Relations - Economics	International Relations - History						
-1249	POL3 378	International Relations - Economics	International Relations - History						
-1283	POL3 379	International Relations - Economics	International Relations - History						
-1250	POL3 387	International Relations - Economics	International Relations - History						
-1379	POL4 201	International Relations - History							
-1380	POL4 216	International Relations - History							
-1381	POL4 243	International Relations - History							
-172	POL4 249	American Studies	Architecture	Education Studies	International Relations - History				
-173	POL4 311	American Studies	Architecture	Education Studies	Environmental Studies	International Relations - Economics	International Relations - History		
-1284	POL4 318	International Relations - Economics	International Relations - History						
+1270	POL2 362	International Relations - Economics	International Relations - History	Political Science					
+1239	POL2 364	International Relations - Economics	International Relations - History	Political Science					
+1271	POL2 368	International Relations - Economics	International Relations - History	Latin American Studies	Political Science				
+1272	POL3 203H	International Relations - Economics	International Relations - History	Political Science					
+1376	POL3 209H	International Relations - History	Political Science						
+1228	POL3 221	International Relations - Economics	International Relations - History	International Relations - Political Science	Political Science				
+1273	POL3 223	International Relations - Economics	International Relations - History	Political Science					
+1274	POL3 224	International Relations - Economics	International Relations - History	Political Science					
+1275	POL3 227	International Relations - Economics	International Relations - History	Political Science					
+1276	POL3 232	International Relations - Economics	International Relations - History	Political Science					
+1377	POL3 236	International Relations - History	Political Science						
+1251	POL3 245	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies	Political Science			
+1278	POL3 251	International Relations - Economics	International Relations - History	Political Science					
+1240	POL3 302	International Relations - Economics	International Relations - History	International Relations - Political Science	Political Science				
+1279	POL3 315	International Relations - Economics	International Relations - History	Political Science					
+1242	POL3 325	International Relations - Economics	International Relations - History	Political Science					
+171	POL3 326	American Studies	Architecture	International Relations - Economics	International Relations - History	Political Science			
+1280	POL3 338	International Relations - Economics	International Relations - History	Political Science					
+1281	POL3 339	International Relations - Economics	International Relations - History	Political Science					
+1243	POL3 351	International Relations - Economics	International Relations - History	Political Science					
+1282	POL3 352	International Relations - Economics	International Relations - History	Political Science					
+1244	POL3 354	International Relations - Economics	International Relations - History	Political Science					
+1246	POL3 357	International Relations - Economics	International Relations - History	Political Science					
+1247	POL3 369	International Relations - Economics	International Relations - History	Political Science					
+1248	POL3 371	International Relations - Economics	International Relations - History	Political Science					
+1705	POL3 372	Political Science							
+1249	POL3 378	International Relations - Economics	International Relations - History	Political Science					
+1283	POL3 379	International Relations - Economics	International Relations - History	Political Science					
+1250	POL3 387	International Relations - Economics	International Relations - History	Political Science					
+1379	POL4 201	International Relations - History	Political Science						
+1380	POL4 216	International Relations - History	Political Science						
+1381	POL4 243	International Relations - History	Political Science						
+172	POL4 249	American Studies	Architecture	Education Studies	International Relations - History	Political Science			
+173	POL4 311	American Studies	Architecture	Education Studies	Environmental Studies	International Relations - Economics	International Relations - History	Political Science	
+1284	POL4 318	International Relations - Economics	International Relations - History	Political Science					
 174	POL4 340	American Studies	Architecture						
-995	POL4 341	Education Studies	International Relations - Economics	International Relations - History					
+995	POL4 341	Education Studies	International Relations - Economics	International Relations - History	Political Science				
 175	POL4 343	American Studies	Architecture						
-176	POL4 345	American Studies	Architecture	International Relations - Economics	International Relations - History	Latin American Studies			
-1286	POL4 349	International Relations - Economics	International Relations - History						
+176	POL4 345	American Studies	Architecture	International Relations - Economics	International Relations - History	Latin American Studies	Political Science		
+1286	POL4 349	International Relations - Economics	International Relations - History	Political Science					
 1440	PORT 241	Latin American Studies							
 1441	PORT 250	Latin American Studies							
 1442	PORT 250H	Latin American Studies							
