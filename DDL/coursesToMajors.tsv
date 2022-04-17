@@ -67,26 +67,51 @@
 973	AMST 151	Education Studies							
 59	AMST 152	Africana Studies - United States Concentration	Education Studies						
 974	AMST 161	Education Studies	Latin American Studies						
-900	AMST 212	East Asian Studies							
+900	AMST 212	East Asian Studies	Religion						
 60	AMST 215	Africana Studies - United States Concentration							
-1507	AMST 217	Latin American Studies	Music						
-1297	AMST 220	International Relations - Economics	International Relations - History	International Relations - Political Science					
-975	AMST 222	Education Studies							
-977	AMST 225	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies			
-1508	AMST 235	Latin American Studies							
-1302	AMST 241	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies				
-979	AMST 246	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies			
-981	AMST 251	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies			
-1407	AMST 258	Jewish Studies							
-983	AMST 264	Education Studies							
-578	AMST 274	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	International Relations - Economics	International Relations - History	International Relations - Political Science			
-984	AMST 281	Education Studies							
-985	AMST 290	Education Studies	Latin American Studies						
-1011	AMST 296	English	English and Creative Writing						
+1507	AMST 217	Latin American Studies	Music	Religion					
+1770	AMST 218	Religion							
+1297	AMST 220	International Relations - Economics	International Relations - History	International Relations - Political Science	Religion				
+975	AMST 222	Education Studies	Religion						
+977	AMST 225	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies	Religion		
+1771	AMST 228	Religion							
+1772	AMST 231	Religion							
+1773	AMST 232	Religion							
+1774	AMST 234	Religion							
+1508	AMST 235	Latin American Studies	Religion						
+1775	AMST 240	Religion							
+1302	AMST 241	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Religion			
+1776	AMST 242	Religion							
+979	AMST 246	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies	Religion		
+1777	AMST 248	Religion							
+981	AMST 251	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Religion		
+1407	AMST 258	Jewish Studies	Religion						
+1778	AMST 261	Religion							
+1779	AMST 262	Religion							
+983	AMST 264	Education Studies	Religion						
+1780	AMST 266	Religion							
+1781	AMST 268	Religion							
+578	AMST 274	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	International Relations - Economics	International Relations - History	International Relations - Political Science	Religion		
+984	AMST 281	Education Studies	Religion						
+985	AMST 290	Education Studies	Latin American Studies	Religion					
+1782	AMST 292	Religion							
+1011	AMST 296	English	English and Creative Writing	Religion					
+1783	AMST 299	Religion							
+1784	AMST 310	Religion							
+1785	AMST 314	Religion							
 61	AMST 315	Africana Studies - United States Concentration	Education Studies	Music					
-1509	AMST 323	Latin American Studies							
-1510	AMST 327	Latin American Studies							
-1313	AMST 348	International Relations - Economics	International Relations - History	International Relations - Political Science					
+1786	AMST 318	Religion							
+1787	AMST 319	Religion							
+1509	AMST 323	Latin American Studies	Religion						
+1788	AMST 325	Religion							
+1510	AMST 327	Latin American Studies	Religion						
+1313	AMST 348	International Relations - Economics	International Relations - History	International Relations - Political Science	Religion				
+1789	AMST 350	Religion							
+1790	AMST 355	Religion							
+1791	AMST 360	Religion							
+1792	AMST 370	Religion							
+1793	AMST 383	Religion							
+1794	AMST 386	Religion							
 211	ANTH 101	Anthropology							
 212	ANTH 102	Anthropology							
 213	ANTH 103	Anthropology	Classical Civilization						
@@ -520,6 +545,8 @@
 362	CLCV 373	Art History	Classical Civilization	Media Arts and Sciences					
 704	CLPT 180	Comparative Literary Studies							
 1536	CLPT 247	Medieval Renaissance Studies							
+1827	CLPT 284	Russian							
+1828	CLPT 294	Russian							
 705	CLPT 375	Comparative Literary Studies							
 694	CLSC 214	Cognitive and Linguistic Sciences - Psychology Concentration							
 657	CLSC 216	Cognitive and Linguistic Sciences - Computer Science Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies				
@@ -564,11 +591,11 @@
 832	CS 350H	Computer Science							
 833	CS 360	Computer Science							
 834	CS 370	Computer Science							
-851	EALC 221	East Asian Languages and Cultures	East Asian Studies						
-858	EALC 225	East Asian Languages and Cultures	East Asian Studies						
-859	EALC 236	East Asian Languages and Cultures	East Asian Studies						
-860	EALC 325	East Asian Languages and Cultures	East Asian Studies						
-861	EALC 345	East Asian Languages and Cultures	East Asian Studies						
+851	EALC 221	East Asian Languages and Cultures	East Asian Studies	Religion					
+858	EALC 225	East Asian Languages and Cultures	East Asian Studies	Religion					
+859	EALC 236	East Asian Languages and Cultures	East Asian Studies	Religion					
+860	EALC 325	East Asian Languages and Cultures	East Asian Studies	Religion					
+861	EALC 345	East Asian Languages and Cultures	East Asian Studies	Religion					
 917	ECON 101	Economics	International Relations - Economics	International Relations - History	International Relations - Political Science				
 919	ECON 102	Economics	International Relations - Economics	International Relations - History	International Relations - Political Science				
 838	ECON 103	Data Science	Economics	International Relations - Economics					
@@ -1035,25 +1062,25 @@
 869	JPN 356	East Asian Languages and Cultures	East Asian Studies						
 550	JSWT 223	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
 1405	JWST 102	Jewish Studies							
-1426	JWST 201	Jewish Studies							
-1427	JWST 209	Jewish Studies							
-1425	JWST 211	Jewish Studies							
-1422	JWST 233	Jewish Studies							
-1428	JWST 245	Jewish Studies							
-1429	JWST 250	Jewish Studies							
-1430	JWST 250H	Jewish Studies							
-127	JWST 270	American Studies	Comparative Literary Studies	Jewish Studies					
-1423	JWST 274	Jewish Studies							
-1431	JWST 277	Jewish Studies	Latin American Studies						
-1424	JWST 290	Jewish Studies							
-1433	JWST 344	Jewish Studies							
-1432	JWST 345	Jewish Studies							
-1434	JWST 350	Jewish Studies							
-1435	JWST 350H	Jewish Studies							
-1436	JWST 360	Jewish Studies							
-1437	JWST 370	Jewish Studies							
-1438	JWST 377	Jewish Studies	Latin American Studies						
-1439	JWST 380	Jewish Studies							
+1426	JWST 201	Jewish Studies	Religion						
+1427	JWST 209	Jewish Studies	Religion						
+1425	JWST 211	Jewish Studies	Religion						
+1422	JWST 233	Jewish Studies	Religion						
+1428	JWST 245	Jewish Studies	Religion						
+1429	JWST 250	Jewish Studies	Religion						
+1430	JWST 250H	Jewish Studies	Religion						
+127	JWST 270	American Studies	Comparative Literary Studies	Jewish Studies	Religion				
+1423	JWST 274	Jewish Studies	Religion						
+1431	JWST 277	Jewish Studies	Latin American Studies	Religion					
+1424	JWST 290	Jewish Studies	Religion						
+1433	JWST 344	Jewish Studies	Religion						
+1432	JWST 345	Jewish Studies	Religion						
+1434	JWST 350	Jewish Studies	Religion						
+1435	JWST 350H	Jewish Studies	Religion						
+1436	JWST 360	Jewish Studies	Religion						
+1437	JWST 370	Jewish Studies	Religion						
+1438	JWST 377	Jewish Studies	Latin American Studies	Religion					
+1439	JWST 380	Jewish Studies	Religion						
 895	KOR 201	East Asian Studies							
 896	KOR 202	East Asian Studies							
 681	KOR 206	Cognitive and Linguistic Sciences - Linguistics Concentration	East Asian Languages and Cultures	East Asian Studies					
@@ -1136,40 +1163,43 @@
 1139	MATH 360	Mathematics							
 1140	MATH 365	Mathematics							
 1141	MATH 370	Mathematics							
-1540	MER 211	Medieval Renaissance Studies							
-1008	MER 214	English	English and Creative Writing	Medieval Renaissance Studies					
+1540	MER 211	Medieval Renaissance Studies	Religion						
+1008	MER 214	English	English and Creative Writing	Medieval Renaissance Studies	Religion				
 1538	MER 247	Medieval Renaissance Studies							
-1414	MER 248	Jewish Studies	Latin American Studies						
-711	MER 263	Comparative Literary Studies							
+1414	MER 248	Jewish Studies	Latin American Studies	Religion					
+711	MER 263	Comparative Literary Studies	Religion						
 1230	MER 293	International Relations - Economics							
-1541	MER 311	Medieval Renaissance Studies							
-1010	MER 314	English	English and Creative Writing						
-1590	MES 250	Middle Eastern Studies							
-1591	MES 250H	Middle Eastern Studies							
-1592	MES 260	Middle Eastern Studies							
-1543	MES 261	Medieval Renaissance Studies	Middle Eastern Studies						
-1593	MES 263	Middle Eastern Studies							
-1410	MES 264	Jewish Studies	Middle Eastern Studies						
-1412	MES 265	Jewish Studies	Middle Eastern Studies						
-1594	MES 267	Middle Eastern Studies							
-1595	MES 270H	Middle Eastern Studies							
-1200	MES 293	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Middle Eastern Studies			
-1571	MES 310	Middle Eastern Studies							
-1596	MES 347	Middle Eastern Studies							
-1597	MES 350	Middle Eastern Studies							
-1598	MES 350H	Middle Eastern Studies							
-1236	MES 358	International Relations - Economics	International Relations - History	Jewish Studies	Middle Eastern Studies				
-1599	MES 359	Middle Eastern Studies							
-1600	MES 360	Middle Eastern Studies							
-1601	MES 361	Middle Eastern Studies							
-1602	MES 362	Middle Eastern Studies							
-1603	MES 363	Middle Eastern Studies							
-1214	MES 364	History	International Relations - Economics	International Relations - History	Jewish Studies	Middle Eastern Studies			
-1545	MES 365	Medieval Renaissance Studies	Middle Eastern Studies						
-1217	MES 366	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Middle Eastern Studies		
-1604	MES 367	Middle Eastern Studies							
-1221	MES 369	History	International Relations - Economics	International Relations - Political Science	Jewish Studies	Middle Eastern Studies			
-1605	MES 370	Middle Eastern Studies							
+1541	MER 311	Medieval Renaissance Studies	Religion						
+1010	MER 314	English	English and Creative Writing	Religion					
+1795	MER 350	Religion							
+1796	MER 360	Religion							
+1797	MER 370	Religion							
+1590	MES 250	Middle Eastern Studies	Religion						
+1591	MES 250H	Middle Eastern Studies	Religion						
+1592	MES 260	Middle Eastern Studies	Religion						
+1543	MES 261	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
+1593	MES 263	Middle Eastern Studies	Religion						
+1410	MES 264	Jewish Studies	Middle Eastern Studies	Religion					
+1412	MES 265	Jewish Studies	Middle Eastern Studies	Religion					
+1594	MES 267	Middle Eastern Studies	Religion						
+1595	MES 270H	Middle Eastern Studies	Religion						
+1200	MES 293	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Middle Eastern Studies	Religion		
+1571	MES 310	Middle Eastern Studies	Religion						
+1596	MES 347	Middle Eastern Studies	Religion						
+1597	MES 350	Middle Eastern Studies	Religion						
+1598	MES 350H	Middle Eastern Studies	Religion						
+1236	MES 358	International Relations - Economics	International Relations - History	Jewish Studies	Middle Eastern Studies	Religion			
+1599	MES 359	Middle Eastern Studies	Religion						
+1600	MES 360	Middle Eastern Studies	Religion						
+1601	MES 361	Middle Eastern Studies	Religion						
+1602	MES 362	Middle Eastern Studies	Religion						
+1603	MES 363	Middle Eastern Studies	Religion						
+1214	MES 364	History	International Relations - Economics	International Relations - History	Jewish Studies	Middle Eastern Studies	Religion		
+1545	MES 365	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
+1217	MES 366	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Middle Eastern Studies	Religion	
+1604	MES 367	Middle Eastern Studies	Religion						
+1221	MES 369	History	International Relations - Economics	International Relations - Political Science	Jewish Studies	Middle Eastern Studies	Religion		
+1605	MES 370	Middle Eastern Studies	Religion						
 1606	MUS 100	Music							
 1607	MUS 122	Music							
 1612	MUS 199	Music							
@@ -1431,91 +1461,184 @@
 1448	PORT 314	Latin American Studies							
 1449	PORT 350	Latin American Studies							
 700	PSUC 318	Cognitive and Linguistic Sciences - Psychology Concentration							
-996	PSYC 101	Education Studies							
-691	PSYC 205	Cognitive and Linguistic Sciences - Psychology Concentration	Data Science	Neuroscience					
-997	PSYC 207	Education Studies							
-998	PSYC 210	Education Studies							
-695	PSYC 215	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience						
-658	PSYC 216	Cognitive and Linguistic Sciences - Computer Science Concentration	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies	Neuroscience		
-696	PSYC 217	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies	Neuroscience					
-697	PSYC 218	Cognitive and Linguistic Sciences - Psychology Concentration	Media Arts and Sciences	Neuroscience					
-698	PSYC 219	Cognitive and Linguistic Sciences - Psychology Concentration							
-976	PSYC 222	Education Studies							
+996	PSYC 101	Education Studies	Psychology						
+691	PSYC 205	Cognitive and Linguistic Sciences - Psychology Concentration	Data Science	Neuroscience	Psychology				
+997	PSYC 207	Education Studies	Psychology						
+1706	PSYC 208	Psychology							
+998	PSYC 210	Education Studies	Psychology						
+1707	PSYC 212	Psychology							
+1708	PSYC 213	Psychology							
+1709	PSYC 214	Psychology							
+695	PSYC 215	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience	Psychology					
+658	PSYC 216	Cognitive and Linguistic Sciences - Computer Science Concentration	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies	Neuroscience	Psychology	
+696	PSYC 217	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies	Neuroscience	Psychology				
+697	PSYC 218	Cognitive and Linguistic Sciences - Psychology Concentration	Media Arts and Sciences	Neuroscience	Psychology				
+698	PSYC 219	Cognitive and Linguistic Sciences - Psychology Concentration	Psychology						
+976	PSYC 222	Education Studies	Psychology						
+1721	PSYC 225	Psychology							
 1003	PSYC 244	Education Studies							
-999	PSYC 245	Education Studies							
+999	PSYC 245	Education Studies	Psychology						
+1710	PSYC 250	Psychology							
+1711	PSYC 250H	Psychology							
 1329	PSYC 255	International Relations - History	International Relations - Political Science						
+1722	PSYC 299	Psychology							
+1723	PSYC 299H	Psychology							
 699	PSYC 301	Cognitive and Linguistic Sciences - Psychology Concentration							
-692	PSYC 314R	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience						
-693	PSYC 315R	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience						
-680	PSYC 316	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies	Neuroscience				
-1653	PSYC 317	Neuroscience							
-701	PSYC 319	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience						
-1000	PSYC 325	Education Studies							
-1001	PSYC 326	Education Studies							
-702	PSYC 328	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience						
-1002	PSYC 333	Education Studies							
-177	PSYC 337	American Studies	Architecture	Education Studies					
-178	PSYC 338	American Studies	Architecture						
+1716	PSYC 306R	Psychology							
+1717	PSYC 307R	Psychology							
+1724	PSYC 308	Psychology							
+1718	PSYC 310R	Psychology							
+1725	PSYC 311R	Psychology							
+1719	PSYC 312R	Psychology							
+1726	PSYC 313R	Psychology							
+692	PSYC 314R	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience	Psychology					
+693	PSYC 315R	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience	Psychology					
+680	PSYC 316	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies	Neuroscience	Psychology			
+1653	PSYC 317	Neuroscience	Psychology						
+1727	PSYC 318	Psychology							
+701	PSYC 319	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience	Psychology					
+1720	PSYC 323R	Psychology							
+1000	PSYC 325	Education Studies	Psychology						
+1001	PSYC 326	Education Studies	Psychology						
+1728	PSYC 327	Psychology							
+702	PSYC 328	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience	Psychology					
+1729	PSYC 329	Psychology							
+1730	PSYC 332	Psychology							
+1002	PSYC 333	Education Studies	Psychology						
+177	PSYC 337	American Studies	Architecture	Education Studies	Psychology				
+178	PSYC 338	American Studies	Architecture	Psychology					
+1731	PSYC 339	Psychology							
+1732	PSYC 340	Psychology							
 179	PSYC 341	American Studies	Architecture						
-703	PSYC 345	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies						
-180	PSYC 346	American Studies	Architecture						
-841	QR 260	Data Science	Environmental Studies	Neuroscience					
+1733	PSYC 343	Psychology							
+1734	PSYC 344	Psychology							
+703	PSYC 345	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies	Psychology					
+180	PSYC 346	American Studies	Architecture	Psychology					
+1735	PSYC 349	Psychology							
+1712	PSYC 350	Psychology							
+1713	PSYC 350H	Psychology							
+1714	PSYC 360	Psychology							
+1715	PSYC 370	Psychology							
+841	QR 260	Data Science	Environmental Studies	Neuroscience	Psychology				
 848	QR 309	Data Science							
 588	RAST 222	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
 589	RAST 322	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-1406	REL 102	Jewish Studies							
-653	REL 104	Classical Civilization	Middle Eastern Studies						
-654	REL 105	Classical Civilization	Jewish Studies	Middle Eastern Studies					
-902	REL 108	East Asian Studies							
-1416	REL 111Y	Jewish Studies							
-914	REL 119Y	East Asian Studies							
-73	REL 214	American Studies	International Relations - History	International Relations - Political Science	Latin American Studies				
-1550	REL 216	Medieval Renaissance Studies							
-1505	REL 226	Latin American Studies	Medieval Renaissance Studies						
-1334	REL 233	International Relations - History	International Relations - Political Science						
-1335	REL 236	International Relations - History	International Relations - Political Science						
-1408	REL 240	Jewish Studies	Middle Eastern Studies						
+1406	REL 102	Jewish Studies	Religion						
+653	REL 104	Classical Civilization	Middle Eastern Studies	Religion					
+654	REL 105	Classical Civilization	Jewish Studies	Middle Eastern Studies	Religion				
+902	REL 108	East Asian Studies	Religion						
+1416	REL 111Y	Jewish Studies	Religion						
+914	REL 119Y	East Asian Studies	Religion						
+1745	REL 200	Religion							
+1740	REL 201	Religion							
+1746	REL 206	Religion							
+1741	REL 209	Religion							
+73	REL 214	American Studies	International Relations - History	International Relations - Political Science	Latin American Studies	Religion			
+1747	REL 215	Religion							
+1550	REL 216	Medieval Renaissance Studies	Religion						
+1736	REL 218	Religion							
+1743	REL 219	Religion							
+1737	REL 220	Religion							
+1739	REL 223/	Religion							
+1748	REL 225	Religion							
+1505	REL 226	Latin American Studies	Medieval Renaissance Studies	Religion					
+1744	REL 227	Religion							
+1749	REL 230	Religion							
+1738	REL 231	Religion							
+1334	REL 233	International Relations - History	International Relations - Political Science	Religion					
+1335	REL 236	International Relations - History	International Relations - Political Science	Religion					
+1408	REL 240	Jewish Studies	Middle Eastern Studies	Religion					
+1750	REL 241	Religion							
 1417	REL 242	Jewish Studies	Middle Eastern Studies						
-655	REL 243	Classical Civilization	Jewish Studies	Middle Eastern Studies					
-656	REL 244	Classical Civilization	Jewish Studies	Middle Eastern Studies					
-903	REL 253	East Asian Studies							
-904	REL 254	East Asian Studies							
-905	REL 255	East Asian Studies							
-906	REL 257	East Asian Studies							
-1575	REL 260	Middle Eastern Studies							
-1544	REL 261	Medieval Renaissance Studies	Middle Eastern Studies						
-1552	REL 262	Medieval Renaissance Studies	Middle Eastern Studies						
-1576	REL 263	Middle Eastern Studies							
-1411	REL 264	Jewish Studies	Middle Eastern Studies						
-1413	REL 265	Jewish Studies	Middle Eastern Studies						
-1198	REL 266	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies			
-1577	REL 267	Middle Eastern Studies							
-1586	REL 268	Middle Eastern Studies							
-1587	REL 269	Middle Eastern Studies							
-1551	REL 270	Medieval Renaissance Studies	Middle Eastern Studies						
-1506	REL 326	Latin American Studies							
-1588	REL 330	Middle Eastern Studies							
-1418	REL 342	Jewish Studies	Middle Eastern Studies						
-1419	REL 345	Jewish Studies							
-1578	REL 347	Middle Eastern Studies							
-1589	REL 348	Middle Eastern Studies							
-907	REL 353	East Asian Studies							
-1579	REL 359	Middle Eastern Studies							
-1580	REL 361	Middle Eastern Studies							
-1581	REL 362	Middle Eastern Studies							
-1582	REL 363	Middle Eastern Studies							
-1553	REL 364	Medieval Renaissance Studies	Middle Eastern Studies						
-1546	REL 365	Medieval Renaissance Studies	Middle Eastern Studies						
-1585	REL 366	Middle Eastern Studies							
-1583	REL 367	Middle Eastern Studies							
-1573	REL 368	Middle Eastern Studies							
-714	RUSS 251	Comparative Literary Studies							
-715	RUSS 276	Comparative Literary Studies							
-1300	SAS 232	International Relations - Economics	International Relations - History	International Relations - Political Science					
-1255	SAS 237	International Relations - Economics	International Relations - History	International Relations - Political Science					
-365	SAS 239	Art History							
-1188	SAS 266	History	International Relations - Economics	International Relations - Political Science	Middle Eastern Studies				
-1219	SAS 367	History	International Relations - Economics	International Relations - Political Science	Middle Eastern Studies				
+655	REL 243	Classical Civilization	Jewish Studies	Middle Eastern Studies	Religion				
+656	REL 244	Classical Civilization	Jewish Studies	Middle Eastern Studies	Religion				
+1742	REL 245	Religion							
+1751	REL 250	Religion							
+1752	REL 250H	Religion							
+1753	REL 251	Religion							
+903	REL 253	East Asian Studies	Religion						
+904	REL 254	East Asian Studies	Religion						
+905	REL 255	East Asian Studies	Religion						
+906	REL 257	East Asian Studies	Religion						
+1754	REL 259	Religion							
+1575	REL 260	Middle Eastern Studies	Religion						
+1544	REL 261	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
+1552	REL 262	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
+1576	REL 263	Middle Eastern Studies	Religion						
+1411	REL 264	Jewish Studies	Middle Eastern Studies	Religion					
+1413	REL 265	Jewish Studies	Middle Eastern Studies	Religion					
+1198	REL 266	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Religion		
+1577	REL 267	Middle Eastern Studies	Religion						
+1586	REL 268	Middle Eastern Studies	Religion						
+1587	REL 269	Middle Eastern Studies	Religion						
+1551	REL 270	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
+1755	REL 281	Religion							
+1759	REL 300	Religion							
+1760	REL 301	Religion							
+1761	REL 302	Religion							
+1762	REL 303	Religion							
+1756	REL 318	Religion							
+1757	REL 319	Religion							
+1763	REL 323	Religion							
+1506	REL 326	Latin American Studies	Religion						
+1588	REL 330	Middle Eastern Studies	Religion						
+1418	REL 342	Jewish Studies	Middle Eastern Studies	Religion					
+1758	REL 344	Religion							
+1419	REL 345	Jewish Studies	Religion						
+1578	REL 347	Middle Eastern Studies	Religion						
+1589	REL 348	Middle Eastern Studies	Religion						
+1764	REL 350	Religion							
+1765	REL 350H	Religion							
+907	REL 353	East Asian Studies	Religion						
+1766	REL 357	Religion							
+1579	REL 359	Middle Eastern Studies	Religion						
+1767	REL 360	Religion							
+1580	REL 361	Middle Eastern Studies	Religion						
+1581	REL 362	Middle Eastern Studies	Religion						
+1582	REL 363	Middle Eastern Studies	Religion						
+1553	REL 364	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
+1546	REL 365	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
+1585	REL 366	Middle Eastern Studies	Religion						
+1583	REL 367	Middle Eastern Studies	Religion						
+1573	REL 368	Middle Eastern Studies	Religion						
+1768	REL 370	Religion							
+1769	REL 380	Religion							
+1814	RUSS 201	Russian							
+1815	RUSS 202	Russian							
+714	RUSS 251	Comparative Literary Studies	Russian						
+1816	RUSS 272	Russian							
+715	RUSS 276	Comparative Literary Studies	Russian						
+1817	RUSS 301	Russian							
+1818	RUSS 302	Russian							
+1819	RUSS 305	Russian							
+1820	RUSS 306	Russian							
+1821	RUSS 333H	Russian							
+1822	RUSS 355H	Russian							
+1823	RUSS 376H	Russian							
+1824	RUSS 377H	Russian							
+1825	RUSS 378H	Russian							
+1826	RUSS 386H	Russian							
+1799	SAS 206	Religion							
+1802	SAS 211	Religion							
+1798	SAS 225	Religion							
+1300	SAS 232	International Relations - Economics	International Relations - History	International Relations - Political Science	Religion				
+1255	SAS 237	International Relations - Economics	International Relations - History	International Relations - Political Science	Religion				
+365	SAS 239	Art History	Religion						
+1800	SAS 241	Religion							
+1803	SAS 242	Religion							
+1804	SAS 250	Religion							
+1805	SAS 250H	Religion							
+1801	SAS 251	Religion							
+1188	SAS 266	History	International Relations - Economics	International Relations - Political Science	Middle Eastern Studies	Religion			
+1806	SAS 283	Religion							
+1807	SAS 301	Religion							
+1808	SAS 302	Religion							
+1809	SAS 303	Religion							
+1810	SAS 350	Religion							
+1811	SAS 350H	Religion							
+1812	SAS 360	Religion							
+1219	SAS 367	History	International Relations - Economics	International Relations - Political Science	Middle Eastern Studies	Religion			
+1813	SAS 370	Religion							
 1287	SOC 103	International Relations - Economics							
 840	SOC 190	Data Science	International Relations - Economics						
 1348	SOC 200	International Relations - History	International Relations - Political Science						
@@ -1628,7 +1751,7 @@
 845	STAT 220	Data Science	Mathematics						
 846	STAT 221	Data Science	Mathematics						
 847	STAT 228	Data Science	Mathematics						
-842	STAT 260	Data Science	Environmental Studies	Mathematics	Neuroscience				
+842	STAT 260	Data Science	Environmental Studies	Mathematics	Neuroscience	Psychology			
 849	STAT 309	Data Science							
 843	STAT 318	Data Science	Mathematics						
 1045	SUST 201	Environmental Studies							
