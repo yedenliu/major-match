@@ -93,6 +93,9 @@ populateRegExCourses(allCoursesTSV,'Jewish Studies','HEBR',3,4)
 populateRegExCourses(allCoursesTSV,'Jewish Studies','JWST',2,3)
 populateRegExCourses(allCoursesTSV,'Jewish Studies','JWST',3,4)
 
+populateRegExCourses(allCoursesTSV,'Mathematics','MATH',2,2)
+populateRegExCourses(allCoursesTSV,'Mathematics','MATH',3,2)
+
 populateRegExCourses(allCoursesTSV,'Middle Eastern Studies','MES',2,2)
 populateRegExCourses(allCoursesTSV,'Middle Eastern Studies','MES',3,2)
 
@@ -267,17 +270,17 @@ courseToMajorsDF.rename(
 courseToMajorsDF = courseToMajorsDF.sort_values(by = 'course')                               # sort the courses lexicographically
 
 '''Courses with the majors they fullfil as a TSV'''
-# courseToMajorsDF.to_csv('/students/kswint/major-match/DDL/coursesToMajors.tsv', sep = '\t')
+courseToMajorsDF.to_csv('/students/kswint/major-match/DDL/coursesToMajors.tsv', sep = '\t')
 
 majorReqsDF = pd.DataFrame.from_dict(majorKey, orient = 'index')
-# majorReqsDF.to_csv('/students/kswint/major-match/DDL/majorReqsDF.tsv', sep = '\t')
+majorReqsDF.to_csv('/students/kswint/major-match/DDL/majorReqsDF.tsv', sep = '\t')
 
 ''' creates a dataframe with columns = each course and the number of majors it counts
 towards.'''
 courseFreqDF = pd.DataFrame(list(freq.items()), columns = ['course','freq'])
 
 '''Courses with the number of majors they fullfil as a TSV'''
-# courseFreqDF.to_csv('/students/kswint/major-match/DDL/courseMajFreq.tsv', sep = '\t')
+courseFreqDF.to_csv('/students/kswint/major-match/DDL/courseMajFreq.tsv', sep = '\t')
 
 ''' sorts courseFreqDF by the number of majors a course counts towards, with the most number
 of majors at the top and least at the bottom'''
@@ -299,8 +302,8 @@ masterDF[['abrev','num']] = masterDF.course.str.split(expand = True) # create tw
                                                                      # ("abrev") and one for the course number.
 masterDF = masterDF.reindex(columns=['course', 'abrev', 'num', 'freq', 'majors'])   # rearrange the rows for aesthetic purposes
 masterDF = masterDF.drop('course', 1)
-# print(masterDF)
+print('\n', masterDF)
 
 ''' Master TSV! Columns are the course, the department (abrev), the course number (three digit, not CRN),
 the number of majors that course counts towards, and a list of the majors that course counts towards.'''
-# masterDF.to_csv('/students/kswint/major-match/DDL/completeMajorTable.tsv', sep = '\t')
+masterDF.to_csv('/students/kswint/major-match/DDL/completeMajorTable.tsv', sep = '\t')

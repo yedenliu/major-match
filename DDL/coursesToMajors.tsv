@@ -18,7 +18,7 @@
 57	AFR 225	Africana Studies - United States Concentration	International Relations - History	International Relations - Political Science					
 1062	AFR 226	Environmental Studies	Latin American Studies						
 987	AFR 227	Education Studies	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
-1360	AFR 228	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
+1366	AFR 228	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
 53	AFR 234	Africana Studies - The Caribbean and Latin America Concentration							
 12	AFR 235	Africana Studies - Africa Concentration							
 13	AFR 236	Africana Studies - Africa Concentration	International Relations - Economics	International Relations - History	International Relations - Political Science				
@@ -31,7 +31,7 @@
 75	AFR 249	American Studies	Education Studies	International Relations - History	International Relations - Political Science	Women's and Gender Studies			
 30	AFR 251	Africana Studies - Africa Concentration							
 16	AFR 255	Africana Studies - Africa Concentration	Africana Studies - The Caribbean and Latin America Concentration	Africana Studies - United States Concentration					
-1285	AFR 256	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies				
+1291	AFR 256	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies				
 620	AFR 261	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
 389	AFR 264	Art History	International Relations - History	International Relations - Political Science					
 76	AFR 265	American Studies	International Relations - History	International Relations - Political Science					
@@ -130,7 +130,7 @@
 273	ANTH 231	Anthropology	Education Studies	International Relations - History	International Relations - Political Science	Latin American Studies			
 83	ANTH 232	American Studies	Anthropology	International Relations - History	International Relations - Political Science	Media Arts and Sciences			
 274	ANTH 233	Anthropology	International Relations - History	International Relations - Political Science					
-1366	ANTH 234	International Relations - History	International Relations - Political Science						
+1372	ANTH 234	International Relations - History	International Relations - Political Science						
 85	ANTH 235	American Studies	Anthropology	International Relations - History	International Relations - Political Science	Latin American Studies			
 275	ANTH 236	Anthropology	International Relations - History	International Relations - Political Science					
 276	ANTH 237	Anthropology	International Relations - Economics	International Relations - History	International Relations - Political Science	South Asia Studies			
@@ -167,18 +167,18 @@
 305	ANTH 350H	Anthropology	International Relations - History	International Relations - Political Science					
 306	ANTH 360	Anthropology	International Relations - History	International Relations - Political Science					
 307	ANTH 370	Anthropology	International Relations - History	International Relations - Political Science					
-1585	ARAB 201	Middle Eastern Studies							
-1586	ARAB 202	Middle Eastern Studies							
-1587	ARAB 250	Middle Eastern Studies							
-1588	ARAB 250H	Middle Eastern Studies							
-1589	ARAB 301	Middle Eastern Studies							
-1590	ARAB 302	Middle Eastern Studies							
-1591	ARAB 305	Middle Eastern Studies							
-1592	ARAB 307	Middle Eastern Studies							
-1593	ARAB 310	Middle Eastern Studies							
-1594	ARAB 350	Middle Eastern Studies							
-1595	ARAB 350H	Middle Eastern Studies							
-1597	ARAB 368	Middle Eastern Studies							
+1590	ARAB 201	Middle Eastern Studies							
+1591	ARAB 202	Middle Eastern Studies							
+1592	ARAB 250	Middle Eastern Studies							
+1593	ARAB 250H	Middle Eastern Studies							
+1594	ARAB 301	Middle Eastern Studies							
+1595	ARAB 302	Middle Eastern Studies							
+1596	ARAB 305	Middle Eastern Studies							
+1597	ARAB 307	Middle Eastern Studies							
+1598	ARAB 310	Middle Eastern Studies							
+1599	ARAB 350	Middle Eastern Studies							
+1600	ARAB 350H	Middle Eastern Studies							
+1602	ARAB 368	Middle Eastern Studies							
 309	ARTH 100	Architecture	Art History	Studio Art - students entering before Fall 2021	Media Arts and Sciences				
 349	ARTH 109	Art History							
 373	ARTH 110Y	Art History	Medieval Renaissance Studies						
@@ -189,7 +189,7 @@
 315	ARTH 201	Architecture	Medieval Renaissance Studies						
 316	ARTH 203	Architecture	Art History	Classical Civilization	Middle Eastern Studies				
 354	ARTH 206	Art History							
-1531	ARTH 207	Latin American Studies							
+1536	ARTH 207	Latin American Studies							
 374	ARTH 209	Art History							
 375	ARTH 212	Art History							
 314	ARTH 216	Architecture							
@@ -235,11 +235,11 @@
 392	ARTH 301	Art History							
 362	ARTH 303	Art History							
 393	ARTH 304	Art History							
-1532	ARTH 307	Latin American Studies							
+1537	ARTH 307	Latin American Studies							
 325	ARTH 309	Architecture	Art History	Women's and Gender Studies					
 363	ARTH 310	Art History							
 394	ARTH 312	Art History							
-1559	ARTH 313	Medieval Renaissance Studies							
+1564	ARTH 313	Medieval Renaissance Studies							
 364	ARTH 315	Art History							
 80	ARTH 316	American Studies	Art History	International Relations - History	International Relations - Political Science	Women's and Gender Studies			
 365	ARTH 317	Art History	Environmental Studies						
@@ -252,7 +252,7 @@
 398	ARTH 326	Art History	Medieval Renaissance Studies						
 399	ARTH 328	Art History	Medieval Renaissance Studies						
 400	ARTH 330	Art History							
-1560	ARTH 331	Medieval Renaissance Studies							
+1565	ARTH 331	Medieval Renaissance Studies							
 368	ARTH 334	Art History	Latin American Studies						
 401	ARTH 335	Art History							
 369	ARTH 336	Art History							
@@ -269,28 +269,28 @@
 417	ARTH 390	Art History							
 418	ARTH 391	Art History							
 310	ARTS 105	Architecture	Art History	Studio Art - students entering before Fall 2021	Media Arts and Sciences				
-1175	ARTS 106	Studio Art - students entering before Fall 2021							
+1181	ARTS 106	Studio Art - students entering before Fall 2021							
 347	ARTS 108	Art History	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences			
 326	ARTS 109	Architecture	Studio Art - students entering before Fall 2021	Media Arts and Sciences					
-1176	ARTS 110	Studio Art - students entering before Fall 2021	Media Arts and Sciences						
-1177	ARTS 111	Studio Art - students entering before Fall 2021							
-1178	ARTS 112	Studio Art - students entering before Fall 2021							
+1182	ARTS 110	Studio Art - students entering before Fall 2021	Media Arts and Sciences						
+1183	ARTS 111	Studio Art - students entering before Fall 2021							
+1184	ARTS 112	Studio Art - students entering before Fall 2021							
 311	ARTS 113	Architecture	Studio Art - students entering before Fall 2021	Media Arts and Sciences					
-1179	ARTS 115	Studio Art - students entering before Fall 2021							
+1185	ARTS 115	Studio Art - students entering before Fall 2021							
 576	ARTS 165	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences				
 327	ARTS 207	Architecture	Studio Art - students entering before Fall 2021	Media Arts and Sciences					
 597	ARTS 208	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences				
 328	ARTS 216	Architecture	Studio Art - students entering before Fall 2021	Media Arts and Sciences					
 329	ARTS 217	Architecture	Studio Art - students entering before Fall 2021						
-1183	ARTS 218	Studio Art - students entering before Fall 2021							
+1189	ARTS 218	Studio Art - students entering before Fall 2021							
 330	ARTS 219	Architecture	Studio Art - students entering before Fall 2021	Media Arts and Sciences					
 331	ARTS 220	Architecture	Studio Art - students entering before Fall 2021	Media Arts and Sciences					
 332	ARTS 221	Architecture	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences			
 334	ARTS 222	Architecture	Studio Art - students entering before Fall 2021						
-1184	ARTS 223	Studio Art - students entering before Fall 2021							
-1548	ARTS 225	Media Arts and Sciences							
-1185	ARTS 250	Studio Art - students entering before Fall 2021							
-1186	ARTS 250H	Studio Art - students entering before Fall 2021							
+1190	ARTS 223	Studio Art - students entering before Fall 2021							
+1553	ARTS 225	Media Arts and Sciences							
+1191	ARTS 250	Studio Art - students entering before Fall 2021							
+1192	ARTS 250H	Studio Art - students entering before Fall 2021							
 335	ARTS 255	Architecture	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences			
 591	ARTS 260	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences				
 595	ARTS 265	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences				
@@ -298,22 +298,22 @@
 617	ARTS 308	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences				
 610	ARTS 313	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences				
 338	ARTS 314	Architecture	Studio Art - students entering before Fall 2021						
-1187	ARTS 315	Studio Art - students entering before Fall 2021							
+1193	ARTS 315	Studio Art - students entering before Fall 2021							
 339	ARTS 317	Architecture							
-1181	ARTS 317H	Studio Art - students entering before Fall 2021	Media Arts and Sciences						
+1187	ARTS 317H	Studio Art - students entering before Fall 2021	Media Arts and Sciences						
 340	ARTS 318	Architecture							
-1182	ARTS 318H	Studio Art - students entering before Fall 2021	Media Arts and Sciences						
+1188	ARTS 318H	Studio Art - students entering before Fall 2021	Media Arts and Sciences						
 341	ARTS 321	Architecture	Studio Art - students entering before Fall 2021	Media Arts and Sciences					
 343	ARTS 322	Architecture	Studio Art - students entering before Fall 2021	Media Arts and Sciences					
-1188	ARTS 323	Studio Art - students entering before Fall 2021							
+1194	ARTS 323	Studio Art - students entering before Fall 2021							
 344	ARTS 336	Architecture	Studio Art - students entering before Fall 2021	Media Arts and Sciences					
-1189	ARTS 350	Studio Art - students entering before Fall 2021							
-1190	ARTS 350H	Studio Art - students entering before Fall 2021							
-1191	ARTS 360	Studio Art - students entering before Fall 2021							
+1195	ARTS 350	Studio Art - students entering before Fall 2021							
+1196	ARTS 350H	Studio Art - students entering before Fall 2021							
+1197	ARTS 360	Studio Art - students entering before Fall 2021							
 615	ARTS 365	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences				
 619	ARTS 366	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences				
-1192	ARTS 370	Studio Art - students entering before Fall 2021							
-1549	ARTS 391	Media Arts and Sciences							
+1198	ARTS 370	Studio Art - students entering before Fall 2021							
+1554	ARTS 391	Media Arts and Sciences							
 419	ASTR 107	Astronomy	Astrophysics						
 428	ASTR 200	Astronomy							
 429	ASTR 202	Astronomy							
@@ -334,7 +334,7 @@
 547	BIOC 223	Biochemistry							
 549	BIOC 320	Biochemistry							
 550	BIOC 323	Biochemistry							
-1674	BIOC 325	Neuroscience							
+1679	BIOC 325	Neuroscience							
 552	BIOC 331	Biochemistry							
 1053	BISC 108	Environmental Studies							
 534	BISC 110	Biochemistry	Biological Sciences	Neuroscience					
@@ -359,7 +359,7 @@
 557	BISC 219	Biological Sciences	Neuroscience						
 558	BISC 220	Biological Sciences	Neuroscience						
 568	BISC 247	Biological Sciences							
-1369	BISC 274	International Relations - History	International Relations - Political Science						
+1375	BISC 274	International Relations - History	International Relations - Political Science						
 495	BISC 302	Astronomy	Neuroscience						
 496	BISC 303	Astronomy							
 497	BISC 305	Astronomy							
@@ -392,8 +392,8 @@
 524	BISC 370	Astronomy							
 551	BOC 324	Biochemistry							
 573	CAMS 101	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences	Music			
-1650	CAMS 107Y	Music							
-1545	CAMS 115	Media Arts and Sciences							
+1655	CAMS 107Y	Music							
+1550	CAMS 115	Media Arts and Sciences							
 353	CAMS 135	Art History	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences	Music		
 348	CAMS 138	Art History	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Studio Art - students entering before Fall 2021	Media Arts and Sciences	Music		
 574	CAMS 201	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
@@ -402,16 +402,16 @@
 1046	CAMS 204	English and Creative Writing							
 89	CAMS 207	American Studies	Art History	Media Arts and Sciences	Music				
 579	CAMS 208	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	English and Creative Writing	Media Arts and Sciences	Music			
-1651	CAMS 210	Music							
+1656	CAMS 210	Music							
 582	CAMS 212	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
 583	CAMS 216	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
 584	CAMS 217	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
 585	CAMS 218	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
 586	CAMS 219	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
-1652	CAMS 220	Music							
+1657	CAMS 220	Music							
 587	CAMS 221	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
 95	CAMS 222	American Studies	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music			
-1653	CAMS 224	Music							
+1658	CAMS 224	Music							
 588	CAMS 225	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
 96	CAMS 227	American Studies	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music				
 589	CAMS 228	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
@@ -424,13 +424,13 @@
 333	CAMS 239	Architecture	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music			
 97	CAMS 240	American Studies	Latin American Studies	Music					
 99	CAMS 241	American Studies	Music						
-1654	CAMS 243	Music	South Asia Studies						
-1655	CAMS 250	Music							
-1656	CAMS 250H	Music							
+1659	CAMS 243	Music	South Asia Studies						
+1660	CAMS 250	Music							
+1661	CAMS 250H	Music							
 336	CAMS 255	Architecture	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music			
 598	CAMS 261	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
 599	CAMS 270	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-1287	CAMS 271	International Relations - Economics	International Relations - History	International Relations - Political Science	Music				
+1293	CAMS 271	International Relations - Economics	International Relations - History	International Relations - Political Science	Music				
 101	CAMS 272	American Studies	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after					
 1022	CAMS 276	Education Studies							
 602	CAMS 277	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
@@ -438,25 +438,25 @@
 102	CAMS 292	American Studies							
 604	CAMS 300	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
 606	CAMS 301	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
-1657	CAMS 302	Music							
-1658	CAMS 304	Music							
-1371	CAMS 305	International Relations - History	International Relations - Political Science	Music					
-1659	CAMS 308	Music							
+1662	CAMS 302	Music							
+1663	CAMS 304	Music							
+1377	CAMS 305	International Relations - History	International Relations - Political Science	Music					
+1664	CAMS 308	Music							
 607	CAMS 310	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
 608	CAMS 312	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
 609	CAMS 313	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
-1550	CAMS 318	Media Arts and Sciences							
+1555	CAMS 318	Media Arts and Sciences							
 611	CAMS 320	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
 342	CAMS 321	Architecture	Media Arts and Sciences	Music					
 612	CAMS 324	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
 613	CAMS 327	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Music					
 614	CAMS 335	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
 616	CAMS 338	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
-1660	CAMS 350	Music							
-1661	CAMS 350H	Music							
-1662	CAMS 360	Music							
+1665	CAMS 350	Music							
+1666	CAMS 350H	Music							
+1667	CAMS 360	Music							
 618	CAMS 366	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
-1663	CAMS 370	Music							
+1668	CAMS 370	Music							
 1054	CHEM 103	Environmental Studies							
 530	CHEM 105	Biochemistry	Biological Sciences	Chemical Physics	Chemistry	Environmental Studies			
 531	CHEM 105P	Biochemistry	Biological Sciences						
@@ -466,7 +466,7 @@
 544	CHEM 211	Biochemistry	Chemical Physics	Chemistry	Neuroscience				
 571	CHEM 212	Chemistry							
 572	CHEM 223	Chemistry	Neuroscience						
-1672	CHEM 227	Neuroscience							
+1677	CHEM 227	Neuroscience							
 475	CHEM 302	Astronomy	Chemistry	Education Studies					
 476	CHEM 303	Astronomy	Chemistry						
 477	CHEM 304	Astronomy	Chemistry						
@@ -492,14 +492,14 @@
 492	CHEM 361	Astronomy	Chemistry						
 493	CHEM 365	Astronomy	Chemistry						
 494	CHEM 370	Astronomy	Chemistry						
-1564	CHIN 200	Medieval Renaissance Studies							
+1569	CHIN 200	Medieval Renaissance Studies							
 932	CHIN 201	East Asian Studies							
 894	CHIN 202	East Asian Languages and Cultures	East Asian Studies						
 897	CHIN 203	East Asian Languages and Cultures	East Asian Studies						
 898	CHIN 204	East Asian Languages and Cultures	East Asian Studies						
 914	CHIN 208	East Asian Languages and Cultures	East Asian Studies						
 915	CHIN 211	East Asian Languages and Cultures	East Asian Studies	Medieval Renaissance Studies					
-1864	CHIN 213	Women's and Gender Studies							
+1869	CHIN 213	Women's and Gender Studies							
 916	CHIN 220	East Asian Languages and Cultures	East Asian Studies						
 917	CHIN 226	East Asian Languages and Cultures	East Asian Studies						
 918	CHIN 233	East Asian Languages and Cultures	East Asian Studies						
@@ -545,20 +545,20 @@
 685	CLCV 350H	Classical Civilization							
 405	CLCV 373	Art History	Classical Civilization	Media Arts and Sciences					
 746	CLPT 180	Comparative Literary Studies							
-1561	CLPT 247	Medieval Renaissance Studies							
-1827	CLPT 284	Russian							
-1828	CLPT 294	Russian							
+1566	CLPT 247	Medieval Renaissance Studies							
+1832	CLPT 284	Russian							
+1833	CLPT 294	Russian							
 747	CLPT 375	Comparative Literary Studies							
 736	CLSC 214	Cognitive and Linguistic Sciences - Psychology Concentration							
 699	CLSC 216	Cognitive and Linguistic Sciences - Computer Science Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies				
 731	CLSC 316	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies						
 942	CPLT 236	East Asian Studies							
 1065	CPLT 238	Environmental Studies							
-1829	CPLT 284	Russian Area Studies							
-1830	CPLT 294	Russian Area Studies							
+1834	CPLT 284	Russian Area Studies							
+1835	CPLT 294	Russian Area Studies							
 701	CS 111	Cognitive and Linguistic Sciences - Computer Science Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Computer Science	Data Science	Media Arts and Sciences	Music		
 732	CS 112	Cognitive and Linguistic Sciences - Psychology Concentration							
-1547	CS 121	Media Arts and Sciences							
+1552	CS 121	Media Arts and Sciences							
 852	CS 203	Computer Science	Media Arts and Sciences						
 853	CS 204	Computer Science	Media Arts and Sciences						
 704	CS 220	Cognitive and Linguistic Sciences - Computer Science Concentration	Computer Science	Media Arts and Sciences					
@@ -616,9 +616,9 @@
 967	ECON 233	Economics	International Relations - History	International Relations - Political Science					
 968	ECON 241	Economics	Education Studies	International Relations - History	International Relations - Political Science	Latin American Studies			
 110	ECON 243	American Studies							
-1372	ECON 250	International Relations - History	International Relations - Political Science						
-1373	ECON 250H	International Relations - History	International Relations - Political Science						
-1374	ECON 251H	International Relations - History	International Relations - Political Science						
+1378	ECON 250	International Relations - History	International Relations - Political Science						
+1379	ECON 250H	International Relations - History	International Relations - Political Science						
+1380	ECON 251H	International Relations - History	International Relations - Political Science						
 969	ECON 301	Economics	International Relations - History	International Relations - Political Science					
 970	ECON 302	Economics	International Relations - History	International Relations - Political Science					
 971	ECON 303	Economics	International Relations - History	International Relations - Political Science					
@@ -639,10 +639,10 @@
 116	ECON 334	American Studies	Economics	International Relations - History	International Relations - Political Science				
 981	ECON 335	Economics	International Relations - History	International Relations - Political Science					
 117	ECON 341	American Studies	Economics	International Relations - History	International Relations - Political Science				
-1375	ECON 350	International Relations - History	International Relations - Political Science						
-1376	ECON 360	International Relations - History	International Relations - Political Science						
-1377	ECON 370	International Relations - History	International Relations - Political Science						
-1728	EDUC 102	Philosophy							
+1381	ECON 350	International Relations - History	International Relations - Political Science						
+1382	ECON 360	International Relations - History	International Relations - Political Science						
+1383	ECON 370	International Relations - History	International Relations - Political Science						
+1733	EDUC 102	Philosophy							
 990	EDUC 103Y	Education Studies							
 992	EDUC 117Y	Education Studies							
 993	EDUC 200	Education Studies							
@@ -709,7 +709,7 @@
 798	ENG 242	Comparative Literary Studies							
 799	ENG 245	Comparative Literary Studies	English	English and Creative Writing					
 800	ENG 246	Comparative Literary Studies							
-1562	ENG 247	Medieval Renaissance Studies							
+1567	ENG 247	Medieval Renaissance Studies							
 781	ENG 247/	Comparative Literary Studies							
 772	ENG 248	Comparative Literary Studies	English	English and Creative Writing					
 801	ENG 249	Comparative Literary Studies							
@@ -758,7 +758,7 @@
 826	ENG 316	Comparative Literary Studies	Medieval Renaissance Studies						
 827	ENG 317	Comparative Literary Studies	English	English and Creative Writing	Medieval Renaissance Studies				
 828	ENG 319	Comparative Literary Studies							
-1567	ENG 324	Medieval Renaissance Studies	Theatre Studies						
+1572	ENG 324	Medieval Renaissance Studies	Theatre Studies						
 829	ENG 325	Comparative Literary Studies	English	English and Creative Writing	Medieval Renaissance Studies				
 830	ENG 335	Comparative Literary Studies	English	English and Creative Writing					
 831	ENG 336	Comparative Literary Studies	English	English and Creative Writing					
@@ -780,12 +780,12 @@
 845	ENG 382	Comparative Literary Studies							
 818	ENG 383	Comparative Literary Studies	Women's and Gender Studies						
 819	ENG 386	Comparative Literary Studies							
-1865	ENG 387	Women's and Gender Studies							
+1870	ENG 387	Women's and Gender Studies							
 846	ENG 388	Comparative Literary Studies	English	English and Creative Writing					
 847	ENG 389	Comparative Literary Studies							
 848	ENG 393	Comparative Literary Studies							
 849	ENG 399H	Comparative Literary Studies							
-1544	ENGR 120	Latin American Studies							
+1549	ENGR 120	Latin American Studies							
 1023	ENGR 305	Education Studies							
 1051	ES 100	Environmental Studies							
 1052	ES 101	Environmental Studies							
@@ -794,20 +794,20 @@
 1126	ES 201	Geosciences							
 1050	ES 214	Environmental Studies	International Relations - History						
 108	ES 228	American Studies	Economics	International Relations - History	International Relations - Political Science				
-1537	ES 229	Latin American Studies							
+1542	ES 229	Latin American Studies							
 1058	ES 233	Environmental Studies							
 1060	ES 234	Environmental Studies							
 750	ES 238	Comparative Literary Studies	Environmental Studies						
 569	ES 247	Biological Sciences							
-1368	ES 265	International Relations - History	International Relations - Political Science						
+1374	ES 265	International Relations - History	International Relations - Political Science						
 359	ES 267	Art History	Environmental Studies						
 1063	ES 299	Environmental Studies	International Relations - Economics	International Relations - History	International Relations - Political Science				
 1066	ES 300	Environmental Studies							
-1267	ES 312	International Relations - Economics	International Relations - History						
-1274	ES 325	International Relations - Economics	International Relations - History						
-1357	ES 328	International Relations - Economics	International Relations - History	International Relations - Political Science					
-1538	ES 329	Latin American Studies							
-1264	ES 381	International Relations - Economics	International Relations - History						
+1273	ES 312	International Relations - Economics	International Relations - History						
+1280	ES 325	International Relations - Economics	International Relations - History						
+1363	ES 328	International Relations - Economics	International Relations - History	International Relations - Political Science					
+1543	ES 329	Latin American Studies							
+1270	ES 381	International Relations - Economics	International Relations - History						
 1067	ES 398	Environmental Studies							
 1068	ES 399	Environmental Studies							
 1070	EXTD 123	Environmental Studies							
@@ -928,72 +928,71 @@
 647	GRK 350	Classical Civilization							
 648	GRK 350H	Classical Civilization							
 686	HEBR 201	Classical Civilization							
-1193	HIST 114Y	History	International Relations - Economics						
-1194	HIST 116Y	History	Russian Area Studies						
+1199	HIST 114Y	History	International Relations - Economics						
+1200	HIST 116Y	History	Russian Area Studies						
 687	HIST 200	Classical Civilization	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
-1195	HIST 201	History	International Relations - Economics	International Relations - Political Science	Jewish Studies				
+1201	HIST 201	History	International Relations - Economics	International Relations - Political Science	Jewish Studies				
 134	HIST 203	American Studies	Education Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science		
 135	HIST 204	American Studies	Education Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science		
-1196	HIST 205	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1202	HIST 205	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
 136	HIST 207	American Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies		
-1197	HIST 208	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
-1198	HIST 211	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies			
-1199	HIST 212	History	International Relations - Economics	International Relations - Political Science	Latin American Studies				
-1200	HIST 213	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Medieval Renaissance Studies		
-1201	HIST 214	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
+1203	HIST 208	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
+1204	HIST 211	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies			
+1205	HIST 212	History	International Relations - Economics	International Relations - Political Science	Latin American Studies				
+1206	HIST 213	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Medieval Renaissance Studies		
+1207	HIST 214	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
 51	HIST 215	Africana Studies - The Caribbean and Latin America Concentration	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies		
-1202	HIST 218	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies			
+1208	HIST 218	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies			
 137	HIST 220	American Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
 1043	HIST 221	English	English and Creative Writing	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies	
-1203	HIST 222	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
+1209	HIST 222	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
 688	HIST 228	Classical Civilization	History	International Relations - Economics	International Relations - Political Science				
 689	HIST 229	Classical Civilization	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
 690	HIST 230	Classical Civilization	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
 691	HIST 231	Classical Civilization	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
-1204	HIST 232	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
-1205	HIST 233	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
-1206	HIST 234	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
-1207	HIST 240	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
-1208	HIST 242	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
-1438	HIST 2422	Jewish Studies							
-1209	HIST 243	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies			
+1210	HIST 232	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
+1211	HIST 233	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1212	HIST 234	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
+1213	HIST 240	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1214	HIST 242	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies			
+1215	HIST 243	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies			
 138	HIST 244	American Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies		
 139	HIST 245	American Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies		
-1211	HIST 246	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies	Russian Area Studies		
-1210	HIST 247	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Russian Area Studies			
-1212	HIST 248	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Russian Area Studies			
+1217	HIST 246	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies	Russian Area Studies		
+1216	HIST 247	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Russian Area Studies			
+1218	HIST 248	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Russian Area Studies			
 140	HIST 249	American Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
-1213	HIST 250	History	International Relations - Political Science						
-1214	HIST 250H	History	International Relations - Political Science						
+1219	HIST 250	History	International Relations - Political Science						
+1220	HIST 250H	History	International Relations - Political Science						
 141	HIST 252	American Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
 142	HIST 253	American Studies	Education Studies	History	International Relations - Economics	International Relations - Political Science			
 143	HIST 254	American Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies		
 144	HIST 256	American Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
 145	HIST 260	American Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
-1215	HIST 261	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
-1216	HIST 262	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
-1217	HIST 263	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
-1219	HIST 264	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1221	HIST 261	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1222	HIST 262	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1223	HIST 263	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1225	HIST 264	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
 9	HIST 265	Africana Studies - Africa Concentration	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
-1220	HIST 266	History	International Relations - Economics	International Relations - Political Science	Middle Eastern Studies	South Asia Studies			
+1226	HIST 266	History	International Relations - Economics	International Relations - Political Science	Middle Eastern Studies	South Asia Studies			
 146	HIST 267	American Studies	History	International Relations - Economics	International Relations - Political Science				
-1222	HIST 268	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1228	HIST 268	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
 949	HIST 269	East Asian Studies							
-1223	HIST 270	History	International Relations - Economics	International Relations - Political Science					
-1224	HIST 272	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
-1225	HIST 273	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1229	HIST 270	History	International Relations - Economics	International Relations - Political Science					
+1230	HIST 272	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1231	HIST 273	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
 950	HIST 274	East Asian Studies							
-1226	HIST 275	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
-1227	HIST 276	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1232	HIST 275	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1233	HIST 276	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
 147	HIST 277	American Studies	East Asian Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science		
 951	HIST 278	East Asian Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
-1228	HIST 279	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
+1234	HIST 279	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
 952	HIST 280	East Asian Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
-1229	HIST 284	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Middle Eastern Studies		
-1230	HIST 285	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies			
-1232	HIST 293	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Middle Eastern Studies	Women's and Gender Studies		
+1235	HIST 284	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Middle Eastern Studies		
+1236	HIST 285	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies			
+1238	HIST 293	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Middle Eastern Studies	Women's and Gender Studies		
 1064	HIST 299	Environmental Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
-1234	HIST 302	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Russian Area Studies		
+1240	HIST 302	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Russian Area Studies		
 148	HIST 311	American Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
 149	HIST 312	American Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
 150	HIST 314	American Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
@@ -1001,59 +1000,59 @@
 152	HIST 320	American Studies	Environmental Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science		
 153	HIST 321	American Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
 692	HIST 325	Classical Civilization	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
-1235	HIST 329	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
-1236	HIST 330	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
-1237	HIST 334	History	International Relations - Economics	International Relations - Political Science					
+1241	HIST 329	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1242	HIST 330	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
+1243	HIST 334	History	International Relations - Economics	International Relations - Political Science					
 154	HIST 340	American Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
-1238	HIST 341	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
-1239	HIST 350	History	International Relations - Political Science						
-1240	HIST 350H	History	International Relations - Political Science						
-1241	HIST 352	History	International Relations - Economics	International Relations - Political Science	Medieval Renaissance Studies				
-1242	HIST 354	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
-1243	HIST 358	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies	Medieval Renaissance Studies		
-1244	HIST 359	History	International Relations - Economics	International Relations - Political Science	Latin American Studies				
-1245	HIST 360	History	International Relations - Political Science						
-1246	HIST 364	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Middle Eastern Studies		
-1248	HIST 365	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
-1249	HIST 366	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Middle Eastern Studies		
-1251	HIST 367	History	International Relations - Economics	International Relations - Political Science	Middle Eastern Studies	South Asia Studies			
-1253	HIST 369	History	International Relations - Economics	International Relations - Political Science	Jewish Studies	Middle Eastern Studies			
-1255	HIST 370	History	International Relations - Political Science						
-1256	HIST 375	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
-1257	HIST 376	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies			
-1258	HIST 377	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies			
-1259	HIST 379	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
-1260	HIST 383	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1244	HIST 341	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1245	HIST 350	History	International Relations - Political Science						
+1246	HIST 350H	History	International Relations - Political Science						
+1247	HIST 352	History	International Relations - Economics	International Relations - Political Science	Medieval Renaissance Studies				
+1248	HIST 354	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
+1249	HIST 358	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies	Medieval Renaissance Studies		
+1250	HIST 359	History	International Relations - Economics	International Relations - Political Science	Latin American Studies				
+1251	HIST 360	History	International Relations - Political Science						
+1252	HIST 364	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Middle Eastern Studies		
+1254	HIST 365	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1255	HIST 366	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Middle Eastern Studies		
+1257	HIST 367	History	International Relations - Economics	International Relations - Political Science	Middle Eastern Studies	South Asia Studies			
+1259	HIST 369	History	International Relations - Economics	International Relations - Political Science	Jewish Studies	Middle Eastern Studies			
+1261	HIST 370	History	International Relations - Political Science						
+1262	HIST 375	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
+1263	HIST 376	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies			
+1264	HIST 377	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies			
+1265	HIST 379	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Medieval Renaissance Studies			
+1266	HIST 383	History	International Relations - Economics	International Relations - History	International Relations - Political Science				
 953	HIST 395	East Asian Studies	History	International Relations - Economics	International Relations - History	International Relations - Political Science			
-1836	HNUR 201	South Asia Studies							
-1837	HNUR 202	South Asia Studies							
-1838	HNUR 304	South Asia Studies							
-1413	ITAS 201	Italian Studies							
-1414	ITAS 202	Italian Studies							
-1415	ITAS 202W	Italian Studies							
-1416	ITAS 203	Italian Studies							
-1417	ITAS 209	Italian Studies							
-1418	ITAS 210	Italian Studies	Women's and Gender Studies						
-1412	ITAS 212	Italian Studies							
-1419	ITAS 220	Italian Studies							
-1420	ITAS 250	Italian Studies							
-1421	ITAS 250H	Italian Studies							
+1841	HNUR 201	South Asia Studies							
+1842	HNUR 202	South Asia Studies							
+1843	HNUR 304	South Asia Studies							
+1419	ITAS 201	Italian Studies							
+1420	ITAS 202	Italian Studies							
+1421	ITAS 202W	Italian Studies							
+1422	ITAS 203	Italian Studies							
+1423	ITAS 209	Italian Studies							
+1424	ITAS 210	Italian Studies	Women's and Gender Studies						
+1418	ITAS 212	Italian Studies							
+1425	ITAS 220	Italian Studies							
+1426	ITAS 250	Italian Studies							
+1427	ITAS 250H	Italian Studies							
 625	ITAS 261	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Italian Studies					
 752	ITAS 263	Comparative Literary Studies	Italian Studies	Medieval Renaissance Studies					
-1422	ITAS 270	Italian Studies							
-1423	ITAS 271	Italian Studies							
-1424	ITAS 272	Italian Studies							
-1425	ITAS 273	Italian Studies							
-1426	ITAS 274	Italian Studies	Medieval Renaissance Studies	Women's and Gender Studies					
-1427	ITAS 310	Italian Studies							
-1428	ITAS 315	Italian Studies							
-1429	ITAS 320	Italian Studies							
-1430	ITAS 324	Italian Studies							
-1431	ITAS 349	Italian Studies							
-1432	ITAS 350	Italian Studies							
-1433	ITAS 360	Italian Studies							
-1434	ITAS 370	Italian Studies							
-1599	JEST 104	Middle Eastern Studies							
+1428	ITAS 270	Italian Studies							
+1429	ITAS 271	Italian Studies							
+1430	ITAS 272	Italian Studies							
+1431	ITAS 273	Italian Studies							
+1432	ITAS 274	Italian Studies	Medieval Renaissance Studies	Women's and Gender Studies					
+1433	ITAS 310	Italian Studies							
+1434	ITAS 315	Italian Studies							
+1435	ITAS 320	Italian Studies							
+1436	ITAS 324	Italian Studies							
+1437	ITAS 349	Italian Studies							
+1438	ITAS 350	Italian Studies							
+1439	ITAS 360	Italian Studies							
+1440	ITAS 370	Italian Studies							
+1604	JEST 104	Middle Eastern Studies							
 933	JPN 201	East Asian Studies							
 934	JPN 202	East Asian Studies							
 935	JPN 231	East Asian Studies							
@@ -1066,29 +1065,29 @@
 908	JPN 309	East Asian Languages and Cultures	East Asian Studies						
 909	JPN 314	East Asian Languages and Cultures	East Asian Studies						
 910	JPN 352	East Asian Languages and Cultures	East Asian Studies						
-1866	JPN 353	Women's and Gender Studies							
+1871	JPN 353	Women's and Gender Studies							
 911	JPN 356	East Asian Languages and Cultures	East Asian Studies						
 593	JSWT 223	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-1435	JWST 102	Jewish Studies							
-1455	JWST 201	Jewish Studies	Religion						
-1456	JWST 209	Jewish Studies	Religion						
-1454	JWST 211	Jewish Studies	Religion						
-1451	JWST 233	Jewish Studies	Religion						
-1457	JWST 245	Jewish Studies	Religion						
-1458	JWST 250	Jewish Studies	Religion						
-1459	JWST 250H	Jewish Studies	Religion						
+1441	JWST 102	Jewish Studies							
+1460	JWST 201	Jewish Studies	Religion						
+1461	JWST 209	Jewish Studies	Religion						
+1459	JWST 211	Jewish Studies	Religion						
+1456	JWST 233	Jewish Studies	Religion						
+1462	JWST 245	Jewish Studies	Religion						
+1463	JWST 250	Jewish Studies	Religion						
+1464	JWST 250H	Jewish Studies	Religion						
 127	JWST 270	American Studies	Comparative Literary Studies	Jewish Studies	Religion				
-1452	JWST 274	Jewish Studies	Religion						
-1460	JWST 277	Jewish Studies	Latin American Studies	Religion					
-1453	JWST 290	Jewish Studies	Religion						
-1462	JWST 344	Jewish Studies	Religion						
-1461	JWST 345	Jewish Studies	Religion						
-1463	JWST 350	Jewish Studies	Religion						
-1464	JWST 350H	Jewish Studies	Religion						
-1465	JWST 360	Jewish Studies	Religion						
-1466	JWST 370	Jewish Studies	Religion						
-1467	JWST 377	Jewish Studies	Latin American Studies	Religion					
-1468	JWST 380	Jewish Studies	Religion						
+1457	JWST 274	Jewish Studies	Religion						
+1465	JWST 277	Jewish Studies	Latin American Studies	Religion					
+1458	JWST 290	Jewish Studies	Religion						
+1467	JWST 344	Jewish Studies	Religion						
+1466	JWST 345	Jewish Studies	Religion						
+1468	JWST 350	Jewish Studies	Religion						
+1469	JWST 350H	Jewish Studies	Religion						
+1470	JWST 360	Jewish Studies	Religion						
+1471	JWST 370	Jewish Studies	Religion						
+1472	JWST 377	Jewish Studies	Latin American Studies	Religion					
+1473	JWST 380	Jewish Studies	Religion						
 937	KOR 201	East Asian Studies							
 938	KOR 202	East Asian Studies							
 723	KOR 206	Cognitive and Linguistic Sciences - Linguistics Concentration	East Asian Languages and Cultures	East Asian Studies					
@@ -1098,17 +1097,17 @@
 913	KOR 246	East Asian Languages and Cultures	East Asian Studies						
 724	KOR 256	Cognitive and Linguistic Sciences - Linguistics Concentration	East Asian Languages and Cultures	East Asian Studies	Women's and Gender Studies				
 941	KOR 309	East Asian Studies							
-1530	LAST 101	Latin American Studies							
-1290	LAST 207	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies				
-1262	LAST 211	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies				
-1298	LAST 217	International Relations - Economics	International Relations - History	Latin American Studies					
-1533	LAST 221H	Latin American Studies							
-1529	LAST 241	Latin American Studies							
-1289	LAST 245	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies				
-1539	LAST 253	Latin American Studies							
-1495	LAST 273	Latin American Studies							
-1498	LAST 275	Latin American Studies							
-1513	LAST 317	Latin American Studies							
+1535	LAST 101	Latin American Studies							
+1296	LAST 207	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies				
+1268	LAST 211	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies				
+1304	LAST 217	International Relations - Economics	International Relations - History	Latin American Studies					
+1538	LAST 221H	Latin American Studies							
+1534	LAST 241	Latin American Studies							
+1295	LAST 245	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies				
+1544	LAST 253	Latin American Studies							
+1500	LAST 273	Latin American Studies							
+1503	LAST 275	Latin American Studies							
+1518	LAST 317	Latin American Studies							
 649	LAT 101	Classical Civilization							
 650	LAT 102	Classical Civilization							
 651	LAT 202	Classical Civilization							
@@ -1128,30 +1127,36 @@
 261	LING 244	Anthropology	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies				
 711	LING 246	Cognitive and Linguistic Sciences - Computer Science Concentration	Cognitive and Linguistic Sciences - Linguistics Concentration	East Asian Languages and Cultures	East Asian Studies				
 713	LING 248	Cognitive and Linguistic Sciences - Linguistics Concentration	Education Studies						
-1492	LING 270	Latin American Studies							
+1497	LING 270	Latin American Studies							
 714	LING 312	Cognitive and Linguistic Sciences - Linguistics Concentration	Education Studies						
 715	LING 315	Cognitive and Linguistic Sciences - Linguistics Concentration							
 262	LING 338	Anthropology	Cognitive and Linguistic Sciences - Linguistics Concentration	Education Studies					
-1546	MAS 115	Media Arts and Sciences	Music						
-1664	MAS 121	Music							
-1665	MAS 221	Music							
+1551	MAS 115	Media Arts and Sciences	Music						
+1669	MAS 121	Music							
+1670	MAS 221	Music							
 377	MAS 222	Art History	Media Arts and Sciences	Music					
-1367	MAS 246	International Relations - History	International Relations - Political Science	Media Arts and Sciences	Music				
-1552	MAS 250	Media Arts and Sciences	Music						
-1553	MAS 250H	Media Arts and Sciences	Music						
-1666	MAS 260	Music							
-1667	MAS 350	Music							
-1668	MAS 350H	Music							
-1554	MAS 360	Media Arts and Sciences	Music						
-1555	MAS 370	Media Arts and Sciences	Music						
+1373	MAS 246	International Relations - History	International Relations - Political Science	Media Arts and Sciences	Music				
+1557	MAS 250	Media Arts and Sciences	Music						
+1558	MAS 250H	Media Arts and Sciences	Music						
+1671	MAS 260	Music							
+1672	MAS 350	Music							
+1673	MAS 350H	Music							
+1559	MAS 360	Media Arts and Sciences	Music						
+1560	MAS 370	Media Arts and Sciences	Music						
 527	MATH 115	Astrophysics	Mathematics						
 1154	MATH 115Z	Mathematics							
 528	MATH 116	Astrophysics	Biochemistry	Mathematics					
 542	MATH 120	Biochemistry	Mathematics						
+1175	MATH 203	Mathematics							
 529	MATH 205	Astrophysics	Chemistry	Data Science	Mathematics				
 886	MATH 206	Data Science	Mathematics						
-421	MATH 215	Astronomy	Astrophysics	Chemical Physics	Chemistry	Neuroscience			
-850	MATH 225	Computer Science							
+1176	MATH 207Y	Mathematics							
+421	MATH 215	Astronomy	Astrophysics	Chemical Physics	Chemistry	Mathematics	Neuroscience		
+1177	MATH 220	Mathematics							
+1178	MATH 223	Mathematics							
+1179	MATH 223Y	Mathematics							
+850	MATH 225	Computer Science	Mathematics						
+1180	MATH 250	Mathematics							
 1156	MATH 302	Mathematics							
 1157	MATH 305	Mathematics							
 1158	MATH 306	Mathematics							
@@ -1171,184 +1176,184 @@
 1172	MATH 360	Mathematics							
 1173	MATH 365	Mathematics							
 1174	MATH 370	Mathematics							
-1565	MER 211	Medieval Renaissance Studies	Religion						
+1570	MER 211	Medieval Renaissance Studies	Religion						
 1042	MER 214	English	English and Creative Writing	Medieval Renaissance Studies	Religion				
-1563	MER 247	Medieval Renaissance Studies							
-1443	MER 248	Jewish Studies	Latin American Studies	Religion					
+1568	MER 247	Medieval Renaissance Studies							
+1448	MER 248	Jewish Studies	Latin American Studies	Religion					
 753	MER 263	Comparative Literary Studies	Religion						
-1263	MER 293	International Relations - Economics							
-1566	MER 311	Medieval Renaissance Studies	Religion						
+1269	MER 293	International Relations - Economics							
+1571	MER 311	Medieval Renaissance Studies	Religion						
 1044	MER 314	English	English and Creative Writing	Religion					
-1795	MER 350	Religion							
-1796	MER 360	Religion							
-1797	MER 370	Religion							
-1615	MES 250	Middle Eastern Studies	Religion						
-1616	MES 250H	Middle Eastern Studies	Religion						
-1617	MES 260	Middle Eastern Studies	Religion						
-1568	MES 261	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
-1618	MES 263	Middle Eastern Studies	Religion						
-1439	MES 264	Jewish Studies	Middle Eastern Studies	Religion					
-1441	MES 265	Jewish Studies	Middle Eastern Studies	Religion					
-1619	MES 267	Middle Eastern Studies	Religion						
-1620	MES 270H	Middle Eastern Studies	Religion						
-1233	MES 293	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Middle Eastern Studies	Religion		
-1596	MES 310	Middle Eastern Studies	Religion						
-1621	MES 347	Middle Eastern Studies	Religion						
-1622	MES 350	Middle Eastern Studies	Religion						
-1623	MES 350H	Middle Eastern Studies	Religion						
-1269	MES 358	International Relations - Economics	International Relations - History	Jewish Studies	Middle Eastern Studies	Religion			
-1624	MES 359	Middle Eastern Studies	Religion						
-1625	MES 360	Middle Eastern Studies	Religion						
-1626	MES 361	Middle Eastern Studies	Religion						
-1627	MES 362	Middle Eastern Studies	Religion						
-1628	MES 363	Middle Eastern Studies	Religion						
-1247	MES 364	History	International Relations - Economics	International Relations - History	Jewish Studies	Middle Eastern Studies	Religion		
-1570	MES 365	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
-1250	MES 366	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Middle Eastern Studies	Religion	
-1629	MES 367	Middle Eastern Studies	Religion						
-1254	MES 369	History	International Relations - Economics	International Relations - Political Science	Jewish Studies	Middle Eastern Studies	Religion		
-1630	MES 370	Middle Eastern Studies	Religion						
-1631	MUS 100	Music							
-1632	MUS 122	Music							
-1637	MUS 199	Music							
-1572	MUS 200	Medieval Renaissance Studies	Music						
-1634	MUS 201	Music							
-1635	MUS 202	Music							
+1800	MER 350	Religion							
+1801	MER 360	Religion							
+1802	MER 370	Religion							
+1620	MES 250	Middle Eastern Studies	Religion						
+1621	MES 250H	Middle Eastern Studies	Religion						
+1622	MES 260	Middle Eastern Studies	Religion						
+1573	MES 261	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
+1623	MES 263	Middle Eastern Studies	Religion						
+1444	MES 264	Jewish Studies	Middle Eastern Studies	Religion					
+1446	MES 265	Jewish Studies	Middle Eastern Studies	Religion					
+1624	MES 267	Middle Eastern Studies	Religion						
+1625	MES 270H	Middle Eastern Studies	Religion						
+1239	MES 293	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Middle Eastern Studies	Religion		
+1601	MES 310	Middle Eastern Studies	Religion						
+1626	MES 347	Middle Eastern Studies	Religion						
+1627	MES 350	Middle Eastern Studies	Religion						
+1628	MES 350H	Middle Eastern Studies	Religion						
+1275	MES 358	International Relations - Economics	International Relations - History	Jewish Studies	Middle Eastern Studies	Religion			
+1629	MES 359	Middle Eastern Studies	Religion						
+1630	MES 360	Middle Eastern Studies	Religion						
+1631	MES 361	Middle Eastern Studies	Religion						
+1632	MES 362	Middle Eastern Studies	Religion						
+1633	MES 363	Middle Eastern Studies	Religion						
+1253	MES 364	History	International Relations - Economics	International Relations - History	Jewish Studies	Middle Eastern Studies	Religion		
+1575	MES 365	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
+1256	MES 366	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Middle Eastern Studies	Religion	
+1634	MES 367	Middle Eastern Studies	Religion						
+1260	MES 369	History	International Relations - Economics	International Relations - Political Science	Jewish Studies	Middle Eastern Studies	Religion		
+1635	MES 370	Middle Eastern Studies	Religion						
+1636	MUS 100	Music							
+1637	MUS 122	Music							
+1642	MUS 199	Music							
+1577	MUS 200	Medieval Renaissance Studies	Music						
+1639	MUS 201	Music							
+1640	MUS 202	Music							
 34	MUS 209	Africana Studies - Africa Concentration	Africana Studies - United States Concentration	American Studies	Anthropology	Architecture	Music		
 263	MUS 210	Anthropology	Latin American Studies	Music					
-1642	MUS 212	Music							
-1556	MUS 213	Media Arts and Sciences							
-1541	MUS 214H	Latin American Studies							
-1542	MUS 215	Latin American Studies	Music						
+1647	MUS 212	Music							
+1561	MUS 213	Media Arts and Sciences							
+1546	MUS 214H	Latin American Studies							
+1547	MUS 215	Latin American Studies	Music						
 155	MUS 220	American Studies	Architecture	Music					
-1645	MUS 222	Music	Women's and Gender Studies						
-1868	MUS 224	Women's and Gender Studies							
-1633	MUS 244	Music							
+1650	MUS 222	Music	Women's and Gender Studies						
+1873	MUS 224	Women's and Gender Studies							
+1638	MUS 244	Music							
 86	MUS 245	American Studies	International Relations - History	International Relations - Political Science	Latin American Studies	Music			
-1647	MUS 250	Music							
-1640	MUS 250H	Music							
+1652	MUS 250	Music							
+1645	MUS 250H	Music							
 603	MUS 275	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
 156	MUS 276	American Studies	Architecture	Media Arts and Sciences	Music				
 629	MUS 277	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Music				
-1643	MUS 298	Music							
-1638	MUS 299	Music							
+1648	MUS 298	Music							
+1643	MUS 299	Music							
 66	MUS 300	Africana Studies - United States Concentration	Jewish Studies	Media Arts and Sciences	Music				
-1649	MUS 301	Music							
-1641	MUS 309	Music							
-1476	MUS 314	Latin American Studies	Music						
-1636	MUS 315	Music							
-1646	MUS 322	Music	Women's and Gender Studies						
+1654	MUS 301	Music							
+1646	MUS 309	Music							
+1481	MUS 314	Latin American Studies	Music						
+1641	MUS 315	Music							
+1651	MUS 322	Music	Women's and Gender Studies						
 345	MUS 336	Architecture	Media Arts and Sciences						
-1639	MUS 344	Music							
-1536	MUS 345	Latin American Studies	Music						
-1648	MUS 350	Music							
-1644	MUS 398	Music							
-1669	NEUR 100	Neuroscience							
-1670	NEUR 200	Neuroscience							
-1671	NEUR 300	Neuroscience							
-1675	NEUR 305	Neuroscience							
-1676	NEUR 306	Neuroscience							
-1679	NEUR 310	Neuroscience							
-1677	NEUR 315	Neuroscience							
-1680	NEUR 325	Neuroscience							
+1644	MUS 344	Music							
+1541	MUS 345	Latin American Studies	Music						
+1653	MUS 350	Music							
+1649	MUS 398	Music							
+1674	NEUR 100	Neuroscience							
+1675	NEUR 200	Neuroscience							
+1676	NEUR 300	Neuroscience							
+1680	NEUR 305	Neuroscience							
+1681	NEUR 306	Neuroscience							
+1684	NEUR 310	Neuroscience							
+1682	NEUR 315	Neuroscience							
+1685	NEUR 325	Neuroscience							
 548	NEUR 332	Biochemistry	Neuroscience						
-1681	NEUR 335	Neuroscience							
+1686	NEUR 335	Neuroscience							
 1025	PEAC 104	Education Studies	Peace and Justice Studies						
 954	PEAC 119Y	East Asian Studies							
-1347	PEAC 201	International Relations - Economics	Peace and Justice Studies						
-1682	PEAC 204	Peace and Justice Studies							
-1408	PEAC 205	International Relations - History	Peace and Justice Studies	Women's and Gender Studies					
+1353	PEAC 201	International Relations - Economics	Peace and Justice Studies						
+1687	PEAC 204	Peace and Justice Studies							
+1414	PEAC 205	International Relations - History	Peace and Justice Studies	Women's and Gender Studies					
 1026	PEAC 206	Education Studies	International Relations - History	Peace and Justice Studies					
-1323	PEAC 207	International Relations - Economics	International Relations - History	International Relations - Political Science					
-1684	PEAC 207/	Peace and Justice Studies							
-1381	PEAC 209	International Relations - History	International Relations - Political Science						
-1688	PEAC 210	Peace and Justice Studies							
+1329	PEAC 207	International Relations - Economics	International Relations - History	International Relations - Political Science					
+1689	PEAC 207/	Peace and Justice Studies							
+1387	PEAC 209	International Relations - History	International Relations - Political Science						
+1693	PEAC 210	Peace and Justice Studies							
 119	PEAC 215	American Studies	Education Studies	Peace and Justice Studies					
-1301	PEAC 217	International Relations - Economics	International Relations - History	Middle Eastern Studies	Peace and Justice Studies				
-1325	PEAC 219	International Relations - Economics	Peace and Justice Studies						
-1363	PEAC 220	International Relations - History	International Relations - Political Science	Peace and Justice Studies					
-1310	PEAC 221	International Relations - Economics	Peace and Justice Studies						
+1307	PEAC 217	International Relations - Economics	International Relations - History	Middle Eastern Studies	Peace and Justice Studies				
+1331	PEAC 219	International Relations - Economics	Peace and Justice Studies						
+1369	PEAC 220	International Relations - History	International Relations - Political Science	Peace and Justice Studies					
+1316	PEAC 221	International Relations - Economics	Peace and Justice Studies						
 965	PEAC 222	Economics	International Relations - History	International Relations - Political Science	Peace and Justice Studies				
-1689	PEAC 223	Peace and Justice Studies							
-1218	PEAC 224	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Peace and Justice Studies			
-1690	PEAC 225	Peace and Justice Studies	South Asia Studies						
+1694	PEAC 223	Peace and Justice Studies							
+1224	PEAC 224	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Peace and Justice Studies			
+1695	PEAC 225	Peace and Justice Studies	South Asia Studies						
 1021	PEAC 231	Education Studies	International Relations - History	International Relations - Political Science	Latin American Studies	Peace and Justice Studies			
-1687	PEAC 235	Peace and Justice Studies							
+1692	PEAC 235	Peace and Justice Studies							
 157	PEAC 240	American Studies	Architecture	International Relations - Economics	Peace and Justice Studies				
 74	PEAC 243	American Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Peace and Justice Studies			
-1691	PEAC 250	Peace and Justice Studies							
-1683	PEAC 250H	Peace and Justice Studies							
-1685	PEAC 259	Peace and Justice Studies							
-1291	PEAC 261	International Relations - Economics	International Relations - History	International Relations - Political Science	Peace and Justice Studies				
-1686	PEAC 264	Peace and Justice Studies							
+1696	PEAC 250	Peace and Justice Studies							
+1688	PEAC 250H	Peace and Justice Studies							
+1690	PEAC 259	Peace and Justice Studies							
+1297	PEAC 261	International Relations - Economics	International Relations - History	International Relations - Political Science	Peace and Justice Studies				
+1691	PEAC 264	Peace and Justice Studies							
 1020	PEAC 290	Education Studies	Latin American Studies	Peace and Justice Studies					
-1405	PEAC 304	International Relations - History	Peace and Justice Studies						
+1411	PEAC 304	International Relations - History	Peace and Justice Studies						
 1024	PEAC 305	Education Studies	Peace and Justice Studies						
 1003	PEAC 312	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies			
-1692	PEAC 312/	Peace and Justice Studies							
-1318	PEAC 318	International Relations - Economics	Peace and Justice Studies						
-1694	PEAC 350	Peace and Justice Studies							
-1695	PEAC 350H	Peace and Justice Studies							
-1278	PEAC 357	International Relations - Economics	International Relations - History	Peace and Justice Studies					
-1270	PEAC 358	International Relations - Economics	International Relations - History	Jewish Studies					
-1693	PEAC 358/	Peace and Justice Studies							
-1696	PEAC 360	Peace and Justice Studies							
-1697	PEAC 370	Peace and Justice Studies							
+1697	PEAC 312/	Peace and Justice Studies							
+1324	PEAC 318	International Relations - Economics	Peace and Justice Studies						
+1699	PEAC 350	Peace and Justice Studies							
+1700	PEAC 350H	Peace and Justice Studies							
+1284	PEAC 357	International Relations - Economics	International Relations - History	Peace and Justice Studies					
+1276	PEAC 358	International Relations - Economics	International Relations - History	Jewish Studies					
+1698	PEAC 358/	Peace and Justice Studies							
+1701	PEAC 360	Peace and Justice Studies							
+1702	PEAC 370	Peace and Justice Studies							
 1045	PEAC 388	English	English and Creative Writing	Peace and Justice Studies					
-1698	PHIL 102	Philosophy							
-1726	PHIL 103	Philosophy							
+1703	PHIL 102	Philosophy							
+1731	PHIL 103	Philosophy							
 1057	PHIL 105	Environmental Studies	Philosophy						
-1705	PHIL 106	Philosophy							
-1706	PHIL 108	Philosophy							
-1707	PHIL 111	Philosophy							
-1727	PHIL 112	Philosophy							
-1708	PHIL 115	Philosophy							
-1573	PHIL 200	Medieval Renaissance Studies	Philosophy						
+1710	PHIL 106	Philosophy							
+1711	PHIL 108	Philosophy							
+1712	PHIL 111	Philosophy							
+1732	PHIL 112	Philosophy							
+1713	PHIL 115	Philosophy							
+1578	PHIL 200	Medieval Renaissance Studies	Philosophy						
 693	PHIL 201	Classical Civilization	Philosophy						
 26	PHIL 202	Africana Studies - Africa Concentration							
-1557	PHIL 203	Media Arts and Sciences	Philosophy						
-1709	PHIL 205	Philosophy							
+1562	PHIL 203	Media Arts and Sciences	Philosophy						
+1714	PHIL 205	Philosophy							
 719	PHIL 207	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration	Philosophy					
-1710	PHIL 213	Philosophy							
-1673	PHIL 215	Neuroscience	Philosophy						
+1715	PHIL 213	Philosophy							
+1678	PHIL 215	Neuroscience	Philosophy						
 720	PHIL 216	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Philosophy				
 725	PHIL 218	Cognitive and Linguistic Sciences - Philosophy Concentration	Philosophy	Women's and Gender Studies					
-1712	PHIL 22	Philosophy							
-1711	PHIL 220	Philosophy							
+1717	PHIL 22	Philosophy							
+1716	PHIL 220	Philosophy							
 726	PHIL 221	Cognitive and Linguistic Sciences - Philosophy Concentration	Medieval Renaissance Studies	Philosophy					
-1551	PHIL 222	Media Arts and Sciences							
-1713	PHIL 226	Philosophy							
-1361	PHIL 228	International Relations - History	International Relations - Political Science	Philosophy	Women's and Gender Studies				
-1714	PHIL 229	Philosophy							
-1699	PHIL 231	Philosophy							
+1556	PHIL 222	Media Arts and Sciences							
+1718	PHIL 226	Philosophy							
+1367	PHIL 228	International Relations - History	International Relations - Political Science	Philosophy	Women's and Gender Studies				
+1719	PHIL 229	Philosophy							
+1704	PHIL 231	Philosophy							
 1059	PHIL 233	Environmental Studies	Philosophy						
 1061	PHIL 234	Environmental Studies	Philosophy						
-1715	PHIL 236	Philosophy							
+1720	PHIL 236	Philosophy							
 727	PHIL 245	Cognitive and Linguistic Sciences - Philosophy Concentration	Philosophy						
-1716	PHIL 249	Philosophy							
-1574	PHIL 300	Medieval Renaissance Studies	Philosophy						
-1701	PHIL 301	Philosophy							
-1717	PHIL 303	Philosophy							
-1718	PHIL 304	Philosophy							
-1702	PHIL 305	Philosophy							
-1703	PHIL 306	Philosophy							
-1704	PHIL 307	Philosophy							
+1721	PHIL 249	Philosophy							
+1579	PHIL 300	Medieval Renaissance Studies	Philosophy						
+1706	PHIL 301	Philosophy							
+1722	PHIL 303	Philosophy							
+1723	PHIL 304	Philosophy							
+1707	PHIL 305	Philosophy							
+1708	PHIL 306	Philosophy							
+1709	PHIL 307	Philosophy							
 694	PHIL 310	Classical Civilization	Philosophy						
 728	PHIL 311	Cognitive and Linguistic Sciences - Philosophy Concentration	Philosophy						
-1719	PHIL 316	Philosophy							
-1720	PHIL 317	Philosophy							
+1724	PHIL 316	Philosophy							
+1725	PHIL 317	Philosophy							
 81	PHIL 319	American Studies	International Relations - History	International Relations - Political Science	Philosophy				
 729	PHIL 323	Cognitive and Linguistic Sciences - Philosophy Concentration	Philosophy						
-1700	PHIL 325	Philosophy							
-1721	PHIL 330	Philosophy							
-1722	PHIL 331	Philosophy							
+1705	PHIL 325	Philosophy							
+1726	PHIL 330	Philosophy							
+1727	PHIL 331	Philosophy							
 721	PHIL 333	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration	Philosophy					
 1076	PHIL 338	Environmental Studies	Philosophy						
-1723	PHIL 340	Philosophy							
-1724	PHIL 341	Philosophy							
-1725	PHIL 342	Philosophy							
+1728	PHIL 340	Philosophy							
+1729	PHIL 341	Philosophy							
+1730	PHIL 342	Philosophy							
 730	PHIL 345	Cognitive and Linguistic Sciences - Philosophy Concentration	Philosophy						
-1609	PHIL 366	Middle Eastern Studies	Philosophy						
+1614	PHIL 366	Middle Eastern Studies	Philosophy						
 422	PHYS 100	Astronomy	Astrophysics	Biochemistry					
 539	PHYS 104	Biochemistry	Chemistry						
 540	PHYS 106	Biochemistry	Chemistry						
@@ -1380,16 +1385,16 @@
 467	PHYS 360	Astronomy	Astrophysics	Physics - entering after Fall 2018					
 468	PHYS 365	Astronomy	Astrophysics	Physics - entering after Fall 2018					
 469	PHYS 370	Astronomy	Astrophysics	Physics - entering after Fall 2018					
-1292	POL 105	International Relations - Economics							
-1293	POL 105Y	International Relations - Economics							
-1294	POL 109Y	International Relations - Economics							
+1298	POL 105	International Relations - Economics							
+1299	POL 105Y	International Relations - Economics							
+1300	POL 109Y	International Relations - Economics							
 159	POL 121	American Studies	Architecture	International Relations - Economics					
-1295	POL 230	International Relations - Economics	International Relations - History						
+1301	POL 230	International Relations - Economics	International Relations - History						
 881	POL 299	Data Science	International Relations - History						
 160	POL1 200	American Studies	Architecture	International Relations - Economics	International Relations - History	Political Science			
-1296	POL1 210	International Relations - Economics	International Relations - History	Political Science					
+1302	POL1 210	International Relations - Economics	International Relations - History	Political Science					
 161	POL1 215	American Studies	Architecture	International Relations - Economics	International Relations - History	Political Science			
-1362	POL1 231	International Relations - History	International Relations - Political Science						
+1368	POL1 231	International Relations - History	International Relations - Political Science						
 162	POL1 233	American Studies	Architecture						
 163	POL1 247	American Studies	Architecture	International Relations - Economics	International Relations - History	Political Science			
 164	POL1 300	American Studies	Architecture	International Relations - Economics	International Relations - History	Political Science			
@@ -1400,373 +1405,373 @@
 168	POL1 329	American Studies	Architecture	International Relations - History	Political Science				
 169	POL1 333	American Studies	Architecture	International Relations - Economics	International Relations - History	Political Science			
 62	POL1 337	Africana Studies - United States Concentration	Education Studies	International Relations - Economics	International Relations - History	Political Science			
-1265	POL1 381	International Relations - Economics	International Relations - History	Political Science					
-1729	POL1 385	Political Science							
+1271	POL1 381	International Relations - Economics	International Relations - History	Political Science					
+1734	POL1 385	Political Science							
 170	POL1 388	American Studies	Architecture						
-1400	POL2 202	International Relations - History	Political Science						
-1401	POL2 204	International Relations - History	Political Science						
-1831	POL2 206	Russian Area Studies							
-1297	POL2 207	International Relations - Economics	International Relations - History	Latin American Studies	Political Science				
+1406	POL2 202	International Relations - History	Political Science						
+1407	POL2 204	International Relations - History	Political Science						
+1836	POL2 206	Russian Area Studies							
+1303	POL2 207	International Relations - Economics	International Relations - History	Latin American Studies	Political Science				
 956	POL2 208	East Asian Studies	International Relations - Economics	International Relations - History	Political Science				
-1299	POL2 211	International Relations - Economics	International Relations - History	Political Science					
-1403	POL2 213	International Relations - History							
-1402	POL2 214	International Relations - History	Political Science						
-1300	POL2 217	International Relations - Economics	International Relations - History	Middle Eastern Studies	Political Science				
+1305	POL2 211	International Relations - Economics	International Relations - History	Political Science					
+1409	POL2 213	International Relations - History							
+1408	POL2 214	International Relations - History	Political Science						
+1306	POL2 217	International Relations - Economics	International Relations - History	Middle Eastern Studies	Political Science				
 1027	POL2 220	Education Studies	International Relations - History	Political Science					
 14	POL2 231	Africana Studies - Africa Concentration	International Relations - Economics	Political Science					
-1540	POL2 253	Latin American Studies	Political Science						
-1404	POL2 301	International Relations - History	Political Science						
+1545	POL2 253	Latin American Studies	Political Science						
+1410	POL2 301	International Relations - History	Political Science						
 957	POL2 304	East Asian Studies	International Relations - Economics	International Relations - History	Political Science				
-1302	POL2 306	International Relations - Economics	International Relations - History	Latin American Studies	Political Science				
-1266	POL2 310	International Relations - Economics	International Relations - History	Political Science					
-1268	POL2 312	International Relations - Economics	International Relations - History	Political Science					
-1832	POL2 314	Russian Area Studies							
-1543	POL2 320	Latin American Studies							
-1271	POL2 359	International Relations - Economics	International Relations - History	Jewish Studies					
-1303	POL2 362	International Relations - Economics	International Relations - History	Political Science					
-1272	POL2 364	International Relations - Economics	International Relations - History	Political Science					
-1870	POL2 367	Women's and Gender Studies							
-1304	POL2 368	International Relations - Economics	International Relations - History	Latin American Studies	Political Science				
-1305	POL3 203H	International Relations - Economics	International Relations - History	Political Science					
-1406	POL3 209H	International Relations - History	Political Science						
-1261	POL3 221	International Relations - Economics	International Relations - History	International Relations - Political Science	Political Science				
-1306	POL3 223	International Relations - Economics	International Relations - History	Political Science					
-1307	POL3 224	International Relations - Economics	International Relations - History	Political Science					
-1308	POL3 227	International Relations - Economics	International Relations - History	Political Science					
-1309	POL3 232	International Relations - Economics	International Relations - History	Political Science					
-1407	POL3 236	International Relations - History	Political Science	Women's and Gender Studies					
-1284	POL3 245	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies	Political Science			
-1311	POL3 251	International Relations - Economics	International Relations - History	Political Science					
-1273	POL3 302	International Relations - Economics	International Relations - History	International Relations - Political Science	Political Science				
-1312	POL3 315	International Relations - Economics	International Relations - History	Political Science					
-1275	POL3 325	International Relations - Economics	International Relations - History	Political Science					
+1308	POL2 306	International Relations - Economics	International Relations - History	Latin American Studies	Political Science				
+1272	POL2 310	International Relations - Economics	International Relations - History	Political Science					
+1274	POL2 312	International Relations - Economics	International Relations - History	Political Science					
+1837	POL2 314	Russian Area Studies							
+1548	POL2 320	Latin American Studies							
+1277	POL2 359	International Relations - Economics	International Relations - History	Jewish Studies					
+1309	POL2 362	International Relations - Economics	International Relations - History	Political Science					
+1278	POL2 364	International Relations - Economics	International Relations - History	Political Science					
+1875	POL2 367	Women's and Gender Studies							
+1310	POL2 368	International Relations - Economics	International Relations - History	Latin American Studies	Political Science				
+1311	POL3 203H	International Relations - Economics	International Relations - History	Political Science					
+1412	POL3 209H	International Relations - History	Political Science						
+1267	POL3 221	International Relations - Economics	International Relations - History	International Relations - Political Science	Political Science				
+1312	POL3 223	International Relations - Economics	International Relations - History	Political Science					
+1313	POL3 224	International Relations - Economics	International Relations - History	Political Science					
+1314	POL3 227	International Relations - Economics	International Relations - History	Political Science					
+1315	POL3 232	International Relations - Economics	International Relations - History	Political Science					
+1413	POL3 236	International Relations - History	Political Science	Women's and Gender Studies					
+1290	POL3 245	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies	Political Science			
+1317	POL3 251	International Relations - Economics	International Relations - History	Political Science					
+1279	POL3 302	International Relations - Economics	International Relations - History	International Relations - Political Science	Political Science				
+1318	POL3 315	International Relations - Economics	International Relations - History	Political Science					
+1281	POL3 325	International Relations - Economics	International Relations - History	Political Science					
 171	POL3 326	American Studies	Architecture	International Relations - Economics	International Relations - History	Political Science			
-1313	POL3 338	International Relations - Economics	International Relations - History	Political Science					
-1314	POL3 339	International Relations - Economics	International Relations - History	Political Science					
-1276	POL3 351	International Relations - Economics	International Relations - History	Political Science					
-1315	POL3 352	International Relations - Economics	International Relations - History	Political Science					
-1277	POL3 354	International Relations - Economics	International Relations - History	Political Science					
-1279	POL3 357	International Relations - Economics	International Relations - History	Political Science					
-1280	POL3 369	International Relations - Economics	International Relations - History	Political Science					
-1281	POL3 371	International Relations - Economics	International Relations - History	Political Science					
-1730	POL3 372	Political Science							
-1282	POL3 378	International Relations - Economics	International Relations - History	Political Science					
-1316	POL3 379	International Relations - Economics	International Relations - History	Political Science					
-1283	POL3 387	International Relations - Economics	International Relations - History	Political Science					
-1409	POL4 201	International Relations - History	Political Science						
-1410	POL4 216	International Relations - History	Political Science						
-1411	POL4 243	International Relations - History	Political Science						
+1319	POL3 338	International Relations - Economics	International Relations - History	Political Science					
+1320	POL3 339	International Relations - Economics	International Relations - History	Political Science					
+1282	POL3 351	International Relations - Economics	International Relations - History	Political Science					
+1321	POL3 352	International Relations - Economics	International Relations - History	Political Science					
+1283	POL3 354	International Relations - Economics	International Relations - History	Political Science					
+1285	POL3 357	International Relations - Economics	International Relations - History	Political Science					
+1286	POL3 369	International Relations - Economics	International Relations - History	Political Science					
+1287	POL3 371	International Relations - Economics	International Relations - History	Political Science					
+1735	POL3 372	Political Science							
+1288	POL3 378	International Relations - Economics	International Relations - History	Political Science					
+1322	POL3 379	International Relations - Economics	International Relations - History	Political Science					
+1289	POL3 387	International Relations - Economics	International Relations - History	Political Science					
+1415	POL4 201	International Relations - History	Political Science						
+1416	POL4 216	International Relations - History	Political Science						
+1417	POL4 243	International Relations - History	Political Science						
 172	POL4 249	American Studies	Architecture	Education Studies	International Relations - History	Political Science			
 173	POL4 311	American Studies	Architecture	Education Studies	Environmental Studies	International Relations - Economics	International Relations - History	Political Science	
-1317	POL4 318	International Relations - Economics	International Relations - History	Political Science					
+1323	POL4 318	International Relations - Economics	International Relations - History	Political Science					
 174	POL4 340	American Studies	Architecture						
 1029	POL4 341	Education Studies	International Relations - Economics	International Relations - History	Political Science				
 175	POL4 343	American Studies	Architecture						
-1871	POL4 344	Women's and Gender Studies							
+1876	POL4 344	Women's and Gender Studies							
 176	POL4 345	American Studies	Architecture	International Relations - Economics	International Relations - History	Latin American Studies	Political Science		
-1319	POL4 349	International Relations - Economics	International Relations - History	Political Science					
-1469	PORT 241	Latin American Studies							
-1470	PORT 250	Latin American Studies							
-1471	PORT 250H	Latin American Studies							
-1286	PORT 256	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies				
-1472	PORT 266	Latin American Studies							
-1474	PORT 310	Latin American Studies							
-1477	PORT 314	Latin American Studies							
-1478	PORT 350	Latin American Studies							
+1325	POL4 349	International Relations - Economics	International Relations - History	Political Science					
+1474	PORT 241	Latin American Studies							
+1475	PORT 250	Latin American Studies							
+1476	PORT 250H	Latin American Studies							
+1292	PORT 256	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies				
+1477	PORT 266	Latin American Studies							
+1479	PORT 310	Latin American Studies							
+1482	PORT 314	Latin American Studies							
+1483	PORT 350	Latin American Studies							
 742	PSUC 318	Cognitive and Linguistic Sciences - Psychology Concentration							
 1030	PSYC 101	Education Studies	Psychology						
 733	PSYC 205	Cognitive and Linguistic Sciences - Psychology Concentration	Data Science	Neuroscience	Psychology				
 1031	PSYC 207	Education Studies	Psychology						
-1731	PSYC 208	Psychology							
+1736	PSYC 208	Psychology							
 1032	PSYC 210	Education Studies	Psychology						
-1732	PSYC 212	Psychology							
-1733	PSYC 213	Psychology							
-1734	PSYC 214	Psychology							
+1737	PSYC 212	Psychology							
+1738	PSYC 213	Psychology							
+1739	PSYC 214	Psychology							
 737	PSYC 215	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience	Psychology					
 700	PSYC 216	Cognitive and Linguistic Sciences - Computer Science Concentration	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Philosophy Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies	Neuroscience	Psychology	
 738	PSYC 217	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies	Neuroscience	Psychology				
 739	PSYC 218	Cognitive and Linguistic Sciences - Psychology Concentration	Media Arts and Sciences	Neuroscience	Psychology				
 740	PSYC 219	Cognitive and Linguistic Sciences - Psychology Concentration	Psychology						
 1016	PSYC 222	Education Studies	Psychology						
-1746	PSYC 225	Psychology							
+1751	PSYC 225	Psychology							
 1037	PSYC 244	Education Studies							
 1033	PSYC 245	Education Studies	Psychology						
-1735	PSYC 250	Psychology							
-1736	PSYC 250H	Psychology							
-1359	PSYC 255	International Relations - History	International Relations - Political Science						
-1747	PSYC 299	Psychology							
-1748	PSYC 299H	Psychology							
+1740	PSYC 250	Psychology							
+1741	PSYC 250H	Psychology							
+1365	PSYC 255	International Relations - History	International Relations - Political Science						
+1752	PSYC 299	Psychology							
+1753	PSYC 299H	Psychology							
 741	PSYC 301	Cognitive and Linguistic Sciences - Psychology Concentration							
-1741	PSYC 306R	Psychology							
-1742	PSYC 307R	Psychology							
-1749	PSYC 308	Psychology							
-1743	PSYC 310R	Psychology							
-1750	PSYC 311R	Psychology							
-1744	PSYC 312R	Psychology							
-1751	PSYC 313R	Psychology							
+1746	PSYC 306R	Psychology							
+1747	PSYC 307R	Psychology							
+1754	PSYC 308	Psychology							
+1748	PSYC 310R	Psychology							
+1755	PSYC 311R	Psychology							
+1749	PSYC 312R	Psychology							
+1756	PSYC 313R	Psychology							
 734	PSYC 314R	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience	Psychology					
 735	PSYC 315R	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience	Psychology					
 722	PSYC 316	Cognitive and Linguistic Sciences - Linguistics Concentration	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies	Neuroscience	Psychology			
-1678	PSYC 317	Neuroscience	Psychology						
-1752	PSYC 318	Psychology							
+1683	PSYC 317	Neuroscience	Psychology						
+1757	PSYC 318	Psychology							
 743	PSYC 319	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience	Psychology					
-1745	PSYC 323R	Psychology							
+1750	PSYC 323R	Psychology							
 1034	PSYC 325	Education Studies	Psychology						
 1035	PSYC 326	Education Studies	Psychology						
-1753	PSYC 327	Psychology							
+1758	PSYC 327	Psychology							
 744	PSYC 328	Cognitive and Linguistic Sciences - Psychology Concentration	Neuroscience	Psychology					
-1754	PSYC 329	Psychology							
-1755	PSYC 332	Psychology							
+1759	PSYC 329	Psychology							
+1760	PSYC 332	Psychology							
 1036	PSYC 333	Education Studies	Psychology						
 177	PSYC 337	American Studies	Architecture	Education Studies	Psychology				
 178	PSYC 338	American Studies	Architecture	Psychology					
-1756	PSYC 339	Psychology							
-1757	PSYC 340	Psychology							
+1761	PSYC 339	Psychology							
+1762	PSYC 340	Psychology							
 179	PSYC 341	American Studies	Architecture						
-1758	PSYC 343	Psychology							
-1759	PSYC 344	Psychology							
+1763	PSYC 343	Psychology							
+1764	PSYC 344	Psychology							
 745	PSYC 345	Cognitive and Linguistic Sciences - Psychology Concentration	Education Studies	Psychology					
 180	PSYC 346	American Studies	Architecture	Psychology					
-1760	PSYC 349	Psychology							
-1737	PSYC 350	Psychology							
-1738	PSYC 350H	Psychology							
-1739	PSYC 360	Psychology							
-1740	PSYC 370	Psychology							
+1765	PSYC 349	Psychology							
+1742	PSYC 350	Psychology							
+1743	PSYC 350H	Psychology							
+1744	PSYC 360	Psychology							
+1745	PSYC 370	Psychology							
 883	QR 260	Data Science	Environmental Studies	Neuroscience	Psychology				
 890	QR 309	Data Science							
 630	RAST 222	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
 631	RAST 322	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-1436	REL 102	Jewish Studies	Religion						
+1442	REL 102	Jewish Studies	Religion						
 695	REL 104	Classical Civilization	Middle Eastern Studies	Religion					
 696	REL 105	Classical Civilization	Jewish Studies	Middle Eastern Studies	Religion				
 943	REL 108	East Asian Studies	Religion						
-1445	REL 111Y	Jewish Studies	Religion						
+1450	REL 111Y	Jewish Studies	Religion						
 955	REL 119Y	East Asian Studies	Religion						
-1770	REL 200	Religion							
-1765	REL 201	Religion							
-1771	REL 206	Religion	South Asia Studies						
-1766	REL 209	Religion							
+1775	REL 200	Religion							
+1770	REL 201	Religion							
+1776	REL 206	Religion	South Asia Studies						
+1771	REL 209	Religion							
 73	REL 214	American Studies	International Relations - History	International Relations - Political Science	Latin American Studies	Religion			
-1772	REL 215	Religion							
-1575	REL 216	Medieval Renaissance Studies	Religion						
-1761	REL 218	Religion							
-1768	REL 219	Religion							
-1762	REL 220	Religion							
-1839	REL 223	South Asia Studies							
-1764	REL 223/	Religion							
-1869	REL 224	Women's and Gender Studies							
-1773	REL 225	Religion	Women's and Gender Studies						
-1534	REL 226	Latin American Studies	Medieval Renaissance Studies	Religion	Women's and Gender Studies				
-1769	REL 227	Religion							
-1774	REL 230	Religion							
-1763	REL 231	Religion							
-1364	REL 233	International Relations - History	International Relations - Political Science	Religion					
-1365	REL 236	International Relations - History	International Relations - Political Science	Religion					
-1437	REL 240	Jewish Studies	Middle Eastern Studies	Religion					
-1775	REL 241	Religion	South Asia Studies						
-1446	REL 242	Jewish Studies	Middle Eastern Studies						
+1777	REL 215	Religion							
+1580	REL 216	Medieval Renaissance Studies	Religion						
+1766	REL 218	Religion							
+1773	REL 219	Religion							
+1767	REL 220	Religion							
+1844	REL 223	South Asia Studies							
+1769	REL 223/	Religion							
+1874	REL 224	Women's and Gender Studies							
+1778	REL 225	Religion	Women's and Gender Studies						
+1539	REL 226	Latin American Studies	Medieval Renaissance Studies	Religion	Women's and Gender Studies				
+1774	REL 227	Religion							
+1779	REL 230	Religion							
+1768	REL 231	Religion							
+1370	REL 233	International Relations - History	International Relations - Political Science	Religion					
+1371	REL 236	International Relations - History	International Relations - Political Science	Religion					
+1443	REL 240	Jewish Studies	Middle Eastern Studies	Religion					
+1780	REL 241	Religion	South Asia Studies						
+1451	REL 242	Jewish Studies	Middle Eastern Studies						
 697	REL 243	Classical Civilization	Jewish Studies	Middle Eastern Studies	Religion	Women's and Gender Studies			
 698	REL 244	Classical Civilization	Jewish Studies	Middle Eastern Studies	Religion				
-1767	REL 245	Religion							
-1776	REL 250	Religion							
-1777	REL 250H	Religion							
-1778	REL 251	Religion	South Asia Studies						
+1772	REL 245	Religion							
+1781	REL 250	Religion							
+1782	REL 250H	Religion							
+1783	REL 251	Religion	South Asia Studies						
 944	REL 253	East Asian Studies	Religion						
 945	REL 254	East Asian Studies	Religion						
 946	REL 255	East Asian Studies	Religion						
 947	REL 257	East Asian Studies	Religion						
-1779	REL 259	Religion							
-1600	REL 260	Middle Eastern Studies	Religion						
-1569	REL 261	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
-1577	REL 262	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
-1601	REL 263	Middle Eastern Studies	Religion						
-1440	REL 264	Jewish Studies	Middle Eastern Studies	Religion					
-1442	REL 265	Jewish Studies	Middle Eastern Studies	Religion					
-1231	REL 266	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Religion		
-1602	REL 267	Middle Eastern Studies	Religion						
-1611	REL 268	Middle Eastern Studies	Religion						
-1612	REL 269	Middle Eastern Studies	Religion						
-1576	REL 270	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
-1780	REL 281	Religion	South Asia Studies						
-1784	REL 300	Religion							
-1785	REL 301	Religion	South Asia Studies						
-1786	REL 302	Religion	South Asia Studies						
-1787	REL 303	Religion	South Asia Studies						
-1781	REL 318	Religion							
-1782	REL 319	Religion							
-1788	REL 323	Religion	Women's and Gender Studies						
-1535	REL 326	Latin American Studies	Religion						
-1613	REL 330	Middle Eastern Studies	Religion						
-1447	REL 342	Jewish Studies	Middle Eastern Studies	Religion					
-1783	REL 344	Religion							
-1448	REL 345	Jewish Studies	Religion						
-1603	REL 347	Middle Eastern Studies	Religion						
-1614	REL 348	Middle Eastern Studies	Religion						
-1789	REL 350	Religion							
-1790	REL 350H	Religion							
+1784	REL 259	Religion							
+1605	REL 260	Middle Eastern Studies	Religion						
+1574	REL 261	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
+1582	REL 262	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
+1606	REL 263	Middle Eastern Studies	Religion						
+1445	REL 264	Jewish Studies	Middle Eastern Studies	Religion					
+1447	REL 265	Jewish Studies	Middle Eastern Studies	Religion					
+1237	REL 266	History	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Religion		
+1607	REL 267	Middle Eastern Studies	Religion						
+1616	REL 268	Middle Eastern Studies	Religion						
+1617	REL 269	Middle Eastern Studies	Religion						
+1581	REL 270	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
+1785	REL 281	Religion	South Asia Studies						
+1789	REL 300	Religion							
+1790	REL 301	Religion	South Asia Studies						
+1791	REL 302	Religion	South Asia Studies						
+1792	REL 303	Religion	South Asia Studies						
+1786	REL 318	Religion							
+1787	REL 319	Religion							
+1793	REL 323	Religion	Women's and Gender Studies						
+1540	REL 326	Latin American Studies	Religion						
+1618	REL 330	Middle Eastern Studies	Religion						
+1452	REL 342	Jewish Studies	Middle Eastern Studies	Religion					
+1788	REL 344	Religion							
+1453	REL 345	Jewish Studies	Religion						
+1608	REL 347	Middle Eastern Studies	Religion						
+1619	REL 348	Middle Eastern Studies	Religion						
+1794	REL 350	Religion							
+1795	REL 350H	Religion							
 948	REL 353	East Asian Studies	Religion						
-1791	REL 357	Religion							
-1604	REL 359	Middle Eastern Studies	Religion						
-1792	REL 360	Religion							
-1605	REL 361	Middle Eastern Studies	Religion						
-1606	REL 362	Middle Eastern Studies	Religion						
-1607	REL 363	Middle Eastern Studies	Religion						
-1578	REL 364	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
-1571	REL 365	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
-1610	REL 366	Middle Eastern Studies	Religion						
-1608	REL 367	Middle Eastern Studies	Religion						
-1598	REL 368	Middle Eastern Studies	Religion						
-1793	REL 370	Religion							
-1794	REL 380	Religion							
-1814	RUSS 201	Russian	Russian Area Studies						
-1815	RUSS 202	Russian	Russian Area Studies						
+1796	REL 357	Religion							
+1609	REL 359	Middle Eastern Studies	Religion						
+1797	REL 360	Religion							
+1610	REL 361	Middle Eastern Studies	Religion						
+1611	REL 362	Middle Eastern Studies	Religion						
+1612	REL 363	Middle Eastern Studies	Religion						
+1583	REL 364	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
+1576	REL 365	Medieval Renaissance Studies	Middle Eastern Studies	Religion					
+1615	REL 366	Middle Eastern Studies	Religion						
+1613	REL 367	Middle Eastern Studies	Religion						
+1603	REL 368	Middle Eastern Studies	Religion						
+1798	REL 370	Religion							
+1799	REL 380	Religion							
+1819	RUSS 201	Russian	Russian Area Studies						
+1820	RUSS 202	Russian	Russian Area Studies						
 756	RUSS 251	Comparative Literary Studies	Russian	Russian Area Studies					
-1833	RUSS 255	Russian Area Studies							
-1816	RUSS 272	Russian	Russian Area Studies						
+1838	RUSS 255	Russian Area Studies							
+1821	RUSS 272	Russian	Russian Area Studies						
 757	RUSS 276	Comparative Literary Studies	Russian	Russian Area Studies					
-1834	RUSS 277	Russian Area Studies							
-1835	RUSS 286	Russian Area Studies							
-1817	RUSS 301	Russian	Russian Area Studies						
-1818	RUSS 302	Russian	Russian Area Studies						
-1819	RUSS 305	Russian	Russian Area Studies						
-1820	RUSS 306	Russian	Russian Area Studies						
-1821	RUSS 333H	Russian	Russian Area Studies						
-1822	RUSS 355H	Russian							
-1823	RUSS 376H	Russian	Russian Area Studies						
-1824	RUSS 377H	Russian	Russian Area Studies						
-1825	RUSS 378H	Russian	Russian Area Studies						
-1826	RUSS 386H	Russian	Russian Area Studies						
-1799	SAS 206	Religion	South Asia Studies						
-1802	SAS 211	Religion	South Asia Studies						
-1798	SAS 225	Religion	South Asia Studies						
-1332	SAS 232	International Relations - Economics	International Relations - History	International Relations - Political Science	Religion	South Asia Studies			
-1288	SAS 237	International Relations - Economics	International Relations - History	International Relations - Political Science	Religion	South Asia Studies			
+1839	RUSS 277	Russian Area Studies							
+1840	RUSS 286	Russian Area Studies							
+1822	RUSS 301	Russian	Russian Area Studies						
+1823	RUSS 302	Russian	Russian Area Studies						
+1824	RUSS 305	Russian	Russian Area Studies						
+1825	RUSS 306	Russian	Russian Area Studies						
+1826	RUSS 333H	Russian	Russian Area Studies						
+1827	RUSS 355H	Russian							
+1828	RUSS 376H	Russian	Russian Area Studies						
+1829	RUSS 377H	Russian	Russian Area Studies						
+1830	RUSS 378H	Russian	Russian Area Studies						
+1831	RUSS 386H	Russian	Russian Area Studies						
+1804	SAS 206	Religion	South Asia Studies						
+1807	SAS 211	Religion	South Asia Studies						
+1803	SAS 225	Religion	South Asia Studies						
+1338	SAS 232	International Relations - Economics	International Relations - History	International Relations - Political Science	Religion	South Asia Studies			
+1294	SAS 237	International Relations - Economics	International Relations - History	International Relations - Political Science	Religion	South Asia Studies			
 408	SAS 239	Art History	Religion	South Asia Studies					
-1800	SAS 241	Religion	South Asia Studies						
-1803	SAS 242	Religion	South Asia Studies						
-1804	SAS 250	Religion	South Asia Studies						
-1805	SAS 250H	Religion	South Asia Studies						
-1801	SAS 251	Religion	South Asia Studies						
-1221	SAS 266	History	International Relations - Economics	International Relations - Political Science	Middle Eastern Studies	Religion	South Asia Studies		
-1806	SAS 283	Religion	South Asia Studies						
-1807	SAS 301	Religion	South Asia Studies						
-1808	SAS 302	Religion	South Asia Studies						
-1809	SAS 303	Religion	South Asia Studies						
-1810	SAS 350	Religion	South Asia Studies						
-1811	SAS 350H	Religion	South Asia Studies						
-1812	SAS 360	Religion	South Asia Studies						
-1252	SAS 367	History	International Relations - Economics	International Relations - Political Science	Middle Eastern Studies	Religion	South Asia Studies		
-1813	SAS 370	Religion	South Asia Studies						
-1320	SOC 103	International Relations - Economics							
+1805	SAS 241	Religion	South Asia Studies						
+1808	SAS 242	Religion	South Asia Studies						
+1809	SAS 250	Religion	South Asia Studies						
+1810	SAS 250H	Religion	South Asia Studies						
+1806	SAS 251	Religion	South Asia Studies						
+1227	SAS 266	History	International Relations - Economics	International Relations - Political Science	Middle Eastern Studies	Religion	South Asia Studies		
+1811	SAS 283	Religion	South Asia Studies						
+1812	SAS 301	Religion	South Asia Studies						
+1813	SAS 302	Religion	South Asia Studies						
+1814	SAS 303	Religion	South Asia Studies						
+1815	SAS 350	Religion	South Asia Studies						
+1816	SAS 350H	Religion	South Asia Studies						
+1817	SAS 360	Religion	South Asia Studies						
+1258	SAS 367	History	International Relations - Economics	International Relations - Political Science	Middle Eastern Studies	Religion	South Asia Studies		
+1818	SAS 370	Religion	South Asia Studies						
+1326	SOC 103	International Relations - Economics							
 882	SOC 190	Data Science	International Relations - Economics	Sociology					
-1378	SOC 200	International Relations - History	International Relations - Political Science	Sociology					
-1379	SOC 201	International Relations - History	International Relations - Political Science	Sociology					
-1321	SOC 202	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
-1380	SOC 204	International Relations - History	International Relations - Political Science	Sociology					
+1384	SOC 200	International Relations - History	International Relations - Political Science	Sociology					
+1385	SOC 201	International Relations - History	International Relations - Political Science	Sociology					
+1327	SOC 202	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1386	SOC 204	International Relations - History	International Relations - Political Science	Sociology					
 181	SOC 205	American Studies	Architecture	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology	
-1322	SOC 206	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1328	SOC 206	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
 996	SOC 207	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science				
-1324	SOC 208	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1330	SOC 208	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
 183	SOC 209	American Studies	Architecture	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology	Women's and Gender Studies
-1326	SOC 210	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
-1382	SOC 211	International Relations - History	International Relations - Political Science	Sociology					
-1327	SOC 212	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
-1328	SOC 213	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
-1383	SOC 214	International Relations - History	International Relations - Political Science	Sociology					
-1329	SOC 220	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1332	SOC 210	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1388	SOC 211	International Relations - History	International Relations - Political Science	Sociology					
+1333	SOC 212	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1334	SOC 213	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1389	SOC 214	International Relations - History	International Relations - Political Science	Sociology					
+1335	SOC 220	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
 1017	SOC 225	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies	Sociology		
-1330	SOC 226	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
-1331	SOC 232	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology	South Asia Studies			
-1333	SOC 241	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Sociology			
+1336	SOC 226	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1337	SOC 232	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology	South Asia Studies			
+1339	SOC 241	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Sociology			
 1018	SOC 246	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies	Sociology		
-1384	SOC 250	International Relations - History	International Relations - Political Science	Sociology					
+1390	SOC 250	International Relations - History	International Relations - Political Science	Sociology					
 1019	SOC 251	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Jewish Studies	Sociology		
-1385	SOC 252	International Relations - History	International Relations - Political Science	Sociology					
-1334	SOC 260	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
-1386	SOC 290	International Relations - History	International Relations - Political Science	Sociology					
-1335	SOC 302	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
-1336	SOC 304	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1391	SOC 252	International Relations - History	International Relations - Political Science	Sociology					
+1340	SOC 260	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1392	SOC 290	International Relations - History	International Relations - Political Science	Sociology					
+1341	SOC 302	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1342	SOC 304	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
 184	SOC 306	American Studies	Architecture	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology		
 186	SOC 307	American Studies	Architecture						
 188	SOC 308	American Studies	Architecture	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology	Women's and Gender Studies
-1337	SOC 309	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1343	SOC 309	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
 79	SOC 310	American Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology			
 189	SOC 311	American Studies	Architecture	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology	
 1004	SOC 312	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies	Sociology		
 191	SOC 314	American Studies	Architecture	International Relations - History	International Relations - Political Science	Sociology			
-1338	SOC 315	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology	Women's and Gender Studies			
+1344	SOC 315	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology	Women's and Gender Studies			
 192	SOC 317	American Studies	Architecture	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology		
-1339	SOC 318	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
-1340	SOC 320	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
-1341	SOC 322	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1345	SOC 318	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1346	SOC 320	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1347	SOC 322	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
 193	SOC 324	American Studies	Architecture						
 194	SOC 334	American Studies	Architecture	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology		
-1343	SOC 348	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
-1387	SOC 350	International Relations - History	International Relations - Political Science	Sociology					
-1388	SOC 350H	International Relations - History	International Relations - Political Science	Sociology					
-1389	SOC 360	International Relations - History	International Relations - Political Science	Sociology					
-1390	SOC 370	International Relations - History	International Relations - Political Science	Sociology					
-1840	SPAN 201	Spanish							
-1841	SPAN 202	Spanish							
-1479	SPAN 241	Latin American Studies	Spanish						
-1480	SPAN 243	Latin American Studies	Spanish						
-1481	SPAN 244	Latin American Studies	Spanish						
+1349	SOC 348	International Relations - Economics	International Relations - History	International Relations - Political Science	Sociology				
+1393	SOC 350	International Relations - History	International Relations - Political Science	Sociology					
+1394	SOC 350H	International Relations - History	International Relations - Political Science	Sociology					
+1395	SOC 360	International Relations - History	International Relations - Political Science	Sociology					
+1396	SOC 370	International Relations - History	International Relations - Political Science	Sociology					
+1845	SPAN 201	Spanish							
+1846	SPAN 202	Spanish							
+1484	SPAN 241	Latin American Studies	Spanish						
+1485	SPAN 243	Latin American Studies	Spanish						
+1486	SPAN 244	Latin American Studies	Spanish						
 195	SPAN 245	American Studies	Architecture						
-1482	SPAN 246	Latin American Studies	Spanish	Theatre Studies					
-1483	SPAN 247	Latin American Studies	Spanish						
-1444	SPAN 248	Jewish Studies	Latin American Studies	Spanish					
-1484	SPAN 250	Latin American Studies	Spanish						
-1485	SPAN 250H	Latin American Studies	Spanish						
-1486	SPAN 251	Latin American Studies	Spanish						
-1449	SPAN 252	Jewish Studies	Latin American Studies	Medieval Renaissance Studies	Middle Eastern Studies	Spanish			
-1487	SPAN 253	Latin American Studies	Spanish						
+1487	SPAN 246	Latin American Studies	Spanish	Theatre Studies					
+1488	SPAN 247	Latin American Studies	Spanish						
+1449	SPAN 248	Jewish Studies	Latin American Studies	Spanish					
+1489	SPAN 250	Latin American Studies	Spanish						
+1490	SPAN 250H	Latin American Studies	Spanish						
+1491	SPAN 251	Latin American Studies	Spanish						
+1454	SPAN 252	Jewish Studies	Latin American Studies	Medieval Renaissance Studies	Middle Eastern Studies	Spanish			
+1492	SPAN 253	Latin American Studies	Spanish						
 196	SPAN 255	American Studies	Architecture						
-1488	SPAN 257	Latin American Studies	Spanish						
-1489	SPAN 258H	Latin American Studies	Spanish						
-1579	SPAN 262	Medieval Renaissance Studies							
-1490	SPAN 263	Latin American Studies	Spanish	Women's and Gender Studies					
-1491	SPAN 265	Latin American Studies	Spanish						
-1473	SPAN 266	Latin American Studies	Spanish						
+1493	SPAN 257	Latin American Studies	Spanish						
+1494	SPAN 258H	Latin American Studies	Spanish						
+1584	SPAN 262	Medieval Renaissance Studies							
+1495	SPAN 263	Latin American Studies	Spanish	Women's and Gender Studies					
+1496	SPAN 265	Latin American Studies	Spanish						
+1478	SPAN 266	Latin American Studies	Spanish						
 626	SPAN 268	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
 54	SPAN 269	Africana Studies - The Caribbean and Latin America Concentration	Latin American Studies	Spanish					
-1493	SPAN 270	Latin American Studies	Spanish						
-1872	SPAN 271	Women's and Gender Studies							
-1494	SPAN 272	Latin American Studies	Spanish						
-1496	SPAN 273	Latin American Studies	Spanish						
-1497	SPAN 275	Latin American Studies	Spanish						
-1499	SPAN 277	Latin American Studies	Spanish	Women's and Gender Studies					
-1500	SPAN 278	Latin American Studies	Medieval Renaissance Studies	Spanish	Women's and Gender Studies				
-1501	SPAN 279	Latin American Studies	Spanish						
-1502	SPAN 287	Latin American Studies	Spanish						
-1503	SPAN 291	Latin American Studies	Spanish	Women's and Gender Studies					
-1504	SPAN 293	Latin American Studies	Spanish						
-1505	SPAN 299	Latin American Studies	Spanish						
-1506	SPAN 301	Latin American Studies	Spanish						
-1507	SPAN 302	Latin American Studies	Medieval Renaissance Studies	Spanish					
-1508	SPAN 303	Latin American Studies	Spanish						
+1498	SPAN 270	Latin American Studies	Spanish						
+1877	SPAN 271	Women's and Gender Studies							
+1499	SPAN 272	Latin American Studies	Spanish						
+1501	SPAN 273	Latin American Studies	Spanish						
+1502	SPAN 275	Latin American Studies	Spanish						
+1504	SPAN 277	Latin American Studies	Spanish	Women's and Gender Studies					
+1505	SPAN 278	Latin American Studies	Medieval Renaissance Studies	Spanish	Women's and Gender Studies				
+1506	SPAN 279	Latin American Studies	Spanish						
+1507	SPAN 287	Latin American Studies	Spanish						
+1508	SPAN 291	Latin American Studies	Spanish	Women's and Gender Studies					
+1509	SPAN 293	Latin American Studies	Spanish						
+1510	SPAN 299	Latin American Studies	Spanish						
+1511	SPAN 301	Latin American Studies	Spanish						
+1512	SPAN 302	Latin American Studies	Medieval Renaissance Studies	Spanish					
+1513	SPAN 303	Latin American Studies	Spanish						
 197	SPAN 305	American Studies	Architecture	Latin American Studies	Spanish				
-1509	SPAN 307	Latin American Studies	Medieval Renaissance Studies	Spanish					
-1510	SPAN 308	Latin American Studies	Medieval Renaissance Studies	Spanish					
-1511	SPAN 309	Latin American Studies	Spanish						
-1475	SPAN 310	Latin American Studies	Spanish						
-1512	SPAN 311	Latin American Studies	Spanish						
+1514	SPAN 307	Latin American Studies	Medieval Renaissance Studies	Spanish					
+1515	SPAN 308	Latin American Studies	Medieval Renaissance Studies	Spanish					
+1516	SPAN 309	Latin American Studies	Spanish						
+1480	SPAN 310	Latin American Studies	Spanish						
+1517	SPAN 311	Latin American Studies	Spanish						
 627	SPAN 315	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after						
-1514	SPAN 317	Latin American Studies	Spanish						
-1515	SPAN 318	Latin American Studies	Medieval Renaissance Studies	Spanish					
-1516	SPAN 319	Latin American Studies	Spanish						
-1517	SPAN 322	Latin American Studies	Spanish						
-1518	SPAN 323	Latin American Studies	Spanish						
-1519	SPAN 324	Latin American Studies	Spanish						
-1520	SPAN 325	Latin American Studies	Medieval Renaissance Studies	Spanish					
-1873	SPAN 327	Women's and Gender Studies							
-1521	SPAN 329	Latin American Studies	Spanish						
-1522	SPAN 335	Latin American Studies	Spanish						
-1523	SPAN 344	Latin American Studies	Spanish						
-1524	SPAN 350	Latin American Studies	Spanish						
-1525	SPAN 350H	Latin American Studies	Spanish						
-1526	SPAN 360	Latin American Studies	Spanish						
-1527	SPAN 370	Latin American Studies	Spanish						
-1528	SPAN 377	Latin American Studies	Spanish						
+1519	SPAN 317	Latin American Studies	Spanish						
+1520	SPAN 318	Latin American Studies	Medieval Renaissance Studies	Spanish					
+1521	SPAN 319	Latin American Studies	Spanish						
+1522	SPAN 322	Latin American Studies	Spanish						
+1523	SPAN 323	Latin American Studies	Spanish						
+1524	SPAN 324	Latin American Studies	Spanish						
+1525	SPAN 325	Latin American Studies	Medieval Renaissance Studies	Spanish					
+1878	SPAN 327	Women's and Gender Studies							
+1526	SPAN 329	Latin American Studies	Spanish						
+1527	SPAN 335	Latin American Studies	Spanish						
+1528	SPAN 344	Latin American Studies	Spanish						
+1529	SPAN 350	Latin American Studies	Spanish						
+1530	SPAN 350H	Latin American Studies	Spanish						
+1531	SPAN 360	Latin American Studies	Spanish						
+1532	SPAN 370	Latin American Studies	Spanish						
+1533	SPAN 377	Latin American Studies	Spanish						
 877	STAT 101	Data Science							
 1077	STAT 160	Environmental Studies							
 878	STAT 218	Data Science	Mathematics	Neuroscience					
@@ -1783,45 +1788,45 @@
 23	SWA 201	Africana Studies - Africa Concentration							
 24	SWA 202	Africana Studies - Africa Concentration							
 4	SWA 203	Africana Studies - Africa Concentration	Africana Studies - General Africana Studies Concentration	Africana Studies - The Caribbean and Latin America Concentration	Africana Studies - United States Concentration				
-1856	THST 104	Theatre Studies							
-1843	THST 155	Theatre Studies							
-1450	THST 200	Jewish Studies	Media Arts and Sciences	Theatre Studies	Women's and Gender Studies				
-1842	THST 204	Theatre Studies							
-1850	THST 206	Theatre Studies							
-1558	THST 207	Media Arts and Sciences	Theatre Studies						
+1861	THST 104	Theatre Studies							
+1848	THST 155	Theatre Studies							
+1455	THST 200	Jewish Studies	Media Arts and Sciences	Theatre Studies	Women's and Gender Studies				
+1847	THST 204	Theatre Studies							
+1855	THST 206	Theatre Studies							
+1563	THST 207	Media Arts and Sciences	Theatre Studies						
 628	THST 209	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	Media Arts and Sciences	Theatre Studies				
 198	THST 210	American Studies	Architecture						
-1857	THST 212	Theatre Studies	Women's and Gender Studies						
-1844	THST 214	Theatre Studies							
+1862	THST 212	Theatre Studies	Women's and Gender Studies						
+1849	THST 214	Theatre Studies							
 199	THST 215	American Studies	Architecture	Theatre Studies					
 1048	THST 221	English and Creative Writing	Theatre Studies						
-1854	THST 222	Theatre Studies							
-1858	THST 245	Theatre Studies							
+1859	THST 222	Theatre Studies							
+1863	THST 245	Theatre Studies							
 755	THST 251	Comparative Literary Studies	East Asian Languages and Cultures	East Asian Studies					
-1845	THST 276	Theatre Studies							
-1855	THST 300	Theatre Studies							
-1846	THST 305	Theatre Studies							
-1851	THST 306	Theatre Studies							
-1847	THST 310	Theatre Studies							
-1848	THST 315	Theatre Studies							
-1852	THST 321	Theatre Studies							
-1849	THST 345	Theatre Studies							
-1859	THST 350	Theatre Studies							
-1860	THST 350G	Theatre Studies							
-1861	THST 350H	Theatre Studies							
-1867	THST 353	Women's and Gender Studies							
-1853	THST 355	Theatre Studies							
-1862	THST 360	Theatre Studies							
-1863	THST 370	Theatre Studies							
-1874	WGST 100Y	Women's and Gender Studies							
+1850	THST 276	Theatre Studies							
+1860	THST 300	Theatre Studies							
+1851	THST 305	Theatre Studies							
+1856	THST 306	Theatre Studies							
+1852	THST 310	Theatre Studies							
+1853	THST 315	Theatre Studies							
+1857	THST 321	Theatre Studies							
+1854	THST 345	Theatre Studies							
+1864	THST 350	Theatre Studies							
+1865	THST 350G	Theatre Studies							
+1866	THST 350H	Theatre Studies							
+1872	THST 353	Women's and Gender Studies							
+1858	THST 355	Theatre Studies							
+1867	THST 360	Theatre Studies							
+1868	THST 370	Theatre Studies							
+1879	WGST 100Y	Women's and Gender Studies							
 991	WGST 102Y	Education Studies	Women's and Gender Studies						
 1038	WGST 108	Education Studies	International Relations - Economics	Women's and Gender Studies					
-1875	WGST 120	Women's and Gender Studies							
-1344	WGST 121	International Relations - Economics	Women's and Gender Studies						
-1391	WGST 205	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
+1880	WGST 120	Women's and Gender Studies							
+1350	WGST 121	International Relations - Economics	Women's and Gender Studies						
+1397	WGST 205	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
 182	WGST 211	American Studies	Architecture	Education Studies	International Relations - Economics	Women's and Gender Studies			
-1345	WGST 214	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
-1346	WGST 215	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
+1351	WGST 214	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
+1352	WGST 215	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
 200	WGST 216	American Studies	Architecture	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies	Women's and Gender Studies	
 201	WGST 217	American Studies	Architecture	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies	
 202	WGST 218	American Studies	Architecture	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies	Women's and Gender Studies	
@@ -1831,48 +1836,48 @@
 205	WGST 222	American Studies	Architecture	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies		
 98	WGST 223	American Studies	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
 206	WGST 224	American Studies	Anthropology	Architecture	Education Studies	International Relations - History	International Relations - Political Science	Women's and Gender Studies	
-1348	WGST 225	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
+1354	WGST 225	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
 207	WGST 226	American Studies	Architecture	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies		
-1349	WGST 230	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
+1355	WGST 230	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
 158	WGST 240	American Studies	Architecture	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies	Women's and Gender Studies	
-1392	WGST 245	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
+1398	WGST 245	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
 100	WGST 249	American Studies	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
-1393	WGST 250	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
-1394	WGST 250H	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
-1350	WGST 255	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
-1876	WGST 260	Women's and Gender Studies							
+1399	WGST 250	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
+1400	WGST 250H	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
+1356	WGST 255	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
+1881	WGST 260	Women's and Gender Studies							
 621	WGST 274	Cinema and Media Studies - entering in Fall 2020 and before	Cinema and Media Studies - entering in Spring 2021 and after	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies		
-1351	WGST 296	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
+1357	WGST 296	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
 1080	WGST 302	Environmental Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies			
 208	WGST 305	American Studies	Architecture	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies		
 185	WGST 306	American Studies	Architecture	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies		
-1352	WGST 307	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
-1353	WGST 310	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
+1358	WGST 307	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
+1359	WGST 310	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
 190	WGST 311	American Studies	Architecture	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies	
-1395	WGST 313	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
-1354	WGST 314	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
+1401	WGST 313	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
+1360	WGST 314	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
 209	WGST 320	American Studies	Anthropology	Architecture	International Relations - History	International Relations - Political Science	Women's and Gender Studies		
-1342	WGST 322	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
-1355	WGST 325	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
+1348	WGST 322	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
+1361	WGST 325	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
 210	WGST 326	American Studies	Architecture	Education Studies	International Relations - Economics	International Relations - History	International Relations - Political Science	Latin American Studies	Women's and Gender Studies
-1356	WGST 328	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
-1358	WGST 341	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
-1396	WGST 350	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
-1397	WGST 350H	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
-1398	WGST 360	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
-1399	WGST 370	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
+1362	WGST 328	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
+1364	WGST 341	International Relations - Economics	International Relations - History	International Relations - Political Science	Women's and Gender Studies				
+1402	WGST 350	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
+1403	WGST 350H	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
+1404	WGST 360	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
+1405	WGST 370	International Relations - History	International Relations - Political Science	Women's and Gender Studies					
 346	WRIT 107	Art History							
 1040	WRIT 110	Education Studies	Women's and Gender Studies						
 1007	WRIT 114	Education Studies	Philosophy						
-1180	WRIT 115	Studio Art - students entering before Fall 2021							
+1186	WRIT 115	Studio Art - students entering before Fall 2021							
 1041	WRIT 120	English	English and Creative Writing						
-1580	WRIT 141	Medieval Renaissance Studies							
-1581	WRIT 143	Medieval Renaissance Studies							
-1582	WRIT 147	Medieval Renaissance Studies							
+1585	WRIT 141	Medieval Renaissance Studies							
+1586	WRIT 143	Medieval Renaissance Studies							
+1587	WRIT 147	Medieval Renaissance Studies							
 406	WRIT 149	Art History							
-1583	WRIT 153	Medieval Renaissance Studies							
+1588	WRIT 153	Medieval Renaissance Studies							
 1081	WRIT 162	Environmental Studies							
 1082	WRIT 171	Environmental Studies							
-1584	WRIT 187	Medieval Renaissance Studies							
-1370	WRIT 277	International Relations - History	International Relations - Political Science						
+1589	WRIT 187	Medieval Renaissance Studies							
+1376	WRIT 277	International Relations - History	International Relations - Political Science						
 187	WRIT 307	American Studies	Architecture						
