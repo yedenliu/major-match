@@ -43,6 +43,13 @@ def populateRegExCourses(file, dept, deptAprev, level, quantity):
 ''' Manually calling the populateRegExCourses() function manually for relevant departments and
 levels. '''
 allCoursesTSV = '/students/kswint/major-match/DDL/all_courses.tsv'
+
+populateRegExCourses(allCoursesTSV,'American Studies','AMST',2,6)
+populateRegExCourses(allCoursesTSV,'American Studies','AMST',3,6)
+
+populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',2,4)
+populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',3,4)
+
 populateRegExCourses(allCoursesTSV,'Computer Science','CS',2,2)
 populateRegExCourses(allCoursesTSV,'Computer Science','CS',3,2)
 
@@ -164,8 +171,61 @@ def removeCourseFromMajor(major, course):
     else:
         pass
 
+removeCourseFromMajor('American Studies','AMST 350')
+removeCourseFromMajor('American Studies','AMST 360')
+removeCourseFromMajor('American Studies','AMST 370')
+
+removeCourseFromMajor('Art History','ARTH 350')
+
+removeCourseFromMajor('Biological Sciences','BISC 250')
+removeCourseFromMajor('Biological Sciences','BISC 250H')
+removeCourseFromMajor('Biological Sciences','BISC 350')
+removeCourseFromMajor('Biological Sciences','BISC 350H')
+removeCourseFromMajor('Biological Sciences','BISC 355')
+removeCourseFromMajor('Biological Sciences','BISC 360')
+removeCourseFromMajor('Biological Sciences','BISC 365')
+removeCourseFromMajor('Biological Sciences','BISC 370')
+
+removeCourseFromMajor('Chemistry','CHEM 250')
+removeCourseFromMajor('Chemistry','CHEM 250H')
+removeCourseFromMajor('Chemistry','CHEM 350')
+removeCourseFromMajor('Chemistry','CHEM 350H')
+removeCourseFromMajor('Chemistry','CHEM 360')
+removeCourseFromMajor('Chemistry','CHEM 370')
+
+removeCourseFromMajor('Computer Science','CS 250')
+removeCourseFromMajor('Computer Science','CS 250H')
+removeCourseFromMajor('Computer Science','CS 350')
+removeCourseFromMajor('Computer Science','CS 350H')
+removeCourseFromMajor('Computer Science','CS 360')
+removeCourseFromMajor('Computer Science','CS 370')
+
+removeCourseFromMajor('Economics','ECON 350')
+removeCourseFromMajor('Economics','ECON 360')
+removeCourseFromMajor('Economics','ECON 370')
+
+removeCourseFromMajor('English','ENG 350')
+removeCourseFromMajor('English','ENG 360')
+removeCourseFromMajor('English','ENG 370')
+
+removeCourseFromMajor('Environmental Studies','ES 350')
+
+removeCourseFromMajor('Neuroscience','NEUR 240')
+removeCourseFromMajor('Neuroscience','NEUR 250')
+removeCourseFromMajor('Neuroscience','NEUR 250H')
+removeCourseFromMajor('Neuroscience','NEUR 340')
+removeCourseFromMajor('Neuroscience','NEUR 350')
+removeCourseFromMajor('Neuroscience','NEUR 350H')
+removeCourseFromMajor('Neuroscience','NEUR 360')
+removeCourseFromMajor('Neuroscience','NEUR 370')
+
 removeCourseFromMajor('Psychology','PSYC 299')
 removeCourseFromMajor('Psychology','PSYC 299H')
+
+removeCourseFromMajor('Russian','RUSS 101')
+removeCourseFromMajor('Russian','RUSS 102')
+removeCourseFromMajor('Russian','RUSS 203')
+removeCourseFromMajor('Russian','RUSS 303')
 
 removeCourseFromMajor('Spanish','SPAN 201')
 removeCourseFromMajor('Spanish','SPAN 202')
