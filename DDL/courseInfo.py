@@ -70,6 +70,10 @@ populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',3)
 populateRegExCourses(allCoursesTSV,'Astronomy','ASTR',2)
 populateRegExCourses(allCoursesTSV,'Astronomy','ASTR',3)
 populateRegExCourses(allCoursesTSV,'Astronomy','ASTR',3)
+populateRegExCourses(allCoursesTSV,'Astronomy','GEOS',3)    # guessing that geoscience counts as a "related field"
+populateRegExCourses(allCoursesTSV,'Astronomy','PHYS',3)    # guessing that physics counts as a "related field"
+populateRegExCourses(allCoursesTSV,'Astronomy','CHEM',3)    # guessing that chemistry counts as a "related field"
+populateRegExCourses(allCoursesTSV,'Astronomy','BISC',3)    # guessing that bisc counts as a "related field"
 populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',2)
 populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',2)
 populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',2)
@@ -80,6 +84,39 @@ populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2
 populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',3)
 populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',3)
 populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',3)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',1)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',1)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',1)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',1)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',1)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',1)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',1)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',2)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',2)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',2)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',2)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',2)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',2)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',2)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',3)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',3)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',3)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',3)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',3)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',3)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',3)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',1)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',2)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',3)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',1)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',2)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',3)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',1)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',2)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',3)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',1)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',2)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',3)
 
 allCourses.sort()    # sorts the course list lexigocraphically
 
@@ -120,17 +157,17 @@ courseToMajorsDF.rename(
 courseToMajorsDF = courseToMajorsDF.sort_values(by = 'course')                               # sort the courses lexicographically
 
 '''Courses with the majors they fullfil as a TSV'''
-# courseToMajorsDF.to_csv('/students/kswint/major-match/DDL/coursesToMajors.tsv', sep = '\t')
+courseToMajorsDF.to_csv('/students/kswint/major-match/DDL/coursesToMajors.tsv', sep = '\t')
 
 majorReqsDF = pd.DataFrame.from_dict(majorKey, orient = 'index')
-# majorReqsDF.to_csv('/students/kswint/major-match/DDL/majorReqsDF.tsv', sep = '\t')
+majorReqsDF.to_csv('/students/kswint/major-match/DDL/majorReqsDF.tsv', sep = '\t')
 
 ''' creates a dataframe with columns = each course and the number of majors it counts
 towards.'''
 courseFreqDF = pd.DataFrame(list(freq.items()), columns = ['course','freq'])
 
 '''Courses with the number of majors they fullfil as a TSV'''
-# courseFreqDF.to_csv('/students/kswint/major-match/DDL/courseMajFreq.tsv', sep = '\t')
+courseFreqDF.to_csv('/students/kswint/major-match/DDL/courseMajFreq.tsv', sep = '\t')
 
 ''' sorts courseFreqDF by the number of majors a course counts towards, with the most number
 of majors at the top and least at the bottom'''
@@ -154,4 +191,4 @@ print(masterDF)
 
 ''' Master TSV! Columns are the course, the department (abrev), the course number (three digit, not CRN),
 the number of majors that course counts towards, and a list of the majors that course counts towards.'''
-# masterDF.to_csv('/students/kswint/major-match/DDL/completeMajorTable.tsv', sep = '\t')
+masterDF.to_csv('/students/kswint/major-match/DDL/completeMajorTable.tsv', sep = '\t')
