@@ -1,3 +1,6 @@
+################################################################################
+#   Import Modules
+################################################################################
 from pdb import find_function
 from flask import (Flask, render_template, make_response, url_for, request,
                    redirect, flash, session, send_from_directory, jsonify)
@@ -18,6 +21,10 @@ app.secret_key = ''.join([ random.choice(('ABCDEFGHIJKLMNOPQRSTUVXYZ' +
 
 # This gets us better error messages for certain common request errors
 app.config['TRAP_BAD_REQUEST_ERRORS'] = True
+
+
+################################################################################
+#   Routing functions
 ################################################################################
 @app.route('/', methods=['GET','POST'])
 def index():
@@ -36,7 +43,7 @@ def index():
                 classes.append((dept,cnum))
                 insert_data(conn, dept, cnum)
                 results = major_match(conn)
-        delete_form_data(conn)
+        delete_form_data(conn) # DELETE WHEN CAS IS IMPLEMENTED
         return render_template('results.html',
                                 page_title='Results',
                                 classes = classes,
@@ -48,7 +55,6 @@ def departments():
     return render_template('results.html',
                             page_title='Results',
                             classes = classes)
-
 
 ################################################################################
 @app.before_first_request
