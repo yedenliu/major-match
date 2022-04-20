@@ -2,17 +2,26 @@ from tkinter import ttk
 import cs304dbi as dbi
 
 def find_cid(conn, dept, cnum):
-    '''finds course id number based on department and course number from db'''
+    ''' 
+    Finds course id number based on department and course number from db
+    
+    Param - department abbreviation, course number
+    Return - connection object, course ID
+    '''
     curs = dbi.cursor(conn)
     sql = '''   select cid from courses
                 where dept = %s and cnum = %s
             '''
     curs.execute(sql, [dept, cnum])
-    row = curs.fetchone()
-    return row
+    return curs.fetchone()
 
 def insert_data(conn, dept, cnum):
-    '''insersts form data (department, course number, course id into db'''
+    '''
+    Inserts user's inputted form data into a semi-temporary table
+    (when we implement CAS, course data will be saved for each user)
+    
+    Param - connection object, department abbreviation, course number 
+    '''
     curs = dbi.cursor(conn)
     if dept != None and cnum != None:
         cid = find_cid(conn, dept, cnum)
@@ -23,7 +32,12 @@ def insert_data(conn, dept, cnum):
         conn.commit()
 
 def major_match(conn):
-    '''getting top five matches for each major; ordered by count'''
+    '''
+    Getting top five major matches for courses user has inputted
+    Ordered by count
+    
+    Param - connection object
+    '''
     curs = dbi.cursor(conn)
     sql = '''   select programs.name, count(major_pairs.dept_id) from programs
                 inner join major_pairs using(dept_id)
@@ -36,7 +50,10 @@ def major_match(conn):
     return curs.fetchall()
 
 def delete_form_data(conn):
-    '''deletes form data from db'''
+    '''
+    TEMPORARY FUNCTION (until CAS is implemented)
+    Deletes data from form_data table
+    '''
     curs = dbi.cursor(conn)
     sql = 'delete from form_data'
     curs.execute(sql)
