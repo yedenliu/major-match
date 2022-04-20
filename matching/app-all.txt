@@ -1,0 +1,581 @@
+################################################################################
+#   Import Modules
+################################################################################
+from pdb import find_function
+from flask import (Flask, render_template, make_response, url_for, request,
+                   redirect, flash, session, send_from_directory, jsonify)
+from werkzeug.utils import secure_filename
+app = Flask(__name__)
+
+import cs304dbi as dbi
+import random
+from prepared_queries import *
+
+################################################################################
+app.secret_key = 'your secret here'
+# replace that with a random key
+app.secret_key = ''.join([ random.choice(('ABCDEFGHIJKLMNOPQRSTUVXYZ' +
+                                          'abcdefghijklmnopqrstuvxyz' +
+                                          '0123456789'))
+                           for i in range(20) ])
+
+# This gets us better error messages for certain common request errors
+app.config['TRAP_BAD_REQUEST_ERRORS'] = True
+
+
+################################################################################
+#   Routing functions
+################################################################################
+@app.route('/', methods=['GET','POST'])
+def index():
+    conn = dbi.connect()
+    if request.method == 'GET':
+        return render_template('index.html',page_title='Home')
+    else:
+        classes = []
+        for n in range(33): # range is the number of total courses they can input
+            dept = request.form.get('dept-'+str(n))
+            cnum = request.form.get('cnum-'+str(n))
+            
+            if dept not in [None, ''] and cnum not in [None, '']:
+                dept = dept.upper().strip()
+                cnum = cnum.upper().strip()
+                classes.append((dept,cnum))
+                insert_data(conn, dept, cnum)
+                results = major_match(conn)
+        delete_form_data(conn) # DELETE WHEN CAS IS IMPLEMENTED
+        return render_template('results.html',
+                                page_title='Results',
+                                classes = classes,
+                                results = results)
+
+@app.route('/results/')
+def departments():
+    classes = []
+    return render_template('results.html',
+                            page_title='Results',
+                            classes = classes)
+
+################################################################################
+@app.before_first_request
+def init_db():
+    dbi.cache_cnf()
+    # set this local variable to 'wmdb' or your personal or team db
+    db_to_use = 'majormatch_db' 
+    dbi.use(db_to_use)
+    print('will connect to {}'.format(db_to_use))
+
+if __name__ == '__main__':
+    import sys, os
+    if len(sys.argv) > 1:
+        # arg, if any, is the desired port number
+        port = int(sys.argv[1])
+        assert(port>1024)
+    else:
+        port = os.getuid()
+    app.debug = True
+    app.run('0.0.0.0',port)
+from tkinter import ttk
+import cs304dbi as dbi
+
+def find_cid(conn, dept, cnum):
+    ''' 
+    Finds course id number based on department and course number from db
+    
+    Param - department abbreviation, course number
+    Return - connection object, course ID
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   select cid from courses
+                where dept = %s and cnum = %s
+            '''
+    curs.execute(sql, [dept, cnum])
+    return curs.fetchone()
+
+def insert_data(conn, dept, cnum):
+    '''
+    Inserts user's inputted form data into a semi-temporary table
+    (when we implement CAS, course data will be saved for each user)
+    
+    Param - connection object, department abbreviation, course number 
+    '''
+    curs = dbi.cursor(conn)
+    if dept != None and cnum != None:
+        cid = find_cid(conn, dept, cnum)
+        sql = '''   insert into form_data(dept, cnum, cid)
+                    values (%s, %s, %s)
+                ''' 
+        curs.execute(sql, [dept, cnum, cid])
+        conn.commit()
+
+def major_match(conn):
+    '''
+    Getting top five major matches for courses user has inputted
+    Ordered by count
+    
+    Param - connection object
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   select programs.name, count(major_pairs.dept_id) from programs
+                inner join major_pairs using(dept_id)
+                inner join form_data using(cid)
+                group by major_pairs.dept_id
+                order by count(major_pairs.dept_id) DESC
+                limit 5
+            ''' 
+    curs.execute(sql)
+    return curs.fetchall()
+
+def delete_form_data(conn):
+    '''
+    TEMPORARY FUNCTION (until CAS is implemented)
+    Deletes data from form_data table
+    '''
+    curs = dbi.cursor(conn)
+    sql = 'delete from form_data'
+    curs.execute(sql)
+    conn.commit()<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <!-- for mobile-friendly pages -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Major Match Team" content="">
+    <title>{{ page_title }}</title>
+    <link rel='stylesheet' href="{{url_for('static', filename = 'style.css')}}">
+</head>
+
+<body>
+{% block navbar %}
+<nav>
+    <a href="{{ url_for('index') }}"><button class="home-btn">HOME</button></a>
+</nav>
+{% endblock %}
+
+{% block header %}
+<!-- insert title of page -->
+{% endblock %}
+
+<main>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div id="messages">
+    {% for msg in messages %}
+    <p>{{msg}}</p>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+
+{% block main_content %}
+<!-- put main content here -->
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+{% block end_scripts %}
+{% endblock %}
+
+</main>
+
+</body>
+</html>
+{% extends "base.html" %}
+
+{% block header %}
+<h1>MAJOR MATCHING</h1>
+{% endblock %}
+
+{% block main_content %}
+<form method=POST action="">
+    <div class="submit-btn"><input type='submit' value='Reveal Matches!'> </div>
+    <div class="flex-container">
+        <!-- YEAR 1 (8 courses) -->
+        <div class="year-1">
+        <div class="class-input">
+            <label>Dept</label>
+            <input type="text" name="dept-1">
+            <label>Course #</label>
+            <input type="text" name="cnum-1">
+        </div>
+        
+        <div class="class-input">
+            <label>Dept</label>
+            <input type="text" name="dept-2">
+            <label>Course #</label>
+            <input type="text" name="cnum-2">
+        </div>
+        
+        <div class="class-input">
+            <label>Dept</label>
+            <input type="text" name="dept-3">
+            <label>Course #</label>
+            <input type="text" name="cnum-3">
+        </div>
+    
+        <div class="class-input">
+            <label>Dept</label>
+            <input type="text" name="dept-4">
+            <label>Course #</label>
+            <input type="text" name="cnum-4">
+        </div>
+        
+        <div class="class-input">
+            <label>Dept</label>
+            <input type="text" name="dept-5">
+            <label>Course #</label>
+            <input type="text" name="cnum-5">
+        </div>
+    
+        <div class="class-input">
+            <label>Dept</label>
+            <input type="text" name="dept-6">
+            <label>Course #</label>
+            <input type="text" name="cnum-6">
+        </div>
+        
+        <div class="class-input">
+            <label>Dept</label>
+            <input type="text" name="dept-7">
+            <label>Course #</label>
+            <input type="text" name="cnum-7">
+        </div>
+
+        <div class="class-input">
+            <label>Dept</label>
+            <input type="text" name="dept-8">
+            <label>Course #</label>
+            <input type="text" name="cnum-8">
+        </div>
+        </div>
+
+        <!-- YEAR 2 (8 courses) -->
+        <div class="year-2">
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-9">
+                <label>Course #</label>
+                <input type="text" name="cnum-9">
+            </div>
+            
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-10">
+                <label>Course #</label>
+                <input type="text" name="cnum-10">
+            </div>
+            
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-11">
+                <label>Course #</label>
+                <input type="text" name="cnum-11">
+            </div>
+        
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-12">
+                <label>Course #</label>
+                <input type="text" name="cnum-12">
+            </div>
+            
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-13">
+                <label>Course #</label>
+                <input type="text" name="cnum-13">
+            </div>
+        
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-14">
+                <label>Course #</label>
+                <input type="text" name="cnum-14">
+            </div>
+            
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-15">
+                <label>Course #</label>
+                <input type="text" name="cnum-15">
+            </div>
+    
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-16">
+                <label>Course #</label>
+                <input type="text" name="cnum-16">
+            </div>
+            </div>
+
+            <!-- YEAR 3 (8 courses) -->
+            <div class="year-3">
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-17">
+                <label>Course #</label>
+                <input type="text" name="cnum-17">
+            </div>
+            
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-18">
+                <label>Course #</label>
+                <input type="text" name="cnum-18">
+            </div>
+            
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-19">
+                <label>Course #</label>
+                <input type="text" name="cnum-19">
+            </div>
+        
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-20">
+                <label>Course #</label>
+                <input type="text" name="cnum-20">
+            </div>
+            
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-21">
+                <label>Course #</label>
+                <input type="text" name="cnum-21">
+            </div>
+        
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-22">
+                <label>Course #</label>
+                <input type="text" name="cnum-22">
+            </div>
+            
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-23">
+                <label>Course #</label>
+                <input type="text" name="cnum-23">
+            </div>
+    
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-24">
+                <label>Course #</label>
+                <input type="text" name="cnum-24">
+            </div>
+            </div>
+
+            <!-- YEAR 4 (8 courses) -->
+            <div class="year-4">
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-25">
+                <label>Course #</label>
+                <input type="text" name="cnum-25">
+            </div>
+            
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-26">
+                <label>Course #</label>
+                <input type="text" name="cnum-26">
+            </div>
+            
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-27">
+                <label>Course #</label>
+                <input type="text" name="cnum-27">
+            </div>
+        
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-28">
+                <label>Course #</label>
+                <input type="text" name="cnum-28">
+            </div>
+            
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-29">
+                <label>Course #</label>
+                <input type="text" name="cnum-29">
+            </div>
+        
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-30">
+                <label>Course #</label>
+                <input type="text" name="cnum-30">
+            </div>
+            
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-31">
+                <label>Course #</label>
+                <input type="text" name="cnum-31">
+            </div>
+    
+            <div class="class-input">
+                <label>Dept</label>
+                <input type="text" name="dept-32">
+                <label>Course #</label>
+                <input type="text" name="cnum-32">
+            </div>
+            </div>
+        
+    </div>
+    </form>
+{% endblock %}{% extends "base.html" %}
+
+{% block header %}
+<h1>RESULTS</h1>
+{% endblock %}
+
+{% block main_content %}
+<p>This is what you inputted</p>
+<ul> 
+    {% for class in classes %}
+    <li>{{ class[0] }} {{ class[1] }}</li>
+    {% endfor %}
+</ul>
+
+<p>These are your top matched majors</p>
+<ul>
+    {% for major in results %}
+    <!-- name, count() -->
+    <li>{{ major[0] }} || Count: {{ major[1] }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}/********** HTML FILE **********/
+* {
+    box-sizing: border-box;
+    font-family: 'Arial';
+}
+
+/********** STYLE BASE TEMPLATE **********/
+h1 {
+    font-size: 48px;
+    text-align: center;
+    font-family: 'Arial Black';
+    font-weight: bolder;
+    color: rgb(255, 236, 181);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    margin-bottom: 5px;
+}
+
+h2 {
+    margin-left: 8px;
+}
+
+p {
+    margin-left: 8px;
+    font-size: 17px;
+}
+
+#messages {
+    margin-left: 8px;
+    color: red;
+}
+
+.home-btn {
+    color: white;
+    font-size: large;
+    background-color: rgb(39, 39, 39);
+    border-radius: 5px;
+    border: none;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/********** STYLE FORM **********/
+form {
+    text-align: center;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.class-input {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+input {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.year-1 {
+    margin: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+    background-color: rgb(253, 205, 237);
+}
+
+.year-2 {
+    margin: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+    background-color: rgb(237, 254, 200);
+}
+
+.year-3 {
+    margin: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+    background-color: rgb(226, 204, 255);
+}
+
+.year-4 {
+    margin: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+    background-color: rgb(202, 222, 252);
+}
+
+/* Text input on forms */
+input[type=text] {
+    width: 100px;
+}
+input[type=number] {
+    width: 50px;
+    margin-right: 10px;
+}
+
+/* Form submit button */
+input[type='submit'] {
+    margin-bottom: 5px;
+    background-color: rgb(231, 231, 231);
+    font-size: large;
+    color: dark gray;
+    border: 1px black dashed;
+    border-radius: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+  }
+
+  input[type='submit']:hover{
+      background-color: rgb(255, 234, 138);
+      border-style: solid;
+  }
