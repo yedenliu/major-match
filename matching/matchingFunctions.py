@@ -4,6 +4,14 @@ import csv
 majorReqs = '/students/kswint/major-match/DDL/majorReqsDF.tsv'
 coursesToMajors = '/students/kswint/major-match/DDL/coursesToMajors.tsv'
 
+''' grabMajors() determines which majors a user has made progress towards.
+This lets us avoid checking every single major against every course a user
+has taken.
+
+Goes into the coursesToMajors.tsv file, reads each line, and determines whether
+or not the course on the given line is one the user has taken. If the user
+*has* taken that course, it appends the majors that course contributes towards
+to a temporary list. That list is then cleaned and sorted before being returned.'''
 def grabMajors(userInput):
     tempMajors = []
     with open(coursesToMajors, "r") as ctm:
@@ -31,6 +39,9 @@ def grabCourses(dept):
                 allCourses.sort()
     return(allCourses)
 
+''' findElectives() takes two lists: the courses that are required for a
+major, and the courses that count towards that major. It returns a list of
+the courses that count as elective courses for that major.'''
 def findElectives(requiredList, allCoursesList):
     electiveList = []
     for element in allCoursesList:
@@ -42,6 +53,9 @@ def findElectives(requiredList, allCoursesList):
             electiveList.append(element)
     return(electiveList)
 
+''' courseLevelUntangler() takes a list and a course level. It returns a list
+of electives at the designated level, i.e. will take a list of the CS electives
+and will return only the 300 level electives.'''
 def courseLevelUntangler(electiveList, level):
     levelElectives = []
     for elective in electiveList:
@@ -50,6 +64,12 @@ def courseLevelUntangler(electiveList, level):
             levelElectives.append(elective)
     return(levelElectives)
 
+
+'''compareUserAndReqs() compares the courses a user has taken against the
+courses they need to take for a specific course type within a major. For
+example, it would compare the list of courses taken... wait, maybe I can
+just pop the courses in the nested if statements '''
+# TODO: try just popping courses
 def compareUserAndReqs(user, reqList, reqName, needed):
     has = len(user)
     count = 1
@@ -61,6 +81,9 @@ def compareUserAndReqs(user, reqList, reqName, needed):
     else:
         print('You need', (needed - has), 'more courses to fulfill all', reqName, "requirements for the major!\n")
 
+''' suggestComplete() will print out a list of courses each user could or
+should take if they wanted to complete a major. This is mostly useful for
+testing purposes.'''
 def suggestComplete(taken, neededNum, options, core, pathNum):
     if len(taken) < neededNum:
         for course in taken:
