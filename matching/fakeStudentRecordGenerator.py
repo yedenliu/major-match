@@ -23,9 +23,10 @@ with open(majorReqs, 'r') as courses:
                         pass
                     else:
                         eligible.append(item)
-            if len(eligible) > 0:
-                course1 = random.choice(eligible[1:])
-                course2 = random.choice(eligible[1:])
-                print(rho[0], course1, course2)
+                if len(eligible) > 0:
+                    if count == array[5]:
+                        course1 = random.choice(eligible[1:])
+                        course2 = random.choice(eligible[1:])
+                        print(rho[0], course1, course2)
         count += 1
 

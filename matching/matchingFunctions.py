@@ -44,19 +44,42 @@ def compareUserAndReqs(user, reqList, reqName, needed):
     else:
         print('You need', (needed - has), 'more courses to fulfill all', reqName, "requirements for the major!\n")
 
-def suggestComplete(taken, neededNum, options, core):
+def suggestComplete(taken, neededNum, options, core, pathNum):
     if len(taken) < neededNum:
         for course in taken:
             if course in options:
                 options.remove(course)
-        if core:
-            print('\n\tYou must take these course(s):')
+        if core and (len(options) != 0):
+            if pathNum == 0:
+                print('\tYou must take these course(s):')
+                for course in options:
+                    print('\t\t', course)
+                print('')
+            elif pathNum != 0:
+                print('\tAnd wish to complete core path #', pathNum, ',you must take these course(s):')
+                for course in options:
+                    print('\t\t', course)
+                print('') 
+        elif not core and (len(options) != 0):
+            print('\tYou should select', neededNum, 'course(s) from the following list:')
             for course in options:
                 print('\t\t', course)
-        elif not core:
-            print('\n\tYou should select', neededNum, 'course(s) from the following list:')
-            for course in options:
-                print('\t\t', course)
+            print('')
+
+def completedPath(taken, path):
+    for course in taken:
+        if taken in path:
+            path.remove(taken)
+    if len(path) == 0:
+        return(True)
+    else:
+        return(False)
+
+def multilistedSatisfied(courseToCompare, coursesToCompareTo):
+    if courseToCompare in coursesToCompareTo:
+        return(True)
+    else:
+        return(False)
 
 def cs(userInput):
     needed = 10
@@ -105,11 +128,11 @@ def cs(userInput):
     taken = coresTaken + threesTaken + electivesTaken
     if has != needed: 
         print('If you would like to complete the Computer Science major, you need to take:\n')
-        suggestComplete(introsTaken, int(len(introductory) - len(introsTaken)), introductory, True)
-        suggestComplete(mathTaken, int(len(math) - len(mathTaken)), math, True)
-        suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, True)
-        suggestComplete(threesTaken, int(2 - numThrees), threes, False)
-        suggestComplete(electivesTaken, int(2 - numElectives), electives, False)
+        suggestComplete(introsTaken, int(len(introductory) - len(introsTaken)), introductory, True, 0)
+        suggestComplete(mathTaken, int(len(math) - len(mathTaken)), math, True, 0)
+        suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, True, 0)
+        suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
+        suggestComplete(electivesTaken, int(2 - numElectives), electives, False, 0)
 
 def econ(userInput):
     coreNeeded = 6
@@ -148,14 +171,148 @@ def econ(userInput):
     taken = coresTaken + threesTaken + electivesTaken
     if has != needed:
         print('If you would like to complete the Economics major, you need to take:\n')
-        suggestComplete(taken, coreNeeded, core, True)
-        suggestComplete(taken, threesNeeded, threes, False)
-        suggestComplete(taken, electivesNeeded, electives, False)
+        suggestComplete(taken, coreNeeded, core, True, 0)
+        suggestComplete(taken, threesNeeded, threes, False, 0)
+        suggestComplete(taken, electivesNeeded, electives, False, 0)
+
+def chem(userInput):
+    coreNeeded = 0
+    needed = 11
+    multicore = False
+    has = 0
+    
+    core = [['CHEM 105/CHEM 105P','CHEM 205'],['BISC 116/CHEM 116', 'CHEM 205'],['CHEM 120']]
+    core1 = []
+    core2 = []
+    core3 = []
+    core4 = ['CHEM 211','CHEM 212','CHEM 330']
+    flexChem = ['CHEM 223','CHEM 335','CHEM 341','CHEM 361']
+    flexMath = ['MATH 215','MATH 205']
+    flexPhys = ['PHYS 106','PHYS 108']
+    allCourses = grabCourses('Chemistry')
+
+    core1Taken = []
+    core2Taken = []
+    core3Taken = []
+    core4Taken = []
+    flexChemTaken = []
+    flexMathTaken = []
+    flexPhysTaken = []
+    threesTaken = []
+
+    if 'CHEM 105' in userInput:
+        core1 = ['CHEM 105', 'CHEM 205']
+        coreNeeded = 2
+        if completedPath(userInput,core1):
+            print('hi')
+    elif 'CHEM 105P' in userInput:
+        coreNeeded = 2
+        core1 = ['CHEM 105P', 'CHEM 205']
+        if completedPath(userInput,core1):
+            print('hi')
+    else:
+        coreNeeded = 2
+        core1 = ['CHEM 105/CHEM 105P','CHEM 205']
+        if completedPath(userInput,core1):
+            print('hi')
+    
+
+    if 'BISC 116' in userInput:
+        coreNeeded = 2
+        core2 = ['BISC 116', 'CHEM 205']
+        if len(core1) != 0:
+            multicore = True
+        if completedPath(userInput,core2):
+            print('hi')
+    elif 'CHEM 116' in userInput:
+        coreNeeded = 2
+        core2 = ['CHEM 116', 'CHEM 205']
+        if len(core1) != 0:
+            multicore = True
+        if completedPath(userInput,core2):
+            print('hi')
+    else:
+        coreNeeded = 2
+        core2 = ['BISC 116/CHEM 116', 'CHEM 205']
+        if len(core1) != 0:
+            multicore = True
+        if completedPath(userInput,core2):
+            print('hi')
+
+
+    if 'CHEM 120' in userInput:
+        coreNeeded = 1
+        core3 = ['CHEM 120']
+        if (len(core1) != 0) or (len(core2) != 0):
+            multicore = True
+        if completedPath(userInput,core3):
+            print('hi')
+
+    electives = findElectives((core + core4), allCourses)
+    threes = courseLevelUntangler(electives,3)
+    if 'CHEM 320' in threes:
+        threes.remove('CHEM 320')
+    if 'CHEM 331'in threes:
+        threes.remove('CHEM 331')
+
+    for course in userInput:
+        if multicore:
+            if len(core1) != 0:
+                if course in core1:
+                    core1Taken.append(course)
+                    has += 1
+            if len(core2) != 0:
+                if course in core2:
+                    core2Taken.append(course)
+                    has += 1
+            if len(core3) != 0:
+                if course in core3:
+                    core3Taken.append(course)
+        if course in core4:
+            core4Taken.append(course)
+            has += 1
+        if course in flexChem:
+            flexChemTaken.append(course)
+            has += 1
+        if course in flexPhys:
+            flexPhysTaken.append(course)
+            has += 1
+        if course in flexMath:
+            flexMathTaken.append(course)
+            has += 1
+        if course in threes:
+            threesTaken.append(course)
+            has += 1
+
+    compareUserAndReqs(core1Taken, core1, 'core (track 1 of 3))', coreNeeded)
+    compareUserAndReqs(core2Taken, core2, 'core (track 2 of 3)', coreNeeded)
+    compareUserAndReqs(core3Taken, core3, 'core (track 3 of 3)', coreNeeded)
+    compareUserAndReqs(core4Taken, core4, 'core', 3)
+    compareUserAndReqs(flexChemTaken, flexChem, '300-level elective', 3)
+    compareUserAndReqs(flexPhysTaken, flexPhys, 'physics', 1)
+    compareUserAndReqs(flexMathTaken, flexMath, 'math', 1)
+
+    print('You have completed', has, '/', needed, 'requirements for the Chemistry major.')
+
+    if has != needed:
+        print('If you would like to complete the Chemistry major...')
+        suggestComplete(core1Taken, coreNeeded, core1, True, 1)
+        suggestComplete(core2Taken, coreNeeded, core2, True, 2)
+        suggestComplete(core3Taken, 1, core3, True, 3)
+        print('\tRegardless of the core path...')
+        suggestComplete(core4Taken, 3, core4, True, 0)
+        suggestComplete(threesTaken, 1, threes, False, 0)
+        suggestComplete(flexChemTaken, 3, flexChem, False, 0)
+        suggestComplete(flexMathTaken, 1, flexMath, False, 0)
+        suggestComplete(flexPhysTaken, 1, flexPhys, False, 0)
 
 kat = ['ARTH 267','ES 267','CS 111','CS 220','CS 230','CS 231','CS 235','CS 240','CS 242','CS 301','CS 304','CS 342','FREN 101','FREN 102','FREN 201','FREN 202','HIST 245','HIST 220','JPN 290','MATH 205','MATH 206','MATH 223','MATH 225','NEUR 100','PHIL 215','POL1 200','WRIT 166']
 emily = ['ECON 101','ECON 203','ECON 222','EDUC 226','ECON 233','ECON 314','ECON 318','ECON 320','CS 242','CS 301','CS 304','CS 342','FREN 101','FREN 102','FREN 201','FREN 202','HIST 245','HIST 220','JPN 290','MATH 205','MATH 206','MATH 223','MATH 225','NEUR 100','PHIL 215','POL1 200','WRIT 166']
+julie = ['MATH 205', 'POL 123', 'WRIT 187', 'MATH 206', 'STAT 218', 'SPAN 241', 'CS 111', 'MATH 305', 'PHIL 216', 'CS 230', 'SPAN 253', 'MATH 349', 'MATH 225', 'WGST 218', 'CS 232', 'STAT 260', 'MATH 220', 'MATH 302', 'MATH 215', 'MATH 340', 'PHYS 107', 'STAT 309', 'MATH 322', 'PHYS 313', 'PORT 103', 'MATH 309']
 
 #cs(kat)
 #econ(kat)
-cs(emily)
+#cs(emily)
 #econ(emily)
+#chem(kat)
+cs(julie)
