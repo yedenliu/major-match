@@ -6,14 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="Major Match Team" content="">
     <title>{{ page_title }}</title>
-    <link href="{{url_for('static', filename = 'output.css')}}" rel='stylesheet'>
+    <link href="{{url_for('static', filename = 'style.css')}}" rel='stylesheet'>
 </head>
 
-<body class="w-100vw h-100vh">
+
+
+<body class="gradient-boarder">
 
 {% block banner %}
-    <img src="{{url_for('static', filename = 'banner_logo.png')}}" alt="Wellesley College Banner" class="h-16 w-auto">
+<div class="banner-box">
+    <div class="banner-text">
+        Wellesley College Major Matching
+        <!-- <img src="{{url_for('static', filename = 'banner.png')}}" alt="Wellesley College Banner" class="banner"> -->
+    </div>
+</div>
+
 {% endblock %}
+ 
+<main>
+    
+
+
 
 
 <!-- taking home button off of home page and having it only on results page -->
@@ -23,21 +36,13 @@
 </nav> -->
 {% endblock %}
 
+<div class="header-container">
 {% block header %}
 <!-- insert title of page -->
 {% endblock %}
-
-<main class="opacity-30" style="background-image: url('../static/W_logo.png')">
-
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<div id="messages">
-    {% for msg in messages %}
-    <p>{{msg}}</p>
-    {% endfor %}
 </div>
-{% endif %}
-{% endwith %}
+
+
 
 
 {% block main_content %}

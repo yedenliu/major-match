@@ -23,7 +23,8 @@ app.config['TRAP_BAD_REQUEST_ERRORS'] = True
 def index():
     conn = dbi.connect()
     if request.method == 'GET':
-        return render_template('index.html',page_title='Home')
+        depts = get_depts(conn)
+        return render_template('index.html',page_title='Home', depts=depts)
     else:
         classes = []
         for n in range(8): # range is the number of total courses they can input

@@ -1,21 +1,24 @@
 {% extends "base.html" %}
 
 {% block header %}
-<h1 class="bg-pink-400">MAJOR MATCHING</h1>
+<h1>Fill Out Your Courses</h1>
+<h2>Enter in courses taken and future courses to see the major requirements you have fulfilled</h2>
 {% endblock %}
 
 {% block main_content %}
 <form method=POST action="">
-    <div class="submit-btn"><input type='submit' value='Reveal Matches!'> </div>
     <div class="flex-container">
         <!-- YEAR 1 (8 courses) -->
         <div class="year-1">
             {% for i in range(8) %}
             <div class="class-input">
-                <label>Dept</label>
-                <input type="text" name="dept-{}".format(i)>
-                <label>Course #</label>
-                <input type="number" name="cnum-{}".format(1)>
+                <select id="depts" name="depts">
+                        <option value="dept">Department</option>>
+                {% for dept in depts %}
+                        <option value="{{dept}}">{{dept}}</option>
+                {% endfor %}
+                </select>
+                <input type="text" name="cnum-{}".format(1) placeholder="Course #">
             </div>
             {% endfor %}
         </div>
@@ -24,10 +27,14 @@
         <div class="year-2">
             {% for i in range(8) %}
             <div class="class-input">
-                <label>Dept</label>
-                <input type="text" name="dept-{}".format(i)>
-                <label>Course #</label>
-                <input type="number" name="cnum-{}".format(1)>
+                <!-- <label>Dept</label> -->
+                <select id="depts" name="depts">
+                    <option value="dept">Department</option>>
+                {% for dept in depts %}
+                        <option value="{{dept}}">{{dept}}</option>
+                {% endfor %}
+                </select>
+                <input type="text" name="cnum-{}".format(1)  placeholder="Course #">
             </div>
             {% endfor %}
         </div>
@@ -36,10 +43,14 @@
         <div class="year-3">
             {% for i in range(8) %}
             <div class="class-input">
-                <label>Dept</label>
-                <input type="text" name="dept-{}".format(i)>
-                <label>Course #</label>
-                <input type="number" name="cnum-{}".format(1)>
+                <!-- <label>Dept</label> -->
+                <select id="depts" name="depts">
+                    <option value="dept">Department</option>>
+                {% for dept in depts %}
+                        <option value="{{dept}}">{{dept}}</option>
+                {% endfor %}
+                </select>
+                <input type="text" name="cnum-{}".format(1)  placeholder="Course #">
             </div>
             {% endfor %}
         </div>
@@ -48,13 +59,18 @@
         <div class="year-4">
             {% for i in range(8) %}
             <div class="class-input">
-                <label>Dept</label>
-                <input type="text" name="dept-{}".format(i)>
-                <label>Course #</label>
-                <input type="number" name="cnum-{}".format(1)>
+                <!-- <label>Dept</label> -->
+                <select id="depts" name="depts">
+                    <option value="dept">Department</option>>
+                {% for dept in depts %}
+                        <option value="{{dept}}">{{dept}}</option>
+                {% endfor %}
+                </select>
+                <input type="text" name="cnum-{}".format(1)  placeholder="Course #">
             </div>
             {% endfor %}
         </div>
     </div>
+    <div class="submit-btn"><input type='submit' value='REVEAL MATCHES'> </div>
     </form>
 {% endblock %}
