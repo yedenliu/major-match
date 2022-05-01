@@ -33,12 +33,12 @@ app.config['TRAP_BAD_REQUEST_ERRORS'] = True
 @app.route('/', methods=['GET','POST'])
 def index():
     conn = dbi.connect()
-    username = None
     print(request.cookies.keys())
     if 'CAS_USERNAME' in session:
         username = session['CAS_USERNAME']
         print(('CAS_USERNAME is: ',username))
     else:
+        username = None
         print('CAS_USERNAME not in session')
     if request.method == 'GET':
         resp = make_response( render_template('index.html',
@@ -62,7 +62,6 @@ def index():
                                 page_title='Results',
                                 classes = classes,
                                 results = results))
-        # resp.set_cookie('testkey', 'testval')
         return resp
 
 @app.route('/results/')
