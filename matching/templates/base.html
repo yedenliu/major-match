@@ -14,6 +14,18 @@
 <nav>
     <a href="{{ url_for('index') }}"><button class="home-btn">HOME</button></a>
 </nav>
+
+{% if username %}
+    <form method="GET" action="{{url_for('cas.logout')}}">
+    <button>logout {{username}}</button>
+    </form>
+
+{% else %}
+   <form method="GET" action="{{url_for('cas.login')}}">
+     <button>login</button>
+   </form>
+
+{% endif %}  
 {% endblock %}
 
 {% block header %}

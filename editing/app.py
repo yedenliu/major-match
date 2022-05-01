@@ -56,24 +56,15 @@ def index():
         print(k,' => ',session[k])
     if '_CAS_TOKEN' in session:
         token = session['_CAS_TOKEN']
-    if 'CAS_ATTRIBUTES' in session:
-        attribs = session['CAS_ATTRIBUTES']
-        print('CAS_attributes: ')
-        for k in attribs:
-            print('\t',k,' => ',attribs[k])
-    if 'CAS_USERNAME' in session:
-        is_logged_in = True
+    if 'CAS_NAME' in session:
         username = session['CAS_USERNAME']
         print(('CAS_USERNAME is: ',username))
     else:
-        is_logged_in = False
         username = None
         print('CAS_USERNAME is not in the session')
     return render_template('index.html',
                             page_title='Mainpage',
-                            username=username,
-                            is_logged_in=is_logged_in,
-                            cas_attributes = session.get('CAS_ATTRIBUTES'))
+                            username=username)
 
 @app.route('/insert/', methods=['GET','POST'])
 def insert():
