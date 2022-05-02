@@ -1,3 +1,7 @@
+################################################################################
+#   Import modules
+################################################################################
+
 from pdb import find_function
 from flask import (Flask, render_template, make_response, url_for, request,
                    redirect, flash, session, send_from_directory, jsonify)
@@ -7,7 +11,6 @@ app = Flask(__name__)
 import cs304dbi as dbi
 import random
 from prepared_queries import *
-
 ################################################################################
 app.secret_key = 'your secret here'
 # replace that with a random key
@@ -18,7 +21,9 @@ app.secret_key = ''.join([ random.choice(('ABCDEFGHIJKLMNOPQRSTUVXYZ' +
 
 # This gets us better error messages for certain common request errors
 app.config['TRAP_BAD_REQUEST_ERRORS'] = True
+
 ################################################################################
+#   CAS NOT IMPLEMENTED FOR DRAFT VERSION
 ################################################################################
 # Note : must use a port from 1943 to 1952.
 # bash install-scott-routing.sh doesn't install into our venv
@@ -48,23 +53,12 @@ def after_logout():
 
 application = app
 ################################################################################
-
+#   Routing functions
+################################################################################
 @app.route('/')
 def index():
-    print('Session keys: ',list(session.keys()))
-    for k in list(session.keys()):
-        print(k,' => ',session[k])
-    if '_CAS_TOKEN' in session:
-        token = session['_CAS_TOKEN']
-    if 'CAS_NAME' in session:
-        username = session['CAS_USERNAME']
-        print(('CAS_USERNAME is: ',username))
-    else:
-        username = None
-        print('CAS_USERNAME is not in the session')
     return render_template('index.html',
-                            page_title='Mainpage',
-                            username=username)
+                            page_title='Mainpage')
 
 @app.route('/insert/', methods=['GET','POST'])
 def insert():

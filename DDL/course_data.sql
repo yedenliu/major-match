@@ -1,6 +1,6 @@
---insert data using CSV files
 use majormatch_db;
 
+-- insert data into courses table from tsv file
 load data local infile 'all_courses.tsv'
 into table courses 
 fields terminated by '\t' 

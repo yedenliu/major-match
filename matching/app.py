@@ -1,3 +1,6 @@
+################################################################################
+#   Import Modules
+################################################################################
 from pdb import find_function
 from flask import (Flask, render_template, make_response, url_for, request,
                    redirect, flash, session, send_from_directory, jsonify)
@@ -29,20 +32,17 @@ app.secret_key = ''.join([ random.choice(('ABCDEFGHIJKLMNOPQRSTUVXYZ' +
 
 # This gets us better error messages for certain common request errors
 app.config['TRAP_BAD_REQUEST_ERRORS'] = True
+
+
+################################################################################
+#   Routing functions
 ################################################################################
 @app.route('/', methods=['GET','POST'])
 def index():
     conn = dbi.connect()
     print(request.cookies.keys())
-    if 'CAS_USERNAME' in session:
-        username = session['CAS_USERNAME']
-        print(('CAS_USERNAME is: ',username))
-    else:
-        username = None
-        print('CAS_USERNAME not in session')
     if request.method == 'GET':
         resp = make_response( render_template('index.html',
-                                              username=username,
                                               page_title='Home') )
         return resp
     else:
@@ -57,12 +57,11 @@ def index():
                 classes.append((dept,cnum))
                 insert_data(conn, dept, cnum)
                 results = major_match(conn)
-        delete_form_data(conn)
-        resp = make_response(render_template('results.html',
+        delete_form_data(conn) # DELETE WHEN CAS IS IMPLEMENTED
+        return render_template('results.html',
                                 page_title='Results',
                                 classes = classes,
-                                results = results))
-        return resp
+                                results = results)
 
 @app.route('/results/')
 def departments():
@@ -71,16 +70,6 @@ def departments():
                             page_title='Results',
                             classes = classes)
 
-@app.route('/logged_in/')
-def logged_in():
-    flash('successfully logged in!')
-    return redirect( url_for('index') )
-
-@app.route('/after_logout/')
-def after_logout():
-    flash('successfully logged out!')
-    return redirect( url_for('index') )
-    
 ################################################################################
 @app.before_first_request
 def init_db():
@@ -89,7 +78,6 @@ def init_db():
     db_to_use = 'majormatch_db' 
     dbi.use(db_to_use)
     print('will connect to {}'.format(db_to_use))
-    print('Run with http://cs.wellesley.edu:port where port in 1943-1952')
 
 if __name__ == '__main__':
     import sys, os

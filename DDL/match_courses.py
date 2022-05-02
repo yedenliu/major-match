@@ -2,7 +2,7 @@
 #   Import Modules
 ################################################################################
 import cs304dbi as dbi
-import os, csv
+import csv
 
 ################################################################################
 #   Helper Functions 
@@ -23,22 +23,6 @@ def find_cid(conn, abbrev, cnum):
     curs.execute(sql, [abbrev, cnum])
     return curs.fetchone()
 
-def update_freq(conn, freq, cid):
-    '''
-    Update the major frequency attribute of a given course
-    (i.e., how many majors it counts towards)
-    
-    Param - connection oject, major frequency, course ID
-    '''
-    curs = dbi.cursor(conn)
-    # prepared query
-    sql =   ''' update courses
-                set major_freq = %s
-                where cid = %s
-            '''
-    curs.execute(sql, [freq, cid])
-    conn.commit()
-
 def find_dept_id(conn, dept_name):
     '''
     Finds a dept ID based on the department name
@@ -54,6 +38,26 @@ def find_dept_id(conn, dept_name):
     row = curs.fetchone()
     return row
 
+################################################################################
+#   Table Functions 
+################################################################################
+   
+def update_freq(conn, freq, cid):
+    '''
+    Update the major frequency attribute of a given course
+    (i.e., how many majors it counts towards)
+    
+    Param - connection oject, major frequency, course ID
+    '''
+    curs = dbi.cursor(conn)
+    # prepared query
+    sql =   ''' update courses
+                set major_freq = %s
+                where cid = %s
+            '''
+    curs.execute(sql, [freq, cid])
+    conn.commit()
+    
 def insert_pair(conn, dept_id, cid):
     '''
     Adds a pair of dept ID and course ID to the major pairs table 
@@ -68,10 +72,17 @@ def insert_pair(conn, dept_id, cid):
     conn.commit()
 
 ################################################################################
-#   Match
+#   Matching for major_pairs table 
 ################################################################################
 
 def match(conn):
+    '''
+    Every row in the imported tsv is a course with information on the majors it
+    counts towards. We parse through each row and make relevant changes to our 
+    database tables
+    
+    Param - connection object
+    '''
     with open('completeMajorTable.tsv', 'r') as file:
         tsv_reader = csv.reader(file, delimiter='\t')
         for row in tsv_reader:
@@ -85,7 +96,7 @@ def match(conn):
             
             # update the courses table with the major freq
             cid = find_cid(conn, abbrev, cnum)
-            #update_freq(conn, freq, cid)
+            update_freq(conn, freq, cid)
             
             for major in majors:
                 dept_name = major.strip().strip("'").strip()
@@ -95,6 +106,10 @@ def match(conn):
                     insert_pair(conn, dept_id, cid)
                 except:
                     print("FAIL: " + str(abbrev) + str(cnum))
+
+################################################################################
+#   Running the functions
+################################################################################
 
 dbi.cache_cnf()
 dbi.use('majormatch_db')

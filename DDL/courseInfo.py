@@ -28,97 +28,210 @@ abbreviation, and (4) the level of the course you wish to add. Autoadds those co
 list and to the dictionary of majors and the courses they count for. Note that this does not account
 for crosslisted courses; if a department allows you do take any 200 level math or stats class, you'll
 have to call the method separately for the math courses and the stat courses.'''
-def populateRegExCourses(file, dept, deptAprev, level):
+def populateRegExCourses(file, dept, deptAprev, level, quantity):
     with open(file, "r") as courses:        # 'file' is the TSV of courses a dept offers
         for row in courses:                 # iterate through all of those courses
             rho = row.split('\t')           # split by deliminator so we can grab dept and num
             course = str(rho[0] + " " + rho[1])     # grab that dept and num
+            i = 0
             if deptAprev.__eq__(rho[0]) and (int(rho[1][0]) == level):  # check if it's the right dept and level
-                allCourses.append(course)   # add to allCourses (add. ben we can freq count)
-                majorKey[dept].append(course)       # add to the list of courses that counts towards that major
+                while i < quantity:
+                    allCourses.append(course)   # add to allCourses (add. ben we can freq count)
+                    majorKey[dept].append(course)       # add to the list of courses that counts towards that major
+                    i += 1
 
 ''' Manually calling the populateRegExCourses() function manually for relevant departments and
 levels. '''
 allCoursesTSV = '/students/kswint/major-match/DDL/all_courses.tsv'
-populateRegExCourses(allCoursesTSV,'Computer Science','CS',2)
-populateRegExCourses(allCoursesTSV,'Computer Science','CS',2)
-populateRegExCourses(allCoursesTSV,'Computer Science','CS',3)
-populateRegExCourses(allCoursesTSV,'Computer Science','CS',3)
-populateRegExCourses(allCoursesTSV,'Chemistry','CHEM',3)
-populateRegExCourses(allCoursesTSV,'Mathematics','MATH',3)
-populateRegExCourses(allCoursesTSV,'Mathematics','MATH',3)
-populateRegExCourses(allCoursesTSV,'Physics - entering after Fall 2018','PHYS',3)
-populateRegExCourses(allCoursesTSV,'Physics - entering after Fall 2018','PHYS',3)
-populateRegExCourses(allCoursesTSV,'Astrophysics','PHYS',3)
-populateRegExCourses(allCoursesTSV,'Africana Studies - General Africana Studies Concentration','AFR',3)
-populateRegExCourses(allCoursesTSV,'Africana Studies - General Africana Studies Concentration','AFR',3)
-populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',1)
-populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',2)
-populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',3)
-populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',1)
-populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',2)
-populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',3)
-populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',1)
-populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',2)
-populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',3)
-populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',1)
-populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',2)
-populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',3)
-populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',1)
-populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',2)
-populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',3)
-populateRegExCourses(allCoursesTSV,'Astronomy','ASTR',2)
-populateRegExCourses(allCoursesTSV,'Astronomy','ASTR',3)
-populateRegExCourses(allCoursesTSV,'Astronomy','ASTR',3)
-populateRegExCourses(allCoursesTSV,'Astronomy','GEOS',3)    # guessing that geoscience counts as a "related field"
-populateRegExCourses(allCoursesTSV,'Astronomy','PHYS',3)    # guessing that physics counts as a "related field"
-populateRegExCourses(allCoursesTSV,'Astronomy','CHEM',3)    # guessing that chemistry counts as a "related field"
-populateRegExCourses(allCoursesTSV,'Astronomy','BISC',3)    # guessing that bisc counts as a "related field"
-populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',2)
-populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',2)
-populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',2)
-populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',2)
-populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',3)
-populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',3)
-populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',3)
-populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',3)
-populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',3)
-populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',3)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',1)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',1)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',1)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',1)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',1)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',1)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',1)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',2)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',2)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',2)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',2)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',2)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',2)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',2)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',3)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',3)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',3)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',3)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',3)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',3)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',3)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',1)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',2)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',3)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',1)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',2)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',3)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',1)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',2)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',3)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',1)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',2)
-populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',3)
+
+populateRegExCourses(allCoursesTSV,'American Studies','AMST',2,6)
+populateRegExCourses(allCoursesTSV,'American Studies','AMST',3,6)
+
+populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',2,4)
+populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',3,4)
+
+populateRegExCourses(allCoursesTSV,'Computer Science','CS',2,2)
+populateRegExCourses(allCoursesTSV,'Computer Science','CS',3,2)
+
+populateRegExCourses(allCoursesTSV,'Chemistry','CHEM',3,1)
+
+populateRegExCourses(allCoursesTSV,'Mathematics','MATH',3,2)
+
+populateRegExCourses(allCoursesTSV,'Physics - entering after Fall 2018','PHYS',3,2)
+
+populateRegExCourses(allCoursesTSV,'Astrophysics','PHYS',3,1)
+
+populateRegExCourses(allCoursesTSV,'Africana Studies - General Africana Studies Concentration','AFR',3,2)
+
+populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',1,4)
+populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',2,4)
+populateRegExCourses(allCoursesTSV,'Anthropology','ANTH',3,4)
+
+populateRegExCourses(allCoursesTSV,'Astronomy','ASTR',2,1)
+populateRegExCourses(allCoursesTSV,'Astronomy','ASTR',3,2)
+populateRegExCourses(allCoursesTSV,'Astronomy','GEOS',3,1)    # guessing that geoscience counts as a "related field"
+populateRegExCourses(allCoursesTSV,'Astronomy','PHYS',3,1)    # guessing that physics counts as a "related field"
+populateRegExCourses(allCoursesTSV,'Astronomy','CHEM',3,1)    # guessing that chemistry counts as a "related field"
+populateRegExCourses(allCoursesTSV,'Astronomy','BISC',3,1)    # guessing that bisc counts as a "related field"
+
+populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',2,4)
+populateRegExCourses(allCoursesTSV,'Studio Art - students entering before Fall 2021','ARTS',3,6)
+
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',1,7)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',2,7)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','CLPT',3,7)
+
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',1,4)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',2,4)
+populateRegExCourses(allCoursesTSV,'Comparative Literary Studies','ENG',3,4)
+
+populateRegExCourses(allCoursesTSV,'Italian Studies','ITAS',2,9)
+populateRegExCourses(allCoursesTSV,'Italian Studies','ITAS',3,9)
+
+populateRegExCourses(allCoursesTSV,'Jewish Studies','HEBR',2,3)
+populateRegExCourses(allCoursesTSV,'Jewish Studies','HEBR',3,4)
+populateRegExCourses(allCoursesTSV,'Jewish Studies','JWST',2,3)
+populateRegExCourses(allCoursesTSV,'Jewish Studies','JWST',3,4)
+
+populateRegExCourses(allCoursesTSV,'Mathematics','MATH',2,2)
+populateRegExCourses(allCoursesTSV,'Mathematics','MATH',3,2)
+
+populateRegExCourses(allCoursesTSV,'Middle Eastern Studies','MES',2,2)
+populateRegExCourses(allCoursesTSV,'Middle Eastern Studies','MES',3,2)
+
+populateRegExCourses(allCoursesTSV,'Music','CAMS',1,1)
+populateRegExCourses(allCoursesTSV,'Music','CAMS',2,1)
+populateRegExCourses(allCoursesTSV,'Music','CAMS',3,1)
+populateRegExCourses(allCoursesTSV,'Music','MAS',1,1)
+populateRegExCourses(allCoursesTSV,'Music','MAS',2,1)
+populateRegExCourses(allCoursesTSV,'Music','MAS',3,1)
+
+populateRegExCourses(allCoursesTSV,'Peace and Justice Studies','PEAC',2,5)
+populateRegExCourses(allCoursesTSV,'Peace and Justice Studies','PEAC',3,6)
+
+populateRegExCourses(allCoursesTSV,'Political Science','POL1',1,4)
+populateRegExCourses(allCoursesTSV,'Political Science','POL1',2,4)
+populateRegExCourses(allCoursesTSV,'Political Science','POL1',3,4)
+populateRegExCourses(allCoursesTSV,'Political Science','POL2',1,4)
+populateRegExCourses(allCoursesTSV,'Political Science','POL2',2,4)
+populateRegExCourses(allCoursesTSV,'Political Science','POL2',3,4)
+populateRegExCourses(allCoursesTSV,'Political Science','POL3',1,4)
+populateRegExCourses(allCoursesTSV,'Political Science','POL3',2,4)
+populateRegExCourses(allCoursesTSV,'Political Science','POL3',3,4)
+populateRegExCourses(allCoursesTSV,'Political Science','POL4',1,4)
+populateRegExCourses(allCoursesTSV,'Political Science','POL4',2,4)
+populateRegExCourses(allCoursesTSV,'Political Science','POL4',3,4)
+
+populateRegExCourses(allCoursesTSV,'Psychology','PSYC',2,3)
+populateRegExCourses(allCoursesTSV,'Psychology','PSYC',3,2)
+
+populateRegExCourses(allCoursesTSV,'Religion','REL',1,2)
+populateRegExCourses(allCoursesTSV,'Religion','REL',2,7)
+populateRegExCourses(allCoursesTSV,'Religion','REL',3,9)
+populateRegExCourses(allCoursesTSV,'Religion','AMST',2,3)
+populateRegExCourses(allCoursesTSV,'Religion','AMST',3,3)
+populateRegExCourses(allCoursesTSV,'Religion','EALC',2,3)
+populateRegExCourses(allCoursesTSV,'Religion','EALC',3,3)
+populateRegExCourses(allCoursesTSV,'Religion','JWST',2,3)
+populateRegExCourses(allCoursesTSV,'Religion','JWST',3,3)
+populateRegExCourses(allCoursesTSV,'Religion','MES',2,3)
+populateRegExCourses(allCoursesTSV,'Religion','MES',3,3)
+populateRegExCourses(allCoursesTSV,'Religion','JWST',2,3)
+populateRegExCourses(allCoursesTSV,'Religion','JWST',3,3)
+populateRegExCourses(allCoursesTSV,'Religion','MER',2,3)
+populateRegExCourses(allCoursesTSV,'Religion','MER',3,3)
+populateRegExCourses(allCoursesTSV,'Religion','SAS',2,3)
+populateRegExCourses(allCoursesTSV,'Religion','SAS',3,3)
+
+populateRegExCourses(allCoursesTSV,'Sociology','SOC',2,3)
+populateRegExCourses(allCoursesTSV,'Sociology','SOC',3,5)
+
+populateRegExCourses(allCoursesTSV,'South Asia Studies','SAS',1,2)
+populateRegExCourses(allCoursesTSV,'South Asia Studies','SAS',2,5)
+populateRegExCourses(allCoursesTSV,'South Asia Studies','SAS',3,7)
+
+populateRegExCourses(allCoursesTSV,'Spanish','SPAN',2,6)
+populateRegExCourses(allCoursesTSV,'Spanish','SPAN',3,8)
+
+populateRegExCourses(allCoursesTSV,'Theatre Studies','THST',3,2)
+
+populateRegExCourses(allCoursesTSV,"Women's and Gender Studies",'WGST',1,1)
+populateRegExCourses(allCoursesTSV,"Women's and Gender Studies",'WGST',2,6)
+populateRegExCourses(allCoursesTSV,"Women's and Gender Studies",'WGST',3,8)
 
 allCourses.sort()    # sorts the course list lexigocraphically
+
+''' A function that removes a course from the list of courses that count for a major. For example,
+populateRegExCourses was used to add all 200 level Psychology courses to the major, but the Psychology
+department does not count PSYC 299 or PSYC 299H towards the major.'''
+def removeCourseFromMajor(major, course):
+    if course in majorKey:
+        majorKey[major].remove(course)
+        removeCourseFromMajor(major,course)
+    if course in allCourses:
+        allCourses.remove(course)
+        removeCourseFromMajor(major,course)
+    else:
+        pass
+
+removeCourseFromMajor('American Studies','AMST 350')
+removeCourseFromMajor('American Studies','AMST 360')
+removeCourseFromMajor('American Studies','AMST 370')
+
+removeCourseFromMajor('Art History','ARTH 350')
+
+removeCourseFromMajor('Biological Sciences','BISC 250')
+removeCourseFromMajor('Biological Sciences','BISC 250H')
+removeCourseFromMajor('Biological Sciences','BISC 350')
+removeCourseFromMajor('Biological Sciences','BISC 350H')
+removeCourseFromMajor('Biological Sciences','BISC 355')
+removeCourseFromMajor('Biological Sciences','BISC 360')
+removeCourseFromMajor('Biological Sciences','BISC 365')
+removeCourseFromMajor('Biological Sciences','BISC 370')
+
+removeCourseFromMajor('Chemistry','CHEM 250')
+removeCourseFromMajor('Chemistry','CHEM 250H')
+removeCourseFromMajor('Chemistry','CHEM 350')
+removeCourseFromMajor('Chemistry','CHEM 350H')
+removeCourseFromMajor('Chemistry','CHEM 360')
+removeCourseFromMajor('Chemistry','CHEM 370')
+
+removeCourseFromMajor('Computer Science','CS 250')
+removeCourseFromMajor('Computer Science','CS 250H')
+removeCourseFromMajor('Computer Science','CS 350')
+removeCourseFromMajor('Computer Science','CS 350H')
+removeCourseFromMajor('Computer Science','CS 360')
+removeCourseFromMajor('Computer Science','CS 370')
+
+removeCourseFromMajor('Economics','ECON 350')
+removeCourseFromMajor('Economics','ECON 360')
+removeCourseFromMajor('Economics','ECON 370')
+
+removeCourseFromMajor('English','ENG 350')
+removeCourseFromMajor('English','ENG 360')
+removeCourseFromMajor('English','ENG 370')
+
+removeCourseFromMajor('Environmental Studies','ES 350')
+
+removeCourseFromMajor('Neuroscience','NEUR 240')
+removeCourseFromMajor('Neuroscience','NEUR 250')
+removeCourseFromMajor('Neuroscience','NEUR 250H')
+removeCourseFromMajor('Neuroscience','NEUR 340')
+removeCourseFromMajor('Neuroscience','NEUR 350')
+removeCourseFromMajor('Neuroscience','NEUR 350H')
+removeCourseFromMajor('Neuroscience','NEUR 360')
+removeCourseFromMajor('Neuroscience','NEUR 370')
+
+removeCourseFromMajor('Psychology','PSYC 299')
+removeCourseFromMajor('Psychology','PSYC 299H')
+
+removeCourseFromMajor('Russian','RUSS 101')
+removeCourseFromMajor('Russian','RUSS 102')
+removeCourseFromMajor('Russian','RUSS 203')
+removeCourseFromMajor('Russian','RUSS 303')
+
+removeCourseFromMajor('Spanish','SPAN 201')
+removeCourseFromMajor('Spanish','SPAN 202')
 
 freq = {}
 """ countFrequency(courseList, freqDict) is a function that takes a list of courses and
@@ -172,10 +285,12 @@ courseFreqDF.to_csv('/students/kswint/major-match/DDL/courseMajFreq.tsv', sep = 
 ''' sorts courseFreqDF by the number of majors a course counts towards, with the most number
 of majors at the top and least at the bottom'''
 sortedDF = courseFreqDF.sort_values(by='freq', ascending=False)               # the courses that count towards the most majors at the top
+print(sortedDF.head(50))
 
 ''' counts the number of courses that count towards X majors. For instance, it counts
 the number of courses that only contribute to two majors.'''
 countDF = sortedDF['freq'].value_counts()
+print(countDF)
 
 '''Create the master dataframe for export!'''
 tuplefy = [(k, v) for k, v in majors.items()]           # converts the dictionary of majors a course counts towards
@@ -187,7 +302,7 @@ masterDF[['abrev','num']] = masterDF.course.str.split(expand = True) # create tw
                                                                      # ("abrev") and one for the course number.
 masterDF = masterDF.reindex(columns=['course', 'abrev', 'num', 'freq', 'majors'])   # rearrange the rows for aesthetic purposes
 masterDF = masterDF.drop('course', 1)
-print(masterDF)
+print('\n', masterDF)
 
 ''' Master TSV! Columns are the course, the department (abrev), the course number (three digit, not CRN),
 the number of majors that course counts towards, and a list of the majors that course counts towards.'''
