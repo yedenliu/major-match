@@ -16,7 +16,7 @@
 
 <table class="depts_table">
     {% for dept in departments %}
-    <tr><td><a id="dept_pg" href="{{ url_for('department_page', dept_id=dept[0]) }}">{{ dept[1] }} (dept ID: {{ dept[0] }})</a></td>
+    <tr><td><a id="dept_pg" href="{{ url_for('department_page', dept_id=dept[0]) }}">{{ dept[1] }} </a></td>
         <td><a id="catalog_pg" href="{{ dept[4] }}">(catalog page)</a></td></tr>
     {% endfor %}
 </table>

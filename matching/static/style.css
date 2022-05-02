@@ -26,19 +26,18 @@ main{
     background-color: white;
     margin: auto;
     border-radius: 25px;
-    box-shadow: 5px 5px 2px 5px #fee4a7;
     padding-top:10px;
 }
 
 .inside-container{
-    height: 97%;
+    height: 98%;
     width: 97%;
     background-color: #bfe2ec;
     margin: auto;
     border-radius: 25px;
-    border-color: #fee4a7;
-    border-width: thick;
-    border-style: solid;
+    /* border-color: #fee4a7; */
+    /* border-width: thick; */
+    /* border-style: solid; */
 }
 
 /********** STYLE BASE TEMPLATE **********/
@@ -122,6 +121,8 @@ form {
     background-color: white;
     border-radius: 10px;
     margin: 6px;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 .class-input {
@@ -142,6 +143,7 @@ input {
     border-width: thick;
     border-color: #f24f55;
     background-color: #f68589;
+    padding: 10px;
 }
 
 .year-2 {
@@ -151,6 +153,7 @@ input {
     border-width: thick;
     border-color: #7aeb1e;
     background-color: #a9ee70;
+    padding: 10px;
 }
 
 .year-3 {
@@ -160,6 +163,7 @@ input {
     border-width: thick;
     border-color: #f7c82b;
     background-color: #fae293;
+    padding: 10px;
 }
 
 .year-4 {
@@ -169,6 +173,7 @@ input {
     border-width: thick;
     border-color: #8541ea;
     background-color: #b894ef;
+    padding: 10px;
 }
 
 /* Text input on forms */

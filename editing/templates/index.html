@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 
-{% block header %}
-<h1>Welcome!</h1>
-{% endblock %}
+
 
 {% block main_content %}
 <h2>Click through the navigation bar or the list below to interact with our courses database</h2>
 
+<img href="{{url_for('static', filename = 'cap.png')}}" alt="graduation cap logo" >
 {% endblock %}
