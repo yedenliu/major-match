@@ -189,3 +189,19 @@ def find_cid(conn, dept, cnum):
     row = curs.fetchone()
     return row[0]
 
+
+
+
+################################################################################
+#   Helpers for departments html 
+################################################################################
+
+def alpha_depts(conn):
+    '''Alphabetizes the departments and provides hyperlinks
+     as a table of contents to the departments page'''
+    depts = get_departments(conn)
+    letters = list(set([dept[1][0] for dept in depts]))
+    letters.sort()
+    return letters
+
+

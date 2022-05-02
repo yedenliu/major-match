@@ -81,9 +81,11 @@ def select():
 def departments():
     conn = dbi.connect()
     departments = get_departments(conn)
+    alphas = alpha_depts(conn)
     return render_template('departments.html',
                             page_title='Departments',
-                            departments = departments)
+                            departments = departments,
+                            alphas=alphas)
 
 @app.route('/departments/<dept_id>', methods=['GET', 'POST'])
 def department_page(dept_id):

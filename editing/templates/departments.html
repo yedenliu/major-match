@@ -3,11 +3,21 @@
 {% block main_content %}
 
 <h1>Departments</h1>
+<h3>Click on a department to see it's courses and insert a new course</h3>
 
-<table>
+
+<!-- TODO: add a table of contents for first letter of depts -->
+<!-- <table>
     {% for dept in departments %}
-    <tr><td><a href="{{ url_for('department_page', dept_id=dept[0]) }}">{{ dept[1] }} (dept ID: {{ dept[0] }})</a></td>
-        <td><a href="{{ dept[4] }}">(catalog page)</a></td></tr>
+
+    {% endfor %}
+</table> -->
+
+
+<table class="depts_table">
+    {% for dept in departments %}
+    <tr><td><a id="dept_pg" href="{{ url_for('department_page', dept_id=dept[0]) }}">{{ dept[1] }} (dept ID: {{ dept[0] }})</a></td>
+        <td><a id="catalog_pg" href="{{ dept[4] }}">(catalog page)</a></td></tr>
     {% endfor %}
 </table>
 

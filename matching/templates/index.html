@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block header %}
-<h1>Fill Out Your Courses</h1>
+<h1>Wellesley Major Matching</h1>
 <h2>Enter in courses taken and future courses to see the major requirements you have fulfilled</h2>
 {% endblock %}
 
@@ -9,66 +9,79 @@
 <form method=POST action="">
     <div class="flex-container">
         <!-- YEAR 1 (8 courses) -->
-        <div class="year-1">
-            {% for i in range(8) %}
-            <div class="class-input">
-                <select id="depts" name="depts">
-                        <option value="dept">Department</option>>
-                {% for dept in depts %}
-                        <option value="{{dept}}">{{dept}}</option>
+        <div class="flex-form-container">
+            <h2>YEAR 1</h2>
+            <div class="year-1">
+                {% for i in range(8) %}
+                <div class="class-input">
+                    <select id="depts" name="depts">
+                            <option value="dept">Department</option>>
+                    {% for dept in depts %}
+                            <option value="{{dept}}">{{dept}}</option>
+                    {% endfor %}
+                    </select>
+                    <input type="text" name="cnum-{}".format(1) placeholder="Course #">
+                </div>
                 {% endfor %}
-                </select>
-                <input type="text" name="cnum-{}".format(1) placeholder="Course #">
             </div>
-            {% endfor %}
         </div>
         
         <!-- YEAR 2 (8 courses) -->
-        <div class="year-2">
-            {% for i in range(8) %}
-            <div class="class-input">
-                <!-- <label>Dept</label> -->
-                <select id="depts" name="depts">
-                    <option value="dept">Department</option>>
-                {% for dept in depts %}
-                        <option value="{{dept}}">{{dept}}</option>
+        <div class="flex-form-container">
+            <h2>YEAR 2</h2>
+            <div class="year-2">
+                {% for i in range(8) %}
+                <div class="class-input">
+                    <!-- <label>Dept</label> -->
+                    <select id="depts" name="depts">
+                        <option value="dept">Department</option>>
+                    {% for dept in depts %}
+                            <option value="{{dept}}">{{dept}}</option>
+                    {% endfor %}
+                    </select>
+                    <input type="text" name="cnum-{}".format(1)  placeholder="Course #">
+                </div>
                 {% endfor %}
-                </select>
-                <input type="text" name="cnum-{}".format(1)  placeholder="Course #">
             </div>
-            {% endfor %}
         </div>
 
         <!-- YEAR 3 (8 courses) -->
-        <div class="year-3">
-            {% for i in range(8) %}
-            <div class="class-input">
-                <!-- <label>Dept</label> -->
-                <select id="depts" name="depts">
-                    <option value="dept">Department</option>>
-                {% for dept in depts %}
-                        <option value="{{dept}}">{{dept}}</option>
+        <div class="flex-form-container">
+            <h2>YEAR 3</h2>
+            <div class="year-3">
+                {% for i in range(8) %}
+                <div class="class-input">
+                    <!-- <label>Dept</label> -->
+                    <select id="depts" name="depts">
+                        <option value="dept">Department</option>>
+                    {% for dept in depts %}
+                            <option value="{{dept}}">{{dept}}</option>
+                    {% endfor %}
+                    </select>
+                    <input type="text" name="cnum-{}".format(1)  placeholder="Course #">
+                </div>
                 {% endfor %}
-                </select>
-                <input type="text" name="cnum-{}".format(1)  placeholder="Course #">
             </div>
-            {% endfor %}
         </div>
 
+
         <!-- YEAR 4 (8 courses) -->
-        <div class="year-4">
-            {% for i in range(8) %}
-            <div class="class-input">
-                <!-- <label>Dept</label> -->
-                <select id="depts" name="depts">
-                    <option value="dept">Department</option>>
-                {% for dept in depts %}
-                        <option value="{{dept}}">{{dept}}</option>
+        <div class="flex-form-container">
+            <h2>YEAR 4</h2>
+            <div class="year-4">
+                {% for i in range(8) %}
+                <div class="class-input">
+                    <!-- <label>Dept</label> -->
+                    <select id="depts" name="depts">
+                        <option value="dept">Department</option>>
+                    {% for dept in depts %}
+                            <option value="{{dept}}">{{dept}}</option>
+                    {% endfor %}
+                    </select>
+                    <input type="text" name="cnum-{}".format(1)  placeholder="Course #">
+                </div>
                 {% endfor %}
-                </select>
-                <input type="text" name="cnum-{}".format(1)  placeholder="Course #">
             </div>
-            {% endfor %}
         </div>
     </div>
     <div class="submit-btn"><input type='submit' value='REVEAL MATCHES'> </div>

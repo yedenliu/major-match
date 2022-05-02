@@ -1,39 +1,74 @@
+/* QUESTIONS/ TODO:
+    - flex box not inheriting container height and going outside of height
+    - Reveal Matches endpoint not connected
+ */
+
+
 /********** HTML FILE **********/
 * {
     box-sizing: border-box;
-    font-family: 'Arial';
+    font-family: "Lucida Console", "Courier New", monospace;
+
+}
+
+/********** BODY **********/
+html, body{
+    height: 100%;
+    width: 100%;
+    background-color: #fccbcd;
+
+}
+
+/********** MAIN **********/
+main{
+    height:95%;
+    width: 95%;
+    background-color: white;
+    margin: auto;
+    border-radius: 25px;
+    box-shadow: 5px 5px 2px 5px #fee4a7;
+    padding-top:10px;
+}
+
+.inside-container{
+    height: 97%;
+    width: 97%;
+    background-color: #bfe2ec;
+    margin: auto;
+    border-radius: 25px;
+    border-color: #fee4a7;
+    border-width: thick;
+    border-style: solid;
 }
 
 /********** STYLE BASE TEMPLATE **********/
 h1 {
-    font-size: 35px;
+    font-size: 55px;
     text-align: center;
-    font-family: 'Swiss721BT', 'Open Sans', Helvetica, sans-serif;
     font-weight: bolder;
-    color: gray;
+    color: #415a75;
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: gray;
-    /* margin-top: 30px; */
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0px;
-    width: 500px;
+    -webkit-text-stroke-color: #415a75;
+    width: 95%;
+    padding: 30px;
+    margin: auto;
 
 }
 
 
 h2 {
     text-align: center;
-    font-family: 'Swiss721BT', 'Open Sans', Helvetica, sans-serif;
-    color:rgb(119, 115, 115);
+    font-family: inherit;
+    color:#415a75;
     font-size: large;
-    margin-top: 0px
+    margin-top: 0px;
+    margin-bottom: 0%;
 }
 
-.header-container{
-    background-color: #F7F5F5;
-    padding: 10px;
+.main-container{
+    background-color: white;
 }
+
 
 p {
     margin-left: 8px;
@@ -44,36 +79,17 @@ p {
     margin-left: 8px;
     color: red;
 }
-.banner-box{
-    background-color: #002776;
 
-}
 
 .banner-text {
     margin: auto;
-    font-size: 5vw;
-    font-family: 'Garamondo Pro';
+    font-size: 6vw;
     color:#fff;
     font-weight: bolder;
     text-align: center;
     text-shadow: 3px 3px #5b8ae9c4;
 }
 
-/* not working... why?! */
-.gradient-border {
-    border: solid;
-    border-image: radial-gradient(#002776, white)
-}
-
-.bg-image{
-    background-image: url('../static/W_logo.png');
-    /* opacity: 0.5; */
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    margin: auto;
-    position: relative;
-}
 
 .home-btn {
     color: white;
@@ -100,6 +116,14 @@ form {
     padding-top: 30px;
 }
 
+.flex-form-container{
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 6px;
+}
+
 .class-input {
     display: flex;
     flex-wrap: wrap;
@@ -110,43 +134,42 @@ input {
     margin-right: 5px;
     margin-left: 5px;
 }
+
 .year-1 {
     margin: 5px;
     border-style: solid;
     border-radius: 10px;
-    border-width: 1px;
-    border-color: black;
-    background-color: rgb(253, 205, 237);
+    border-width: thick;
+    border-color: #f24f55;
+    background-color: #f68589;
 }
 
 .year-2 {
     margin: 5px;
     border-style: solid;
     border-radius: 10px;
-    border-width: 1px;
-    border-color: black;
-    background-color: rgb(237, 254, 200);
+    border-width: thick;
+    border-color: #7aeb1e;
+    background-color: #a9ee70;
 }
 
 .year-3 {
     margin: 5px;
     border-style: solid;
     border-radius: 10px;
-    border-width: 1px;
-    border-color: black;
-    background-color: rgb(226, 204, 255);
+    border-width: thick;
+    border-color: #f7c82b;
+    background-color: #fae293;
 }
 
 .year-4 {
     margin: 5px;
     border-style: solid;
     border-radius: 10px;
-    border-width: 1px;
-    border-color: black;
-    background-color: rgb(202, 222, 252);
+    border-width: thick;
+    border-color: #8541ea;
+    background-color: #b894ef;
 }
-
-
 
 /* Text input on forms */
 input[type=text] {
@@ -157,15 +180,13 @@ input[type=number] {
     margin-right: 10px;
 }
 
-/* Form submit button */
+/* Form submit button button */
 input[type='submit'] {
     margin-bottom: 5px;
-    background-color: #002776;
+    background-color: #e7ffff;
     font-size: x-large;
     font-weight: bolder;
-    font-family: 'Swiss721BT', 'Open Sans', Helvetica, sans-serif;
-    color: #fff;
-    text-shadow: 2px 2px #5b8ae9c4;
+    color: #415a75;
     border: 1px black dashed;
     border-radius: 5px;
     padding-left: 15px;
@@ -176,7 +197,8 @@ input[type='submit'] {
 
   }
 
+  /* Form submit hover */
   input[type='submit']:hover{
-      background-color: rgb(102, 208, 235);
+      background-color: #fccbcd;
       border-style: solid;
   }

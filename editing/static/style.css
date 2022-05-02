@@ -4,6 +4,28 @@
     font-family: 'Gill Sans';
 }
 
+html, body {
+    width: 100%;
+
+}
+
+/********** STYLE BANNER **********/
+.banner-box{
+    background-color: #6092f5d7;
+
+}
+
+.banner-text {
+    margin: auto;
+    font-size: 6vw;
+    font-family: 'Swiss721BT', 'Open Sans', Helvetica, sans-serif;
+    color:#fff;
+    font-weight: bolder;
+    text-align: center;
+    text-shadow: 3px 3px #5b8ae9c4;
+}
+
+
 /********** STYLE NAVBAR **********/
 .topnav {
     overflow: hidden;
@@ -29,8 +51,8 @@
     color: black;
 }
 /* Active/current link */
-.topnav a.active {
-    background-color:rgb(34, 53, 139);
+.topnav a:active {
+    background-color:rgb(61, 94, 244);
     color:white;
     font-weight: bold;
 }
@@ -46,7 +68,7 @@ h1 {
 }
 
 h2 {
-    color:rgb(74, 87, 206);
+    color:rgb(96, 110, 213);
     margin-left: 8px;
 }
 
@@ -88,6 +110,14 @@ p {
 .table-form {
     margin-bottom: 10px;
     border: black solid;
+    padding: 5px;
+    font-weight: bold;
+
+}
+
+td{
+    padding: 5px;
+    padding-left: 2px;
 }
 
 .row-titles {
@@ -107,7 +137,17 @@ input[type=text] {
 
 /* Form submit button */
 input[type='submit'] {
-    background-color: rgb(206, 241, 255);
+    background-color: #5cb2f8;
     font-family: 'Gill Sans';
-    font-size: large;
+    font-size: x-large;
+    color: white;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+
   }
+
+
+/* .depts_table{
+    
+} */
