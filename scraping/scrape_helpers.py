@@ -65,15 +65,12 @@ def get_name_list(s):
     Return - List of strings of the course name items
     '''
     name_list = [] 
-    try:
-        content = s.split(' - ')
-        long_name = content[1]
-        short_name = content[0].split(' ')
-        dept = short_name[0].replace('\n', '') 
-        cnum = short_name[1].replace('/', '')
-        name_list = [dept, cnum, long_name]
-    except:
-        traceback.print_exc()
+    content = s.split(' - ')
+    long_name = content[1]
+    short_name = content[0].split(' ')
+    dept = short_name[0].replace('\n', '') 
+    cnum = short_name[1].replace('/', '')
+    name_list = [dept, cnum, long_name]
     return name_list
 
 def is_crosslisted(section):
@@ -81,15 +78,12 @@ def is_crosslisted(section):
 
 def get_cross_list(s):
     name_list2 = [] 
-    try:
-        content = s.split(' - ')
-        long_name = content[1].strip()
-        short_name = content[0].split(' ')
-        dept2 = short_name[2]
-        cnum2 = short_name[3]
-        name_list2 = [dept2, cnum2, long_name]
-    except:
-        traceback.print_exc()
+    content = s.split(' - ')
+    long_name = content[1].strip()
+    short_name = content[0].split(' ')
+    dept2 = short_name[2]
+    cnum2 = short_name[3]
+    name_list2 = [dept2, cnum2, long_name]
     return name_list2
 
 
@@ -116,63 +110,46 @@ def get_info_list(s_list):
     dr = ''
     sem_offer = ''
     year_offer = '' 
-    try:
-        for item in s_list:
-            item = item.replace('<', '')
-            item = item.replace('>', '')
-            if 'Units' in item:
-                units = item.split(': ')
-                units = units[1]
-            if 'Max Enroll' in item:
-                max_enroll = item.split(': ')
-                max_enroll = max_enroll[1]
-            if 'Prerequisites' in item:
-                item = item.strip('<span>')
-                prereq = item.split(': ')
-                prereq = prereq[1]
-            if 'Instructor' in item:
-                instruct = item.split(': ')
-                instruct = instruct[1]
-            if 'Distribution' in item:
-                dr = item.split(': ')
-                dr = dr[1]
-            if 'Typical' in item:
-                sem_offer = item.split(': ')
-                sem_offer = sem_offer[1]
-            if 'Semesters' in item:
-                year_offer = item.split(': ')
-                year_offer = year_offer[1]
-    except:
-        traceback.print_exc()
+
+    for item in s_list:
+        item = item.replace('<', '')
+        item = item.replace('>', '')
+        if 'Units' in item:
+            units = item.split(': ')
+            units = units[1]
+        if 'Max Enroll' in item:
+            max_enroll = item.split(': ')
+            max_enroll = max_enroll[1]
+        if 'Prerequisites' in item:
+            item = item.strip('<span>')
+            prereq = item.split(': ')
+            prereq = prereq[1]
+        if 'Instructor' in item:
+            instruct = item.split(': ')
+            instruct = instruct[1]
+        if 'Distribution' in item:
+            dr = item.split(': ')
+            dr = dr[1]
+        if 'Typical' in item:
+            sem_offer = item.split(': ')
+            sem_offer = sem_offer[1]
+        if 'Semesters' in item:
+            year_offer = item.split(': ')
+            year_offer = year_offer[1]
+    
     return [units, max_enroll, prereq, instruct, dr, sem_offer, year_offer]
 
 def get_course_dict(section, iteration):
     # run helper functions
     s = find_name_tag(section)
     s_list = find_info_tags(section)
-    info_list = get_info_list(s_list)
-    
+    try:
+        info_list = get_info_list(s_list)
+    except:
+        info_list = list(10) # empty list
+        print('Info list for "' + str(section) + '" did not work')
+   
     # defining variables
-    dept = None
-    cnum = None
-    name = None
-    if iteration == 2:
-        try:
-            name_list = get_cross_list(s)
-            dept = name_list[0]
-            cnum = name_list[1]
-            name = name_list[2]
-        except:
-            traceback.print_exc()
-    else:
-        try:
-            name_list = get_name_list(s)
-            dept = name_list[0]
-            cnum = name_list[1]
-            name = name_list[2]
-        except:
-            traceback.print_exc()
-    
     units = info_list[0]
     max_enroll = info_list[1]
     prereq = info_list[2]
@@ -180,6 +157,27 @@ def get_course_dict(section, iteration):
     dr = info_list[4]
     sem_offer = info_list[5]
     year_offer = info_list[6]
+    
+    # initialize
+    dept = None
+    cnum = None
+    name = None
+    if iteration == 2:
+        try:
+            name_list = get_cross_list(section)
+            dept = name_list[0]
+            cnum = name_list[1]
+            name = name_list[2]
+        except:
+            print('Cross list for "' + str(s) + '" did not work')
+    else:
+        try:
+            name_list = get_name_list(s)
+            dept = name_list[0]
+            cnum = name_list[1]
+            name = name_list[2]
+        except:
+            print('Name list for "' + str(section) + '" did not work')
 
     # defining dictionary
     course_dict =  {'Department': dept,

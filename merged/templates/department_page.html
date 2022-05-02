@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1>{{ name }}</h1>
+{% endblock %}
+
+{% block main_content %}
+
+<p>Add courses that belong to this page</p>
+<form method=POST action="">
+    <table class="table-form">
+      <tr>
+        <td><label for="dept">Dept.</label></td>
+        <td>
+        <!-- make this a drop down -->
+        <input list="abbrev"  name='dept' value="{{ dept }}" placeholder="Start typing...">
+        <datalist id="abbrev">
+          <option>AFR</option>
+          <option>SWA</option>
+          <option>AMST</option>
+          <option>ANTH</option>
+          <option>ARCH</option>
+          <option>ARTH</option>
+          <option>ASTR</option>
+          <option>ASPH</option>
+          <option>BIOC</option>
+          <option>BISC</option>
+          <option>CHPH</option>
+          <option>CHEM</option>
+          <option>CAMS</option>
+          <option>CLCV</option>
+          <option>CLST</option>
+          <option>CLSC</option>
+          <option>LING</option>
+          <option>CPLT</option>
+          <option>CS</option>
+          <option>DS</option>
+          <option>EALC</option>
+          <option>ECON</option>
+          <option>EDUC</option>
+          <option>ENG</option>
+          <option>ES</option>
+          <option>FREN</option>
+          <option>FRST</option>
+          <option>GEOS</option>
+          <option>GER</option>
+          <option>PORT</option>
+          <option>HIST</option>
+          <option>IREC</option>
+          <option>IRPS</option>
+          <option>ITAS</option>
+          <option>JPN</option>
+          <option>JWST</option>
+          <option>KOR</option>
+          <option>LAST</option>
+          <option>MATH</option>
+          <option>MAS</option>
+          <option>MER</option>
+          <option>MES</option>
+          <option>MUS</option>
+          <option>NEUR</option>
+          <option>PEAC</option>
+          <option>PHIL</option>
+          <option>PHYS</option>
+          <option>POL</option>
+          <option>REL</option>
+          <option>RUSS</option>
+          <option>RAST</option>
+          <option>SOC</option>
+          <option>SAS</option>
+          <option>SPAN</option>
+          <option>STAT</option>
+          <option>ARTS</option>
+          <option>THST</option>
+          <option>WGST</option>
+        </datalist>
+      </td> 
+      </tr>
+      <tr>
+        <td><label for="cnum">Course #</label></td>
+        <td><input type="text" name='cnum' value="{{ cnum }}"></td> 
+      </tr>
+    </table>
+    <input type="submit" name="submit" value="submit">
+</form>
+<p>Courses that count for this major</p>
+<table>
+    {% for course in courses %}
+    <tr><td><a href="{{ url_for('update', cid=course[3]) }}">{{ course[0] }} {{ course[1] }}</a></td>
+        <td>{{ course[2] }}</td></tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
