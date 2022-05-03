@@ -9,11 +9,13 @@
     <link rel='stylesheet' href="{{url_for('static', filename = 'style.css')}}">
 </head>
 
+
+
 <body>
 {% block nav %}
 <nav>
 <div class="topnav">
-  <a class="active" href="{{ url_for('index') }}">Home</a>
+  <a href="{{ url_for('index') }}">Home</a>
   <a href="{{ url_for('departments') }}">Departments</a>
   <a href="{{ url_for('insert') }}">Insert Course</a>
   <a href="{{ url_for('select') }}">Incomplete Courses</a>
@@ -21,8 +23,11 @@
 </nav>
 {% endblock %}
 
+
 {% block header %}
 <!-- insert title of page -->
+<h1>Wellesley College Course Editing</h1>
+
 {% endblock %}
 
 <main>

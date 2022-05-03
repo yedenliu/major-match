@@ -1,6 +1,24 @@
 from tkinter import ttk
 import cs304dbi as dbi
 
+<<<<<<< HEAD
+=======
+'''
+1. Accept the dept abbr and course number from form data --> put into DB 
+2. Match course to database courses 
+Get majors on matched courses 
+Get count of each major that is listed the most 
+'''
+
+def get_depts(conn):
+    curs = dbi.cursor(conn)
+    sql = '''select distinct dept from courses where dept <> '' '''
+    curs.execute(sql)
+    deptsTups = curs.fetchall()
+    deptsList = [i[0] for i in deptsTups]
+    return deptsList
+
+>>>>>>> origin/hannah
 def find_cid(conn, dept, cnum):
     ''' 
     Finds course id number based on department and course number from db

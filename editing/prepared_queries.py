@@ -241,6 +241,7 @@ def find_cid(conn, dept, cnum):
     row = curs.fetchone()
     return row[0]
 
+<<<<<<< HEAD
 def find_dept_id(conn, dept_name):
     '''
     Finds a dept ID based on the department name
@@ -255,3 +256,21 @@ def find_dept_id(conn, dept_name):
     curs.execute(sql, [dept_name])
     row = curs.fetchone()
     return row
+=======
+
+
+
+################################################################################
+#   Helpers for departments html 
+################################################################################
+
+def alpha_depts(conn):
+    '''Alphabetizes the departments and provides hyperlinks
+     as a table of contents to the departments page'''
+    depts = get_departments(conn)
+    letters = list(set([dept[1][0] for dept in depts]))
+    letters.sort()
+    return letters
+
+
+>>>>>>> origin/hannah
