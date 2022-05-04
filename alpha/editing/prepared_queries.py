@@ -53,7 +53,7 @@ def get_course_info(conn, cid):
     return curs.fetchone()
 
 def update_course(conn, cid, dept, cnum, name, units, max_enroll, prereq, 
-instruct, dr, sem_offered, year_offered, type, type_notes, major_freq):
+instruct, dr, sem_offered, year_offered, major_freq):
     '''
     Checks if course already exists in database
 
@@ -74,8 +74,6 @@ instruct, dr, sem_offered, year_offered, type, type_notes, major_freq):
                 dr = %s, 
                 sem_offered = %s, 
                 year_offered = %s, 
-                type = %s, 
-                type_notes = %s, 
                 major_freq = %s
                 where cid = %s
             '''
@@ -89,8 +87,6 @@ instruct, dr, sem_offered, year_offered, type, type_notes, major_freq):
                         dr, 
                         sem_offered, 
                         year_offered, 
-                        type, 
-                        type_notes, 
                         major_freq,
                         cid])
     conn.commit()
@@ -123,8 +119,7 @@ def find_incomplete(conn):
                 or dr is NULL
                 or sem_offered is NULL
                 or year_offered is NULL
-                or type is NULL
-                or type_notes is NULL'''
+          '''
     curs.execute(sql)
     return curs.fetchall()
 
