@@ -172,9 +172,7 @@ def update(cid):
         dr = info[8]
         sem_offered = info[9]
         year_offered = info[10]
-        type = info[11]
-        type_notes = info[12]
-        major_freq = info[13]
+        major_freq = info[11]
         majors = find_pairs(conn, cid)
         return render_template('update.html',
                                 page_title='Update Course',
@@ -188,8 +186,6 @@ def update(cid):
                                 dr = dr,
                                 sem_offered = sem_offered,
                                 year_offered = year_offered,
-                                type = type,
-                                type_notes = type_notes,
                                 major_freq = major_freq,
                                 cid = cid,
                                 majors = majors)
@@ -213,14 +209,11 @@ def update(cid):
             dr = request.form.get('dr')
             sem_offered = request.form.get('sem_offered')
             year_offered = request.form.get('year_offered')
-            type = request.form.get('type')
-            type_notes = request.form.get('type_notes')
             major_freq = request.form.get('major_freq')
             majors = find_pairs(conn, cid)
     
             update_course(conn, new_cid, dept, cnum, name, units, max_enroll, 
-            prereq, instruct, dr, sem_offered, year_offered, type, 
-            type_notes, major_freq)
+            prereq, instruct, dr, sem_offered, year_offered, major_freq)
 
             flash('Successfully updated!')
             return render_template('update.html',
@@ -235,8 +228,6 @@ def update(cid):
                                 dr = dr,
                                 sem_offered = sem_offered,
                                 year_offered = year_offered,
-                                type = type,
-                                type_notes = type_notes,
                                 major_freq = major_freq,
                                 cid = cid,
                                 majors = majors)
@@ -261,9 +252,7 @@ def update(cid):
             dr = info[8]
             sem_offered = info[9]
             year_offered = info[10]
-            type = info[11]
-            type_notes = info[12]
-            major_freq = info[13]
+            major_freq = info[11]
             majors = find_pairs(conn, cid)
             return render_template('update.html',
                                 page_title='Update Course',
@@ -277,8 +266,6 @@ def update(cid):
                                 dr = dr,
                                 sem_offered = sem_offered,
                                 year_offered = year_offered,
-                                type = type,
-                                type_notes = type_notes,
                                 major_freq = major_freq,
                                 cid = cid,
                                 majors = majors)
