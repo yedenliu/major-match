@@ -33,13 +33,15 @@ def index():
         depts = get_depts(conn)
         return render_template('index.html',page_title='Home', depts=depts)
     else:
+        # depts = get_depts(conn)
+        # print(depts)
         classes = []
-        for n in range(33): # range is the number of total courses they can input
+        results = []
+        for n in range(0, 32): # range is the number of total courses they can input
             dept = request.form.get('dept-'+str(n))
             cnum = request.form.get('cnum-'+str(n))
-            
+            print(str(dept), str(cnum))
             if dept not in [None, ''] and cnum not in [None, '']:
-                dept = dept.upper().strip()
                 cnum = cnum.upper().strip()
                 classes.append((dept,cnum))
                 insert_data(conn, dept, cnum)

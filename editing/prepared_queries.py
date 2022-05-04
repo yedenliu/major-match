@@ -241,22 +241,6 @@ def find_cid(conn, dept, cnum):
     row = curs.fetchone()
     return row[0]
 
-<<<<<<< HEAD
-def find_dept_id(conn, dept_name):
-    '''
-    Finds a dept ID based on the department name
-    
-    Param - connection object, department name
-    Return - dept ID
-    '''
-    curs = dbi.cursor(conn)
-    sql = '''   select dept_id from programs
-                where `name` = %s
-            '''
-    curs.execute(sql, [dept_name])
-    row = curs.fetchone()
-    return row
-=======
 
 
 
@@ -273,4 +257,3 @@ def alpha_depts(conn):
     return letters
 
 
->>>>>>> origin/hannah
