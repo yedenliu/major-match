@@ -1,0 +1,130 @@
+/********** HTML FILE **********/
+* {
+    box-sizing: border-box;
+    font-family: 'Arial';
+}
+
+/********** STYLE BASE TEMPLATE **********/
+h1 {
+    font-size: 48px;
+    text-align: center;
+    font-family: 'Arial Black';
+    font-weight: bolder;
+    color: rgb(255, 236, 181);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    margin-bottom: 5px;
+}
+
+h2 {
+    margin-left: 8px;
+}
+
+p {
+    margin-left: 8px;
+    font-size: 17px;
+}
+
+#messages {
+    margin-left: 8px;
+    color: red;
+}
+
+.home-btn {
+    color: white;
+    font-size: large;
+    background-color: rgb(39, 39, 39);
+    border-radius: 5px;
+    border: none;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/********** STYLE FORM **********/
+form {
+    text-align: center;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.class-input {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+input {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.year-1 {
+    margin: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+    background-color: rgb(253, 205, 237);
+}
+
+.year-2 {
+    margin: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+    background-color: rgb(237, 254, 200);
+}
+
+.year-3 {
+    margin: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+    background-color: rgb(226, 204, 255);
+}
+
+.year-4 {
+    margin: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+    background-color: rgb(202, 222, 252);
+}
+
+/* Text input on forms */
+input[type=text] {
+    width: 100px;
+}
+input[type=number] {
+    width: 50px;
+    margin-right: 10px;
+}
+
+/* Form submit button */
+input[type='submit'] {
+    margin-bottom: 5px;
+    background-color: rgb(231, 231, 231);
+    font-size: large;
+    color: dark gray;
+    border: 1px black dashed;
+    border-radius: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+  }
+
+  input[type='submit']:hover{
+      background-color: rgb(255, 234, 138);
+      border-style: solid;
+  }
