@@ -1,7 +1,6 @@
 ################################################################################
-#   Import modules
+#   Import Modules
 ################################################################################
-
 from pdb import find_function
 from flask import (Flask, render_template, make_response, url_for, request,
                    redirect, flash, session, send_from_directory, jsonify)
@@ -11,7 +10,6 @@ app = Flask(__name__)
 import cs304dbi as dbi
 import random
 from prepared_queries import *
-################################################################################
 app.secret_key = 'your secret here'
 # replace that with a random key
 app.secret_key = ''.join([ random.choice(('ABCDEFGHIJKLMNOPQRSTUVXYZ' +
@@ -52,11 +50,45 @@ def after_logout():
     return redirect( url_for('index') )
 
 application = app
+
 ################################################################################
-#   Routing functions
+#   Routing functions - Matching
 ################################################################################
-@app.route('/')
-def index():
+@app.route('/', methods=['GET','POST'])
+def index_matching():
+    conn = dbi.connect()
+    if request.method == 'GET':
+        return render_template('index_matching.html',page_title='Home')
+    else:
+        classes = []
+        for n in range(33): # range is the number of total courses they can input
+            dept = request.form.get('dept-'+str(n))
+            cnum = request.form.get('cnum-'+str(n))
+            
+            if dept not in [None, ''] and cnum not in [None, '']:
+                dept = dept.upper().strip()
+                cnum = cnum.upper().strip()
+                classes.append((dept,cnum))
+                insert_data(conn, dept, cnum)
+                results = major_match(conn)
+        delete_form_data(conn) # DELETE WHEN CAS IS IMPLEMENTED
+        return render_template('results.html',
+                                page_title='Results',
+                                classes = classes,
+                                results = results)
+
+@app.route('/results/')
+def departments():
+    classes = []
+    return render_template('results.html',
+                            page_title='Results',
+                            classes = classes)
+
+################################################################################
+#   Routing functions - editing 
+################################################################################
+@app.route('/admin/')
+def index_editing():
     print('Session keys: ',list(session.keys()))
     for k in list(session.keys()):
         print(k,' => ',session[k])
@@ -75,7 +107,7 @@ def index():
         is_logged_in = False
         username = None
         print('CAS_USERNAME is not in the session')
-    return render_template('index.html',
+    return render_template('index_editing.html',
                             page_title='Mainpage',
                             username=username,
                             is_logged_in=is_logged_in,
@@ -132,11 +164,9 @@ def select():
 def departments():
     conn = dbi.connect()
     departments = get_departments(conn)
-    alphas = alpha_depts(conn)
     return render_template('departments.html',
                             page_title='Departments',
-                            departments = departments,
-                            alphas=alphas)
+                            departments = departments)
 
 @app.route('/departments/<dept_id>', methods=['GET', 'POST'])
 def department_page(dept_id):
@@ -242,8 +272,8 @@ def update(cid):
                                 majors = majors)
         elif request.form['submit'] == 'delete':
             delete_course(conn, cid)
-            flash("Movie successfully deleted!")
-            return redirect(url_for('index'))
+            flash("Course successfully deleted!")
+            return redirect(url_for('index_editing'))
         elif request.form['submit'] == 'add':
             new_dept = request.form.get('new_dept')
             new_dept_id = find_dept_id(conn, new_dept)
@@ -284,6 +314,7 @@ def update(cid):
                                 majors = majors)
         else:
             flash("Error")
+            
 ################################################################################
 @app.before_first_request
 def init_db():

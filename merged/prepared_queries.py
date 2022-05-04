@@ -1,9 +1,68 @@
-################################################################################
-#   Import Modules
-################################################################################
 from tkinter import ttk
 import cs304dbi as dbi
 
+################################################################################
+#   Helpers Matching front-end
+################################################################################
+
+def find_cid(conn, dept, cnum):
+    ''' 
+    Finds course id number based on department and course number from db
+    
+    Param - department abbreviation, course number
+    Return - connection object, course ID
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   select cid from courses
+                where dept = %s and cnum = %s
+            '''
+    curs.execute(sql, [dept, cnum])
+    return curs.fetchone()
+
+def insert_data(conn, dept, cnum):
+    '''
+    Inserts user's inputted form data into a semi-temporary table
+    (when we implement CAS, course data will be saved for each user)
+    
+    Param - connection object, department abbreviation, course number 
+    '''
+    curs = dbi.cursor(conn)
+    if dept != None and cnum != None:
+        cid = find_cid(conn, dept, cnum)
+        sql = '''   insert into form_data(dept, cnum, cid)
+                    values (%s, %s, %s)
+                ''' 
+        curs.execute(sql, [dept, cnum, cid])
+        conn.commit()
+
+def major_match(conn):
+    '''
+    Getting top five major matches for courses user has inputted
+    Ordered by count
+    
+    Param - connection object
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   select programs.name, count(major_pairs.dept_id) from programs
+                inner join major_pairs using(dept_id)
+                inner join form_data using(cid)
+                group by major_pairs.dept_id
+                order by count(major_pairs.dept_id) DESC
+                limit 5
+            ''' 
+    curs.execute(sql)
+    return curs.fetchall()
+
+def delete_form_data(conn):
+    '''
+    TEMPORARY FUNCTION (until CAS is implemented)
+    Deletes data from form_data table
+    '''
+    curs = dbi.cursor(conn)
+    sql = 'delete from form_data'
+    curs.execute(sql)
+    conn.commit()
+    
 ################################################################################
 #   Helpers for courses table 
 ################################################################################
@@ -225,23 +284,6 @@ def find_pairs(conn, cid):
         majors.append(major)
     return majors
 
-
-def find_cid(conn, dept, cnum):
-    '''
-    Finds a course ID based on the department abbreviation and course number
-    
-    Param - connection object, dept abbrev, course number
-    Return - course ID
-    '''
-    curs = dbi.cursor(conn)
-    sql = '''   select cid from courses
-                where dept = %s and cnum = %s
-            '''
-    curs.execute(sql, [dept, cnum])
-    row = curs.fetchone()
-    return row[0]
-
-<<<<<<< HEAD
 def find_dept_id(conn, dept_name):
     '''
     Finds a dept ID based on the department name
@@ -256,21 +298,3 @@ def find_dept_id(conn, dept_name):
     curs.execute(sql, [dept_name])
     row = curs.fetchone()
     return row
-=======
-
-
-
-################################################################################
-#   Helpers for departments html 
-################################################################################
-
-def alpha_depts(conn):
-    '''Alphabetizes the departments and provides hyperlinks
-     as a table of contents to the departments page'''
-    depts = get_departments(conn)
-    letters = list(set([dept[1][0] for dept in depts]))
-    letters.sort()
-    return letters
-
-
->>>>>>> origin/hannah

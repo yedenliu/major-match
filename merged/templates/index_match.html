@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 
 {% block header %}
-<h1>Wellesley Major Matching</h1>
-<h2>Enter in courses taken and future courses to see the major requirements you have fulfilled</h2>
+<h1>MAJOR MATCHING</h1>
 {% endblock %}
 
 {% block main_content %}
 <form method=POST action="">
+    <div class="submit-btn"><input type='submit' value='Reveal Matches!'> </div>
     <div class="flex-container">
         <!-- YEAR 1 (8 courses) -->
-<<<<<<< HEAD
         <div class="year-1">
         <div class="class-input">
             <label>Dept</label>
@@ -125,49 +124,10 @@
                 <label>Course #</label>
                 <input type="text" name="cnum-16">
             </div>
-=======
-        <div class="flex-form-container">
-            <h2>YEAR 1</h2>
-            <div class="year-1">
-                {% for i in range(8) %}
-                <div class="class-input">
-                    <select id="depts" name="depts">
-                            <option value="dept">Dept</option>>
-                    {% for dept in depts %}
-                            <option value="{{dept}}">{{dept}}</option>
-                    {% endfor %}
-                    </select>
-                    <input type="text" name="cnum-{}".format(1) placeholder="Course #">
-                </div>
-                {% endfor %}
             </div>
-        </div>
-        
-        <!-- YEAR 2 (8 courses) -->
-        <div class="flex-form-container">
-            <h2>YEAR 2</h2>
-            <div class="year-2">
-                {% for i in range(8) %}
-                <div class="class-input">
-                    <!-- <label>Dept</label> -->
-                    <select id="depts" name="depts">
-                        <option value="dept">Dept</option>>
-                    {% for dept in depts %}
-                            <option value="{{dept}}">{{dept}}</option>
-                    {% endfor %}
-                    </select>
-                    <input type="text" name="cnum-{}".format(1)  placeholder="Course #">
-                </div>
-                {% endfor %}
->>>>>>> origin/hannah
-            </div>
-        </div>
 
-        <!-- YEAR 3 (8 courses) -->
-        <div class="flex-form-container">
-            <h2>YEAR 3</h2>
+            <!-- YEAR 3 (8 courses) -->
             <div class="year-3">
-<<<<<<< HEAD
             <div class="class-input">
                 <label>Dept</label>
                 <input type="text" name="dept-17">
@@ -223,29 +183,10 @@
                 <label>Course #</label>
                 <input type="text" name="cnum-24">
             </div>
-=======
-                {% for i in range(8) %}
-                <div class="class-input">
-                    <!-- <label>Dept</label> -->
-                    <select id="depts" name="depts">
-                        <option value="dept">Dept</option>>
-                    {% for dept in depts %}
-                            <option value="{{dept}}">{{dept}}</option>
-                    {% endfor %}
-                    </select>
-                    <input type="text" name="cnum-{}".format(1)  placeholder="Course #">
-                </div>
-                {% endfor %}
->>>>>>> origin/hannah
             </div>
-        </div>
 
-
-        <!-- YEAR 4 (8 courses) -->
-        <div class="flex-form-container">
-            <h2>YEAR 4</h2>
+            <!-- YEAR 4 (8 courses) -->
             <div class="year-4">
-<<<<<<< HEAD
             <div class="class-input">
                 <label>Dept</label>
                 <input type="text" name="dept-25">
@@ -303,23 +244,6 @@
             </div>
             </div>
         
-=======
-                {% for i in range(8) %}
-                <div class="class-input">
-                    <!-- <label>Dept</label> -->
-                    <select id="depts" name="depts">
-                        <option value="dept">Dept</option>>
-                    {% for dept in depts %}
-                            <option value="{{dept}}">{{dept}}</option>
-                    {% endfor %}
-                    </select>
-                    <input type="text" name="cnum-{}".format(1)  placeholder="Course #">
-                </div>
-                {% endfor %}
-            </div>
-        </div>
->>>>>>> origin/hannah
     </div>
-    <div class="submit-btn"><input type='submit' value='REVEAL MATCHES'> </div>
     </form>
 {% endblock %}

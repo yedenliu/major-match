@@ -30,7 +30,8 @@ app.config['TRAP_BAD_REQUEST_ERRORS'] = True
 def index():
     conn = dbi.connect()
     if request.method == 'GET':
-        return render_template('index.html',page_title='Home')
+        depts = get_depts(conn)
+        return render_template('index.html',page_title='Home', depts=depts)
     else:
         classes = []
         for n in range(33): # range is the number of total courses they can input
@@ -43,18 +44,11 @@ def index():
                 classes.append((dept,cnum))
                 insert_data(conn, dept, cnum)
                 results = major_match(conn)
-        delete_form_data(conn) # DELETE WHEN CAS IS IMPLEMENTED
+        delete_form_data(conn)
         return render_template('results.html',
                                 page_title='Results',
                                 classes = classes,
                                 results = results)
-
-@app.route('/results/')
-def departments():
-    classes = []
-    return render_template('results.html',
-                            page_title='Results',
-                            classes = classes)
 
 ################################################################################
 @app.before_first_request

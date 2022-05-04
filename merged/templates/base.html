@@ -6,40 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="Major Match Team" content="">
     <title>{{ page_title }}</title>
-    <link href="{{url_for('static', filename = 'style.css')}}" rel='stylesheet'>
+    <link rel='stylesheet' href="{{url_for('static', filename = 'style.css')}}">
 </head>
 
-
-
 <body>
-
-<main class="main-container">
-<div class="inside-container">
-
-    
-    
-
-
-
-
-<!-- taking home button off of home page and having it only on results page -->
-{% block navbar %}
-<!-- <nav>
-    <a href="{{ url_for('index') }}"><button class="home-btn">HOME</button></a>
-</nav> -->
+{% block nav %}
+<nav>
+<div class="topnav">
+  <a class="active" href="{{ url_for('index') }}">Home</a>
+  <a href="{{ url_for('departments') }}">Departments</a>
+  <a href="{{ url_for('insert') }}">Insert Course</a>
+  <a href="{{ url_for('select') }}">Incomplete Courses</a>
+</div>
+</nav>
 {% endblock %}
 
-<div class="header-container">
 {% block header %}
 <!-- insert title of page -->
 {% endblock %}
+
+<main>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div id="messages">
+    {% for msg in messages %}
+    <p>{{msg}}</p>
+    {% endfor %}
 </div>
-
-
+{% endif %}
+{% endwith %}
 
 
 {% block main_content %}
-
 <!-- put main content here -->
 {% endblock %}
 
@@ -47,7 +45,6 @@
 {% block end_scripts %}
 {% endblock %}
 
-</div>
 </main>
 
 </body>

@@ -1,24 +1,73 @@
+/* QUESTIONS/ TODO:
+    - flex box not inheriting container height and going outside of height
+    - Reveal Matches endpoint not connected
+ */
+
+
 /********** HTML FILE **********/
 * {
     box-sizing: border-box;
-    font-family: 'Arial';
+    font-family: "Lucida Console", "Courier New", monospace;
+
+}
+
+/********** BODY **********/
+html, body{
+    height: 100%;
+    width: 100%;
+    background-color: #fccbcd;
+
+}
+
+/********** MAIN **********/
+main{
+    height:95%;
+    width: 95%;
+    background-color: white;
+    margin: auto;
+    border-radius: 25px;
+    padding-top:10px;
+}
+
+.inside-container{
+    height: 98%;
+    width: 97%;
+    background-color: #bfe2ec;
+    margin: auto;
+    border-radius: 25px;
+    /* border-color: #fee4a7; */
+    /* border-width: thick; */
+    /* border-style: solid; */
 }
 
 /********** STYLE BASE TEMPLATE **********/
 h1 {
-    font-size: 48px;
+    font-size: 55px;
     text-align: center;
-    font-family: 'Arial Black';
     font-weight: bolder;
-    color: rgb(255, 236, 181);
+    color: #415a75;
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-    margin-bottom: 5px;
+    -webkit-text-stroke-color: #415a75;
+    width: 95%;
+    padding: 30px;
+    margin: auto;
+
 }
 
+
 h2 {
-    margin-left: 8px;
+    text-align: center;
+    font-family: inherit;
+    color:#415a75;
+    font-size: large;
+    margin-top: 0px;
+    margin-bottom: 0%;
 }
+
+.main-container{
+    background-color: white;
+}
+
 
 p {
     margin-left: 8px;
@@ -29,6 +78,17 @@ p {
     margin-left: 8px;
     color: red;
 }
+
+
+.banner-text {
+    margin: auto;
+    font-size: 6vw;
+    color:#fff;
+    font-weight: bolder;
+    text-align: center;
+    text-shadow: 3px 3px #5b8ae9c4;
+}
+
 
 .home-btn {
     color: white;
@@ -52,6 +112,17 @@ form {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    padding-top: 30px;
+}
+
+.flex-form-container{
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 6px;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 .class-input {
@@ -64,40 +135,45 @@ input {
     margin-right: 5px;
     margin-left: 5px;
 }
+
 .year-1 {
     margin: 5px;
     border-style: solid;
     border-radius: 10px;
-    border-width: 1px;
-    border-color: black;
-    background-color: rgb(253, 205, 237);
+    border-width: thick;
+    border-color: #f24f55;
+    background-color: #f68589;
+    padding: 10px;
 }
 
 .year-2 {
     margin: 5px;
     border-style: solid;
     border-radius: 10px;
-    border-width: 1px;
-    border-color: black;
-    background-color: rgb(237, 254, 200);
+    border-width: thick;
+    border-color: #7aeb1e;
+    background-color: #a9ee70;
+    padding: 10px;
 }
 
 .year-3 {
     margin: 5px;
     border-style: solid;
     border-radius: 10px;
-    border-width: 1px;
-    border-color: black;
-    background-color: rgb(226, 204, 255);
+    border-width: thick;
+    border-color: #f7c82b;
+    background-color: #fae293;
+    padding: 10px;
 }
 
 .year-4 {
     margin: 5px;
     border-style: solid;
     border-radius: 10px;
-    border-width: 1px;
-    border-color: black;
-    background-color: rgb(202, 222, 252);
+    border-width: thick;
+    border-color: #8541ea;
+    background-color: #b894ef;
+    padding: 10px;
 }
 
 /* Text input on forms */
@@ -109,22 +185,25 @@ input[type=number] {
     margin-right: 10px;
 }
 
-/* Form submit button */
+/* Form submit button button */
 input[type='submit'] {
     margin-bottom: 5px;
-    background-color: rgb(231, 231, 231);
-    font-size: large;
-    color: dark gray;
+    background-color: #e7ffff;
+    font-size: x-large;
+    font-weight: bolder;
+    color: #415a75;
     border: 1px black dashed;
     border-radius: 5px;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
 
   }
 
+  /* Form submit hover */
   input[type='submit']:hover{
-      background-color: rgb(255, 234, 138);
+      background-color: #fccbcd;
       border-style: solid;
   }

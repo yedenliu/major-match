@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1>RESULTS</h1>
+{% endblock %}
+
+{% block main_content %}
+<p>This is what you inputted</p>
+<ul> 
+    {% for class in classes %}
+    <li>{{ class[0] }} {{ class[1] }}</li>
+    {% endfor %}
+</ul>
+
+<p>These are your top matched majors</p>
+<ul>
+    {% for major in results %}
+    <!-- name, count() -->
+    <li>{{ major[0] }} || Count: {{ major[1] }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
