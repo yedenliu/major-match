@@ -77,15 +77,16 @@ def is_crosslisted(section):
     return "Crosslisted" in str(section)
 
 def get_cross_list(s):
-    name_list2 = [] 
-    content = s.split(' - ')
-    long_name = content[1].strip()
+    section = s.find('div',{'class': 'coursename_big'})
+    name_list2 = []
+    c2 = str(section).split('/ ')
+    content = c2[1].split(' - ')
+    long_name = content[1].replace('</div>', '').strip()
     short_name = content[0].split(' ')
-    dept2 = short_name[2]
-    cnum2 = short_name[3]
+    dept2 = short_name[0]
+    cnum2 = short_name[1]
     name_list2 = [dept2, cnum2, long_name]
     return name_list2
-
 
 def find_info_tags(section):
     '''
@@ -146,8 +147,8 @@ def get_course_dict(section, iteration):
     try:
         info_list = get_info_list(s_list)
     except:
-        info_list = list(10) # empty list
-        print('Info list for "' + str(section) + '" did not work')
+        info_list = [None] * 10
+        print('Info list for "' + str(s) + '" did not work')
    
     # defining variables
     units = info_list[0]
@@ -170,7 +171,7 @@ def get_course_dict(section, iteration):
             name = name_list[2]
         except:
             print('Cross list for "' + str(s) + '" did not work')
-    else:
+    elif iteration == 1:
         try:
             name_list = get_name_list(s)
             dept = name_list[0]
@@ -195,9 +196,11 @@ def get_course_dict(section, iteration):
 def all_courses(sections):
     course_list = []
     for section in sections:
-        course = get_course_dict(section, 1)
-        course_list.append(course)
         if is_crosslisted(section):
             course2 = get_course_dict(section, 2)
             course_list.append(course2)
+        else:
+            course = get_course_dict(section, 1)
+            course_list.append(course)
+        
     return course_list

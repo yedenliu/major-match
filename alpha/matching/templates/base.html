@@ -9,24 +9,15 @@
     <link href="{{url_for('static', filename = 'style.css')}}" rel='stylesheet'>
 </head>
 
-
-
 <body>
 
 <main>
 <div class="inside-container">
 
-    
-    
-
-
-
-
-<!-- taking home button off of home page and having it only on results page -->
 {% block navbar %}
-<!-- <nav>
+<nav>
     <a href="{{ url_for('index') }}"><button class="home-btn">HOME</button></a>
-</nav> -->
+</nav>
 {% endblock %}
 
 <div class="header-container">
@@ -35,11 +26,17 @@
 {% endblock %}
 </div>
 
-
-
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div id="messages">
+    {% for msg in messages %}
+    <p>{{msg}}</p>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
 
 {% block main_content %}
-
 <!-- put main content here -->
 {% endblock %}
 

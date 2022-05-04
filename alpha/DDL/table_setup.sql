@@ -18,8 +18,6 @@ create table courses (
     dr varchar(30),
     sem_offered varchar(30),
     year_offered varchar(30),
-    `type` varchar(10),
-    type_notes varchar(20),
     major_freq int,
     primary key (cid)
 )
