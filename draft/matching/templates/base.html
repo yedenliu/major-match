@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <!-- for mobile-friendly pages -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Major Match Team" content="">
+    <title>{{ page_title }}</title>
+    <link rel='stylesheet' href="{{url_for('static', filename = 'style.css')}}">
+</head>
+
+<body>
+{% block navbar %}
+<nav>
+    <a href="{{ url_for('index') }}"><button class="home-btn">HOME</button></a>
+</nav>
+{% endblock %}
+
+{% block header %}
+<!-- insert title of page -->
+{% endblock %}
+
+<main>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div id="messages">
+    {% for msg in messages %}
+    <p>{{msg}}</p>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+
+{% block main_content %}
+<!-- put main content here -->
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+{% block end_scripts %}
+{% endblock %}
+
+</main>
+
+</body>
+</html>

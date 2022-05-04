@@ -1,0 +1,1109 @@
+################################################################################
+#   Import modules
+################################################################################
+
+from pdb import find_function
+from flask import (Flask, render_template, make_response, url_for, request,
+                   redirect, flash, session, send_from_directory, jsonify)
+from werkzeug.utils import secure_filename
+app = Flask(__name__)
+
+import cs304dbi as dbi
+import random
+from prepared_queries import *
+################################################################################
+app.secret_key = 'your secret here'
+# replace that with a random key
+app.secret_key = ''.join([ random.choice(('ABCDEFGHIJKLMNOPQRSTUVXYZ' +
+                                          'abcdefghijklmnopqrstuvxyz' +
+                                          '0123456789'))
+                           for i in range(20) ])
+
+# This gets us better error messages for certain common request errors
+app.config['TRAP_BAD_REQUEST_ERRORS'] = True
+
+################################################################################
+#   CAS NOT IMPLEMENTED FOR DRAFT VERSION
+################################################################################
+# Note : must use a port from 1943 to 1952.
+# bash install-scott-routing.sh doesn't install into our venv
+# new for CAS
+from flask_cas import CAS
+
+CAS(app)
+
+app.config['CAS_SERVER'] = 'https://login.wellesley.edu:443'
+app.config['CAS_LOGIN_ROUTE'] = '/module.php/casserver/cas.php/login'
+app.config['CAS_LOGOUT_ROUTE'] = '/module.php/casserver/cas.php/logout'
+app.config['CAS_VALIDATE_ROUTE'] = '/module.php/casserver/serviceValidate.php'
+app.config['CAS_AFTER_LOGIN'] = 'logged_in'
+# the following doesn't work :-(
+app.config['CAS_AFTER_LOGOUT'] = 'after_logout'
+
+
+@app.route('/logged_in/')
+def logged_in():
+    flash('successfully logged in!')
+    return redirect( url_for('index') )
+
+@app.route('/after_logout/')
+def after_logout():
+    flash('successfully logged out!')
+    return redirect( url_for('index') )
+
+application = app
+################################################################################
+#   Routing functions
+################################################################################
+@app.route('/')
+def index():
+    print('Session keys: ',list(session.keys()))
+    for k in list(session.keys()):
+        print(k,' => ',session[k])
+    if '_CAS_TOKEN' in session:
+        token = session['_CAS_TOKEN']
+    if 'CAS_ATTRIBUTES' in session:
+        attribs = session['CAS_ATTRIBUTES']
+        print('CAS_attributes: ')
+        for k in attribs:
+            print('\t',k,' => ',attribs[k])
+    if 'CAS_USERNAME' in session:
+        is_logged_in = True
+        username = session['CAS_USERNAME']
+        print(('CAS_USERNAME is: ',username))
+    else:
+        is_logged_in = False
+        username = None
+        print('CAS_USERNAME is not in the session')
+    return render_template('index.html',
+                            page_title='Mainpage',
+                            username=username,
+                            is_logged_in=is_logged_in,
+                            cas_attributes = session.get('CAS_ATTRIBUTES'))
+
+@app.route('/insert/', methods=['GET','POST'])
+def insert():
+    conn = dbi.connect()
+    if request.method == 'GET':
+        return render_template('insert.html',page_title='Insert New Course')
+    else:
+        dept = request.form.get('dept') # required
+        cnum = request.form.get('cnum') # required
+        name = request.form.get('name') # required
+        units = request.form.get('units')
+        max_enroll = request.form.get('max_enroll')
+        prereq = request.form.get('prereq')
+        instruct = request.form.get('instruct')
+        dr = request.form.get('dr')
+        sem_offered = request.form.get('sem_offered')
+        year_offered = request.form.get('year_offered')
+        
+        # all required fields must be filled out
+        if len(dept) == 0 or len(cnum) == 0 or len(name) == 0:
+            flash('Missing required field(s)')
+            return render_template('insert.html',page_title='Insert New Course')
+        if not (course_exists(conn, dept, cnum)): # if movie doesn't exist
+            insert_course(conn, dept, cnum, name, units, max_enroll, prereq, 
+                          instruct, dr, sem_offered, year_offered)
+            cid = find_cid(conn, dept, cnum)
+            return redirect(url_for('update', cid=cid))
+        flash('Course already exists')
+        return render_template('insert.html',page_title='Insert New Course')
+
+
+@app.route('/select/', methods=['GET','POST'])
+def select():
+    '''
+    on GET shows a menu of incomplete courses 
+    on POST redirects to the /update/<cid> page for that course.
+    Incomplete means as either the director or the release date is null
+    '''
+    conn = dbi.connect()
+    if request.method == 'GET':
+        course_list = find_incomplete(conn)
+        return render_template('select.html',
+                                page_title='Select Incomplete Courses', 
+                                course_list = course_list)
+    else: 
+        cid = request.form['cid']
+        return redirect(url_for('update', cid=cid))
+
+@app.route('/departments/')
+def departments():
+    conn = dbi.connect()
+    departments = get_departments(conn)
+    return render_template('departments.html',
+                            page_title='Departments',
+                            departments = departments)
+
+@app.route('/departments/<dept_id>', methods=['GET', 'POST'])
+def department_page(dept_id):
+    conn = dbi.connect()
+    name = find_dept_name(conn, dept_id) 
+    courses = find_dept_courses(conn, dept_id) # dept, cnum, courses.name, cid
+    if request.method == 'GET':
+        pass
+    else:
+        dept = request.form.get('dept')
+        cnum = request.form.get('cnum')
+        cid = find_cid(conn, dept, cnum)
+        add_pair(conn, dept_id, cid)
+        flash('Course successfully paired to this major!')
+        return redirect(url_for('department_page', dept_id = dept_id))
+    return render_template('department_page.html',
+                            page_title = name + ' Department Page',
+                            name = name,
+                            courses = courses)
+
+@app.route('/update/<cid>', methods=['GET','POST'])
+def update(cid):
+    conn = dbi.connect()
+    if request.method == 'GET':
+        info = get_course_info(conn, cid)
+        dept = info[1]
+        cnum = info[2]
+        name = info[3]
+        units = info[4]
+        max_enroll = info[5]
+        prereq = info[6]
+        instruct = info[7]
+        dr = info[8]
+        sem_offered = info[9]
+        year_offered = info[10]
+        type = info[11]
+        type_notes = info[12]
+        major_freq = info[13]
+        majors = find_pairs(conn, cid)
+        return render_template('update.html',
+                                page_title='Update Course',
+                                dept = dept,
+                                cnum = cnum,
+                                name = name,
+                                units = units,
+                                max_enroll = max_enroll,
+                                prereq = prereq,
+                                instruct = instruct,
+                                dr = dr,
+                                sem_offered = sem_offered,
+                                year_offered = year_offered,
+                                type = type,
+                                type_notes = type_notes,
+                                major_freq = major_freq,
+                                cid = cid,
+                                majors = majors)
+    else:
+        if request.form['submit'] == 'update':
+            # must be able to update TT but must be a unique cid
+            old_cid = cid
+            dept = request.form.get('dept')
+            cnum = request.form.get('cnum')
+            new_cid = find_cid(conn, dept, cnum)
+
+            if old_cid != new_cid and course_exists(conn, dept, cnum): # if course already exists
+                flash("The Department & Course Number pair you entered already exists")
+                return redirect(url_for('update', cid=old_cid))
+
+            name = request.form.get('name')
+            units = request.form.get('units')
+            max_enroll = request.form.get('max_enroll')
+            prereq = request.form.get('prereq')
+            instruct = request.form.get('instruct')
+            dr = request.form.get('dr')
+            sem_offered = request.form.get('sem_offered')
+            year_offered = request.form.get('year_offered')
+            type = request.form.get('type')
+            type_notes = request.form.get('type_notes')
+            major_freq = request.form.get('major_freq')
+            majors = find_pairs(conn, cid)
+    
+            update_course(conn, new_cid, dept, cnum, name, units, max_enroll, 
+            prereq, instruct, dr, sem_offered, year_offered, type, 
+            type_notes, major_freq)
+
+            flash('Successfully updated!')
+            return render_template('update.html',
+                                page_title='Update Course',
+                                dept = dept,
+                                cnum = cnum,
+                                name = name,
+                                units = units,
+                                max_enroll = max_enroll,
+                                prereq = prereq,
+                                instruct = instruct,
+                                dr = dr,
+                                sem_offered = sem_offered,
+                                year_offered = year_offered,
+                                type = type,
+                                type_notes = type_notes,
+                                major_freq = major_freq,
+                                cid = cid,
+                                majors = majors)
+        elif request.form['submit'] == 'delete':
+            delete_course(conn, cid)
+            flash("Movie successfully deleted!")
+            return redirect(url_for('index'))
+        elif request.form['submit'] == 'add':
+            new_dept = request.form.get('new_dept')
+            new_dept_id = find_dept_id(conn, new_dept)
+            print(str(new_dept) + ' id: ' + str(new_dept_id))
+            add_pair(conn, new_dept_id, cid)
+            flash("Matched to department successfully!")
+            info = get_course_info(conn, cid)
+            dept = info[1]
+            cnum = info[2]
+            name = info[3]
+            units = info[4]
+            max_enroll = info[5]
+            prereq = info[6]
+            instruct = info[7]
+            dr = info[8]
+            sem_offered = info[9]
+            year_offered = info[10]
+            type = info[11]
+            type_notes = info[12]
+            major_freq = info[13]
+            majors = find_pairs(conn, cid)
+            return render_template('update.html',
+                                page_title='Update Course',
+                                dept = dept,
+                                cnum = cnum,
+                                name = name,
+                                units = units,
+                                max_enroll = max_enroll,
+                                prereq = prereq,
+                                instruct = instruct,
+                                dr = dr,
+                                sem_offered = sem_offered,
+                                year_offered = year_offered,
+                                type = type,
+                                type_notes = type_notes,
+                                major_freq = major_freq,
+                                cid = cid,
+                                majors = majors)
+        else:
+            flash("Error")
+################################################################################
+@app.before_first_request
+def init_db():
+    dbi.cache_cnf()
+    # set this local variable to 'wmdb' or your personal or team db
+    db_to_use = 'majormatch_db' 
+    dbi.use(db_to_use)
+    print('will connect to {}'.format(db_to_use))
+
+if __name__ == '__main__':
+    import sys, os
+    if len(sys.argv) > 1:
+        # arg, if any, is the desired port number
+        port = int(sys.argv[1])
+        assert(port>1024)
+    else:
+        port = os.getuid()
+    app.debug = True
+    app.run('0.0.0.0',port)
+################################################################################
+#   Import Modules
+################################################################################
+from tkinter import ttk
+import cs304dbi as dbi
+
+################################################################################
+#   Helpers for courses table 
+################################################################################
+
+def insert_course(conn, dept, cnum, name, units, max_enroll, 
+                  prereq, instruct, dr, sem_offered, year_offered):
+    '''
+    Insert course into the major match database
+
+    Param - connection object + all the course information from catalog 
+    '''
+    curs = dbi.cursor(conn)
+    # prepared query
+    sql = '''   insert into courses(dept, cnum, `name`, units, max_enroll, 
+                prereq, instruct, dr, sem_offered, year_offered)
+                values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            '''
+    curs.execute(sql,   [dept, cnum, name, units, max_enroll, 
+                        prereq, instruct, dr, sem_offered, year_offered])
+    conn.commit()
+
+def course_exists(conn, dept, cnum):
+    '''
+    Checks if course already exists in database
+
+    Param - connection ojbect, department abbreviation + course number
+    Return - true if course already exists
+    '''
+    curs = dbi.cursor(conn)
+    sql = ''' select * from courses where dept = %s and cnum = %s '''
+    curs.execute(sql, [dept, cnum])
+    movie = curs.fetchall()
+    return len(movie) > 0
+
+def get_course_info(conn, cid):
+    '''
+    Getter for course info based on the course ID
+
+    Param - connection ojbect, course ID 
+    Return - course info (in list object)
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   select * from courses
+                where cid = %s
+            '''
+    curs.execute(sql, [cid])
+    return curs.fetchone()
+
+def update_course(conn, cid, dept, cnum, name, units, max_enroll, prereq, 
+instruct, dr, sem_offered, year_offered, type, type_notes, major_freq):
+    '''
+    Checks if course already exists in database
+
+    Param - connection object + all the course information from catalog 
+    Return - true if course already exists
+    '''
+    curs = dbi.cursor(conn)
+    # prepared query
+    sql = '''   update courses
+                set 
+                dept = %s, 
+                cnum = %s, 
+                name = %s, 
+                units = %s, 
+                max_enroll = %s, 
+                prereq = %s, 
+                instruct = %s, 
+                dr = %s, 
+                sem_offered = %s, 
+                year_offered = %s, 
+                type = %s, 
+                type_notes = %s, 
+                major_freq = %s
+                where cid = %s
+            '''
+    curs.execute(sql, [ dept, 
+                        cnum, 
+                        name, 
+                        units, 
+                        max_enroll, 
+                        prereq, 
+                        instruct, 
+                        dr, 
+                        sem_offered, 
+                        year_offered, 
+                        type, 
+                        type_notes, 
+                        major_freq,
+                        cid])
+    conn.commit()
+
+def delete_course(conn, cid):
+    curs = dbi.cursor(conn)
+    # prepared query
+    sql = '''   delete from courses
+                where cid = %s
+            '''
+    curs.execute(sql, [cid])
+    conn.commit()
+
+def find_incomplete(conn):
+    '''
+    Finds incomplete courses, where they have NULL fields
+
+    Param - connection object
+    Return - List of courses with incomplete information
+    ''' 
+    # prepared query
+    curs = dbi.cursor(conn)
+    sql = '''   select dept, cnum, cid from courses 
+                where dept is NULL 
+                or `name` is NULL
+                or units is NULL
+                or max_enroll is NULL
+                or prereq is NULL
+                or instruct is NULL
+                or dr is NULL
+                or sem_offered is NULL
+                or year_offered is NULL
+                or type is NULL
+                or type_notes is NULL'''
+    curs.execute(sql)
+    return curs.fetchall()
+
+################################################################################
+#   Helpers for programs table 
+################################################################################
+
+def get_departments(conn):
+    '''
+    Finds the courses that count towards majors in a department 
+    
+    Param - connection object
+    Return - list of departments 
+    '''
+    curs = dbi.cursor(conn)
+    sql = 'select * from programs'
+    curs.execute(sql)
+    return curs.fetchall()
+
+def find_dept_name(conn, dept_id):
+    '''
+    Finds a department's name from their department ID
+    
+    Param - connection object, department ID
+    Return - department name 
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   select name from programs
+                where dept_id = %s
+            '''
+    curs.execute(sql, [dept_id])
+    row = curs.fetchone()
+    return row[0]
+
+def find_dept_courses(conn, dept_id):
+    '''
+    Finds the courses that count towards majors in a department 
+    
+    Param - connection object, department 
+    Return - list of courses 
+    '''
+    curs = dbi.cursor(conn)
+    
+    sql =   ''' select dept, cnum, courses.name, courses.cid 
+                from courses 
+                inner join major_pairs using(cid)
+                inner join programs using (dept_id)
+                where dept_id = %s
+            '''
+    curs.execute(sql, [dept_id])
+    return curs.fetchall()
+
+################################################################################
+#   Helpers for major_pairs table 
+################################################################################
+
+def add_pair(conn, dept_id, cid):
+    '''
+    Adds a pair of dept ID and course ID to the major pairs table 
+    
+    Param - connection object, department ID, course ID
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   insert into major_pairs(dept_id, cid)
+                values (%s, %s)
+            ''' 
+    curs.execute(sql, [dept_id, cid])
+    conn.commit()
+
+def remove_pair(conn, dept_id, cid):
+    '''
+    Removes a pair of dept ID and course ID to the major pairs table
+    
+    Param - connection object, department ID, course ID
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   delete from major_pairs
+                where dept_id = %s and cid = %s
+            '''
+    curs.execute(sql, [dept_id, cid])
+    conn.commit()
+
+def find_pairs(conn, cid):
+    '''
+    Finds majors that a course counts towards given its cid
+    
+    Param - connection object, course ID
+    Return - tuple of department name and dept ID
+    '''
+    curs = dbi.cursor(conn)
+    sql =   ''' select `name`, dept_id from programs 
+                inner join major_pairs using(dept_id)
+                where major_pairs.cid = %s
+            '''
+    curs.execute(sql, [cid])
+    majors = []
+    for major in curs.fetchall():
+        majors.append(major)
+    return majors
+
+
+def find_cid(conn, dept, cnum):
+    '''
+    Finds a course ID based on the department abbreviation and course number
+    
+    Param - connection object, dept abbrev, course number
+    Return - course ID
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   select cid from courses
+                where dept = %s and cnum = %s
+            '''
+    curs.execute(sql, [dept, cnum])
+    row = curs.fetchone()
+    return row[0]
+
+def find_dept_id(conn, dept_name):
+    '''
+    Finds a dept ID based on the department name
+    
+    Param - connection object, department name
+    Return - dept ID
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   select dept_id from programs
+                where `name` = %s
+            '''
+    curs.execute(sql, [dept_name])
+    row = curs.fetchone()
+    return row
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <!-- for mobile-friendly pages -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Major Match Team" content="">
+    <title>{{ page_title }}</title>
+    <link rel='stylesheet' href="{{url_for('static', filename = 'style.css')}}">
+</head>
+
+<body>
+{% block nav %}
+<nav>
+<div class="topnav">
+  <a class="active" href="{{ url_for('index') }}">Home</a>
+  <a href="{{ url_for('departments') }}">Departments</a>
+  <a href="{{ url_for('insert') }}">Insert Course</a>
+  <a href="{{ url_for('select') }}">Incomplete Courses</a>
+</div>
+</nav>
+{% endblock %}
+
+{% block header %}
+<!-- insert title of page -->
+{% endblock %}
+
+<main>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div id="messages">
+    {% for msg in messages %}
+    <p>{{msg}}</p>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+
+{% block main_content %}
+<!-- put main content here -->
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+{% block end_scripts %}
+{% endblock %}
+
+</main>
+
+</body>
+</html>
+{% extends "base.html" %}
+
+{% block header %}
+<h1>{{ name }}</h1>
+{% endblock %}
+
+{% block main_content %}
+
+<p>Add courses that belong to this page</p>
+<form method=POST action="">
+    <table class="table-form">
+      <tr>
+        <td><label for="dept">Dept.</label></td>
+        <td>
+        <!-- make this a drop down -->
+        <input list="abbrev"  name='dept' value="{{ dept }}" placeholder="Start typing...">
+        <datalist id="abbrev">
+          <option>AFR</option>
+          <option>SWA</option>
+          <option>AMST</option>
+          <option>ANTH</option>
+          <option>ARCH</option>
+          <option>ARTH</option>
+          <option>ASTR</option>
+          <option>ASPH</option>
+          <option>BIOC</option>
+          <option>BISC</option>
+          <option>CHPH</option>
+          <option>CHEM</option>
+          <option>CAMS</option>
+          <option>CLCV</option>
+          <option>CLST</option>
+          <option>CLSC</option>
+          <option>LING</option>
+          <option>CPLT</option>
+          <option>CS</option>
+          <option>DS</option>
+          <option>EALC</option>
+          <option>ECON</option>
+          <option>EDUC</option>
+          <option>ENG</option>
+          <option>ES</option>
+          <option>FREN</option>
+          <option>FRST</option>
+          <option>GEOS</option>
+          <option>GER</option>
+          <option>PORT</option>
+          <option>HIST</option>
+          <option>IREC</option>
+          <option>IRPS</option>
+          <option>ITAS</option>
+          <option>JPN</option>
+          <option>JWST</option>
+          <option>KOR</option>
+          <option>LAST</option>
+          <option>MATH</option>
+          <option>MAS</option>
+          <option>MER</option>
+          <option>MES</option>
+          <option>MUS</option>
+          <option>NEUR</option>
+          <option>PEAC</option>
+          <option>PHIL</option>
+          <option>PHYS</option>
+          <option>POL</option>
+          <option>REL</option>
+          <option>RUSS</option>
+          <option>RAST</option>
+          <option>SOC</option>
+          <option>SAS</option>
+          <option>SPAN</option>
+          <option>STAT</option>
+          <option>ARTS</option>
+          <option>THST</option>
+          <option>WGST</option>
+        </datalist>
+      </td> 
+      </tr>
+      <tr>
+        <td><label for="cnum">Course #</label></td>
+        <td><input type="text" name='cnum' value="{{ cnum }}"></td> 
+      </tr>
+    </table>
+    <input type="submit" name="submit" value="submit">
+</form>
+<p>Courses that count for this major</p>
+<table>
+    {% for course in courses %}
+    <tr><td><a href="{{ url_for('update', cid=course[3]) }}">{{ course[0] }} {{ course[1] }}</a></td>
+        <td>{{ course[2] }}</td></tr>
+    {% endfor %}
+</table>
+
+{% endblock %}{% extends "base.html" %}
+
+{% block main_content %}
+
+<h1>Departments</h1>
+
+<table>
+    {% for dept in departments %}
+    <tr><td><a href="{{ url_for('department_page', dept_id=dept[0]) }}">{{ dept[1] }} (dept ID: {{ dept[0] }})</a></td>
+        <td><a href="{{ dept[4] }}">(catalog page)</a></td></tr>
+    {% endfor %}
+</table>
+
+{% endblock %}{% extends "base.html" %}
+
+{% block header %}
+<h1>Welcome!</h1>
+{% endblock %}
+
+{% if username %}
+
+    <form method="GET" action="{{url_for('cas.logout')}}">
+          <button>logout {{username}}</button>
+    </form>
+
+   <p>CAS username: {{username}}</p>
+   <p>CAS attributes:</p>
+   
+   <ul>
+       {% for key,val in cas_attributes.items() %}
+       <li>{{key}} &rArr; {{val}}</li>
+       {% endfor %}
+   </ul>
+
+{% else %}
+
+   <form method="GET" action="{{url_for('cas.login')}}">
+     <button>login</button>
+   </form>
+
+{% endif %} 
+
+{% block main_content %}
+<p>Click through the navigation bar or the list below to interact with our courses database</p>
+
+{% endblock %}
+{% extends "base.html" %}
+
+{% block header %}
+<h1>Insert a New Course</h1>
+{% endblock %}
+
+{% block main_content %}
+<p>Enter new courses into our database</p>
+
+<form class="insert-form" method=POST action="/insert/">
+    <table class="table-form">
+      <tr>
+        <td><label for="dept">Department</label></td>
+        <td><input type="text" name='dept' value="{{ dept }}" required></td> 
+      </tr>
+      <tr>
+        <td><label for="cnum">Course Number</label></td>
+        <td><input type="text" name='cnum' value="{{ cnum }}" required></td>
+      </tr>
+      <tr>
+        <td><label for="name">Course Name</label></td>
+        <td><input type="text" name='name' value="{{ name }}" required></td>
+      </tr>
+      <tr>
+        <td><label for="units">Units</label></td>
+        <td><input type="text" name='units' value="{{ units }}"></td> 
+      </tr>
+      <tr>
+        <td><label for="max_enroll">Max. Enrollment</label></td>
+        <td><input type="text" name='max_enroll' value="{{ max_enroll }}"></td> 
+      </tr>
+      <tr>
+        <td><label for="prereq">Prequisites</label></td>
+        <td><input type="text" name='prereq' value="{{ prereq }}"></td> 
+      </tr>
+      <tr>
+        <td><label for="instruct">Instructor</label></td>
+        <td><input type="text" name='instruct' value="{{ instruct }}"></td> 
+      </tr>
+      <tr>
+        <td><label for="dr">Distribution Requirement</label></td>
+        <td><input type="text" name='dr' value="{{ dr }}"></td> 
+      </tr>
+      <tr>
+        <td><label for="sem_offered">Semesters Offered</label></td>
+        <td><input type="text" name='max_enroll' value="{{ max_enroll }}"></td> 
+      </tr>
+      <tr>
+        <td><label for="year_offered">Offered This Year?</label></td>
+        <td><input type="text" name='year_offered' value="{{ year_offered }}"></td> 
+      </tr>
+      <tr>
+        <td><label for="type">Type</label></td>
+        <td><input type="text" name='type' value="{{ type }}"></td> 
+      </tr>
+      <tr>
+        <td><label for="type_notes">Type Notes</label></td>
+        <td><input type="text" name='type_notes' value="{{ type_notes }}"></td> 
+      </tr>
+      <tr>
+        <td><label for="major_freq">Major Freq</label></td>
+        <td><input type="text" name='major_freq' value="{{ major_freq }}"></td> 
+      </tr>
+    </table>
+    <input type="submit" name="submit" value="submit">
+  </form>
+
+{% endblock %}
+{% extends "base.html" %}
+
+{% block header %}
+<h1>Select Incomplete Courses</h1>
+{% endblock %}
+
+{% block main_content %}
+<p>This means courses that have NULL for any of their values</p>
+
+<form method=POST action="/select/">
+    <label for="cid">Courses with missing fields:</label>
+    <select id="cid" name="cid">
+      <option value="none" selected disabled>Choose One</option>
+      <!--Fills out the drop down menu with incomplete movies-->
+      {% for course in course_list %}
+        <option value="{{course[2]}}">{{course[0]}} {{course[1]}}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" name="submit-btn" value="Choose">
+</form>
+
+{% endblock %}{% extends "base.html" %}
+
+{% block header %}
+<h1>Update "{{ name }}"</h1>
+{% endblock %}
+
+{% block main_content %}
+    <form class="update-form" method=POST action="/update/{{cid}}">
+      <table class="table-form">
+        <tr>
+          <td><label for="dept">Department</label></td>
+          <td><input type="text" name='dept' value="{{ dept }}"></td> 
+        </tr>
+        <tr>
+          <td><label for="cnum">Course Number</label></td>
+          <td><input type="text" name='cnum' value="{{ cnum }}"></td>
+        </tr>
+        <tr>
+          <td><label for="name">Course Name</label></td>
+          <td><input type="text" name='name' value="{{ name }}"></td>
+        </tr>
+
+        <tr>
+          <td><label>Counted Majors</label></td>
+          <td><ul>
+            {% for major in majors %}
+              <li><a href="{{url_for('department_page', dept_id=major[1])}}">{{ major[0] }}</a>
+              <!-- button for delete -->
+              <button value="delete-pair">remove</button>
+              </li>
+            {% endfor %}
+          </ul></td>
+        </tr>
+      </table>
+
+      <table class="table-form">
+        <tr>
+          <td><label for="units">Units</label></td>
+          <td><input type="text" name='units' value="{{ units }}"></td> 
+        </tr>
+        <tr>
+          <td><label for="max_enroll">Max. Enrollment</label></td>
+          <td><input type="text" name='max_enroll' value="{{ max_enroll }}"></td> 
+        </tr>
+        <tr>
+          <td><label for="prereq">Prequisites</label></td>
+          <td><input type="text" name='prereq' value="{{ prereq }}"></td> 
+        </tr>
+        <tr>
+          <td><label for="instruct">Instructor</label></td>
+          <td><input type="text" name='instruct' value="{{ instruct }}"></td> 
+        </tr>
+        <tr>
+          <td><label for="dr">Distribution Requirement</label></td>
+          <td><input type="text" name='dr' value="{{ dr }}"></td> 
+        </tr>
+        <tr>
+          <td><label for="sem_offered">Semesters Offered</label></td>
+          <td><input type="text" name='max_enroll' value="{{ max_enroll }}"></td> 
+        </tr>
+        <tr>
+          <td><label for="year_offered">Offered This Year?</label></td>
+          <td><input type="text" name='year_offered' value="{{ year_offered }}"></td> 
+        </tr>
+        <tr>
+          <td><label for="type">Type</label></td>
+          <td><input type="text" name='type' value="{{ type }}"></td> 
+        </tr>
+        <tr>
+          <td><label for="type_notes">Type Notes</label></td>
+          <td><input type="text" name='type_notes' value="{{ type_notes }}"></td> 
+        </tr>
+        <tr>
+          <td><label for="major_freq">Major Freq</label></td>
+          <td><input type="text" name='major_freq' value="{{ major_freq }}"></td> 
+        </tr>
+      </table>
+      <input type="submit" name="submit" value="update">
+      <input type="submit" name="submit" value="delete">
+    </form>
+    <p></p>
+    <form method=POST action="">
+      <table class="table-form">
+        <tr>
+          <td><label for="new_dept">Department Name</label></td>
+          <td>
+          <!-- make this a drop down -->
+          <input list="abbrev"  name='new_dept' value="{{ new_dept }}" placeholder="Start typing...">
+          <datalist id="abbrev">
+            <option>Africana Studies</option>
+            <option>American Studies</option>
+            <option>Anthropology</option>
+            <option>Architecture</option>
+            <option>Art History</option>
+            <option>Asian American Studies</option>
+            <option>Astronomy</option>
+            <option>Astrophysics</option>
+            <option>Biochemistry</option>
+            <option>Biological Sciences</option>
+            <option>Chemical Physics</option>
+            <option>Chemistry</option>
+            <option>Chinese Language and Culture</option>
+            <option>Cinema and Media Studies</option>
+            <option>Classical Civilization</option>
+            <option>Classics</option>
+            <option>Cognitive and Linguistic Sciences</option>
+            <option>Comparative Literary Studies</option>
+            <option>Comparative Race and Ethnicity</option>
+            <option>Computer Science</option>
+            <option>Data Science</option>
+            <option>East Asian Languages and Cultures</option>
+            <option>East Asian Studies</option>
+            <option>Economics</option>
+            <option>Education Studies</option>
+            <option>English and Creative Writing</option>
+            <option>Environmental Studies</option>
+            <option>French & Francophone Studies</option>
+            <option>French Cultural Studies</option>
+            <option>Geosciences</option>
+            <option>German Studies</option>
+            <option>Global Portuguese Studies</option>
+            <option>Health and Society</option>
+            <option>International Relations - Economics</option>
+            <option>International Relations - History</option>
+            <option>International Relations - Political Science</option>
+            <option>Italian Studies</option>
+            <option>Japanese Language and Culture</option>
+            <option>Jewish Studies</option>
+            <option>Korean Language and Culture</option>
+            <option>Latin American Studies</option>
+            <option>Latina/o Studies</option>
+            <option>Mathematics</option>
+            <option>Media Arts and Sciences</option>
+            <option>Medieval/Renaissance Studies</option>
+            <option>Middle Eastern Studies</option>
+            <option>Neuroscience</option>
+            <option>Peace and Justice Studies</option>
+            <option>Philosophy</option>
+            <option>Physics</option>
+            <option>Political Science</option>
+            <option>Psychology</option>
+            <option>Religion</option>
+            <option>Russian</option>
+            <option>Russian Area Studies</option>
+            <option>Sociology</option>
+            <option>South Asia Studies</option>
+            <option>Spanish</option>
+            <option>Statistics</option>
+            <option>Studio Art</option>
+            <option>Teaching and Learning Studies</option>
+            <option>Theatre Studies</option>
+            <option>Women's and Gender Studies</option>
+          </datalist>
+        </td> 
+      </table>
+      <input type="submit" name="submit" value="add">
+  </form>
+{% endblock %}/********** HTML FILE **********/
+* {
+    box-sizing: border-box;
+    font-family: 'Gill Sans';
+}
+
+/********** STYLE NAVBAR **********/
+.topnav {
+    overflow: hidden;
+    width: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+    background-color: #e9e9e9;
+}
+/* Navbar links */
+.topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
+/* Navbar links on mouse-over */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+/* Active/current link */
+.topnav a.active {
+    background-color:rgb(34, 53, 139);
+    color:white;
+    font-weight: bold;
+}
+
+/********** STYLE BASE TEMPLATE **********/
+body {
+    margin-top: 75px;
+}
+
+h1 {
+    color:rgb(74, 87, 206);
+    margin-left: 8px;
+}
+
+h2 {
+    color:rgb(74, 87, 206);
+    margin-left: 8px;
+}
+
+p {
+    margin-left: 8px;
+    font-size: 17px;
+}
+
+#messages {
+    margin-left: 8px;
+    color: red;
+}
+
+/********** FOOTER **********/
+.validation_icons{
+    padding-top: 10%;
+    position: absolute;
+    bottom: 10px;
+    margin-left: 8px;
+}
+
+.sr-only {
+    display: none;
+    visibility: hidden;
+}
+
+.footer-tag {
+    color:rgb(34, 53, 139);
+    padding-top: 10%;
+    position: absolute;
+    bottom: 40px;
+}
+
+/********** STYLE FORM **********/
+.update-form {
+    margin-left: 8px;
+}
+
+.table-form {
+    margin-bottom: 10px;
+    border: black solid;
+}
+
+.row-titles {
+    background-color: rgb(241, 241, 241);
+    font-style: italic;
+    text-align: right;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+
+/* Text input on forms */
+input[type=text] {
+    width: 200px;
+}
+
+/* Form submit button */
+input[type='submit'] {
+    background-color: rgb(206, 241, 255);
+    font-family: 'Gill Sans';
+    font-size: large;
+  }
