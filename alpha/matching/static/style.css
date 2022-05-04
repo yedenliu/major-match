@@ -61,8 +61,9 @@ p {
 
 .home-btn {
     color: white;
+    font-weight: bold;
     font-size: large;
-    background-color: rgb(39, 39, 39);
+    background-color: #415a75;
     border-radius: 5px;
     border: none;
     padding-left: 8px;
@@ -115,7 +116,8 @@ form {
 
 input {
     margin-right: 5px;
-    margin-left: 21px;
+    color: rgb(88, 88, 88);
+
 }
 
 .year-1 {
@@ -177,7 +179,7 @@ input[type='submit'] {
   }
 
   select{
-    color: gray;
+    color: rgb(88, 88, 88);
     border-color: black;
     border-width: 1px;
   }
