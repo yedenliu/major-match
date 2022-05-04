@@ -25,8 +25,7 @@ def find_cid(conn, dept, cnum):
                 where dept = %s and cnum = %s
             '''
     curs.execute(sql, [dept, cnum])
-    row = curs.fetchone()
-    return row
+    return curs.fetchone()
 
 def insert_data(conn, dept, cnum):
     curs = dbi.cursor(conn)
@@ -38,6 +37,14 @@ def insert_data(conn, dept, cnum):
         curs.execute(sql, [dept, cnum, cid])
         conn.commit()
 
+def check_course_exists(conn, dept, cnum):
+    curs = dbi.cursor(conn)
+    sql = '''   select cid from courses
+                where dept = %s and cnum = %s
+            '''
+    curs.execute(sql, [dept, cnum])
+    return len(curs.fetchall()) > 0
+
 def major_match(conn):
     curs = dbi.cursor(conn)
     sql = '''   select programs.name, count(major_pairs.dept_id) 
@@ -45,7 +52,20 @@ def major_match(conn):
                 inner join major_pairs using(dept_id)
                 inner join form_data using(cid)
                 group by major_pairs.dept_id
+                order by count(major_pairs.dept_id) DESC
                 limit 5
+            ''' 
+    curs.execute(sql)
+    return curs.fetchall()
+
+# FOR DEBUGGING
+def matched_courses(conn):
+    curs = dbi.cursor(conn)
+    sql = '''   select courses.name, programs.name from courses
+                inner join form_data using(cid)
+                inner join major_pairs using(cid)
+                inner join programs using(dept_id)
+                order by programs.name
             ''' 
     curs.execute(sql)
     return curs.fetchall()

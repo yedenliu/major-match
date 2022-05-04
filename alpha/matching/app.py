@@ -33,24 +33,30 @@ def index():
         depts = get_depts(conn)
         return render_template('index.html',page_title='Home', depts=depts)
     else:
-        # depts = get_depts(conn)
-        # print(depts)
         classes = []
         results = []
+        course_matches = []
         for n in range(0, 32): # range is the number of total courses they can input
             dept = request.form.get('dept-'+str(n))
             cnum = request.form.get('cnum-'+str(n))
-            print(str(dept), str(cnum))
             if dept not in [None, ''] and cnum not in [None, '']:
                 cnum = cnum.upper().strip()
+                
+                # if course exists doesnt exist
+                if not check_course_exists(conn, dept, cnum):
+                    flash(str(dept) + ' ' + str(cnum) + 
+                          " doesn't exist in our database")
+
                 classes.append((dept,cnum))
                 insert_data(conn, dept, cnum)
                 results = major_match(conn)
+                course_matches = matched_courses(conn)
         delete_form_data(conn)
         return render_template('results.html',
                                 page_title='Results',
                                 classes = classes,
-                                results = results)
+                                results = results,
+                                course_matches = course_matches)
 
 ################################################################################
 @app.before_first_request

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1>RESULTS</h1>
+{% endblock %}
+
+{% block main_content %}
+
+<p>These are your top matched majors</p>
+<ul>
+<div class="flex-container">
+    {% for major in results %}
+    <div class="major-container">
+    <!-- name, count() -->
+    <h2>{{ major[0] }}</h2>
+    <!-- FOR DEBUGGING -->
+    <p>Count: {{ major[1] }}</p>
+    </div>
+    {% endfor %}
+</div>
+</ul>
+
+
+<p>FOR DEBUGGING: This is what you inputted</p>
+<ul> 
+    {% for class in classes %}
+    <li>{{ class[0] }} {{ class[1] }}</li>
+    {% endfor %}
+</ul>
+
+<p>FOR DEBUGGING: This is what we matched</p>
+<ul> 
+    {% for course in course_matches %}
+    <li>Course Name: {{ course[0] }} || Major: {{ course[1] }}</li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
+
