@@ -2,8 +2,7 @@
 #   IMPORT MODULES
 ########################################################################################################
 from bs4 import BeautifulSoup as BS 
-import requests, csv, os
-import xml
+import requests
 import traceback # for exceptions
 
 ########################################################################################################
@@ -20,27 +19,51 @@ def find_sections(soup):
     return soup.find_all('section')
 
 ########################################################################################################
-#   GETTERS & HELPER FUNCTIONS
+# GETTERS & HELPER FUNCTIONS
+#
+# STEP 1: Find HTML section
+#   find_name_tag(section) 
+#       --> s
+# 
+# STEP 2: Get course names (separate way for crosslisted section)
+#   get_name_list(s) 
+#       --> name_list
+#   is_crosslisted(section) 
+#       --> TRUE/FLASE
+#   get_cross_list(s) 
+#       --> name_list2
+# 
+# STEP 3: Get course infos
+#   find_info_tags(section)
+#       --> s_list
+#   get_info_list(s_list) 
+#       --> [units, max_enroll, prereq, instruct, dr, sem_offer, year_offer]
+#   
+# STEP 4: Assemble list of course dictionaries
+#   get_course_dict(section, iteration) 
+#       --> course_dict
+#   all_courses(sections)
+#       --> course_list
 ########################################################################################################
-'''
-Find <div> with the corresponding class to the course name
-Param - The <section> (html type) that the course resides in
-Return - String of the full course name, marked by the <div> tag and 'coursename_big' class
-'''
-def remove_tags(text):
-    return ''.join(xml.etree.ElementTree.fromstring(text).itertext())
-
 def find_name_tag(section):
+    '''
+    Find <div> with the corresponding class to the course name
+    
+    Param - The <section> (html type) that the course resides in
+    Return - String of the full course name, marked by the <div> tag and 'coursename_big' class
+    '''
     tag = section.find('div',{'class': 'coursename_big'})
     s = tag.string
     return s
 
-'''
-Getter for the name features of a course
-Param - The <section> (html type) that the course resides in
-Return - List of strings of the course name items
-'''
+
 def get_name_list(s):
+    '''
+    Getter for the name features of a course
+    
+    Param - The <section> (html type) that the course resides in
+    Return - List of strings of the course name items
+    '''
     name_list = [] 
     try:
         content = s.split(' - ')
@@ -69,11 +92,14 @@ def get_cross_list(s):
         traceback.print_exc()
     return name_list2
 
-'''
-Param - The <section> (html type) that the course resides in
-Return - list of strings that have the <div> tag and 'coursedetail col-xs-12' class
-'''
+
 def find_info_tags(section):
+    '''
+    Find the tags that have the course details in it
+    
+    Param - The <section> (html type) that the course resides in
+    Return - list of strings that have the <div> tag and 'coursedetail col-xs-12' class
+    '''
     tag = section.find('div', {'class': 'coursedetail col-xs-12'})
     s = str(tag).replace('</p>', '')
     s = s.replace('<span>', '')
@@ -90,33 +116,34 @@ def get_info_list(s_list):
     dr = ''
     sem_offer = ''
     year_offer = '' 
-    for item in s_list:
-        item = item.replace('<', '')
-        item = item.replace('>', '')
-        if 'Units' in item:
-            units = item.split(': ')
-            units = units[1]
-        if 'Max Enroll' in item:
-            max_enroll = item.split(': ')
-            max_enroll = max_enroll[1]
-        if 'Prerequisites' in item:
-            item = item.strip('<span>')
-            prereq = item.split(': ')
-            prereq = prereq[1]
-        if 'Instructor' in item:
-            instruct = item.split(': ')
-            instruct = instruct[1]
-        if 'Distribution' in item:
-            dr = item.split(': ')
-            dr = dr[1]
-        if 'Typical' in item:
-            sem_offer = item.split(': ')
-            sem_offer = sem_offer[1]
-        if 'Semesters' in item:
-            year_offer = item.split(': ')
-            year_offer = year_offer[1]
-        else:
-            pass
+    try:
+        for item in s_list:
+            item = item.replace('<', '')
+            item = item.replace('>', '')
+            if 'Units' in item:
+                units = item.split(': ')
+                units = units[1]
+            if 'Max Enroll' in item:
+                max_enroll = item.split(': ')
+                max_enroll = max_enroll[1]
+            if 'Prerequisites' in item:
+                item = item.strip('<span>')
+                prereq = item.split(': ')
+                prereq = prereq[1]
+            if 'Instructor' in item:
+                instruct = item.split(': ')
+                instruct = instruct[1]
+            if 'Distribution' in item:
+                dr = item.split(': ')
+                dr = dr[1]
+            if 'Typical' in item:
+                sem_offer = item.split(': ')
+                sem_offer = sem_offer[1]
+            if 'Semesters' in item:
+                year_offer = item.split(': ')
+                year_offer = year_offer[1]
+    except:
+        traceback.print_exc()
     return [units, max_enroll, prereq, instruct, dr, sem_offer, year_offer]
 
 def get_course_dict(section, iteration):

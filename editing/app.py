@@ -1,9 +1,7 @@
-'''
-Created by Eden Liu (yl9) and Mingyan Claire Tian (mt1) for CS304 Spring 2022
-Using Scott's starter pack
-CS304 Spring 2022
-H7: Crud Assigment
-'''
+################################################################################
+#   Import modules
+################################################################################
+
 from pdb import find_function
 from flask import (Flask, render_template, make_response, url_for, request,
                    redirect, flash, session, send_from_directory, jsonify)
@@ -13,7 +11,6 @@ app = Flask(__name__)
 import cs304dbi as dbi
 import random
 from prepared_queries import *
-
 ################################################################################
 app.secret_key = 'your secret here'
 # replace that with a random key
@@ -24,7 +21,9 @@ app.secret_key = ''.join([ random.choice(('ABCDEFGHIJKLMNOPQRSTUVXYZ' +
 
 # This gets us better error messages for certain common request errors
 app.config['TRAP_BAD_REQUEST_ERRORS'] = True
+
 ################################################################################
+#   CAS NOT IMPLEMENTED FOR DRAFT VERSION
 ################################################################################
 # Note : must use a port from 1943 to 1952.
 # bash install-scott-routing.sh doesn't install into our venv
@@ -54,7 +53,8 @@ def after_logout():
 
 application = app
 ################################################################################
-
+#   Routing functions
+################################################################################
 @app.route('/')
 def index():
     print('Session keys: ',list(session.keys()))
@@ -194,8 +194,15 @@ def update(cid):
     else:
         if request.form['submit'] == 'update':
             # must be able to update TT but must be a unique cid
+            old_cid = cid
             dept = request.form.get('dept')
             cnum = request.form.get('cnum')
+            new_cid = find_cid(conn, dept, cnum)
+
+            if old_cid != new_cid and course_exists(conn, dept, cnum): # if course already exists
+                flash("The Department & Course Number pair you entered already exists")
+                return redirect(url_for('update', cid=old_cid))
+
             name = request.form.get('name')
             units = request.form.get('units')
             max_enroll = request.form.get('max_enroll')
@@ -208,11 +215,8 @@ def update(cid):
             type_notes = request.form.get('type_notes')
             major_freq = request.form.get('major_freq')
             majors = find_pairs(conn, cid)
-            
-            if course_exists(conn, dept, cnum): # if course already exists
-                flash("The Department & Course Number pair you entered already exists")
-                return redirect(url_for('update', cid=cid))
-            update_course(conn, cid, dept, cnum, name, units, max_enroll, 
+    
+            update_course(conn, new_cid, dept, cnum, name, units, max_enroll, 
             prereq, instruct, dr, sem_offered, year_offered, type, 
             type_notes, major_freq)
 
@@ -238,6 +242,44 @@ def update(cid):
             delete_course(conn, cid)
             flash("Movie successfully deleted!")
             return redirect(url_for('index'))
+        elif request.form['submit'] == 'add':
+            new_dept = request.form.get('new_dept')
+            new_dept_id = find_dept_id(conn, new_dept)
+            print(str(new_dept) + ' id: ' + str(new_dept_id))
+            add_pair(conn, new_dept_id, cid)
+            flash("Matched to department successfully!")
+            info = get_course_info(conn, cid)
+            dept = info[1]
+            cnum = info[2]
+            name = info[3]
+            units = info[4]
+            max_enroll = info[5]
+            prereq = info[6]
+            instruct = info[7]
+            dr = info[8]
+            sem_offered = info[9]
+            year_offered = info[10]
+            type = info[11]
+            type_notes = info[12]
+            major_freq = info[13]
+            majors = find_pairs(conn, cid)
+            return render_template('update.html',
+                                page_title='Update Course',
+                                dept = dept,
+                                cnum = cnum,
+                                name = name,
+                                units = units,
+                                max_enroll = max_enroll,
+                                prereq = prereq,
+                                instruct = instruct,
+                                dr = dr,
+                                sem_offered = sem_offered,
+                                year_offered = year_offered,
+                                type = type,
+                                type_notes = type_notes,
+                                major_freq = major_freq,
+                                cid = cid,
+                                majors = majors)
         else:
             flash("Error")
 ################################################################################

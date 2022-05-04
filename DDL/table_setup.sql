@@ -10,7 +10,7 @@ create table courses (
     cid int not null AUTO_INCREMENT,
     dept varchar(10),
     cnum varchar(10),
-    `name` varchar(80),
+    `name` varchar(100),
     units float(2),
     max_enroll int,
     prereq varchar(100),
@@ -27,7 +27,7 @@ ENGINE = InnoDB;
 
 create table programs (
     dept_id int not null AUTO_INCREMENT,
-    `name` varchar(30),
+    `name` varchar(80),
     is_major tinyint(1),
     is_minor tinyint(1),
     `url` varchar(200),
@@ -46,7 +46,6 @@ create table major_pairs (
         on update cascade
 )
 ENGINE = InnoDB;
-
 
 create table form_data (
     dept varchar(10),
