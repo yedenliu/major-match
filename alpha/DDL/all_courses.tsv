@@ -122,7 +122,7 @@ ANTH	243	Biological Anthropology 	1	20	None	Van Arsdale
 LAST	245	Anthropology of Latin America	1	20		Ellison			
 MAS	246	Digital Anthropology	1	25	None	Minor			
 ANTH	249	Andean Archaeology 	1	30	 None.	 TBA			
-ANTH	250	Research or Individual Study 	1	15	ANTH 104 and permission of the instructor.			Spring; Fall	Spring; Fall
+ANTH	250	Research or Individual Study 	1	15	ANTH 104 and permission of the instructor.			Spring; Fall	Fall; Spring
 ANTH	250GH	Research or Group Study 	0.5	10	 Permission of the instructor.				
 ANTH	250H	Research or Individual Study 	0.5	25	ANTH 104 and permission of the instructor.			Spring; Fall	Fall; Spring
 ANTH	251	Cultures of Cancer 	1	25	 None	Karakasidou			
@@ -332,8 +332,8 @@ BISC	355	Thesis Research 	1	15	 Open only to Seniors with permission of the inst
 BISC	360	Senior Thesis Research 	1	15	Permission of the department.				
 BISC	365	Thesis 	1	15	 BISC 355 and permission of the department.				
 BISC	370	Senior Thesis 	1	25	 BISC 360 and permission of the department.				
-CHPH	250	Research or Individual Study 	1	15	Permission of the instructor.			Spring; Fall	Spring; Fall
-CHPH	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Spring; Fall
+CHPH	250	Research or Individual Study 	1	15	Permission of the instructor.			Spring; Fall	Fall; Spring
+CHPH	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
 CHPH	355	Chemical Physics Thesis Research 	1	15	 Ope				
 CHPH	360	Senior Thesis Research 	1	15	Permission of the department.			Spring; Fall	Fall; Spring
 CHPH	365	Chemical Physics Thesis Research 	1	15	 CHPH 355 and permission of the department.				
@@ -407,7 +407,7 @@ CHIN	338	Reading in Modern Chinese Lit 	1	15	 CHIN 306 and CHIN 307, or placemen
 CHIN	344	Classical Chinese Theater (Eng) 	1	25	 One previous course in Chinese history or culture. Not open to students who have taken CHIN 244.	 Widmer			
 CHIN	345	Chinese Women Revol. (Eng) 	1	25	 One prior course in EALC, EAS or WGST. Not open to student who have taken CHIN 245.	 Widmer			
 CHIN	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
-CHIN	350H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Spring; Fall
+CHIN	350H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Fall; Spring
 CHIN	360	Senior Thesis Research 	1	15	Permission of the department.				
 CHIN	370	Senior Thesis 	1	15	CHIN 360 and permission of the department.				
 CHIN	381	Eileen Chang (Eng) 	1	15	 One course at the 200 or 300 level on Chinese literature, history or culture, or by permission of the instructor.	 M. Song			
@@ -441,7 +441,7 @@ WGST	223	Gendering the Bronze Screen	1	25	None.	Mata
 WGST	249	Asian/American Women in Film	1	25	None	Creef			
 			1	25	 None	 Shukla-Bhatt			
 CAMS	250	Research or Individual Study 	1	10	Permission of the instructor and director of Cinema and Media Studies required.			Spring; Fall	Fall; Spring
-CAMS	250H	Research or Individual Study 	0.5	10	Permission of the instructor and director of Cinema and Media Studies required.			Spring; Fall	Fall; Spring
+CAMS	250H	Research or Individual Study 	0.5	10	Permission of the instructor and director of Cinema and Media Studies required.			Spring; Fall	Spring; Fall
 CAMS	255	Dynamic Interface Design	1	15	 Any 100-level ARTS course and either CS 110 or CS 111.	 Olsen			
 CAMS	261	African Cinema 	1	18	 None.	 Prabhu			
 CAMS	271	History of Slavery Thru Film	1	25	None	Jackson			
@@ -463,7 +463,7 @@ CAMS	350	Research or Individual Study 	1	15	Permission of the instructor. Open t
 CAMS	350H	Research or Individual Study 	0.5	10	Permission of the instructor.			Spring; Fall	Fall; Spring
 CAMS	360	Senior Thesis Research 	1	15	Permission of the director.			Spring; Fall	Fall; Spring
 CAMS	366	Advanced Digital Projects	1	12	 CAMS 101 and ARTS165/ CAMS 135, or ARTS 265/ CAMS 235, or an equivalent MIT Architecture Studio. Note that knowledge of some, if not all, of the following software is essential - Photoshop, AutoCad, Sketchup, 3D Studio Max, and/or Rhino.br/	 Joskowicz			
-CAMS	370	Senior Thesis 	1	25	CAMS 360 and permission of the department.			Spring; Fall	Fall; Spring
+CAMS	370	Senior Thesis 	1	25	CAMS 360 and permission of the department.			Spring; Fall	Spring; Fall
 CLCV	103	Introduction to Archaeology	1	30	 None	 Minor			
 CLCV	104	Greek and Roman Mythology 	1	30	None	Burns			
 CLCV	106	Daily Life Ancient Greece/Rome 	1	25	None	Starr			
@@ -479,7 +479,7 @@ CLCV	236	Greek & Roman Religion 	1	20	 None. Not open to students who have taken
 REL	240	Romans, Jews,  and Christians	1	25	None	Geller			
 CLCV	241	Running a Business in Ancient Rome 	1	25	 None.	 Starr			
 CLCV	243	Roman Law 	1	30	None	Starr			
-CLCV	250	Research or Individual Study 	1	25	Permission of the instructor.			Spring; Fall	Spring; Fall
+CLCV	250	Research or Individual Study 	1	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 CLCV	250H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 CLCV	280H	Sem: Heritage and Diplomacy 	0.5	15	 None	 Burns			
 CLCV	305	Ancient Greek and Roman Spectacle 	1	16	 Permission of the instructor required. Not open to students who have taken CLCV 205.	 Burns			
@@ -488,7 +488,7 @@ CLCV	313	Sex and Gender in Ancient Greece 	1	25	 200 level course in CLCV, GRK, 
 CLCV	330	War: From Troy to Baghdad 	1	25	 Permission of the instructor required. Not open to students who have taken CLCV 230.	 Rogers			
 CLCV	336	Greek & Roman Religion 	1	15	 Permission of the instructor required. Not open to students who have taken CLCV 236.	 Rogers			
 CLCV	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
-CLCV	350H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Spring; Fall
+CLCV	350H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 CLCV	360	Senior Thesis Research 	1	15	Permission of the department.				
 CLCV	370	Senior Thesis 	1	25	CLCV 360 and permission of the department.			Spring; Fall	Fall; Spring
 CLCV	373	Antiquities Today: Replication	1	12	Prior college-level coursework in Art History and/or Classical Civilization.	Burns			
@@ -496,87 +496,28 @@ CLST	350	Research or Individual Study 	1	15	Permission of the instructor. Open t
 CLST	350H	Research or Individual Study 	0.5	10	Permission of the instructor.			Spring; Fall	Fall; Spring
 CLST	360	Senior Thesis Research 	1	15	Permission of the department.			Spring; Fall	Fall; Spring
 CLST	370	Senior Thesis 	1	15	CLST 360 and permission of the department.			Spring; Fall	Fall; Spring
-GRK	101	Beginning Greek 1 	1	20	Open to students who do not present Greek for admission.	Dougherty			
-GRK	102	Beginning Greek 2 	1	22	GRK 101 or equivalent.	Gilhuly			
-GRK	201	Athenian Literature 	1	10	GRK 101 and GRK 102 or two admission units in Greek, or permission of the instructor.	 Gilhuly			
-GRK	202	Homer 	1	20	 GRK 201	 Dougherty			
-GRK	203	Euripides 	1	10	 GRK 202 or permission of the instructor. Not open to students who have taken GRK 303.	 Gilhuly			
-GRK	250	Research or Individual Study 	1	15	Permission of the instructor.			Spring; Fall	Spring; Fall
-GRK	250H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Fall; Spring
-GRK	302	Advanced Greek: Homer 	1	20	 GRK 202	 Dougherty			
-GRK	303	Euripides 	1	15	 Any 200 level GRK course, or permission of the instructor.	 Burns			
-GRK	304	Sophocles 	1	15	GRK 202 or permission of the instructor.	Dougherty			
-GRK	305	Greek Comedy 	1	20	 GRK 202 or permission of the instructor.	 Gilhuly			
-GRK	306	Herodotus 	1	25	 GRK 202 or permission of the instructor.	 Dougherty			
-GRK	307	Archaic Greek Poetry 	1	25		Burns			
-GRK	308	Aeschylus 	1	15		 Dougherty			
-GRK	309	Plato's Symposium 	1	10	GRK 202 or permission of the instructor.	Gilhuly			
-GRK	311	Longus 	1	25		Gilhuly			
-GRK	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
-GRK	350H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Fall; Spring
-GRK	360	Senior Thesis Research 	1	25	Permission of the department.				
-GRK	370	Senior Thesis 	1	25	GRK 360 and permission of the department.			Spring; Fall	Spring; Fall
-LAT	101	Beginning Latin 1 	1	25	Open to students who do not present Latin for admission or permission of the instructor.	 Starr			
-LAT	102	Beginning Latin 2 	1	42	LAT 101	 Freas			
-LAT	201	Intermediate Latin 1 	1	25	 LAT 102 or Wellesley's placement questionnaire and permission of the instructor.	 Freas			
-LAT	202	Interm Lat 2: Vergil and Augus 	1	25	 LAT 201 (formerly LAT 200) or Wellesley's placement questionnaire and permission of the instructor.	 Starr			
-LAT	250	Individual Study-Latin 	1	15	Permission of the instructor.			Spring; Fall	Fall; Spring
-LAT	250H	Individual Study-Latin 	0.5	15	Permission of the instructor.			Spring; Fall	Fall; Spring
-LAT	302	Roman Poems and Poetry Books 	1	25	 LAT 202 (or equivalent) or a 300-level Latin course or Wellesley's placement questionnaire and permission of the instructor.	 Starr			
-LAT	304	Women in Latin Literature 	1	20	  LAT 202 (or equivalent) - or a 300-level Latin course, or Wellesley's placement exam and permission of the instructor.	 Staff			
-LAT	308	Imperial Latin Literature 	1	25	 LAT 202 (or equivalent) or a 300-level Latin course or Wellesley's placement questionnaire and permission of the instructor.	 Freas			
-LAT	310	Roman Historical Myths 	1	25	 LAT 202 (or equivalent) or a 300-level Latin course or Wellesley's placement questionnaire or permission of the instructor.	 Starr			
-LAT	311	Roman Novel 	1	18	 LAT 202 (or equivalent) or a 300-level Latin course, or Wellesley's Latin placement questionnaire.	 Freas			
-LAT	315	Ovid 	1	25	 LAT 202 (or equivalent) or a 300-level Latin course, or Wellesley's placement questionnaire and permission of the instructor.	 Staff			
-LAT	350	Individual Study	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Spring; Fall
-LAT	350H	Individual Study-Latin 	0.5	25	Permission of the instructor.			Spring; Fall	Spring; Fall
-LAT	360	Latin Thesis Research 	1	25	Permission of the department.				
-LAT	370	Senior Thesis 	1	25	LAT 360 and permission of the department.				
-PSYC	216	Psychology of Language	1	30	PSYC 101 or NEUR 100, a score of 5 on the Psychology AP exam, or a score of 5, 6, or 7 on the Higher Level IB exam, or permission of the instructor.	Pyers			
-CLSC	250	Research or Individual Study 	1	15	Permission of the instructor.			Spring; Fall	Fall; Spring
+CLSC	216	Psychology of Language 	1	30	PSYC 101 or NEUR 100, a score of 5 on the Psychology AP exam, or a score of 5, 6, or 7 on the Higher Level IB exam, or permission of the instructor.	Pyers			
+CLSC	250	Research or Individual Study 	1	15	Permission of the instructor.			Spring; Fall	
 CLSC	250H	Research or Individual Study 	0.5	10	 Open to Fiirst-Years and Sophomores, by permission of the instructor.				
-PSYC	300	Sem: Topics Cognitive &amp; Linguistic Sci <br/><p><i><b>Topic for 2022-23: TBD</b></i></p>	1	15	 Open to Juniors and Seniors who have taken one of the following - PSYC 214, PSYC 215, CLSC/PSYC 216, PSYC 217, PSYC 218, PSYC 219, LING 114, PHIL 215, or CS 111; or permission of the instructor.	 Yoolim Kim			
-PSYC	316	Sem: Language Acquistion	1	15	 Two 200-level courses in PSYC (excluding PSYC 205) or LING, or permission of the instructor.	 Pyers			
-CLSC	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Spring; Fall
+			1	15	 Open to Juniors and Seniors who have taken one of the following - PSYC 214, PSYC 215, CLSC/PSYC 216, PSYC 217, PSYC 218, PSYC 219, LING 114, PHIL 215, or CS 111; or permission of the instructor.	 Yoolim Kim			
+CLSC	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	
 CLSC	360	Senior Thesis Research 	1	25	Permission of the director.				
-CLSC	370	Senior Thesis 	1	25	CLSC 360 and permission of the department.			Spring; Fall	Fall; Spring
-LING	114	Introduction to Linguistics 	1	25	 None	 Carpenter, S. Fisher (Fall); S.Fisher (Spring)			
-LING	238	Sociolinguistics 	1	18	 LING 114 or CLSC 216/PSYC 216, or permission of the instructor.	 S. Fisher			
-LING	240	The Sounds of Language 	1	15	 LING 114 or CLSC 216/PSYC 216, or permission of the instructor.	 Carpenter			
-LING	244	Language: Form and Meaning 	1	25	LING 114.	TBA			
-LING	246	Digital Language: Corpus Linguistics	1	25	LING 114 or permission of the instructor.	Sun-Hee Lee			
-LING	248	Intro Historical Linguistics 	1	20	LING 114 or permission of the instructor.	Carpenter			
-SPAN	270	Spanish in the United States	1	14	 Open to students who have completed SPAN 241 or SPAN 242 or equivalent (AP 5) or by permission of the instructor.	 Bassa Vanrell			
-LING	312	Bilingualism: Lang, Mind & Culture 	1	15	Open to juniors and seniors who have taken a related 200-level course in linguistics, psychology, anthropology, philosophy, or permission of the instructor.	Carpenter			
-LING	315	Invented Lang: Wilkins to Navi 	1	15	Open to juniors and seniors who have taken LING 114 or CLSC/PSYC 216 and a related 200-level course in linguistics, psychology, anthropology, or philosophy, or permission of the instructor.	Carpenter			
-LING	338	Sem: African American English 	1	15	 Either LING 114 or CLSC 216/PSYC 216 and related coursework at the 200 level or permission of the instructor.	 S. Fisher			
-LING	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
-CPLT	175Y	FYS: What is Truth 	1	16	 None. Open to First-Years only.	 Prabhu			
-CPLT	180	World Literature 	1	25	None	Prabhu			
-CPLT	200	Graphic Novel	1	25	None	Nolden (German Studies)	LL - Language and Literature; ARS - Visual Arts, Music, Theater, Film and Video		Not Offered
-CPLT	210	Beyond Europe 	1	20	None	Anjali Prabhu and Saikat Majumdar (Ashoka University)			
-CPLT	212	Reading Travel	1	25		 Dougherty			
-CPLT	222	Colonial Legacies Paris 	1	15	 A special hybrid course offered for Wellesley students studying abroad at American University in Paris.	 Prabhu			
+CLSC	370	Senior Thesis 	1	25	CLSC 360 and permission of the department.			Spring; Fall	
+CPLT	200	Graphic Novel	1	25	None	Nolden (German Studies)			
+CLCV	212	Reading Travel 	1	25		 Dougherty			
 CPLT	225	Digital Media & Culture 	1	25	None.	Nolden			
-EALC	236	The Girl in East Asia (Eng)	1	30	 None	 Zimmerman			
-ES	238	The Color of Green	1	25	 None. Not open to students who have taken GER 338.	 Nolden			
-			1	30	 None	 Ingallinella			
+CPLT	236	The Girl in East Asia (Eng) 	1	30	 None	 Zimmerman			
+CPLT	247	Arthurian Legends 	1	25	 None	 Ingallinella			
 CPLT	275	Translation 	1	30	 One course in literature (in any language) or permission of the instructor. Competence in a language or languages other than English is useful but not necessary. Open to students who have taken WRIT 118. 	 Weiner			
 CPLT	284	Magical Realism 	1	40	None	Weiner (Russian)			
 CPLT	294	Dystopian Fiction 	1	20	None	Weiner			
-JWST	345	Representing the Holocaust	1	30	 One course in literature or cultural studies (any language or region), or permission of the instructor.	 Lambert			
-CPLT	350	Research or Individual Study 	1	15	Permission of the director. Open to juniors and seniors.			Spring; Fall	Fall; Spring
-CPLT	360	Senior Thesis Research 	1	15	Permission of the director.			Spring; Fall	Fall; Spring
-ES	362	CSPW: From Farm to Table to Print	1	12	 Open to Juniors and Seniors, or by permission of the instructor. Not open to students who have taken GER 362.	 Nolden			
-CPLT	370	Senior Thesis 	1	25	CPLT 360 and permission of the department.			Spring; Fall	Fall; Spring
+CPLT	350	Research or Individual Study 	1	15	Permission of the director. Open to juniors and seniors.			Spring; Fall	
+CPLT	360	Senior Thesis Research 	1	15	Permission of the director.			Spring; Fall	
+CPLT	370	Senior Thesis 	1	25	CPLT 360 and permission of the department.			Spring; Fall	
 CPLT	375	Translation 	1	30	 One course in literature (in any language) or permission of the instructor. Competence in a language or languages other than English is useful but not necessary. Open to students who have taken WRIT 118.	 Rosenwald			
 CS	111	Comp Program & Prob Solving 	1	30	 Fulfillment of the Quantitative Reasoning (QR) component of the Quantitative Reasoning &amp; Data Literacy requirement. No prior background with computers is expected.	 Staff			
-MAS	115	Computing for Socio-Techno Web	1	30	 None. Open to First-Years and Sophomores. Juniors and Seniors by permission of the instructor.	 Staff			
-MAS	121	Intro to Game Design	1	16	 None. Open to First-Years and Sophomores. Juniors and Seniors by permission of the instructor.	 Tynes			
-CS	203	Computer Music 	1	18	 CS 111 and MATH 115, or permission of the instructor.	 b /bDavis			
 CS	204	Intro to Web Development 	1	24	 CS 111 or permission of the instructor.	 Anderson			
 CS	220	Human-Computer Interaction 	1	18	 One of the following courses - CS 111, CS 115/MAS 115.	 Staff			
-MAS	221	Digital Worlds for Gaming	1	18	 Any 100-level CS course.	 Tynes			
 CS	230	Data Structures 	1	24	 CS111 or permission of the instructor	 Staff			
 CS	231	Fundamental Algorithms 	1	24	 CS 230 and MATH 225, or permission of the instructor.	 Staff			
 CS	232	Artificial Intelligence 	1	24	CS 230 or permission of the instructor.	Staff			
@@ -593,23 +534,17 @@ CS	305	Machine Learning 	1	18	 CS 230 and either MATH 206 or MATH 220 or MATH 22
 CS	307	Computer Graphics 	1	24	CS 230 or permission of the instructor.	Staff			
 CS	313	Computational Biology 	1	18	CS 230 or permission of the instructor.	 Tjaden			
 CS	315	Data and Text Mining for the Web 	1	18	CS 230 or permission of the instructor.	 Mustafaraj			
-CS	317	Mobile App Development 	1	18	 CS 230.	 Turbak			
 CS	320	Tangible User Interfaces 	1	18	 CS 220 or CS 230, or permission of the instructor.	 Shaer			
 CS	321	Extended Reality 	1	18	CS 220 or CS 221 or CS 230.	 Tynes			
-CS	323	Social Computing 	1	18	CS 220 or CS230.	 Delcourt			
 CS	331	Advanced Algorithms 	1	18	 CS 231 or permission of the instructor.	 Brubach			
 CS	333	Natural Language Processing 	1	24	 CS 230 and either MATH 206 or MATH 220 or MATH 225.	 C. Anderson			
 CS	341	Operating Systems 	1	18	CS 240 or permission of instructor.	Staff			
 CS	342	Computer Security 	1	18	CS 230 and CS 240 or permission of the instructor.	b /bLerner			
 CS	343	Distributed Computing 	1	18	CS 230 (required); CS 231 or CS 242 (recommended).	 Bassem			
-CS	349H	HCI in the Age of Automation 	0.5	18	 CS111, and at least one 200 or 300 level course from another department which explores relevant issues (e.g. ANTH 232, AFR 213, ECON 229, ES 214, PHIL 222, SOC 320, CAMS 301, BIOC 324, POL1 303)	 Shaer			
 CS	350	Research or Individual Study 	1	15	 Permission of the instructor. Open to Juniors and Seniors.				
 CS	350H	Research or Individual Study 	0.5	15	 Permission of the instructor.				
 CS	360	Senior Thesis Research 	1	15	Permission of the department.				
 CS	370	Senior Thesis 	1	25	CS 360 and permission of the department.				
-DS	350	Research or Individual Study 	1	10	Permission of the instructor.				
-DS	360	Senior Thesis Research 	1	10	 Permission of the instructor.				
-DS	370	Senior Thesis 	1	10	 DS 360 and permission of the department.				
 EALC	221	Gateways to East Asia (Eng) 	1	25		 Goree			
 EALC	225	Trad. Romances East Asia (Eng) 	1	15	 None. Not open to students who have taken EALC 325.	 Widmer			
 EALC	236	The Girl in East Asia (Eng)	1	30	 None	 Zimmerman			
@@ -696,7 +631,7 @@ EDUC	335	Sem: Urban Ed & Emancipatory Research 	1	10	 Permission of the instruct
 EDUC	338	Sem: Qualitative Inquiry 	1	12	 One course in education.	 Hong			
 EDUC	339	Sem: Perspectives in Teaching 	1	15	 EDUC 300 or EDUC 304, or permission of the instructor.	 Rubin, Hawes			
 EDUC	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
-EDUC	350H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Spring; Fall
+EDUC	350H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Fall; Spring
 EDUC	360	Senior Thesis Research 	1	25	Permissio				
 EDUC	370	Senior Thesis 	1	25	EDUC				
 ENG	103	Writers of Color Across Globe 	1	30	Especially designed for the non-major and thus not writing-intensive. Not open to students who have taken this course as a topic of CPLT 113.	Ko			
@@ -721,7 +656,7 @@ ENG	208	Writing for Television	1	15	 None	 Holmes
 ENG	210	History of the English Language 	1	30	None	Whitaker			
 MER	211	Women in Medieval Lit, 500-1500 CE	1	15	 None. Not open to students who have taken ENG 311/MER 311.	 Ingallinella			
 ENG	213	Chaucer 	1	25	None	Whitaker			
-MER	214	The Global Middle Ages	1	20	 None. Not open to students who have taken ENG 314/MER 314.	 Ingallinella			
+MER	214	The Global Middle Ages	1	25	 None. Not open to students who have taken ENG 314/MER 314.	 Ingallinella			
 ENG	220	Happiness 	1	30		 Noggle			
 HIST	221	The Renaissance	1	20	 None	 Grote and Wall-Randell (English)			
 ENG	222	Renaissance Literature 	1	30					
@@ -733,22 +668,22 @@ ENG	241	Romantic Poetry 	1	25	None	Hickey
 ES	242	Ecopoetics	1	25	None.	Hickey			
 ENG	245	Victorian Poetry 	1	30		Hickey			
 ENG	246	Victorian, Decadent, Beyond 	1	20	None.	Hickey			
-			1	30	 None	 Ingallinella			
-ENG	248	Poetics of the Body	1	30	 None.	 Brogan			
+			1	25	 None	 Ingallinella			
+ENG	248	Poetics of the Body	1	25	 None.	 Brogan			
 ENG	249	Poetry Now 	1	20	 None.				
 ENG	251	Modern Poetry 	1	30	None				
 ENG	252	Contemp American Poetry: Unrest 	1	30	 At least one prior class in the English Department.	 Chiasson			
 ENG	253	Contemporary American Poetry 	1	45	 None				
 ENG	254	Louise Glück 	1	30	None				
 ENG	257	Text and Image 	1	25	 None.	Brogan			
-ENG	258	Gotham: New York in Lit &amp; Art	1	30	None	Brogan			
+ENG	258	Gotham: New York in Lit &amp; Art	1	25	None	Brogan			
 PEAC	259	Conflict, Trauma and Narrative	1	25	 Not open to student who have taken ENG 388/PEAC 388.	Cezair-Thompson			
 ENG	260	African-Amer Lit Tradition	1	30		Cudjoe			
 ENG	261	Hollywood: Vietnam to Reagan	1	30	 None.	 Shetley			
 ENG	262	American Literature to 1865	1	30	None	Cain			
-PEAC	264	Antiwar Literature	1	30	 None.				
+PEAC	264	Antiwar Literature	1	25	 None.				
 ENG	265	African American Autobiographies	1	30	None	Cudjoe			
-ENG	266	Am Lit from Civil War to 1930s	1	30	 None	 Cain			
+ENG	266	Am Lit from Civil War to 1930s	1	20	 None	 Cain			
 ENG	267	American Lit: 1940's to 2000 	1	30					
 ENG	268	American Literature Now	1	30	None	Shetley			
 ENG	269	Rise of an American Empire	1	25	 None	 P. Fisher			
@@ -777,7 +712,7 @@ ENG	301	Advanced Fiction Workshop 	1	15	 ENG 203 or permission of the instructor
 ENG	302	Advanced Writing/Poetry 	1	15	 ENG 202 or permission of the instructor.	 Gonzalez			
 ENG	308	Advanced Writing for TV	1	15	 CAMS208/ENG 208	 Holmes			
 MER	311	Women in Medieval Literature	1	15	 Permission of the instructor. Not open to students who have taken ENG 211/MER 211.	 Ingallinella			
-MER	314	The Global Middle Ages	1	20	 Open to all students who have taken two literature courses in the department, at least one of which must be 200 level, or by permission of the instructor to other qualified students. Not open to students who have taken ENG 214/MER 214.	 Ingallinella			
+MER	314	The Global Middle Ages	1	25	 Open to all students who have taken two literature courses in the department, at least one of which must be 200 level, or by permission of the instructor to other qualified students. Not open to students who have taken ENG 214/MER 214.	 Ingallinella			
 ENG	315	Adv Studies in Medieval Lit 	1	15	 Open to Juniors and Seniors who have taken two literature courses in the department, at least one of which must be 200 level, or by permission of the instructor to other qualified students.	 Whitaker			
 ENG	316	CSPW: Public Writing on Poetry 	1	12	Open to all students who have taken at least two literature courses in the department, at least one of which must be 200 level, or by permission of the instructor to other qualified students.	Lynch			
 ENG	317	Medieval Romance & Pol of Race 	1	20	Open to all students who have taken two literature courses in the department, at least one of which must be 200 level, or by permission of the instructor to other qualified students.	Whitaker			
@@ -835,14 +770,14 @@ ES	250GH	Env. Studies Reading Group 	0.5	15	 Permission of the instructor.
 ES	250H	Research or Individual Study 	0.5	15	 Permission of the instructor.				
 ES	251	Future of Energy 	1	20	 None. Not open to students who have taken ES 151H are not allowed to take this course.	 Turner			
 ES	265	The Politics of Nature	1	20	None	Ellison			
-ES	267	Art &amp; Environmental Imagination	1	30	None	Bedell			
+ES	267	Art &amp; Environmental Imagination	1	25	None	Bedell			
 HIST	299	U.S. Environmental History	1	25	 None	 Turner			
 ES	300	Environmental Decision-making 	1	20	 A declared major in environmental studies and completion of six courses that count toward the ES major, or permission of the instructor. Open to Juniors and Seniors only.	 DeSombre			
 ES	307	Ecosystem Ecology w/Lab	1.25	12	 BISC 201, BISC 202, BISC 209, BISC 210, BISC 247/ES 247, ES 220, or permission of the instructor.	 J. Matthes			
 ES	310	Sem: Climate Change &amp; Marine Eco	1	12	 One of the following courses - BISC 201, BISC 202, BISC 209, BISC 210, BISC 214, BIOC 219/BISC 219, ES 201, ES 220, EXTD 225, EXTD 226 or permission of instructor.	Selden			
 POL2	312	Env Policy Research Seminar	1	16	 Either ES 214 or a 200-level course in political science. Permission of the instructor required.	 DeSombre			
 POL3	325	International Environmental Law	1	25	 ES 214/POL2 214 or POL3 221 or permission of the instructor.	 DeSombre			
-ES	327	Sem: Topics in Biodiversity	1	12	 Two courses from the following - BISC 201, BISC 202, BISC 204, BISC 207, BISC 209, BISC 210, BISC 214, ES 201, ES 220, or ES 247/BISC 247; or permission of the instructor.	 Jones			
+ES	327	Sem: Topics in Biodiversity	1	16	 Two courses from the following - BISC 201, BISC 202, BISC 204, BISC 207, BISC 209, BISC 210, BISC 214, ES 201, ES 220, or ES 247/BISC 247; or permission of the instructor.	 Jones			
 ES	327H	Sem: Current Topics in Ecology <br/><p><i><b>Topic for 2021-22: Biodiversity in the Built Environment</b></i></p>	0.5	16	 Two of the following course - BISC 201, BISC 207, BISC 209, BISC 210, ES 220, BISC 247/ES 247; or permission of the instructor.	 Jones			
 WGST	328	Sem: Naturecultures	1	15	  Any WGST 200-level course or ES-200-level course. Juniors and Seniors only. Enrollment is by permission of the instructor only.   	 Chacko			
 FREN	331	Sem: Francophone Lit &amp; Environ	1	15	 FREN 210 or FREN 212; and one additional unit, FREN 213 or above.				
@@ -904,12 +839,12 @@ FREN	332	Myth & Memory Modern France 	1	12	FREN 210, FREN 211, or FREN 212; and 
 FREN	333	Classical Tragedy 	1	12	FREN 210, FREN 211, or FREN 212; and one additional unit, FREN 213 or above.	Bilis			
 FREN	334	Afr Cinema Character, Narratve 	1	15	 FREN 210 or FREN 212, and one additional course FREN 213 or above.	 Prabhu			
 FREN	335	Ethics & Difference (in Eng) 	1	12	 Open to Juniors and Seniors. Sophomores by permission of the instructor. To have this course count as a course taught in French for purposes of the major, contact the instructor.	 Prabhu			
-FREN	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Spring; Fall
+FREN	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
 FREN	360	Senior Thesis Research 	1	15	Permission of the department.				
 FREN	370	Senior Thesis 	1	15	FREN 360 and permission of the department.			Spring	Spring
 FRST	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
 FRST	360	Senior Thesis Research 	1	15	Permission of the department.				
-FRST	370	Senior Thesis 	1	15	FRST 360 and permission of the department.			Spring; Fall	Spring; Fall
+FRST	370	Senior Thesis 	1	15	FRST 360 and permission of the department.			Spring; Fall	Fall; Spring
 GEOS	101	Earth Processes &amp; Environment w/Lab	1.25	30	 Fulfillment of the Quantitative Reasoning (QR) component of the Quantitative Reasoning &amp; Data Literacy requirement. Not open to students who have taken ASTR 120 or a 100-level GEOS course.	 Brabander			
 GEOS	102	The Dynamic Earth w/Lab 	1.25	30	 Fulfillment of the Quantitative Reasoning (QR) component of the Quantitative Reasoning &amp; Data Literacy requirement. Not open to students who have taken ASTR 120 or a 100-level GEOS course.	 Castro, Staff			
 GEOS	200	Evolution Earth Systems + Lab 	1.25	10	 Any 100-level GEOS course.	 Davis			
@@ -930,7 +865,7 @@ GEOS	316	Paleoseismology 	1	14	Any 200-level GEOS course, or permission of the i
 GEOS	317	Petrology of New England w/ lab 	1.25	12	 (GEOS 101 or GEOS 102) and GEOS 203.	 Castro			
 GEOS	318	Tectonics & Structural Geo w/Lab 	1.25	14	 GEOS 200 or GEOS 203, or permission of the instructor.	 Castro			
 GEOS	320	Isotope Geochemistry 	1	12	Any 200-level GEOS course, or permission of the instructor.	Brabander			
-GEOS	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Spring; Fall
+GEOS	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
 GEOS	350G	Group Research and Group Study 	1	15	 Permission of the instructor.				
 GEOS	360	Senior Thesis Research 	1	25	Permission of the department.				
 GEOS	370	Senior Thesis 	1	25	GEOS 360 and permission of the department.			Spring; Fall	Fall; Spring
@@ -948,8 +883,8 @@ GER	234	Minorities in Germany/Austria 	1	16	 GER 202 or permission of the instru
 GER	236	German Short Stories 	1	25	 GER 202 or permission of the instructor.	 Hans			
 GER	238	Conversations About Germany Today 	1	25	 GER 202 or permission of the instructor.	 Nolden			
 GER	239	Germany and Austria Today 	1	25	GER 202 or permission of the instructor.	Nolden			
-GER	250	Research or Individual Study 	1	25	Permission of the instructor.			Spring; Fall	Spring; Fall
-GER	250H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Spring; Fall
+GER	250	Research or Individual Study 	1	25	Permission of the instructor.			Spring; Fall	Fall; Spring
+GER	250H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 GER	258	Imagining Germany 	1	25	 GER 202 or permission of the instructor.				
 GER	286	Film&amp; Propag Nazi Germ(in Eng)	1	25	None	Hans			
 GER	325	Berlin, Prague, Vienna 	1	25	 Two units taught in German above GER 202, or permission of the instructor.	 Hans			
@@ -1125,8 +1060,8 @@ JPN	290	Geisha, Samurai, Tokyo 	1	20	 Not open to students who have completed JP
 JPN	308	Adv. Japanese Fiction & Essays 	1	15	 JPN 232 or permission of the instructor.	 Goree			
 JPN	309	Adv Japanese-Contemp Soc Sci 	1	15	 JPN 232 or permission of the instructor.	 Maeno			
 JPN	314	Contemporary Japanese Narrative (Eng) 	1	15	 JPN 232 or permission of the instructor.	 Zimmerman			
-JPN	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Spring; Fall
-JPN	350H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Spring; Fall
+JPN	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
+JPN	350H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 JPN	352	Sem: Postwar Japan (Eng) 	1	15	 One course on Japan, or permission of the instructor.	 Zimmerman			
 JPN	356	Sem: Hauntings in Modern Japan 	1	15	 One 200-level JPN course.	 Zimmerman			
 JPN	360	Senior Thesis Research 	1	25	Permission of the department.				
@@ -1162,7 +1097,7 @@ KOR	209H	Dynamic Korea 	0.5	10	 KOR 201 or permission of the instructor.	 J. Son
 KOR	231	Advanced Intermediate Korean I 	1	15	 KOR 201-KOR 202 or permission of the instructor.	 Hwang			
 KOR	232	Adv Intermediate Korean II 	1	15	 KOR 231 or permission of the instructor.	 J. Song			
 LING	246	Digital Language: Corpus Linguistics	1	25	LING 114 or permission of the instructor.	Sun-Hee Lee			
-KOR	250	Research or Individual Study 	1	15	Permission of the instructor.		LL - Language and Literature; ARS - Visual Arts, Music, Theater, Film and Video	Spring; Fall	Spring; Fall
+KOR	250	Research or Individual Study 	1	15	Permission of the instructor.		ARS - Visual Arts, Music, Theater, Film and Video; LL - Language and Literature	Spring; Fall	Spring; Fall
 KOR	250H	Research or Individual Study 	0.5	15					
 KOR	256	Gender & Lang Modern Korean (Eng) 	1	20	 None	 Lee			
 KOR	309	Advanced Korean 	1	15	 KOR 202 or permission by the instructor.	 Lee			
@@ -1177,16 +1112,16 @@ POL2	207	Politics of Latin America	1	20		 Contreras
 LAST	221H	Memories of Cuba 	0.5	14	 Permission of the instructor required. Knowledge of Spanish at the level of one course beyond SPAN 241/SPAN 242 (or 5th semester) is required.	 Hagimoto			
 LAST	241	Poverty &amp; Inequality Latin Am.	1	25	ECON 101. ECON 103 (or equivalent) recommended.	McEwan			
 LAST	245	Anthropology of Latin America	1	20		Ellison			
-LAST	250	Research or Individual Study 	1	25	Two units of course work in Latin American studies.			Spring; Fall	Spring; Fall
-LAST	250H	Research or Individual Study 	0.5	25	Two units of course work in Latin American studies.			Spring; Fall	Spring; Fall
+LAST	250	Research or Individual Study 	1	25	Two units of course work in Latin American studies.			Spring; Fall	Fall; Spring
+LAST	250H	Research or Individual Study 	0.5	25	Two units of course work in Latin American studies.			Spring; Fall	Fall; Spring
 SPAN	273	Latin American Civilization	1	16	Open to students who have completed SPAN 241 or SPAN 242  or equivalent (AP 5) or by permission of the instructor.	Guzauskyte			
 SPAN	275	Making of Modern Lat Am Culture	1	16	Open to students who have completed SPAN 241 or SPAN 242  or equivalent (AP 5) or by permission of the instructor.	Selimovic			
 SPAN	287	Women Poets of Spain &amp; Latin America	1	14	 Students who have completed Spanish 241 and Spanish 242, or AP 5, or by permission of the instructor.	 Agosin			
 SPAN	317	Sem: Intermedial Pleasures	1	12	 Open to Senior and Junior majors or by permission of the instructor.	 Selimovic			
-LAST	350	Research or Individual Study 	1	15	Open to Latin American Studies and Spanish majors.			Spring; Fall	Spring; Fall
-LAST	350H	Research or Individual Study 	0.5	25	Open to Latin American Studies and Spanish majors.			Spring; Fall	Spring; Fall
+LAST	350	Research or Individual Study 	1	15	Open to Latin American Studies and Spanish majors.			Spring; Fall	Fall; Spring
+LAST	350H	Research or Individual Study 	0.5	25	Open to Latin American Studies and Spanish majors.			Spring; Fall	Fall; Spring
 LAST	360	Senior Thesis Research 	1	15	Permission of the department. See Academic Distinctions.			Spring; Fall	Fall; Spring
-LAST	370	Senior Thesis 	1	25	LAST 360 and permission of the department.			Spring; Fall	Spring; Fall
+LAST	370	Senior Thesis 	1	25	LAST 360 and permission of the department.			Spring; Fall	Fall; Spring
 MATH	115	Calculus I 	1	25	Not open to students who have completed MATH 116, MATH 120, MATH 205 or the equivalent. Not open to students whose placement is MATH 205 or MATH 206.	Staff			
 MATH	115Z	Applied Calculus I 	1	20	 Not open to students who have completed MATH 116, MATH 120, MATH 205 or the equivalent. Not open to students whose placement is MATH 205 or MATH 206.	 O. Fernandez			
 MATH	116	Calculus II 	1	25	MATH 115, Math 115Z, or the equivalent. Not open to students who have completed MATH 120 or MATH 205. Not open to students whose math placement is MATH 206.	Staff			
@@ -1235,7 +1170,7 @@ MAS	250	Research or Individual Study 	1	25	Permission of the instructor.			Sprin
 MAS	250H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 MAS	260	Creative Problem-Solving 	1	15		 Lapp			
 MAS	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
-MAS	350H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Spring; Fall
+MAS	350H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 MAS	360	Senior Thesis Research 	1	15	Permission of the department.			Spring; Fall	Spring; Fall
 MAS	370	Senior Thesis 	1	35	MAS 360 and permission of the department.			Spring; Fall	Fall; Spring
 MER	211	Women in Medieval Lit, 500-1500 CE	1	15	 None. Not open to students who have taken ENG 311/MER 311.	 Ingallinella			
@@ -1248,7 +1183,7 @@ MER	314	The Global Middle Ages	1	20	 Open to all students who have taken two lit
 MER	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.				
 MER	360	Senior Thesis Research 	1	25	Permission of the department.				
 MER	370	Senior Thesis 	1	15	MER 360 and permission of the department.				
-MES	250	Research or Individual Study 	1	25	Permission of the instructor.			Spring; Fall	Spring; Fall
+MES	250	Research or Individual Study 	1	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 MES	250H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 REL	260	Religion &amp; Culture in Muslim Soc	1	25	 None	 Marlow			
 REL	261	Cities in the Islamic World	1	25	 None. Not open to students who have taken MES 365/REL 365.	 Marlow			
@@ -1360,8 +1295,8 @@ PEAC	231	Anthropology In and Of the City	1	25	None	Ellison
 PEAC	235	Antislavery Lit in 19th c. France (ENG)	1	14	 None	 Michelle Lee			
 WGST	240	U.S. Public Health	1	25	 Open to Sophomores, Juniors and Seniors or permission of the instructor.	 Harrison			
 PEAC	243	The Black Church	1	25	None	Fitzpatrick			
-PEAC	250	Research or Individual Study 	1	25	Permission of the instructor.			Spring; Fall	Fall; Spring
-PEAC	250H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Fall; Spring
+PEAC	250	Research or Individual Study 	1	25	Permission of the instructor.			Spring; Fall	Spring; Fall
+PEAC	250H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Spring; Fall
 PEAC	259	Conflict, Trauma and Narrative	1	25	 Not open to student who have taken ENG 388/PEAC 388.	Cezair-Thompson			
 PEAC	261	Civil War and the World	1	25	None	Quintana			
 PEAC	264	Antiwar Literature	1	30	 None.				
@@ -1370,11 +1305,11 @@ POL2	301	Sem: Nonviolent Direct Action	1	15	 PEAC 104 or permission of the instr
 PEAC	305	Tech., Soc. Justice, and Conflict	1	15	 For PEAC 305 - PEAC 104 and PEAC 204, or permission of the instructor (Confortini). For ENGR 305 - one ENGR course, or a comparable course at another institution, or permission of the instructor (Banzaert).	Confortini, Banzaert			
 			1	15	 At least two 200-level or above courses in the social sciences including Peace and Justice Studies.	 Levitt			
 POL4	318	Human Rights	1	25	 One course in political theory or philosophy or permission of the instructor.	 Martorelli			
-PEAC	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Spring; Fall
+PEAC	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
 PEAC	350H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 			1	15	PEAC 104 or PEAC 217/POL2 217 or PEAC 204 or permission of the instructor.	Hajj			
 PEAC	360	Senior Thesis Research 	1	25	Permission of the department.				
-PEAC	370	Senior Thesis 	1	25	PEAC 360 and permission of the department.			Spring; Fall	Fall; Spring
+PEAC	370	Senior Thesis 	1	25	PEAC 360 and permission of the department.			Spring; Fall	Spring; Fall
 PEAC	388	Trauma, Conflict &amp; Narrative	1	20	 At least one literature course in any department or by permission of the instructor to other qualified students; PEAC 104 for PEAC Majors. Priority is given to Senior PEAC majors.	 Cezair-Thompson (English)			
 PHIL	103	Self & World: Intro Metaphy & Epist 	1	25	None	Wearing (Fall); McGowan (Spring);			
 PHIL	105	The Philosophy of Food	1	25	 None	 E. Matthes (Philosophy)			
@@ -1402,7 +1337,7 @@ PHIL	234	From Wilderness to Ruins	1	25	 Open to First-Years who have taken one c
 PHIL	236	Global Justice 	1	25	 Open to First-Years who have taken one course in philosophy or political science, and to Sophomores, Juniors, and Seniors without prerequisite.	 de Bres			
 PHIL	245	Rationality and Action 	1	30	 Open to First-Years who have taken one course in philosophy and to Sophomores, Juniors, and Seniors without prerequisite.				
 PHIL	249	Medical Ethics 	1	25	Open to all students without prerequisite.	Gartner			
-PHIL	250	Research or Individual Study 	1	10	At least one course in philosophy and permission of the instructor.			Spring; Fall	Spring; Fall
+PHIL	250	Research or Individual Study 	1	10	At least one course in philosophy and permission of the instructor.			Spring; Fall	Fall; Spring
 PHIL	250H	Research or Individual Study 	0.5	10	At least one course in philosophy and permission of the instructor.			Spring; Fall	Spring; Fall
 PHIL	300	Sem: Philosopher Misfits & Queens 	1	16	 One previous course in philosophy or permission of the instructor.	 Walsh			
 PHIL	301	Sem: Mortality and Immortality 	1	16	 PHIL 201 or permission of the instructor.	 Gartner			
@@ -1426,7 +1361,7 @@ PHIL	350	Research or Individual Study 	1	25	At least two courses in philosophy a
 PHIL	350H	Research or Individual Study 	0.5	25	At least two courses in philosophy and permission of the instructor.			Spring; Fall	Fall; Spring
 PHIL	360	Senior Thesis Research 	1	25	Permission of the department.				
 REL	366	Sem: Islamic Philosophy/Theology	1	16	 One 200-level course in Religion, Philosophy, MES, SAS, or Med/Ren or permission of the instructor.	 Bal?kç?o?lu			
-PHIL	370	Senior Thesis 	1	25	PHIL 360 and permission of the department.			Spring; Fall	Spring; Fall
+PHIL	370	Senior Thesis 	1	25	PHIL 360 and permission of the department.			Spring; Fall	Fall; Spring
 PHIL	399H	Race, Justice, and Action	0.5	15	 Any course at Wellesley College that critically engages with questions of race and/or justice. Students will be asked to submit a short explanation of their interest in the class and list their relevant course experience before being admitted into the class.br/	 Walsh, Whitaker			
 PHYS	100	Relativity & Quantum Physics 	1	18	 Open to First-Year and Sophomore students. Juniors and Seniors by permission. Fulfillment of the Quantitative Reasoning (QR) component of the Quantitative Reasoning &amp; Data Literacy requirement. Pre/co-requisite - MATH 115 or the equivalent, or permission of the instructor. br/	 Staff			
 PHYS	101	Einstein's Century 	1	35	 Fulfillment of the Quantitative Reasoning (QR) component of the Quantitative Reasoning &amp; Data Literacy requirement. Not open to students who have taken PHYS 100.	 J. Battat			
@@ -1441,9 +1376,9 @@ PHYS	207	Classical Dynamics 	1	30	 PHYS 108 and MATH 215, or permission of the i
 PHYS	208	Intermediate Electromagnetism 	1	30	 PHYS 108 and MATH 205 or equivalent.	 Staff			
 PHYS	210	Experimental Techniques	1.25	12	 PHYS 108. PHYS 120 recommended.	 Staff (Fall); Staff (Spring)			
 PHYS	239H	Physics Pedagogy in Practice 	0.5	15	 Permission of the instructor.	 J. Battat			
-PHYS	250	Research or Individual Study 	1	25	Permission of the instructor.			Spring; Fall	Spring; Fall
+PHYS	250	Research or Individual Study 	1	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 			1	25	Permission of the instructor.				
-PHYS	250H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Spring; Fall
+PHYS	250H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Fall; Spring
 PHYS	302	Quantum Mechanics 	1	20	 PHYS 100 and PHYS 207 and MATH 215, or permission of the instructor.	 Staff			
 PHYS	304	Advanced Experimental Techniques	1	8	ASTR 202, ASTR 206, PHYS 210 or prior experience with instrumentation with permission of the instructor.	Staff			
 PHYS	305	Stats Mechanics & Thermodynamics 	1	25	 PHYS 205 and PHYS 207 and MATH 205 (or equivalent), or permission of the instructor.	 Staff			
@@ -1457,7 +1392,7 @@ PHYS	331	Modern Materials	1.25	15	 PHYS 108 and either PHYS 210 or CHEM 361, or 
 PHYS	332	Particle Physics 	1	20	 PHYS 208 and PHYS 302 and exposure to special relativity.	McAskill			
 PHYS	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.				
 PHYS	350G	Research or Group Study 	1	25	Permission of the instructor				
-PHYS	350H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Spring; Fall
+PHYS	350H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 PHYS	355	Senior Thesis Research 	1	30	 Open only to Seniors with permission of the department.				
 PHYS	360	Senior Thesis Research 	1	30	 Permission of the department.				
 PHYS	365	Senior Thesis 	1	30	 Open only to Seniors with permission of the department.				
@@ -1475,9 +1410,9 @@ PHYS	207	Classical Dynamics 	1	30	 PHYS 108 and MATH 215, or permission of the i
 PHYS	208	Intermediate Electromagnetism 	1	30	 PHYS 108 and MATH 205 or equivalent.	 Staff			
 PHYS	210	Experimental Techniques	1.25	12	 PHYS 108. PHYS 120 recommended.	 Staff (Fall); Staff (Spring)			
 PHYS	239H	Physics Pedagogy in Practice 	0.5	15	 Permission of the instructor.	 J. Battat			
-PHYS	250	Research or Individual Study 	1	25	Permission of the instructor.			Spring; Fall	Spring; Fall
+PHYS	250	Research or Individual Study 	1	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 			1	25	Permission of the instructor.				
-PHYS	250H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Spring; Fall
+PHYS	250H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Fall; Spring
 PHYS	302	Quantum Mechanics 	1	20	 PHYS 100 and PHYS 207 and MATH 215, or permission of the instructor.	 Staff			
 PHYS	304	Advanced Experimental Techniques	1	8	ASTR 202, ASTR 206, PHYS 210 or prior experience with instrumentation with permission of the instructor.	Staff			
 PHYS	305	Stats Mechanics & Thermodynamics 	1	25	 PHYS 205 and PHYS 207 and MATH 205 (or equivalent), or permission of the instructor.	 Staff			
@@ -1491,7 +1426,7 @@ PHYS	331	Modern Materials	1.25	15	 PHYS 108 and either PHYS 210 or CHEM 361, or 
 PHYS	332	Particle Physics 	1	20	 PHYS 208 and PHYS 302 and exposure to special relativity.	McAskill			
 PHYS	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.				
 PHYS	350G	Research or Group Study 	1	25	Permission of the instructor				
-PHYS	350H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Spring; Fall
+PHYS	350H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 PHYS	355	Senior Thesis Research 	1	30	 Open only to Seniors with permission of the department.				
 PHYS	360	Senior Thesis Research 	1	30	 Permission of the department.				
 PHYS	365	Senior Thesis 	1	30	 Open only to Seniors with permission of the department.				
@@ -1513,7 +1448,7 @@ POL1	328	Seminar: Immigration Politics 	1	15	 POL1 200 and permission of the ins
 POL1	329	Political Psychology 	1	25	 POL1 200	 Dawkins			
 POL1	333	CSPW: American Politics 	1	12	 POL1 200 and permission of the instructor. Enrollment is limited; interested students must fill out a seminar application via the political science department.	 Burke			
 POL1	337	Sem: Race in American Politics 	1	15	POL1 200 and permission of the instructor. Enrollment is limited; interested students must fill out a seminar application via the political science department.	 Chudy			
-POL1	375	Sem: Emotions and Politics 	1	15	"Normally this seminar would be subject to a department application process, where students fill out a department form that instructors use to choose among students.  Given that we are adding this course late, it should be ""by instructor permission,"" but given that Liam Hayes is not yet in our system and has little contextual knowledge of the major and College, is there any way you could give the chair power to admit students for this course, or maybe the department administrator who handles seminars, Maura Cahn?"	Hayes	SBA - Social and Behavioral Analysis	Every other year	Fall
+POL1	375	Sem: Emotions and Politics 	1	15	 Permission of the instructor (if interested in the course, contact Tom Burke or Maura Cahn)	 Hayes			
 POL1	381	U.S. Environmental Politics	1	16	 A 200-level ES course or POL1 200 or permission of the instructor.	 Turner			
 POL1	385	Legal Research 	1	20	 One course in American Politics, or permission of the instructor. Previous experience with law helpful but not required.br/	 Burke			
 POL2	202	Comparative Politics 	1	35	None	Contreras			
@@ -1561,7 +1496,7 @@ POL3	372	Politics of Finance & Financial Crises 	1	15	 ECON 102	 Sahasrabuddhe
 POL3	378	Sem: Empire & Imperialism 	1	15	 POL3 221. Enrollment is limited; interested students must fill out a seminar application via the political science department.	 MacDonald			
 POL3	379	Weapons, Strategy, and War 	1	35	POL3 221 required; POL3 224 recommended.	Goddard			
 POL3	387	IR of the Middle East 	1	30	 POL3 221.	 Bedirhanoglu			
-POL3	399	IntroInternationalLaw 	1	25	Pol3-221 or by permission of instructor	Jean-Pierre Murray	SBA - Social and Behavioral Analysis	Fall	Fall
+POL3	399	IntroInternational Law 	1	25	 POL3 221 or permission of the instructor.	 Murray			
 POL4	201	Political Action and Dissent 	1	35	None	Grattan			
 POL4	216	Canons of Political Thought 	1	25	 Not open to students who have taken POL4 107, the previous version of this course.	 Martorelli			
 POL4	243	Democracy and Difference 	1	35	 None. Not open to students who took POL4 343. Open to Sophomores, Juniors and Seniors. First-Years by permission of the instructor.	 Martorelli			
@@ -1572,6 +1507,7 @@ POL4	341	Beyond Prisons 	1	30	 One course in POL4 or American Studies, (specific
 POL4	345	Sem: Black Liberation from Haiti to BLM 	1	15	One course in political theory, philosophy or Africana Studies, and permission of instructor. Enrollment is limited; interested students must fill out a seminar application via the political science department.	Grattan			
 POL4	349	Seminar: Sex/Politics 	1	15	 One course in political theory or philosophy, or permission of the instructor. Enrollment is limited; interested students must fill out a seminar application via the political science department.	 Martorelli			
 PSYC	101	Intro to Psychology 	1	25	None	Staff			
+PSYC	105	Intro data analysis in psych. 	1	25	Prerequisites(s)	Jonathan Cheek, Craig Brinkman, Jeremy Wilmer	SBA - Social and Behavioral Analysis	Fall and Spring	Fall
 			1	15	 None. Open to First-Years only.	 Pyers			
 PSYC	205	Statistics 	1	25	 PSYC 101 or NEUR 100 or a score of 5 on the Psychology AP exam, or a score of 5, 6, or 7 on the Higher Level IB exam, or permission of the instructor.Fulfillment of the Quantitative Reasoning (QR) component of the Quantitative Reasoning &amp; Data Literacy requirement. Not open to students who have taken or are taking ECON 103/SOC 190, QR/STAT 150, STAT 160, or POL 299, except for psychology majors and neuroscience majors.	 Brinkman, Cheek, Wilmer			
 PSYC	207	Developmental Psychology 	1	30	PSYC 101, a score of 5 on the Psychology AP exam, or a score of 5, 6, or 7 on the Higher Level IB exam, or permission of the instructor.	Pyers			
@@ -1585,6 +1521,7 @@ PSYC	218	Sensation and Perception 	1	30	PSYC 101 or NEUR 100, a score of 5 on th
 PSYC	219	Biological  Psychology 	1	30	 PSYC 101, a score of 5 on the Psychology AP exam, or a score of 5, 6, or 7 on the Higher Level IB exam, or permission of the instructor. Not open to students who have taken NEUR 200. Not open to students who have taken NEUR 100 except by permission of the instructor.	 Deveney			
 PSYC	222	Asian American Psychology	1	30	 PSYC 101 or AMST 151; or a score of 5 on the Psychology AP exam; or a score of 5, 6, or 7 on the Higher Level IB exam; or permission of the instructor.	Chen			
 PSYC	225	Intro Black Psychology	1	30		 Staff			
+PSYC	240	Organizational Psychology 	1	30	 PSYC 101, a score of 5 on the Psychology AP exam, or a score of 5, 6, or 7 on the Higher Level IB exam, or permission of the instructor.	 Brinkman			
 PSYC	245	Cultural Psychology 	1	30	PSYC 101, a score of 5 on the Psychology AP exam, or a score of 5, 6, or 7 on the Higher Level IB exam, or permission of the instructor.	Chen			
 PSYC	250	Research or Individual Study 	1	15	 Permission of the instructor.				
 PSYC	250H	Research or Individual Study 	0.5	15	 Permission of the instructor.				
@@ -1653,7 +1590,7 @@ SAS	241	Courtesans in South Asia	1	20	None.	Shukla-Bhatt
 REL	243	Women in the Biblical World 	1	25	None	Geller			
 REL	244	Jerusalem: The Holy City 	1	25	None	Geller			
 REL	245	The Holocaust &amp; the Nazi State	1	25	None	Geller			
-REL	250	Research or Individual Study 	1	30	Permission of the instructor.			Spring; Fall	Fall; Spring
+REL	250	Research or Individual Study 	1	30	Permission of the instructor.			Spring; Fall	Spring; Fall
 REL	250H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Spring; Fall
 SAS	251	Religions in South Asia	1	25		 Shukla-Bhatt			
 REL	253	Buddhist Thought and Practice 	1	30	 None	 Kodera			
@@ -1687,8 +1624,8 @@ REL	344	Monuments &amp; the Sacred	1	15	A course in a relevant subject area such
 REL	345	Sem: Enslavement and the Bible 	1	12	 A course in a relevant subject area such as Religion, History, Africana Studies, Jewish Studies, Middle Eastern Studies, Classics, or American Studies, or by permission of the instructor.	 Jarrard			
 REL	347	Muslim Ethics	1	15	 Open to Juniors and Seniors who have taken at least one unit in Middle Eastern Studies or Religion, and permission of the instructor. Not open to students who have taken MES 267/REL 267.	 Marlow			
 REL	348	Religion and Culture in Egypt 	1	15	 Open to Juniors and Seniors who have taken at least one unit in Middle Eastern Studies or Religion, with permission of the instructor. Not open to students who have taken REL 268.	 Marlow			
-REL	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Spring; Fall
-REL	350H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Spring; Fall
+REL	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
+REL	350H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 REL	353	Sem: Zen Buddhism 	1	15	At least one unit in Asian religions.	Kodera			
 REL	357	Sem: Issues Comparative Religion 	1	15		Kodera			
 REL	359	Sem: Power, Legitimacy, Islam	1	15	 At least one course in Religion, Middle Eastern Studies, History or Political Science, or permission of the instructor.	 Marlow			
@@ -1708,8 +1645,8 @@ RUSS	102	Elementary Russian II 	1	30	 RUSS 101 or equivalent.	 Weiner, Epsteyn
 RUSS	201	Intermediate Russian I 	1	20	 RUSS 102 or equivalent.	Epsteyn			
 RUSS	202	Intermediate Russian II 	1	30	RUSS 201 or equivalent.	Epsteyn			
 RUSS	203W	Russian in Moscow 	1	12	RUSS 201 or permission of the instructor. Application required.	Epsteyn			
-RUSS	250	Research or Individual Study 	1	25	Permission of the instructor.			Spring; Fall	Spring; Fall
-RUSS	250H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Spring; Fall
+RUSS	250	Research or Individual Study 	1	25	Permission of the instructor.			Spring; Fall	Fall; Spring
+RUSS	250H	Research or Individual Study 	0.5	25	Permission of the instructor.			Spring; Fall	Fall; Spring
 RUSS	251	Russ Lit in Trans-19th Century 	1	35	None	Hodge			
 RUSS	255	Russian & Soviet Film (in Eng) 	1	30	 None	 Weiner			
 RUSS	272	Ideology & the Russian Novel 	1	30	 None	 Hodge			
@@ -1733,9 +1670,9 @@ RUSS	378H	Chekhov Short Stories 	0.5	15	 Prerequisite or co-requisite - RUSS 301
 RUSS	386H	Vladimir Nabokov (in Russ) 	0.5	15	 Prerequisite or co-requisite - RUSS 301, RUSS 302, RUSS 305, or RUSS 306.	 Weiner			
 RAST	222	Firebird! Russian Arts 	1	25	 None. Not open to students who have taken RAST 322.	 Tumarkin			
 RAST	322	Firebird! Russian Arts 	1	25	 Normally open to Sophomores, Juniors and Seniors who have taken a 200-level unit in a relevant area/subject. Not open to students who have taken RAST 222.	 Tumarkin			
-RAST	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
+RAST	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Spring; Fall
 RAST	360	Senior Thesis Research 	1	25	Permission of the department.				
-RAST	370	Senior Thesis 	1	25	RAST 360 and permission of the department.			Spring; Fall	Fall; Spring
+RAST	370	Senior Thesis 	1	25	RAST 360 and permission of the department.			Spring; Fall	Spring; Fall
 SOC	102	Soc Perspective: Intro to Soc 	1	15	None	Cushman			
 SOC	103	Criminal Justice Systems 	1	30	 Not open to students who have taken SOC 211.	 Kaliner			
 SOC	105	Doing Sociology Real World 	1	15					
@@ -1786,7 +1723,7 @@ WGST	322	Sem: Contemporary Reproduction	1	15	 Recommended for Juniors or Seniors
 SOC	334	Consumer Culture 	1	15	 One 100- or 200-level SOC course, or permission of the instructor.	 Rutherford			
 SOC	348	Conservatism in America	1	30	A 100-level sociology course or permission of the instructor. Open to juniors and seniors only.	Imber			
 SOC	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Spring; Fall
-SOC	350H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Fall; Spring
+SOC	350H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Spring; Fall
 SOC	360	Senior Thesis Research 	1	15	Permission of the department.				
 SOC	370	Senior Thesis 	1	15	SOC 360 and permission of the department.			Spring; Fall	Fall; Spring
 SAS	206	The Hindu Worlds	1	15		 Shukla-Bhatt			
@@ -1798,7 +1735,7 @@ SAS	239	Art &amp; Architecture of South Asia	1	30	None. ARTH 100 or WRIT 107 rec
 SAS	241	Courtesans in South Asia	1	20	None.	Shukla-Bhatt			
 SAS	242	South Asian Diaspora Voices 	1	20	 None.	 Shukla-Bhatt			
 			1	25	 None	 Shukla-Bhatt			
-SAS	250	Research or Individual Study 	1	15	Permission of the instructor.			Spring; Fall	Spring; Fall
+SAS	250	Research or Individual Study 	1	15	Permission of the instructor.			Spring; Fall	Fall; Spring
 SAS	250H	Research or Individual Study 	0.5	3					
 SAS	251	Religions in South Asia	1	25		 Shukla-Bhatt			
 SAS	266	Indian Ocean	1	15	 Open to students with at least one course in either History or African, Middle Eastern, or South Asian studies.	 Kapteijns			
@@ -1806,7 +1743,7 @@ SAS	283	Partition in South Asia 	1	25	None.	Parwani	SBA - Social and Behavioral 
 SAS	301	Sem: Religion in Modern S.Asia	1	12	 Two units at the 200 level in South Asia studies, or permission of the instructor.	 Shukla-Bhatt			
 SAS	302	Narratives from South Asia	1	15	 Two units at the 200 level in South Asia studies, or permission of the instructor.	 Shukla-Bhatt			
 SAS	303	Sem: Models of Relig Pluralism	1	15	 Permission of the instructor.	 Shukla-Bhatt			
-SAS	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
+SAS	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Spring; Fall
 SAS	350H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Spring; Fall
 SAS	360	Senior Thesis Research 	1	15	Permission of the department.			Spring; Fall	Fall; Spring
 SAS	367	Indian Ocean History	1	20	 Permission of the instructor. Not open to students who have taken HIST 266/SAS 266.	 Kapteijns			
@@ -1862,10 +1799,10 @@ SPAN	325	Sem: Food in Latin Am Lit & Culture 	1	10	Open to senior and junior maj
 SPAN	329	Sem: Chile, Lit & the Arts 	1	12	Open to senior and junior majors or by permission of the instructor.	Agosin			
 SPAN	335	Sem: Asia in Latin America 	1	12	Open to senior and junior majors or by permission of the instructor.	Hagimoto			
 SPAN	344	Sem: Spain in the US: Past & Future 	1	10	Open to junior and senior majors or by permission of the instructor. Not open to students who have taken SPAN 244.	Ramos			
-SPAN	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Spring; Fall
-SPAN	350H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Fall; Spring
+SPAN	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
+SPAN	350H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Spring; Fall
 SPAN	360	Senior Thesis Research 	1	15	Permission of the department.				
-SPAN	370	Senior Thesis 	1	25	SPAN 360 and permission of the department.			Spring; Fall	Spring; Fall
+SPAN	370	Senior Thesis 	1	25	SPAN 360 and permission of the department.			Spring; Fall	Fall; Spring
 SPAN	377	Jewish Women Writers of Lat Am	1	12	 Open to Junior and Senior majors or by permission of the instructor. Not open to students who have taken JWST 277/SPAN 277.	 Agosin			
 STAT	150	Intro Data Literacy: Everyday Apps	1	25	 Fulfillment of the Quantitative Reasoning (QR) component of the Quantitative Reasoning &amp; Data Literacy requirement. Not open to students who have completed another introductory statistics course at Wellesley, including MATH/STAT 101, STAT 160, STAT 218, MATH/STAT 220 (prior to spring 2018), BISC 198, ECON 103/SOC 190, POL 299, or PSYC 205. Not open to students who have received AP credit in Statistics. Note that this course cannot be used as a prerequisite for upper-level courses in statistics or econometrics including STAT 260 and ECON 203.	Bu, Cochran			
 STAT	160	Fundamentals of Statistics 	1	25	 Fulfillment of the Quantitative Reasoning (QR) component of the Quantitative Reasoning &amp; Data Literacy requirement. Not open to students who have taken or are taking MATH 205, MATH 101/STAT 101, STAT 218, STAT 220, ECON 103/SOC 190, PSYC 205, BISC 198, POL 299, QR 260/STAT 260, STAT 318 or the QAI Summer Course.br/	 Joseph			
@@ -1895,7 +1832,7 @@ ARTS	220	Print Methods: Intaglio/Relief 	1	12	Any 100-level ARTS course or permi
 CAMS	239	Digital Imaging	1	15	 Any 100-level ARTS course.	 Olsen			
 ARTS	222	Print Methods: Typography/Book 	1	12	 Any 100-level ARTS course or permission of the instructor required.	 Ruffin			
 ARTS	223	Alternative Print Methods 	1	12	 Any 100-level ARTS course or permission of the instructor required.	 McGibbon			
-ARTS	250	Research or Individual Study 	1	15	Permission of the instructor.			Spring; Fall	Spring; Fall
+ARTS	250	Research or Individual Study 	1	15	Permission of the instructor.			Spring; Fall	Fall; Spring
 ARTS	250H	Research or Individual Study 	0.5	25	 Permission of the instructor.				
 CAMS	255	Dynamic Interface Design	1	15	 Any 100-level ARTS course and either CS 110 or CS 111.	 Olsen			
 CAMS	230	Moving Image Studio	1	12	 Any 100-level ARTS course, or ARTS 221/CAMS 239.	 Olsen			
@@ -1911,7 +1848,7 @@ CAMS	321	Advanced New Media	1	15	 Two 200-level courses in ARTS, CAMS, or MAS.	 
 ARTS	322	Advanced Print Concepts 	1	12	 One of the following - ARTS 208/CAMS 238, ARTS 219, ARTS 220, ARTS 221/CAMS 239, ARTS 222, ARTS 223, or by permission of the instructor.	 McGibbon			
 ARTS	323	Advanced Graphic Projects 	1	12	 One of the following - ARTS 208/CAMS 138, ARTS 219, ARTS 220, ARTS 221/CAMS 239, ARTS 222, or ARTS 223.	 McGibbon			
 MUS	336	Music, Drawing, &amp; Architecture	1	20	 Any of the following - ARTS 105, ARTS 109, ARTS 113, MUS 100, MUS 122, ARTH 100, or permission of the instructor.	 J. Johnson (Music) and Rivera (Art)			
-ARTS	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Spring; Fall
+ARTS	350	Research or Individual Study 	1	25	Permission of the instructor. Open to juniors and seniors.			Spring; Fall	Fall; Spring
 ARTS	350H	Research or Individual Study 	0.5	15	Permission of the instructor.			Spring; Fall	Spring; Fall
 ARTS	360	Senior Thesis Research 	1	25	Permission of the department.				
 CAMS	335	Advanced Video Production	1	12	 ARTS 265/CAMS 235 and either CAMS 101 or CAMS 201, or permission of the instructor.	 Joswkowicz			
@@ -1936,7 +1873,7 @@ THST	221	The Art of Playwriting 	1	12	 None	 Roach
 THST	222	Costume Design 	1	12	 None	 Kerl			
 THST	245	Theatrical Criticism 	1	8	 Permission of the instructor.	 Rainer			
 THST	250	Res,Indep Study, Prod Apprntc 	1	25			ARS - Visual Arts, Music, Theater, Film and Video	Fall and Spring	Fall; Spring
-THST	250G	Research or Group Study 	1	10	Permission of the instructor.			Spring; Fall	Fall; Spring
+THST	250G	Research or Group Study 	1	10	Permission of the instructor.			Spring; Fall	Spring; Fall
 THST	250H	Research or Individual Study 	0.5	25	Permission of the instructor.				
 THST	251	Jpn Lit from Myth to Manga (Eng)	1	30	 None.	 Goree			
 THST	276	Storytelling Through Cabaret 	1	8	 Permission of the instructor.	 Rainer			
@@ -1959,6 +1896,7 @@ WGST	108	Social Construction of Inequalities 	1	25	 None
 WGST	120	Intro to Women's & Gender Studies 	1	25	 None.	b /bJ. Gutiérrez, Savit			
 WGST	121	Reading Elvis Presley 	1	20	None.	Creef			
 WGST	205	Love and Intimacy 	1	25	None	Musto			
+WGST	210	Health Activism 	1	25	 None. Not open to students who have taken WGST 310.	 O'Donnell			
 WGST	211	Mod Families &amp; Social Inequalities	1	25	 None	 Hertz			
 WGST	214	Women and Health 	1	24	 None	 O'Donnell			
 WGST	215	Gender Equality & Sexualities 	1	25	 None	 Hertz, Musto			
@@ -1980,8 +1918,8 @@ WGST	250	Research or Individual Study 	1	25	Permission of the instructor.
 WGST	250H	Research or Individual Study 	0.5	25	Permission of the instructor.				
 WGST	255	Transnational Perspectives 	1	25	None				
 WGST	260	Critical Public Health 	1	25	 None	 Staff			
-WGST	264	Gender, Race and Media 	1	25	none	Lauren Savit	SBA - Social and Behavioral Analysis	Fall	Fall
-WGST	265	LGBTQ+ Lives Onscreen 	1	25	none	Lauren Savit	SBA - Social and Behavioral Analysis	Spring	Spring
+WGST	264	Gender, Race and Media 	1	25	 None	 Savit			
+WGST	265	LGBTQ+ Lives Onscreen 	1	25	 None	 Savit			
 WGST	274	Gender &amp; Race in Westerns	1	25	 None	 Creef, P. Fisher (American Studies)			
 WGST	296	Women & Economic Inequality 	1	25	 None.	 J. Gutierrez			
 WGST	302	Global Health / Env. Crisis 	1	15	 Open to Sophomores, Juniors or Seniors who have taken a 200 level WGST course or by permission of the instructor.	 Harrison			
@@ -1996,7 +1934,7 @@ WGST	322	Sem: Contemporary Reproduction	1	15	 Recommended for Juniors or Seniors
 WGST	326	Sem: Crossing the Border(s) 	1	15	 Any WGST 100-level course and WGST 200-level course or permission of the instructor.	Mata			
 WGST	328	Sem: Naturecultures	1	15	  Any WGST 200-level course or ES-200-level course. Juniors and Seniors only. Enrollment is by permission of the instructor only.   	 Chacko			
 WGST	341	Sem: Anti-Carceral Feminism 	1	15	 WGST 120 and WGST 221, or permission of the instructor.	 Musto			
-WGST	342	Feminist Movements 	1	15	Intro and one 200 level course. Juniors and Seniors only	Lauren Savit	SBA - Social and Behavioral Analysis	Spring	Spring
+WGST	342	Feminist Movements 	1	15	 WGST 120 and one 200 level course. Open to Juniors and Seniors only.	 Savit			
 WGST	350	Research or Individual Study 	1	15	Permission of the instructor. Open to juniors and seniors.				
 WGST	350H	Research or Individual Study 	0.5	15	Permission of the instructor.				
 WGST	360	Senior Thesis Research 	1	15	Permission of the department.				
