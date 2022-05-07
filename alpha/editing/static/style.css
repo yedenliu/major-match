@@ -90,7 +90,7 @@ p {
 }
 
 #messages {
-    margin-left: 8px;
+    text-align: center;
     color: red;
 }
 

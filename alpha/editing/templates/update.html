@@ -24,9 +24,9 @@
           <td><label>Counted Majors</label></td>
           <td><ul>
             {% for major in majors %}
-              <li><a href="{{url_for('department_page', dept_id=major[1])}}">{{ major[0] }}</a>
+              <li style="text-align:left"><a href="{{url_for('department_page', dept_id=major[1])}}">{{ major[0] }}</a>
               <!-- button for delete -->
-              <button value="delete-pair">remove</button>
+              <button type="submit" name="submit" value="delete-pair-{{major[1]}}">remove</button>
               </li>
             {% endfor %}
           </ul></td>
@@ -70,7 +70,9 @@
       <input type="submit" name="submit" value="update">
       <input type="submit" name="submit" value="delete">
     </form>
+    
     <p></p>
+    
     <form method=POST action="">
       <table class="table-form">
         <tr>

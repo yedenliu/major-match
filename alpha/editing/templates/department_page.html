@@ -6,7 +6,7 @@
 
 {% block main_content %}
 
-<p>Add courses that belong to this page</p>
+<p style="margin:auto; text-align:center; padding-bottom:5px">Add courses that belong to this page</p>
 <form method=POST action="">
     <table class="table-form">
       <tr>
@@ -15,6 +15,7 @@
         <!-- make this a drop down -->
         <input list="abbrev"  name='dept' value="{{ dept }}" placeholder="Start typing...">
         <datalist id="abbrev">
+          <!-- hard coded for to reduce bugs, will make this a loop -->
           <option>AFR</option>
           <option>SWA</option>
           <option>AMST</option>
