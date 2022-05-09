@@ -14,6 +14,11 @@
     <!-- name, count() -->
     <h2>{{ major[0] }}</h2>
     <!-- FOR DEBUGGING -->
+    {% for course in course_matches %}
+        {% if course[1] == major[0] %}
+        <li>{{ course[0] }}</li>
+        {% endif %}
+    {% endfor %}
     <p>Count: {{ major[1] }}</p>
     </div>
     {% endfor %}
@@ -24,6 +29,7 @@
 <p>FOR DEBUGGING: This is what you inputted</p>
 <ul> 
     {% for class in classes %}
+    <li>{{class}}</li>
     <li>{{ class[0] }} {{ class[1] }}</li>
     {% endfor %}
 </ul>
