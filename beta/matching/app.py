@@ -52,6 +52,7 @@ def index():
                 results = major_match(conn)
                 course_matches = matched_courses(conn)
         delete_form_data(conn)
+        # get_dept_courses(conn, dept_id) --> get the dept IDS
         return render_template('results.html',
                                 page_title='Results',
                                 classes = classes,

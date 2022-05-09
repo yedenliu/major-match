@@ -71,6 +71,89 @@ p {
     padding-bottom: 5px;
 }
 
+/********** STYLE RESULTS **********/
+.listed-courses{
+    margin-bottom: 6px;
+    position: relative;
+    top: 2px;
+    padding: 7px;
+    position: relative;
+}
+
+.major-name{
+    padding-bottom: 10px;
+}
+
+.modal-btn{
+    position: relative;
+    margin-top: 20px;
+    bottom: 10px;
+    margin-left: 35%;
+    background-color: white;
+    font-size: medium;
+    font-weight: bolder;
+    color: #415a75;
+    border: 1px black dashed;
+    border-radius: 5px;
+}
+
+.modal-btn:hover{
+    background-color: #415a75;
+    border-style: solid;
+    color: white;
+}
+
+.major-container {
+    justify-content: center;
+    position: relative;
+    width: 250px;
+    margin: 6px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: dashed;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
 /********** STYLE FORM **********/
 form {
     text-align: center;
@@ -96,16 +179,7 @@ form {
     border-style: dashed;
 }
 
-.major-container {
-    justify-content: center;
-    width: 250px;
-    margin: 6px;
-    padding: 5px;
-    background-color: white;
-    border-radius: 10px;
-    border-width: 1px;
-    border-style: dashed;
-}
+
 
 .class-input {
     display: flex;
