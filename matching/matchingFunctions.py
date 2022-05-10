@@ -37,6 +37,9 @@ def grabCourses(dept):
             if (dept).__eq__(rho[0]):
                 allCourses = list(set(rho[1:]))
                 allCourses.sort()
+    for item in allCourses:
+        if len(item) <= 6:
+            allCourses.remove(item)
     return(allCourses)
 
 ''' findElectives() takes two lists: the courses that are required for a
@@ -58,10 +61,14 @@ of electives at the designated level, i.e. will take a list of the CS electives
 and will return only the 300 level electives.'''
 def courseLevelUntangler(electiveList, level):
     levelElectives = []
-    for elective in electiveList:
-        courseNum = int(elective.split(" ")[1][0])
-        if courseNum == level:
-            levelElectives.append(elective)
+    if len(electiveList) != 0:
+        for elective in electiveList:
+            try:
+                courseNum = int(elective.split(" ")[1][0])
+                if courseNum == level:
+                   levelElectives.append(elective)
+            except IndexError:
+                print('*******', elective, '*******')
     return(levelElectives)
 
 
@@ -122,6 +129,7 @@ def multilistedSatisfied(courseToCompare, coursesToCompareTo):
         return(False)
 
 def cs(userInput):
+    print('Checking your requirements against the Computer Science major...')
     needed = 10
     has = 0
     introductory = ['CS 111','CS 230']
@@ -175,6 +183,7 @@ def cs(userInput):
         suggestComplete(electivesTaken, int(2 - numElectives), electives, False, 0)
 
 def econ(userInput):
+    print('Checking your requirements against the Economics major...')
     coreNeeded = 6
     threesNeeded = 2
     electivesNeeded = 1
@@ -216,6 +225,7 @@ def econ(userInput):
         suggestComplete(taken, electivesNeeded, electives, False, 0)
 
 def chem(userInput):
+    print('Checking your requirements against the Chemistry major...')
     coreNeeded = 0
     needed = 11
     multicore = False
@@ -346,15 +356,75 @@ def chem(userInput):
         suggestComplete(flexMathTaken, 1, flexMath, False, 0)
         suggestComplete(flexPhysTaken, 1, flexPhys, False, 0)
 
+def french(userInput):
+    print('Checking your requirements against the French and Francophone Studies major...')
+    needed = 9
+    has = 0
+
+    core = ['FREN 210','FREN 211','FREN 212']
+    flexLang = ['FREN 202','FREN 203','FREN 205','FREN 206','FREN 211','FREN 226']
+    flexCulture = ['FREN 207', 'FREN 220', 'FREN 222', 'FREN 225', 'FREN 227', 'FREN 229', 'FREN 230', 'FREN 232', 'FREN 233', 'FREN 237', 'FREN 300', 'FREN 314', 'FREN 322', 'FREN 323', 'FREN 324', 'FREN 332']
+    flexLit = ['FREN 208', 'FREN 209', 'FREN 213', 'FREN 214', 'FREN 216', 'FREN 217', 'FREN 221', 'FREN 223', 'FREN 224', 'FREN 228', 'FREN 234', 'FREN 235', 'FREN 237', 'FREN 241', 'FREN 278', 'FREN 302', 'FREN 303', 'FREN 306', 'FREN 307', 'FREN 308', 'FREN 312', 'FREN 313', 'FREN 315', 'FREN 317', 'FREN 319', 'FREN 330', 'FREN 333']
+
+    allCourses = grabCourses('French and Francophone Studies')
+    print(allCourses)
+    # twos = courseLevelUntangler(allCourses, 2)
+    threes = courseLevelUntangler(allCourses, 3)
+
+    numThrees = 0
+
+    coresTaken = []
+    flexLangTaken = []
+    flexCultureTaken = []
+    flexLitTaken = []
+    threesTaken = []
+
+    for course in userInput:
+        if course in core:
+            coresTaken.append(course)
+            has += 1
+        if (course in threes) and (numThrees < 2):
+            threesTaken.append(course)
+            has += 1
+            numThrees += 1
+        elif course in flexLang:
+            flexLangTaken.append(course)
+            has += 1
+        elif course in flexCulture:
+            flexCultureTaken.append(course)
+            has += 1
+        elif course in flexLit:
+            flexLitTaken.append(course)
+            has += 1
+ 
+    
+    compareUserAndReqs(coresTaken, core, 'core',1)
+    compareUserAndReqs(flexLangTaken, flexLang, 'language',1)
+    compareUserAndReqs(flexCultureTaken, flexCulture, 'culture',1)
+    compareUserAndReqs(flexLitTaken, flexLit, 'literature',1)
+    compareUserAndReqs(threesTaken, threes, '300-level elective',2)
+
+    print('You have completed', has, '/', needed, 'requirements for the French and Francophone Studies major.')
+
+    if has != needed: 
+        print('If you would like to complete the French and Francophone Studies major, you need to take:\n')
+        suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, False, 0)
+        suggestComplete(flexLangTaken, int(len(flexLang) - len(flexLangTaken)), flexLang, False, 0)
+        suggestComplete(flexCultureTaken, int(len(flexCulture) - len(flexCultureTaken)), flexCulture, False, 0)
+        suggestComplete(flexLitTaken, int(len(flexLitTaken) - len(flexLit)), flexLit, False, 0)
+        suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
+
 def masterCheck(userInput):
     majorsToCheck = grabMajors(userInput)
-    print(majorsToCheck)
+    # print(majorsToCheck)
     if 'Chemistry' in majorsToCheck:
         chem(userInput)
     if 'Computer Science' in majorsToCheck:
         cs(userInput)
     if 'Economics' in majorsToCheck:
         econ(userInput)
+    if 'French and Francophone Studies' in majorsToCheck:
+        french(userInput)
 
 kat = ['ARTH 267','ES 267','CS 111','CS 220','CS 230','CS 231','CS 235','CS 240','CS 242','CS 301','CS 304','CS 342','FREN 101','FREN 102','FREN 201','FREN 202','HIST 245','HIST 220','JPN 290','MATH 205','MATH 206','MATH 223','MATH 225','NEUR 100','PHIL 215','POL1 200','WRIT 166']
 julie = ['MATH 205', 'POL 123', 'WRIT 187', 'MATH 206', 'STAT 218', 'SPAN 241', 'CS 111', 'MATH 305', 'PHIL 216', 'CS 230', 'SPAN 253', 'MATH 349', 'MATH 225', 'WGST 218', 'CS 232', 'STAT 260', 'MATH 220', 'MATH 302', 'MATH 215', 'MATH 340', 'PHYS 107', 'STAT 309', 'MATH 322', 'PHYS 313', 'PORT 103', 'MATH 309']
