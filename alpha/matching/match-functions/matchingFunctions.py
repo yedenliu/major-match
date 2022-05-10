@@ -71,7 +71,6 @@ def courseLevelUntangler(electiveList, level):
                 print('*******', elective, '*******')
     return(levelElectives)
 
-
 '''compareUserAndReqs() compares the courses a user has taken against the
 courses they need to take for a specific course type within a major. For
 example, it would compare the list of courses taken... wait, maybe I can
@@ -81,12 +80,13 @@ def compareUserAndReqs(user, reqList, reqName, needed):
     has = len(user)
     count = 1
     for course in user:
-        print(course, 'fulfills', count, 'of', needed, reqName, 'requirements')
-        count += 1
+        if count <= needed:
+            print(course, 'fulfills', count, 'of', needed, reqName, 'requirements')
+            count += 1
     if needed <= has:
         print("You've fulfilled all", reqName, "requirements for the major!\n")
     else:
-        print('You need', (needed - has), 'more courses to fulfill all', reqName, "requirements for the major!\n")
+        print('You need', (needed - has), 'more course(s) to fulfill all', reqName, "requirements for the major!\n")
 
 ''' suggestComplete() will print out a list of courses each user could or
 should take if they wanted to complete a major. This is mostly useful for
@@ -127,104 +127,6 @@ def multilistedSatisfied(courseToCompare, coursesToCompareTo):
         return(True)
     else:
         return(False)
-
-
-
-def cs(userInput):
-    print('Checking your requirements against the Computer Science major...')
-    needed = 10
-    has = 0
-    introductory = ['CS 111','CS 230']
-    math = ['MATH 225']
-    core = ['CS 231','CS 235','CS 240']
-    required = introductory + math + core
-    allCourses = grabCourses('Computer Science')
-    electives = findElectives(required, allCourses)
-    threes = courseLevelUntangler(electives,3)
-    numThrees = 0
-    numElectives = 0
-    introsTaken = []
-    mathTaken = []
-    coresTaken = []
-    threesTaken = []
-    electivesTaken = []
-    for course in userInput:
-        if course in introductory:
-            introsTaken.append(course)
-            has += 1
-        elif course in math:
-            mathTaken.append(course)
-            has += 1
-        elif course in core:
-            coresTaken.append(course)
-            has += 1
-        elif (course in threes) and (numThrees < 2):
-            threesTaken.append(course)
-            has += 1
-            numThrees += 1
-        elif (course in electives) and (numElectives < 2):
-            electivesTaken.append(course)
-            has += 1
-            numElectives += 1
-
-    compareUserAndReqs(introsTaken, introductory, 'introductory',2)
-    compareUserAndReqs(mathTaken, math, 'math',1)
-    compareUserAndReqs(coresTaken, core, 'core',3)
-    compareUserAndReqs(threesTaken, threes, '300-level elective',2)
-    compareUserAndReqs(electivesTaken, electives, '200 or 300-level elective',2)
-
-    print('You have completed', has, '/', needed, 'requirements for the Computer Science major.')
-
-    taken = coresTaken + threesTaken + electivesTaken
-    if has != needed: 
-        print('If you would like to complete the Computer Science major, you need to take:\n')
-        suggestComplete(introsTaken, int(len(introductory) - len(introsTaken)), introductory, True, 0)
-        suggestComplete(mathTaken, int(len(math) - len(mathTaken)), math, True, 0)
-        suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, True, 0)
-        suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
-        suggestComplete(electivesTaken, int(2 - numElectives), electives, False, 0)
-
-def econ(userInput):
-    print('Checking your requirements against the Economics major...')
-    coreNeeded = 6
-    threesNeeded = 2
-    electivesNeeded = 1
-    needed = coreNeeded + threesNeeded + electivesNeeded
-    has = 0
-    allCourses = grabCourses('Economics')
-    core = ['ECON 101','ECON 102','ECON 103','SOC 190','ECON 201','ECON 202','ECON 203']
-    electives = findElectives(core, allCourses)
-    threes = courseLevelUntangler(electives,3)
-    coresTaken = []
-    threesTaken = []
-    electivesTaken = []
-    numThrees = 0
-    numElectives = 0
-    for course in userInput:
-        if course in core:
-            coresTaken.append(course)
-            has += 1
-        if (course in threes) and (numThrees < 2):
-            threesTaken.append(course)
-            has += 1
-            numThrees += 1
-        if (course in electives) and (numElectives < 1):
-            electivesTaken.append(course)
-            has += 1
-            numElectives += 1
-
-    compareUserAndReqs(coresTaken, core, 'core', coreNeeded)
-    compareUserAndReqs(threesTaken, threes, '300-level elective', threesNeeded)
-    compareUserAndReqs(electivesTaken, electives, '200 or 300-level elective', electivesNeeded)
-
-    print('You have completed', has, '/', needed, 'requirements for the Economics major.')
-
-    taken = coresTaken + threesTaken + electivesTaken
-    if has != needed:
-        print('If you would like to complete the Economics major, you need to take:\n')
-        suggestComplete(taken, coreNeeded, core, True, 0)
-        suggestComplete(taken, threesNeeded, threes, False, 0)
-        suggestComplete(taken, electivesNeeded, electives, False, 0)
 
 def chem(userInput):
     print('Checking your requirements against the Chemistry major...')
@@ -357,6 +259,102 @@ def chem(userInput):
         suggestComplete(flexChemTaken, 3, flexChem, False, 0)
         suggestComplete(flexMathTaken, 1, flexMath, False, 0)
         suggestComplete(flexPhysTaken, 1, flexPhys, False, 0)
+
+def cs(userInput):
+    print('Checking your requirements against the Computer Science major...')
+    needed = 10
+    has = 0
+    introductory = ['CS 111','CS 230']
+    math = ['MATH 225']
+    core = ['CS 231','CS 235','CS 240']
+    required = introductory + math + core
+    allCourses = grabCourses('Computer Science')
+    electives = findElectives(required, allCourses)
+    threes = courseLevelUntangler(electives,3)
+    numThrees = 0
+    numElectives = 0
+    introsTaken = []
+    mathTaken = []
+    coresTaken = []
+    threesTaken = []
+    electivesTaken = []
+    for course in userInput:
+        if course in introductory:
+            introsTaken.append(course)
+            has += 1
+        elif course in math:
+            mathTaken.append(course)
+            has += 1
+        elif course in core:
+            coresTaken.append(course)
+            has += 1
+        elif (course in threes) and (numThrees < 2):
+            threesTaken.append(course)
+            has += 1
+            numThrees += 1
+        elif (course in electives) and (numElectives < 2):
+            electivesTaken.append(course)
+            has += 1
+            numElectives += 1
+
+    compareUserAndReqs(introsTaken, introductory, 'introductory',2)
+    compareUserAndReqs(mathTaken, math, 'math',1)
+    compareUserAndReqs(coresTaken, core, 'core',3)
+    compareUserAndReqs(threesTaken, threes, '300-level elective',2)
+    compareUserAndReqs(electivesTaken, electives, '200 or 300-level elective',2)
+
+    print('You have completed', has, '/', needed, 'requirements for the Computer Science major.')
+
+    taken = coresTaken + threesTaken + electivesTaken
+    if has != needed: 
+        print('If you would like to complete the Computer Science major, you need to take:\n')
+        suggestComplete(introsTaken, int(len(introductory) - len(introsTaken)), introductory, True, 0)
+        suggestComplete(mathTaken, int(len(math) - len(mathTaken)), math, True, 0)
+        suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, True, 0)
+        suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
+        suggestComplete(electivesTaken, int(2 - numElectives), electives, False, 0)
+
+def econ(userInput):
+    print('Checking your requirements against the Economics major...')
+    coreNeeded = 6
+    threesNeeded = 2
+    electivesNeeded = 1
+    needed = coreNeeded + threesNeeded + electivesNeeded
+    has = 0
+    allCourses = grabCourses('Economics')
+    core = ['ECON 101','ECON 102','ECON 103','SOC 190','ECON 201','ECON 202','ECON 203']
+    electives = findElectives(core, allCourses)
+    threes = courseLevelUntangler(electives,3)
+    coresTaken = []
+    threesTaken = []
+    electivesTaken = []
+    numThrees = 0
+    numElectives = 0
+    for course in userInput:
+        if course in core:
+            coresTaken.append(course)
+            has += 1
+        if (course in threes) and (numThrees < 2):
+            threesTaken.append(course)
+            has += 1
+            numThrees += 1
+        if (course in electives) and (numElectives < 1):
+            electivesTaken.append(course)
+            has += 1
+            numElectives += 1
+
+    compareUserAndReqs(coresTaken, core, 'core', coreNeeded)
+    compareUserAndReqs(threesTaken, threes, '300-level elective', threesNeeded)
+    compareUserAndReqs(electivesTaken, electives, '200 or 300-level elective', electivesNeeded)
+
+    print('You have completed', has, '/', needed, 'requirements for the Economics major.')
+
+    taken = coresTaken + threesTaken + electivesTaken
+    if has != needed:
+        print('If you would like to complete the Economics major, you need to take:\n')
+        suggestComplete(taken, coreNeeded, core, True, 0)
+        suggestComplete(taken, threesNeeded, threes, False, 0)
+        suggestComplete(taken, electivesNeeded, electives, False, 0)
 
 def french(userInput):
     print('Checking your requirements against the French and Francophone Studies major...')
