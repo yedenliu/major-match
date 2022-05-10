@@ -292,6 +292,7 @@ def update(cid):
             flash("Error")
 
 ################################################################################
+
 @app.before_first_request
 def init_db():
     dbi.cache_cnf()

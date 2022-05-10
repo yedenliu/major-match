@@ -57,6 +57,7 @@ def index():
                                 classes = classes,
                                 results = results,
                                 course_matches = course_matches)
+    
 
 ################################################################################
 @app.before_first_request
