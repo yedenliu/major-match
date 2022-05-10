@@ -531,6 +531,87 @@ def math(userInput):
         suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
         suggestComplete(electivesTaken, int(2 - len(electivesTaken)), electives, False, 0)
 
+# TODO make sure 300s are in different subfields
+# TODO figure out how to move courses... like phil 200 should be showing up as an elective
+def philosophy(userInput):
+    print('Checking your requirements against the Philosophy major...')
+    needed = 9
+    has = 0
+
+    core = ['PHIL 201','PHIL 221']
+    subfieldA = ['PHIL 102','PHIL 200','PHIL 231','PHIL 300','PHIL 301','PHIL 305','PHIL 306','PHIL 307','PHIL 310']
+    subfieldB = ['PHIL 102','PHIL 105','PHIL 106','PHIL 108','PHIL 111','PHIL 115','PHIL 203','PHIL 205','PHIL 213','PHIL 220','PHIL 222','PHIL 226','PHIL 228','PHIL 229','PHIL 231','PHIL 233','PHIL 234','PHIL 236','PHIL 249','PHIL 300','PHIL 301','PHIL 303','PHIL 304','PHIL 306','PHIL 307','PHIL 310','PHIL 316','PHIL 317','PHIL 323','PHIL 330','PHIL 331','PHIL 333','PHIL 338','PHIL 340','PHIL 341','PHIL 342','PHIL 345','PHIL 366']
+    subfieldC = ['PHIL 103','PHIL 112','PHIL 200','PHIL 207','PHIL 215','PHIL 216','PHIL 218','PHIL 220','PHIL 229','PHIL 245','PHIL 300','PHIL 306','PHIL 310','PHIL 311','PHIL 317','PHIL 319','PHIL 323','PHIL 325','PHIL 331','PHIL 333','PHIL 341','PHIL 345']
+
+    allCourses = grabCourses('Philosophy')
+    
+    extras = findElectives(core, allCourses)
+
+    threes = courseLevelUntangler(allCourses,3)
+
+    numThrees = 0
+
+    coreTaken = []
+    subfieldATaken = []
+    subfieldBTaken = []
+    subfieldCTaken = []
+    threesTaken = []
+    extraTaken = []
+
+    singleSubfield = []
+    multiSubfield = []
+    for course in userInput:
+        if (course in subfieldA) and (course in subfieldB) and (course in subfieldC):
+            multiSubfield.append(course)
+        elif (course in subfieldA) and (course in subfieldB):
+            multiSubfield.append(course)
+        elif (course in subfieldA) and (course in subfieldC):
+            multiSubfield.append(course)
+        elif (course in subfieldB) and (course in subfieldC):
+            multiSubfield.append(course)
+
+    for course in userInput:
+        has += 1
+        if (course in threes) and (numThrees < 2):
+            threesTaken.append(course)
+            numThrees += 1
+        if course in core:
+            coreTaken.append(course)
+        elif course in subfieldA:
+            subfieldATaken.append(course)
+        elif course in subfieldB:
+            subfieldBTaken.append(course)  
+        elif course in subfieldC:
+            subfieldCTaken.append(course)
+        elif course in extras:
+            extraTaken.append(course)
+        else:
+            has = has - 1
+
+    compareUserAndReqs(coreTaken, core, 'core',2)
+    compareUserAndReqs(subfieldBTaken, subfieldB, 'Subfield B: Value Theory', 2)
+    compareUserAndReqs(subfieldCTaken, subfieldC, 'Subfield C: Metaphysics and Theory of Knowledge',1)
+    compareUserAndReqs(threesTaken, threes, '300-level elective', 2)
+    compareUserAndReqs(extraTaken, extras, '200 or 300-level elective', 4)
+
+    remainingElectivesNeeded = needed - numThrees
+    if len(subfieldBTaken) == 1:
+        remainingElectivesNeeded = remainingElectivesNeeded - 1
+    if len(subfieldBTaken) >= 2:
+        remainingElectivesNeeded = remainingElectivesNeeded - 2
+    if len(subfieldCTaken) != 0:
+        remainingElectivesNeeded = remainingElectivesNeeded - 1
+
+    print('You have completed', has, '/', needed, 'requirements for the Philosophy major.')
+
+    if has != needed: 
+        print('If you would like to complete the Philosophy major, you need to take:\n')
+        suggestComplete(coreTaken, int(2 - len(coreTaken)), core, True, 0)
+        suggestComplete(subfieldBTaken, int(1 - len(subfieldBTaken)), subfieldB, False, 0)
+        suggestComplete(subfieldCTaken, int(1 - len(subfieldCTaken)), subfieldC, False, 0)
+        suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
+        suggestComplete(extraTaken, remainingElectivesNeeded, extras, False, 0)
+
 def masterCheck(userInput):
     majorsToCheck = grabMajors(userInput)
     # print(majorsToCheck)
@@ -546,8 +627,10 @@ def masterCheck(userInput):
         history(userInput)
     if 'Mathematics' in majorsToCheck:
         math(userInput)
+    if 'Philosophy' in majorsToCheck:
+        philosophy(userInput)
 
-kat = ['ARTH 267','ES 267','CS 111','CS 220','CS 230','CS 231','CS 235','CS 240','CS 242','CS 301','CS 304','CS 342','FREN 101','FREN 102','FREN 201','FREN 202','HIST 245','HIST 220','JPN 290','MATH 205','MATH 206','MATH 223','MATH 225','NEUR 100','PHIL 215','POL1 200','WRIT 166','MATH 220','PHIL 200','HIST 254','HIST 312']
+kat = ['ARTH 267','ES 267','CS 111','CS 220','CS 230','CS 231','CS 235','CS 240','CS 242','CS 301','CS 304','CS 342','FREN 101','FREN 102','FREN 201','FREN 202','HIST 245','HIST 220','JPN 290','MATH 205','MATH 206','MATH 223','MATH 225','NEUR 100','PHIL 215','POL1 200','WRIT 166','MATH 220','PHIL 200','HIST 254','HIST 312','PHIL 325']
 julie = ['MATH 205', 'POL 123', 'WRIT 187', 'MATH 206', 'STAT 218', 'SPAN 241', 'CS 111', 'MATH 305', 'PHIL 216', 'CS 230', 'SPAN 253', 'MATH 349', 'MATH 225', 'WGST 218', 'CS 232', 'STAT 260', 'MATH 220', 'MATH 302', 'MATH 215', 'MATH 340', 'PHYS 107', 'STAT 309', 'MATH 322', 'PHYS 313', 'PORT 103', 'MATH 309']
 a = ['AFR 204', 'AFR 204', 'ARTH 237', 'ARTH 226', 'ARTH 244', 'ARTH 247', 'ARTH 317', 'ARTH 222', 'ARTH 309', 'ARTH 256', 'ARTH 335', 'CHEM 335', 'CHEM 341', 'CHEM 325', 'CHEM 335', 'ENG 311', 'ENG 382', 'ES 201', 'HIST 213', 'SOC 322', 'HIST 256', 'HIST 231', 'AFR 209', 'ARTH 307', 'SPAN 303', 'SPAN 377', 'HIST 215', 'ARTH 201']
 b = ['CS 230', 'CS 235', 'CS 232', 'CS 323', 'CS 232', 'CS 235', 'CHIN 382', 'JPN 232', 'ARTH 240', 'KOR 232', 'CHIN 243', 'KOR 209H', 'FREN 324', 'MATH 370', 'MATH 313', 'MATH 306', 'MATH 223', 'STAT 318', 'MATH 207Y', 'MATH 250', 'MATH 313', 'MATH 313', 'ARTS 365', 'ARTS 350', 'ARTS 207', 'ARTS 165', 'SOC 220', 'PEAC 240', 'REL 233', 'JWST 201']
