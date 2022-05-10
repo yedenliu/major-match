@@ -1,8 +1,8 @@
 import pandas as pd
 import csv
 
-majorReqs = '/students/kswint/major-match/DDL/majorReqsDF.tsv'
-coursesToMajors = '/students/kswint/major-match/DDL/coursesToMajors.tsv'
+majorReqs = '/students/kswint/major-match/alpha/DDL/majorReqsDF.tsv'
+coursesToMajors = '/students/kswint/major-match/alpha/DDL/coursesToMajors.tsv'
 
 ''' grabMajors() determines which majors a user has made progress towards.
 This lets us avoid checking every single major against every course a user
@@ -414,6 +414,64 @@ def french(userInput):
         suggestComplete(flexLitTaken, int(len(flexLitTaken) - len(flexLit)), flexLit, False, 0)
         suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
 
+def math(userInput):
+    print('Checking your requirements against the Mathematics major...')
+    needed = 10
+    has = 0
+
+    introductoryOne = ['MATH 115','MATH 115Z']
+    introductoryTwo = ['MATH 116','MATH 120']
+    core = ['MATH 205','MATH 206','MATH 302','MATH 305']
+
+    inflexible = introductoryOne + introductoryTwo + core
+
+    allCourses = grabCourses('Mathematics')
+    electives = findElectives(inflexible, allCourses)
+
+    threes = courseLevelUntangler(electives,3)
+
+    numThrees = 0
+
+    introsOneTaken = []
+    introsTwoTaken = []
+    coresTaken = []
+    threesTaken = []
+    electivesTaken = []
+
+    for course in userInput:
+        if course in introductoryOne:
+            introsOneTaken.append(course)
+            has += 1
+        elif course in introductoryTwo:
+            introsTwoTaken.append(course)
+            has += 1
+        elif course in core:
+            coresTaken.append(course)
+            has += 1
+        elif (course in threes) and (numThrees < 2):
+            threesTaken.append(course)
+            has += 1
+            numThrees += 1
+        elif course in electives:
+            electivesTaken.append(course)
+            has += 1
+
+    compareUserAndReqs(introsOneTaken, introductoryOne, 'introductory',1)
+    compareUserAndReqs(introsTwoTaken, introductoryTwo, 'introductory',1)
+    compareUserAndReqs(coresTaken, core, 'core',4)
+    compareUserAndReqs(threesTaken, threes, '300-level elective', 2)
+    compareUserAndReqs(electivesTaken, electives, '200 or 300-level elective', 2)
+
+    print('You have completed', has, '/', needed, 'requirements for the Mathematics major.')
+
+    if has != needed: 
+        print('If you would like to complete the Mathematics major, you need to take:\n')
+        suggestComplete(introsOneTaken, int(1 - len(introsOneTaken)), introductoryOne, False, 0)
+        suggestComplete(introsTwoTaken, int(1 - len(introsTwoTaken)), introductoryTwo, False, 0)
+        suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, True, 0)
+        suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
+        suggestComplete(electivesTaken, int(2 - len(electivesTaken)), electives, False, 0)
+
 def masterCheck(userInput):
     majorsToCheck = grabMajors(userInput)
     # print(majorsToCheck)
@@ -425,6 +483,8 @@ def masterCheck(userInput):
         econ(userInput)
     if 'French and Francophone Studies' in majorsToCheck:
         french(userInput)
+    if 'Mathematics' in majorsToCheck:
+        math(userInput)
 
 kat = ['ARTH 267','ES 267','CS 111','CS 220','CS 230','CS 231','CS 235','CS 240','CS 242','CS 301','CS 304','CS 342','FREN 101','FREN 102','FREN 201','FREN 202','HIST 245','HIST 220','JPN 290','MATH 205','MATH 206','MATH 223','MATH 225','NEUR 100','PHIL 215','POL1 200','WRIT 166']
 julie = ['MATH 205', 'POL 123', 'WRIT 187', 'MATH 206', 'STAT 218', 'SPAN 241', 'CS 111', 'MATH 305', 'PHIL 216', 'CS 230', 'SPAN 253', 'MATH 349', 'MATH 225', 'WGST 218', 'CS 232', 'STAT 260', 'MATH 220', 'MATH 302', 'MATH 215', 'MATH 340', 'PHYS 107', 'STAT 309', 'MATH 322', 'PHYS 313', 'PORT 103', 'MATH 309']
