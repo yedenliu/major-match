@@ -115,6 +115,24 @@ def get_incomplete(conn):
     curs.execute(sql)
     return curs.fetchall()
 
+def get_unassigned(conn):
+    '''
+    Finds incomplete courses, where they have NULL fields (in required fields)
+
+    Param - connection object
+    Return - List of courses with incomplete information
+    ''' 
+    # prepared query
+    curs = dbi.cursor(conn)
+    sql = '''   select dept, cnum, courses.cid from courses 
+                where not exists 
+                (select major_pairs.cid from major_pairs 
+                where courses.cid = major_pairs.cid)
+          '''
+    curs.execute(sql)
+    return curs.fetchall()
+
+
 ################################################################################
 #   Helpers for programs table 
 ################################################################################

@@ -2,6 +2,7 @@
 ################################################################################
 # Import Modules
 ################################################################################
+from asyncio import subprocess
 from matching_helpers import *
 
 ################################################################################
@@ -41,26 +42,39 @@ def polisci(userInput):
             threesTaken.append(course)
     # --------------------------------------------------------------------------
     ''''
+    REQUIREMENTS
     1. One 200/300 level course in each subfields (4)
     2. Two 300-level courses in two diff subfields, one must be seminar (2)
     3. additional courses, in any subfield (3+)
     '''
     # --------------------------------------------------------------------------
     # DEAL WITH 300-LEVELS -----------------------------------------------------
-    # Requirement 1: at least two 300- levels
+    # Requirement 1: at least two 300 level in diff subfields
     req1 = False
-    # Requirement 2: at least two 300 level in diff subfields
-    req2 = False
-    # Requirement 3: at least 1 seminar DEBUG --> HOW DO WE CHECK IF SEMINAR??
+    # Requirement 2: at least 1 seminar DEBUG --> HOW DO WE CHECK IF SEMINAR??
     # if Sem: or Seminar: in name 
-    req3 = False 
+    req2 = False 
     
     if len(threes) > 1: # if more than one 300 level has been taken
-        req1 = True
-        req2 = threes[0][3] != threes[1][3] # true if diff
+        sub1 = threes[0][3]
+        sub2 = threes[1][3]
+        req1 = sub1 != sub2 # true if diff
+        
+    if req1 == True:
+        print('SATISFIED: at least two 300 level in different subfields')
+    else:
+        print('FAILED: at least two 300 level in different subfields')
+        print('You have completed: ' + str(len(threes)) + ' 300-levels')
+        subs = [course[3] for course in threes]
+        print('In these subfields: ' + str(subs))
+        
+    if req2 == True:
+        print('SATISFIED: at least one 300-level is a seminar')
+    else:
+        print('FAILED: at least one 300-level is a seminar')
     # --------------------------------------------------------------------------
     # DEAL WITH SUBFIELD DISTRIBUTIONS -----------------------------------------
-    req4 = False
+    req3 = False
  
     subfields = twos + threes
     subCount = []
@@ -71,31 +85,44 @@ def polisci(userInput):
     unique_val = len(subSet)
     
     if len(unique_val) == 4: # there are 4 distinct subfields
-        req4 = True
+        req3 = True
+    
+    if req3 == True:
+        print('SATISFIED: One 200/300 level course in each of the 4 subfields')
+    else:
+        print('FAILED: One 200/300 level course in each of the 4 subfields')
+        print('Your have completed only:' + unique_val)
     # --------------------------------------------------------------------------
     # DEAL WITH ELECTIVES ------------------------------------------------------
-    req5 = False
+    req4 = False
     if course in allTaken and course not in subfields:
         electivesTaken.append(course)
     
-    req5 = len(electivesTaken) >= 3 # true if 3+ electives
+    req4 = len(electivesTaken) >= 3 # true if 3+ electives
     
-    print('''For the requirement of "One 200/300 level course in each subfields"
-            , you have have completed''' + unique_val)
-    if req1 == True:
-        print('You have completed this requirement: One 200/300 level course in each subfields')
+    if req4 == True:
+        print('SATISFIED: 3+ electives')
     else:
-        print('You have taken this many')
+        print('FAILED: 3+ electives')
+        print('You have completed only:' + len(electivesTaken))
+    
 # ------------------------------------------------------------------------------
 def masterCheck(userInput):
     majorsToCheck = grabMajors(userInput)
-    print(majorsToCheck)
     if 'Political Science' in majorsToCheck:
-        pass
+        polisci(userInput)
 
 # ------------------------------------------------------------------------------
-# Testing
+# Implementing
 # ------------------------------------------------------------------------------
+dbi.cache_cnf()
+dbi.use('majormatch_db')
+conn = dbi.connect()
+
+# insert temp data 
+
+# TESTING
 ## user input should look like a list of (dept, cnum)
-a = [('POL1 100')]
-masterCheck(a)
+a = ['POL1 200','WRIT 166']
+
+polisci(a)

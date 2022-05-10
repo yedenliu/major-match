@@ -57,7 +57,6 @@ def major_match(conn):
     curs.execute(sql)
     return curs.fetchall()
 
-# FOR DEBUGGING
 def matched_courses(conn):
     curs = dbi.cursor(conn)
     sql = '''   select courses.name, programs.name from courses
