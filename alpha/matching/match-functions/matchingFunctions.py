@@ -128,6 +128,8 @@ def multilistedSatisfied(courseToCompare, coursesToCompareTo):
     else:
         return(False)
 
+
+
 def cs(userInput):
     print('Checking your requirements against the Computer Science major...')
     needed = 10
@@ -414,6 +416,65 @@ def french(userInput):
         suggestComplete(flexLitTaken, int(len(flexLitTaken) - len(flexLit)), flexLit, False, 0)
         suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
 
+def history(userInput):
+    print('Checking your requirements against the History major...')
+    needed = 9
+    has = 0
+
+    flexAfrChiJapLatAmMidEaSouAs = ['HIST 207','LAST 207','HIST 211','LAST 211','HIST 212','HIST 215','HIST 218','HIST 263','PEAC 224','HIST 264','HIST 265','HIST 266','SAS 266','HIST 268','HIST 270','HIST 272','HIST 273','HIST 275','HIST 276','HIST 277','HIST 278','HIST 280','HIST 284','HIST 285','REL 266','HIST 293','MES 293','HIST 359','HIST 364','MES 364','HIST 365','HIST 366','MES 366','HIST 367','SAS 367','HIST 369','MES 369','HIST 371','HIST 376','HIST 377','HIST 383']
+    flexEurUniStRus = ['HIST 201','HIST 203','HIST 204','HIST 205','HIST 212','HIST 213','HIST 214','HIST 220','HIST 221','ENG 221','HIST 222','HIST 228','HIST 229','HIST 230','HIST 231','HIST 232','HIST 233','HIST 234','HIST 240','HIST 242','HIST 243','HIST 244','HIST 245','HIST 246','HIST 247','HIST 248','HIST 249','HIST 251','HIST 252','HIST 253','HIST 254','HIST 256','HIST 260','HIST 261','PEAC 261','HIST 262','HIST 267','HIST 277','HIST 279','ES 299','HIST 299','HIST 302','HIST 311','HIST 312','HIST 314','HIST 319','HIST 320','HIST 321','HIST 330','HIST 334','HIST 340','HIST 341','HIST 352','HIST 354','HIST 358','HIST 359','HIST 375']
+    flexPreMod = ['HIST 208','HIST 211','LAST 211','HIST 213','HIST 214','HIST 221','ENG 221','HIST 222','HIST 228','HIST 229','HIST 230','HIST 231','HIST 232','HIST 234','HIST 246','HIST 279','HIST 325','HIST 329','HIST 330','HIST 375','HIST 379']
+
+    allCourses = grabCourses('History')
+
+    twos = courseLevelUntangler(allCourses,2) 
+    threes = courseLevelUntangler(allCourses,3)
+    electives = twos + threes
+
+    numThrees = 0
+
+    flexAfrChiJapLatAmMidEaSouAsTaken = []
+    flexEurUniStRusTaken = []
+    flexPreModTaken = []
+    threesTaken = []
+    electivesTaken = []
+
+    for course in userInput:
+        if (course in threes) and (numThrees < 2):
+            threesTaken.append(course)
+            has += 1
+            numThrees += 1
+        elif (course in flexAfrChiJapLatAmMidEaSouAs) and (len(flexAfrChiJapLatAmMidEaSouAsTaken) < 1):
+            flexAfrChiJapLatAmMidEaSouAsTaken.append(course)
+            has += 1
+        elif (course in flexEurUniStRus) and (len(flexEurUniStRusTaken) < 1):
+            flexEurUniStRusTaken.append(course)
+            has += 1
+        elif (course in flexPreMod) and (len(flexPreModTaken) < 1):
+            flexPreModTaken.append(course)
+            has += 1
+        elif course in electives:
+            electivesTaken.append(course)
+            has += 1
+
+    compareUserAndReqs(flexAfrChiJapLatAmMidEaSouAsTaken, flexAfrChiJapLatAmMidEaSouAs, 'history of Africa, China, Japan, Latin America, the Middle East, or South Asia',1)
+    compareUserAndReqs(flexEurUniStRusTaken, flexEurUniStRus, 'history of Europe, the United States, or Russia',1)
+    compareUserAndReqs(flexPreModTaken, flexPreMod, 'premodern history', 1)
+    compareUserAndReqs(threesTaken, threes, '300-level elective', 2)
+    compareUserAndReqs(electivesTaken, electives, '200 or 300-level elective', 4)
+
+    print('You have completed', has, '/', needed, 'requirements for the History major.')
+
+    remainingElectivesNeeded = 6 - len(threesTaken) - len(electivesTaken)
+
+    if has != needed: 
+        print('If you would like to complete the History major, you need to take:\n')
+        suggestComplete(flexAfrChiJapLatAmMidEaSouAsTaken, int(1 - len(flexAfrChiJapLatAmMidEaSouAsTaken)), flexAfrChiJapLatAmMidEaSouAs, False, 0)
+        suggestComplete(flexEurUniStRusTaken, int(1 - len(flexEurUniStRusTaken)), flexEurUniStRus, False, 0)
+        suggestComplete(flexPreModTaken, int(1 - len(flexPreModTaken)), flexPreMod, False, 0)
+        suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
+        suggestComplete(electivesTaken, remainingElectivesNeeded, electives, False, 0)
+
 def math(userInput):
     print('Checking your requirements against the Mathematics major...')
     needed = 10
@@ -483,10 +544,12 @@ def masterCheck(userInput):
         econ(userInput)
     if 'French and Francophone Studies' in majorsToCheck:
         french(userInput)
+    if 'History' in majorsToCheck:
+        history(userInput)
     if 'Mathematics' in majorsToCheck:
         math(userInput)
 
-kat = ['ARTH 267','ES 267','CS 111','CS 220','CS 230','CS 231','CS 235','CS 240','CS 242','CS 301','CS 304','CS 342','FREN 101','FREN 102','FREN 201','FREN 202','HIST 245','HIST 220','JPN 290','MATH 205','MATH 206','MATH 223','MATH 225','NEUR 100','PHIL 215','POL1 200','WRIT 166']
+kat = ['ARTH 267','ES 267','CS 111','CS 220','CS 230','CS 231','CS 235','CS 240','CS 242','CS 301','CS 304','CS 342','FREN 101','FREN 102','FREN 201','FREN 202','HIST 245','HIST 220','JPN 290','MATH 205','MATH 206','MATH 223','MATH 225','NEUR 100','PHIL 215','POL1 200','WRIT 166','MATH 220','PHIL 200','HIST 254','HIST 312']
 julie = ['MATH 205', 'POL 123', 'WRIT 187', 'MATH 206', 'STAT 218', 'SPAN 241', 'CS 111', 'MATH 305', 'PHIL 216', 'CS 230', 'SPAN 253', 'MATH 349', 'MATH 225', 'WGST 218', 'CS 232', 'STAT 260', 'MATH 220', 'MATH 302', 'MATH 215', 'MATH 340', 'PHYS 107', 'STAT 309', 'MATH 322', 'PHYS 313', 'PORT 103', 'MATH 309']
 a = ['AFR 204', 'AFR 204', 'ARTH 237', 'ARTH 226', 'ARTH 244', 'ARTH 247', 'ARTH 317', 'ARTH 222', 'ARTH 309', 'ARTH 256', 'ARTH 335', 'CHEM 335', 'CHEM 341', 'CHEM 325', 'CHEM 335', 'ENG 311', 'ENG 382', 'ES 201', 'HIST 213', 'SOC 322', 'HIST 256', 'HIST 231', 'AFR 209', 'ARTH 307', 'SPAN 303', 'SPAN 377', 'HIST 215', 'ARTH 201']
 b = ['CS 230', 'CS 235', 'CS 232', 'CS 323', 'CS 232', 'CS 235', 'CHIN 382', 'JPN 232', 'ARTH 240', 'KOR 232', 'CHIN 243', 'KOR 209H', 'FREN 324', 'MATH 370', 'MATH 313', 'MATH 306', 'MATH 223', 'STAT 318', 'MATH 207Y', 'MATH 250', 'MATH 313', 'MATH 313', 'ARTS 365', 'ARTS 350', 'ARTS 207', 'ARTS 165', 'SOC 220', 'PEAC 240', 'REL 233', 'JWST 201']
