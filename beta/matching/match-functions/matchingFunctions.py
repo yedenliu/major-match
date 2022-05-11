@@ -551,15 +551,19 @@ def philosophy(userInput):
     needed = 9
     has = 0
 
+    # these are designated by the philosophy dept
     core = ['PHIL 201','PHIL 221']
     subfieldA = ['PHIL 102','PHIL 200','PHIL 231','PHIL 300','PHIL 301','PHIL 305','PHIL 306','PHIL 307','PHIL 310']
     subfieldB = ['PHIL 102','PHIL 105','PHIL 106','PHIL 108','PHIL 111','PHIL 115','PHIL 203','PHIL 205','PHIL 213','PHIL 220','PHIL 222','PHIL 226','PHIL 228','PHIL 229','PHIL 231','PHIL 233','PHIL 234','PHIL 236','PHIL 249','PHIL 300','PHIL 301','PHIL 303','PHIL 304','PHIL 306','PHIL 307','PHIL 310','PHIL 316','PHIL 317','PHIL 323','PHIL 330','PHIL 331','PHIL 333','PHIL 338','PHIL 340','PHIL 341','PHIL 342','PHIL 345','PHIL 366']
     subfieldC = ['PHIL 103','PHIL 112','PHIL 200','PHIL 207','PHIL 215','PHIL 216','PHIL 218','PHIL 220','PHIL 229','PHIL 245','PHIL 300','PHIL 306','PHIL 310','PHIL 311','PHIL 317','PHIL 319','PHIL 323','PHIL 325','PHIL 331','PHIL 333','PHIL 341','PHIL 345']
 
-    allCourses = grabCourses('Philosophy')
+    # these are the courses in each subfield that are unique to that subfield
+    subfieldAUnique = ['PHIL 201','PHIL 221','PHIL 305']
+    subfieldBUnique = ['PHIL 105', 'PHIL 106', 'PHIL 108', 'PHIL 111', 'PHIL 115', 'PHIL 203', 'PHIL 205', 'PHIL 213', 'PHIL 222', 'PHIL 226', 'PHIL 228', 'PHIL 233', 'PHIL 234', 'PHIL 236', 'PHIL 249', 'PHIL 303', 'PHIL 304', 'PHIL 316', 'PHIL 330', 'PHIL 338', 'PHIL 340', 'PHIL 342', 'PHIL 366']
+    subfieldCUnique = ['PHIL 103', 'PHIL 112', 'PHIL 207', 'PHIL 215', 'PHIL 216', 'PHIL 218', 'PHIL 245', 'PHIL 311', 'PHIL 319', 'PHIL 325']
     
+    allCourses = grabCourses('Philosophy')
     extras = findElectives(core, allCourses)
-
     threes = courseLevelUntangler(allCourses,3)
 
     numThrees = 0
@@ -570,41 +574,76 @@ def philosophy(userInput):
     subfieldCTaken = []
     threesTaken = []
     extraTaken = []
-
-    singleSubfield = []
-    multiSubfield = []
+    
+    multiSubs = False
+    threeA = False
+    threeB = False
+    threeC = False
     for course in userInput:
-        if (course in subfieldA) and (course in subfieldB) and (course in subfieldC):
-            multiSubfield.append(course)
-        elif (course in subfieldA) and (course in subfieldB):
-            multiSubfield.append(course)
-        elif (course in subfieldA) and (course in subfieldC):
-            multiSubfield.append(course)
-        elif (course in subfieldB) and (course in subfieldC):
-            multiSubfield.append(course)
+        if course in threes:
+            if (course in subfieldA) and (threeA == False):
+                threeA = True
+            if (course in subfieldB) and (threeB == False):
+                threeB = True
+            if (course in subfieldC) and (threeC == False):
+                threeC = True
+
+    if threeA:
+        if threeB or threeC:
+            multiSubs = True
+    if threeB:
+        if threeC:
+            multiSubs = True
 
     for course in userInput:
-        has += 1
-        if (course in threes) and (numThrees < 2):
-            threesTaken.append(course)
-            numThrees += 1
+        if course in subfieldAUnique:
+            subfieldATaken.append(course)
+            has += 1
+        if course in subfieldBUnique:
+            subfieldBTaken.append(course)
+            has += 1
+        if course in subfieldCUnique:
+            subfieldCTaken.append(course)
+            has += 1
         if course in core:
             coreTaken.append(course)
+            has += 1
+        if course in threes:
+            threesTaken.append(course)
+            has += 1
+        if (course in subfieldB) and (len(subfieldB) < 2):
+            if course in subfieldB:
+                subfieldBTaken.append(course)
+                has += 1
+        elif (course in subfieldC) and (len(subfieldC) < 2):
+            if course in subfieldC:
+                subfieldCTaken.append(course)
+                has += 1
         elif course in subfieldA:
             subfieldATaken.append(course)
+            has += 1
         elif course in subfieldB:
-            subfieldBTaken.append(course)  
+            subfieldBTaken.append(course)
+            has += 1
         elif course in subfieldC:
             subfieldCTaken.append(course)
-        elif course in extras:
-            extraTaken.append(course)
-        else:
-            has = has - 1
+            has += 1
 
     compareUserAndReqs(coreTaken, core, 'core',2)
     compareUserAndReqs(subfieldBTaken, subfieldB, 'Subfield B: Value Theory', 2)
-    compareUserAndReqs(subfieldCTaken, subfieldC, 'Subfield C: Metaphysics and Theory of Knowledge',1)
+    compareUserAndReqs(subfieldCTaken, subfieldC, 'Subfield C: Metaphysics and Theory of Knowledge',2)
     compareUserAndReqs(threesTaken, threes, '300-level elective', 2)
+    if multiSubs:
+        print('You have completed 300-level electives in more than one subfield.')
+    else:
+        otherSubs = 'subfield A, subfield B, or subfield C'
+        if threeA:
+            otherSubs = 'subfield B or subfield C'
+        elif threeB:
+            otherSubs = 'subfield A or subfield C'
+        elif threeC:
+            otherSubs = 'subfield A or subfield B'
+        print('You have not completed 300-level electives in multiple subfields. To complete the distribution requirement, select additional 300-level courses from', otherSubs, '\n')
     compareUserAndReqs(extraTaken, extras, '200 or 300-level elective', 4)
 
     remainingElectivesNeeded = needed - numThrees
@@ -620,8 +659,8 @@ def philosophy(userInput):
     if has != needed: 
         print('If you would like to complete the Philosophy major, you need to take:\n')
         suggestComplete(coreTaken, int(2 - len(coreTaken)), core, True, 0)
-        suggestComplete(subfieldBTaken, int(1 - len(subfieldBTaken)), subfieldB, False, 0)
-        suggestComplete(subfieldCTaken, int(1 - len(subfieldCTaken)), subfieldC, False, 0)
+        suggestComplete(subfieldBTaken, int(2 - len(subfieldBTaken)), subfieldB, False, 0)
+        suggestComplete(subfieldCTaken, int(2 - len(subfieldCTaken)), subfieldC, False, 0)
         suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
         suggestComplete(extraTaken, remainingElectivesNeeded, extras, False, 0)
 
@@ -657,6 +696,13 @@ i = ['PEAC 225', 'AFR 204', 'PEAC 243', 'ENG 295', 'PEAC 370', 'THST 360', 'POL1
 j = ['CS 112', 'POL3 351', 'PEAC 206', 'HIST 221', 'SOC 312', 'PEAC 261', 'MATH 313', 'HIST 280', 'POL1 210', 'PEAC 264', 'PSYC 345', 'ECON 312', 'MATH 314', 'ECON 214', 'PSYC 217', 'PEAC 201', 'CLSC 316', 'PSYC 301', 'STAT 228', 'PSYC 216', 'PEAC 207/', 'POL2 362', 'POL1 333', 'LAT 308', 'PSYC 215', 'WGST 215', 'PSYC 315R']
 k = ['ECON 101','ECON 203','ECON 222','EDUC 226','ECON 233','ECON 314','ECON 318','ECON 320','CS 242','CS 301','CS 304','CS 342','FREN 101','FREN 102','FREN 201','FREN 202','HIST 245','HIST 220','JPN 290','MATH 205','MATH 206','MATH 223','MATH 225','NEUR 100','PHIL 215','POL1 200','WRIT 166']
 
+phil = ['PHIL 201','PHIL 221','PHIL 207','PHIL 215','PHIL 311','PHIL 319','PHIL 229','PHIL 306']
+
+#subfieldAUnique = ['PHIL 305']
+#subfieldBUnique = ['PHIL 105', 'PHIL 106', 'PHIL 108', 'PHIL 111', 'PHIL 115', 'PHIL 203', 'PHIL 205', 'PHIL 213', 'PHIL 222', 'PHIL 226', 'PHIL 228', 'PHIL 233', 'PHIL 234', 'PHIL 236', 'PHIL 249', 'PHIL 303', 'PHIL 304', 'PHIL 316', 'PHIL 330', 'PHIL 338', 'PHIL 340', 'PHIL 342', 'PHIL 366']
+#subfieldCUnique = ['PHIL 103', 'PHIL 112', 'PHIL 207', 'PHIL 215', 'PHIL 216', 'PHIL 218', 'PHIL 245', 'PHIL 311', 'PHIL 319', 'PHIL 325']
+    
+
 #cs(kat)
 #econ(kat)
 #cs(emily)
@@ -664,4 +710,4 @@ k = ['ECON 101','ECON 203','ECON 222','EDUC 226','ECON 233','ECON 314','ECON 318
 #chem(kat)
 #cs(julie)
 
-masterCheck(kat)
+masterCheck(phil)
