@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1>Select Incomplete Courses</h1>
+{% endblock %}
+
+{% block main_content %}
+<h2 style="padding-bottom:10px">Select a course to update any of its empty fields and help us update our database!</h2>
+
+<form method=POST action="/select/">
+    <label for="cid">Courses with missing fields:</label>
+    <select id="cid" name="cid">
+      <option value="none" selected disabled>Choose One</option>
+      <!--Fills out the drop down menu with incomplete movies-->
+      {% for course in course_list %}
+        <option value="{{course[2]}}">{{course[0]}} {{course[1]}}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" name="submit-btn" value="Update Course">
+</form>
+
+{% endblock %}

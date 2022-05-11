@@ -1,0 +1,697 @@
+################################################################################
+#   Import Modules
+################################################################################
+from pdb import find_function
+from flask import (Flask, render_template, make_response, url_for, request,
+                   redirect, flash, session, send_from_directory, jsonify)
+from werkzeug.utils import secure_filename
+app = Flask(__name__)
+
+import cs304dbi as dbi
+import random
+from prepared_queries import *
+
+################################################################################
+app.secret_key = 'your secret here'
+# replace that with a random key
+app.secret_key = ''.join([ random.choice(('ABCDEFGHIJKLMNOPQRSTUVXYZ' +
+                                          'abcdefghijklmnopqrstuvxyz' +
+                                          '0123456789'))
+                           for i in range(20) ])
+
+# This gets us better error messages for certain common request errors
+app.config['TRAP_BAD_REQUEST_ERRORS'] = True
+
+
+################################################################################
+#   Routing functions
+################################################################################
+@app.route('/', methods=['GET','POST'])
+def index():
+    conn = dbi.connect()
+    if request.method == 'GET':
+        depts = get_depts(conn)
+        return render_template('index.html',page_title='Home', depts=depts)
+    else:
+        classes = []
+        results = []
+        course_matches = []
+        for n in range(0, 32): # range is the number of total courses they can input
+            dept = request.form.get('dept-'+str(n))
+            cnum = request.form.get('cnum-'+str(n))
+            if dept not in [None, ''] and cnum not in [None, '']:
+                cnum = cnum.upper().strip()
+                
+                # if course exists doesnt exist
+                if not check_course_exists(conn, dept, cnum):
+                    flash(str(dept) + ' ' + str(cnum) + 
+                          " doesn't exist in our database")
+
+                classes.append((dept,cnum))
+                insert_data(conn, dept, cnum)
+                results = major_match(conn)
+                course_matches = matched_courses(conn)
+        delete_form_data(conn)
+        return render_template('results.html',
+                                page_title='Results',
+                                classes = classes,
+                                results = results,
+                                course_matches = course_matches)
+
+################################################################################
+@app.before_first_request
+def init_db():
+    dbi.cache_cnf()
+    # set this local variable to 'wmdb' or your personal or team db
+    db_to_use = 'majormatch_db' 
+    dbi.use(db_to_use)
+    print('will connect to {}'.format(db_to_use))
+
+if __name__ == '__main__':
+    import sys, os
+    if len(sys.argv) > 1:
+        # arg, if any, is the desired port number
+        port = int(sys.argv[1])
+        assert(port>1024)
+    else:
+        port = os.getuid()
+    app.debug = True
+    app.run('0.0.0.0',port)
+from tkinter import ttk
+import cs304dbi as dbi
+
+'''
+1. Accept the dept abbr and course number from form data --> put into DB 
+2. Match course to database courses 
+3. Get majors on matched courses 
+4. Get count of each major that is listed the most 
+'''
+
+def get_depts(conn):
+    curs = dbi.cursor(conn)
+    sql =   ''' select distinct dept 
+                from courses 
+                where dept <> '' 
+            '''
+    curs.execute(sql)
+    deptsTups = curs.fetchall()
+    deptsList = [i[0] for i in deptsTups]
+    return deptsList
+
+def find_cid(conn, dept, cnum):
+    curs = dbi.cursor(conn)
+    sql = '''   select cid from courses
+                where dept = %s and cnum = %s
+            '''
+    curs.execute(sql, [dept, cnum])
+    return curs.fetchone()
+
+def insert_data(conn, dept, cnum):
+    curs = dbi.cursor(conn)
+    if dept != None and cnum != None:
+        cid = find_cid(conn, dept, cnum)
+        sql = '''   insert into form_data(dept, cnum, cid)
+                    values (%s, %s, %s)
+                ''' 
+        curs.execute(sql, [dept, cnum, cid])
+        conn.commit()
+
+def check_course_exists(conn, dept, cnum):
+    curs = dbi.cursor(conn)
+    sql = '''   select cid from courses
+                where dept = %s and cnum = %s
+            '''
+    curs.execute(sql, [dept, cnum])
+    return len(curs.fetchall()) > 0
+
+def major_match(conn):
+    curs = dbi.cursor(conn)
+    sql = '''   select programs.name, count(major_pairs.dept_id) 
+                from programs
+                inner join major_pairs using(dept_id)
+                inner join form_data using(cid)
+                group by major_pairs.dept_id
+                order by count(major_pairs.dept_id) DESC
+                limit 5
+            ''' 
+    curs.execute(sql)
+    return curs.fetchall()
+
+# FOR DEBUGGING
+def matched_courses(conn):
+    curs = dbi.cursor(conn)
+    sql = '''   select courses.name, programs.name from courses
+                inner join form_data using(cid)
+                inner join major_pairs using(cid)
+                inner join programs using(dept_id)
+                order by programs.name
+            ''' 
+    curs.execute(sql)
+    return curs.fetchall()
+
+def delete_form_data(conn):
+    curs = dbi.cursor(conn)
+    sql = 'delete from form_data'
+    curs.execute(sql)
+    conn.commit()<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <!-- for mobile-friendly pages -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Major Match Team" content="">
+    <title>{{ page_title }}</title>
+    <link href="{{url_for('static', filename = 'style.css')}}" rel='stylesheet'>
+</head>
+
+<body>
+
+<main>
+<div class="inside-container">
+
+{% block navbar %}
+<nav>
+    <a href="{{ url_for('index') }}"><button class="home-btn">HOME</button></a>
+</nav>
+{% endblock %}
+
+<div class="header-container">
+{% block header %}
+<!-- insert title of page -->
+{% endblock %}
+</div>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div id="messages">
+    {% for msg in messages %}
+    <p>{{msg}}</p>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+{% block main_content %}
+<!-- put main content here -->
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+{% block end_scripts %}
+{% endblock %}
+
+</div>
+</main>
+
+</body>
+</html>
+{% extends "base.html" %}
+
+{% block header %}
+<h1>WELLESLEY MAJOR MATCHING</h1>
+<h2>Enter in courses taken and future courses to see the major requirements you have fulfilled</h2>
+{% endblock %}
+
+{% block main_content %}
+<form method="POST" action="">
+    <div class="flex-container">
+        <!-- YEAR 1 (8 courses) -->
+        <div class="flex-form-container">
+            <h2>YEAR 1</h2>
+            <div class="year-1">
+                {% for i in range(8) %}
+                <div class="class-input">
+                    <select name="dept-{{i}}">{{dept}}>
+                            <option value="dept">Dept</option>>
+                    {% for dept in depts %}
+                            <option value="{{dept}}">{{dept}}</option>
+                    {% endfor %}
+                    </select>
+                    <input type="text" name="cnum-{{i}}" placeholder="Course #">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- YEAR 2 (8 courses) -->
+        <div class="flex-form-container">
+            <h2>YEAR 2</h2>
+            <div class="year-2">
+                {% for i in range(8,16) %}
+                <div class="class-input">
+                    <!-- <label>Dept</label> -->
+                    <select name="dept-{{i}}">{{dept}}>
+                        <option value="dept">Dept</option>>
+                    {% for dept in depts %}
+                            <option value="{{dept}}">{{dept}}</option>
+                    {% endfor %}
+                    </select>
+                    <input type="text" name="cnum-{{i}}"  placeholder="Course #">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- YEAR 3 (8 courses) -->
+        <div class="flex-form-container">
+            <h2>YEAR 3</h2>
+            <div class="year-3">
+                {% for i in range(16,24) %}
+                <div class="class-input">
+                    <!-- <label>Dept</label> -->
+                    <select name="dept-{{i}}">{{dept}}>
+                        <option value="dept">Dept</option>>
+                    {% for dept in depts %}
+                            <option value="{{dept}}">{{dept}}</option>
+                    {% endfor %}
+                    </select>
+                    <input type="text" name="cnum-{{i}}"  placeholder="Course #">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <!-- YEAR 4 (8 courses) -->
+        <div class="flex-form-container">
+            <h2>YEAR 4</h2>
+            <div class="year-4">
+                {% for i in range(24, 32) %}
+                <div class="class-input">
+                    <!-- <label>Dept</label> -->
+                    <select name="dept-{{i}}">{{dept}}>
+                        <option value="dept">Dept</option>>
+                    {% for dept in depts %}
+                            <option value="{{dept}}">{{dept}}</option>
+                    {% endfor %}
+                    </select>
+                    <input type="text" name="cnum-{{i}}"  placeholder="Course #">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="submit-btn"><input type='submit' value='Match Me!'> </div>
+    </form>
+    <!-- TODO: make span tag to make disclaimer bold and text not bold -->
+    <h2 style="margin-top:25px; color: rgb(95, 94, 94);">DISCLAIMERS: No summer courses, cross-registerd courses, and only 32 course slots available</h2 style="margin-top:10px">
+{% endblock %}{% extends "base.html" %}
+
+{% block header %}
+<h1>RESULTS</h1>
+{% endblock %}
+
+{% block main_content %}
+
+<p>These are your top matched majors</p>
+<ul>
+<div class="flex-container">
+    {% for major in results %}
+    <div class="major-container">
+    <!-- name, count() -->
+    <h2>{{ major[0] }}</h2>
+    <!-- FOR DEBUGGING -->
+    <!-- <p>Count: {{ major[1] }}</p> -->
+    </div>
+    {% endfor %}
+</div>
+</ul>
+<!-- 
+
+<p>FOR DEBUGGING: This is what you inputted</p>
+<ul> 
+    {% for class in classes %}
+    <li>{{ class[0] }} {{ class[1] }}</li>
+    {% endfor %}
+</ul>
+
+<p>FOR DEBUGGING: This is what we matched</p>
+<ul> 
+    {% for course in course_matches %}
+    <li>Course Name: {{ course[0] }} || Major: {{ course[1] }}</li>
+    {% endfor %}
+</ul> -->
+
+
+{% endblock %}
+
+�PNG
+
+   
+IHDR  �   6   ���&  1iCCPICC Profile  x��YTK����L�%�Ar�9�"��%IEQ�"�����DTA(JPPD��zA%����������sz��������Y ��|##�P� �G�F;��{��&� -�r���H};;+�����,��7R�ɬ��w��Z��b( @v�󏡄#� hJdt, ��.��`,�%`�FD��:��j��o[m�89"� <��ot ��z��S�9��H)���A�%�� �Q�G:<|'��h,��9A�!��L_ߠ?xӖ��7��D�������.�aq��B*mp��ú��~�i��ݡ�~6�&!�9��OǙ9o����">� �h�}�,̍`��0�-�N �����QN�Xs�;(��[�Q�1Ǝ��o��X�<�q���[2˂�˼��亩'�7��b�`zǄ:Zn�|L
+6���簮32�0�6q�䁅�c~�kS�m��Ul���f_؛⻡;�Cbܬ~��`d�i�ἥ?\k��_f��������4&��w߹Xd�mڋ��vN����C|-�6u@K+`� ?�C��	B ��L��k����h���w׍�����g��?�6Z@<B_�C�|ʀ������`����!��6zE���G(��NAt
+C�zۿh��iXc��k��@s�uКh+䩇T�Z��^�c&1}�w��(��jz�i���(��ɖu~��-�HUF����l4+�Ƞ����Ѻ����������o_n�"�P6�A��5���W�#e�S��Ŧ^~�e����0�������s����w�-p����f��������k��h��"r���wk�u�����}�[�j�����pg�hjPp,�>���#(���
+r
+
+ �������a#�C�=�(�P����7-� ��H���&�l, Փ����Mz��D������.q�"���1z�X [�܁7��`d�F���@&�G�qPN�s�\WAh��>xz� x���	�	́E�A�����@R���@Ɛ� �C>P�A)�>(*�J��P
+t��C]P�
+�>@_�%��E1�xP��m(5�>��ڎ
+BE��P�èbT9��Վz�@��>�` ���� ,����-����8.���K�Md�������E���hd�����tz:]��F7�;���c�9�/�#����c�0A�L&�S������	�"�eŊaU���
+�&cs�����;�>�8v��q�p�8[�/.��;���k���&p?�4x>�������V|?~
+�L`$�4��.B��p��C� ,��bDm�1��F,&^"�#����Ҩ���Pi���\�yH3F�D+IkH�EG{�����+�ottt�tztt�t��j��ҍ���'��қ��ӧҗ�7���a 0�0�3x3$1240�0�0E
+}�0�2�`|���Df�g�e
+g�e�e�b�&�H�$c�?)�t�t�4N��BdC2���\A�G�`�2�1�3�0�0_d~�<�BbQbqaId)e��2�
+��������^ed]b�a�g`�b��������]�=�=���}�}���Ø#�#����
+'�S�Ӟ3�����3�&�+��*�7�[�ہ;��w7�/�)O$�	��<3���z�!��x[y?��t��|����>������w��	p�	�	�x*�,(&�,�.X/�F�(�&(tL�ChN�O�Z8E�NxH� �&,R$�@仨�����&�i1v1s�$�:�aq:q]�(�r��X	5�P�S��(Ie�`�R�)���U�T�4FZ]:B�\�����L�L�̘,���l�l��m��<��o{�헜�\�\��ky���|��M��
+�
+�R��t�&���͊�JRJJeJ/������;�WUTU�U.�|PV�Q=��B�Y�N-W��:F�@=U�E����F��U�YM�P�Z�i-1� �
+�qmAm_��ڣ:�:>:gtFut}u�u��	���U�M�K��_��b gmp�໡��n�;F���Q��Sc���q�񈉠I�I�ɜ��i��3���Y��ss�y������n�NKZKG��wV�V�V7�Q��G��mDl"l�l����Q�7vbvQv���v�����)Ɏ;k���^;�;�9w�0�x�Ը|w5r-pu�����;�;ս����Q��i�y�s�K�+�kp�����]ޜ�a޷w0�������q���Y��-�]�3�;�7G1�Q>������P0�X8�t4�C�npa�ՐZB�19�=�6�*t-�5�>�~#�ѹ�wg�ξH�����(���Qsіѕ1P����Xf��'�?n,^'�4�G�KBC"SbDb�.�]Y���L��'��)�))i)c��w�����ӑ*���:��tou1-4�I�\zA�_�\�����؛1��t]&}ft��ND�|���u"�W������\J�C��<�4O%���Hđ�|���������G���>���ǻ
+�
+O��F����O�8rb�$�d�Ԡ��$�ɬ��O���/�+�t��t��3�3/Ϛ�m,-/<�=n�¥��y��5���9��UU��՝5�55�ܵyu�����.�^4��|I���z�����r��W|�^���Ѡ�p�ȵ���׳��]�sM�M����}7,nt�Լy��쭪����,��Z���kmImw"�̴��w��x}����N�Χ�,�=�or���m��tit�x�������n���O��\��G���W��f�V_k�n�3�g���?<`3�7�<��׋ї�/�_����Z~�w3����M��H�[����*��ǌƺ�9�{=N��>���D�$�d��Tʹ�t���=?N|���<������/�_����vϹ�M�Gϯ}�����/��:�F���g���Q�S��%ץ���J����_�������"}�}7�0RQ�� |��� r/ D���l������] Y�*9Q{Й,�}�+�G��48��~�&�*�J�z�fR�1s/�Kַl��8�9��VyP�8>"?� I�$�*�.�&�.�-�#�/�/%(-,#*+�MZNN^QAEQCIW�X�\�\�D�D�D�PK_[KGCWIOV_Ԁǐوh�f��d���Y�y�E��Q�T�7[c;e{1.GF'�3������FO/��2�;�}�|9�X(dR 9�5�+X�*�j�N�H�YYu&�8&?67.+>;�pb����׻���{O���'��s��A�,�l����CI�����*X8�t\�Т(�x߉����'ߟZ8�;�qV�\�m������U���57j�
+]�x�g=�2��
+�ע�g5�j�on��u��Vo����W�J虜��иK�;�y�^���r&v�=2,�M�=���ӓ=��}�����Ҟ���?��~Y��`(��˰��7+##o�GϏe��9��^kBYe�Sϧ�}(���)l���%r6g����7���.����Zz���Kcm�� O�0�X�\>�D4���e�]������-�{�g�7�E�U�e�U�_���\߸gy&y�����	�����#�}�̖�J[������n듻&_���HQ�W6PQPP#�������j�.���M��ѷ0P0�4B}0~jr�4�,���BŒ�r���]�Z�|�d�@GG}'yg�+�u����G��m���g���8����G���{8��[R-C�B5�d�"Xv�D�"W�~D��Y��ē�5v9%�$���L��˗&����&�oB��۲����2R8l�q�P~]�ãr)۝-�_z�d�޲�ӿ�2�K�Ӯ�;O���:P]�Ĺ�ً�K�������]�k�6|�k����M�[-n�[c�R蘆���7��������><�u�ѡǇ�s��<��9Лїֿ�Y�󨁝��/b_&��?t�u�pÛ�#��~�H���'t&ͧ���|��Iy&�s�_s���_/}{���h�=�G�ϩe����_�[�o�҇��_��XG�8n��It���=GN�΀bhg�`� 1�z�G�mYX��f���C���B�/�r�u�?�����W�o��E������na~�Vo��b1%�n� ����R�mR�R��i2"2/es�l�K�J�S�N�M1RI@�_9]EAeL5OM[��z���Ƃ�9-{�_�u:�8��z}���HC~�^�tc%�)�S[��q�<�B��e���5��3�[;�ݠ�	oGaǏNW��\�]\��*�c<<i=�No�V�^�q�'���O�o���4�7P14\KM
+q
+�Ä�
+�Q�3!�5J#�73;�_�P���+-)!94���=n�N{�����9d8�w��~ �`hVLvj��܂Ce�k�����+9��8�P�ȫ�ȉ{%�'eO��?���J�¹����=U�j������O%/���^���Ұ�Zw#GSXs�M�[�-�Z��Z��;.tJݻ����У�n�'�=�������O/�}|ފ�����L'}�+�(�t�~:�����7���U�� ֿ�8� �{ �] �!�� N� %`
+�� Yh�9? $�$2��@
+�!�e�S�z���*�)C�Ptj�� 9�4����G���� _�'�,�]�~�db>���Xl�)��kÓ�T|;��G�'*��+4�'���t�t��(�d��q��ILS6��TAV#�2���Xγ�N�d�b�����l��������^��D2�>�<A[!&�g�E"����b�c$4$!�.�|iOdu���ok���/PأHUrT�P�S�TG�Zԏi�hjk�k
+k�����������6�4n5�k�e�c>h1b9e5o�l��c�uPs�r�8�����M{�=��"��{�}���)���Ղ���C���a�;�"ˢfc�bs�F���OvM��G;�5�2}<#+S� ��˹|�d^A��Q�ؽ���Ó�e�gDʕ*l*��Kk_��Wlܯ7��8~�������N����<zڽ�#ӷ���;/�C��#3c��jzS��?��9�e�l����οJ�~��<�4�������F�؜2�@� W��c�t��"Cr�
+��W(��@��t��;$���3�6x��އ�ưc1�X�ۈcą���y���>Q�XD�Dь�:�>�3�k�ע��d��G�<u�t�,K~��d�ͬ�l4l���8wqIs�q����y;���`�
+�
+�
+��t���E�KpI|�|$uN:U�SVs���<A~EaVq\��#�[��J�hDkzjjK�0�,����\1l0j2�e�f�i�ȼ���[�)�y�e;�=����������n���C�^��-�cw����(*�5����Ԑ�+�K��;����wǴš��'�ԓ�L�1N�N�Oߵo
+�'�-���vv��O=�{�Na`1���R�S��gv����z�JU\�V�����S�z]Si�o�q�־�6m�w�:j:��k=�u
+>�y��ǫO�� ��×ί&^'�a�:�4�2^=�>�0���������g��,�|G��Y*]	���5�0�ڍ T����~p�C���,�8�DѠ�����a{�4�m���0ј�X'd�����OB!Q�8As�V�v�.�����!�Q�q��4ɏ,A������5�͓]�C�����Ž³Ļ�p�
+�GXVD[�A,H|��	��H�='˸MA�U~�B�b�Ҳ����Z�z�&���v�ά���!��F��9&cfZ�_��/��څ�?r�t�q��j�V�A�z=�ݱ�g�ϐR �ݥ��d�N�[E�G�D%F���]J`Oܳ�S��OUR��8�g���d~=�u%{-��P��#�����Q��/�*�=1[�z�v���|$����>�YYU�T�T;y��bK���+�
+���7�4i��i��mbk`[k;�#�n�=�}���I<�vW>�������ٻ����ѯռ�;<�frd����7�}�� K���F��|h�X���L�g�/R��ٷs��Y_=�I|��W�B���w����?5�/�_�X!�4�R~�����>�1��
+�Dk  fdm�( � V��֖���V�!��0 w�6���8k8õ��./������^ř 
+On  J5IDATx^�}XK�6�,f1'��s�9��9g�z��c�s�(
+*���YP@$��V;��������~=σ�nOu�����U����p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p�[x�:2ˇ��i�[����w�a�r���C+V[��[��_�����\<f�>G~�%:����Mrɯ�q��.Igmog���dkgkE$�cb����O}�FX�����շ�����[G�KK��bb��|��O�wt_�}ϐ5��[�����wz��ȓ>�ś��P�2Mj�o#b2����**^8��Wo��H������&���.���:_Y�,t��\|�]B|�M��`�5:.M�w�R9�~_4��`��v��N� iS��F�q��boockkEt,��3��#.�.c��o��;����t�#�O�P�y:G��`Rۮ�������~wv��L��6
+����Ot |t�I:�U܏D���$��?�S=�t�M�Q�*��R6�u%���D��w^�:r.�a��W��}�"��+�7ÝJe����s�l����=Lr��{���X'��(��3�����B���bc����t�t��_�t�[Fx�	^�@'F�C�ā{�Ex�V�2���z�n������l�c||FǠ�b����qi����w�r��w��y��ӊ�B?�;9�E�u��pLm�-"�G�o#�|���p�L��6�ؚ�1O��}�����[/�=|����g�K��ٲ�y�5�ӛ�E��.�Ϳx�,�3�OiNO�?�>{=����/+�)|l�=��}�9/W-��L�".wS��KT�w/�}^��a������8;��\����l���w�8�jZ�Ȯ�Y�Fh��:
+:�A't~t�A�Y�c:;�����y�;��,�Ct�=?�0?�qLs�Ƴ%ƱƓ�f��C�'៊-�Ԡu��i?�}����̵gu�=|W��㏥iL�dvz�=k�p��Yo�t	*��!h������y�uȎo����bxAv� ��Hr�찇�@[��Ꮁ%�S}{��s���vsJm�*�MT*�h�����O��#1��<|���s���c_"�g��������D�f����Ԣn���	0EG����w�o�9{�w)���6�.���uA_�\���7��$�Lp���}�t�l���a�d���������=D9Ds�d�U��9Y�d��38~�j��m7�a�v����|{��9�GjǇ�1Y_��J8e�A>�X���&�da��B�_���V���9OYrnFZ'�o4PG4�O���
+��e�ҹ.�(���T=���q���4�!��|�����stV�=s־�]nuk^z�):��	��o��,��>����%+�]y�������z�l덱��:��z��8
+`K� ������6Vq�����o�yK�tY�>���Nȵ\�^{^|����G�Wo��%������3�z�výH֛��gz����G�����ZGk���m$�8���?�����z����Ez2�����U��b�߱�GA��b>[
+kD���t�ML��9/�������(/IΉ�ҮR�\�V��}���<��9�-�?ӽ��\�ν]��5��%�u����`	��G\�M��%�@�~�����l7�.w����%1orZ[[&��JZ O��E\��
+f	ʟ;}x��h���*�l�p��s#�F������)���.� ����U;ύ;���|7���E�V�׭�6 %ti0��=6KF��e���x���Z������R:�A�&��t���R��[\��^n�����+�-��dJᵠ�%s��s}E
+��	�����=w�҇��o߳{I���P�ǌ��oN�^Ф=ʩ*�/K̡�V����7o�6���0&&��U
+D��c7�{��QZ/t�Ya)�K�Rx���Ӗ������xW���'��Dۉ���l�z�����;�}�X��������C4�n�޵g+�Ha��{�{���L�PN�����t�I����d�9t�ʼ�S5'>WU
+�F�:a1�!�dU~�y𮷴`Ѱ8��[~(�O��s��jϙuzBJ�ّ�1�ä�%�k��+���|D$�u��v4��|��7� �j���A�_
+|Qj�&�A���X���G-�i_,�������iџf��UK[�m�R���ؿN���!ya���9��B6g��:>ct�ʳ�0(���^����;2$�)Uoٽ�|;C�0[yVV���d�~�5���]8����T�款<�i�V��|���A��̋6^�k�Xi���>���4�Ԧ��>��փ�C��_eN=Ze�x�:�!m*٦&))����G>�'�m�\ˠ���XX��w���N=Zzn��XK�c--e�msg7�2L)|���чI�}2�N�[8�~=ȹ�����{�u��>�e�챋����\�V�Y�.L?%���S� �J���æ[Y�k��ڻ���g�³c��>��L�af��<���8��5�`�$:�F����t�-��Ѣ;bd�q�_M��r��i�D,������dۍ�v��t�c
+�"���uV�x8�r�����Ҭu)6���[ٜ7O�Y��ա������^y����aBX`$�lῷg����Y������i_�>�St
+��I
+:7:�T�>d�~1ņ�V���|�߹2�<�	�8��I?-��\|!{V��u��
+!�H�P�����h�k��%���^�����6hçȰI~{�UE�/j�R� �g�պ�3x�e���%��K>�2H����=�]<��mQ]�1�?\9ٿXps+������ƸI�J��Xe��1��M�O�Ĭ{�Aӎ��������b�1�p��?�^>ٯ8��Ӈ{��0&%�����4�ZEs�\@4����%���EߤG���s�����J�:���B��� d�]|�U+t���q��7S]t�ܼ9
+��ƣX�gZ���%�q��Ze@��@�VX��S���V��������>����a�A,p�uE��`
+(����o'�)���A׶ip� ���f/��H�������p�i�Bv�Zc�dG9�-�`�T��xD�@�������x���d�ss���J���qs�v�"�LZ
+��M;}
+�l��9��Ϲ'����YZ������܌�+��cז��ʍ]s�V�NMK픖���
+��[l��cs��*3��4��_���/�;�]�������VP�|�_�K'��K�WZkG/����{U��l���4^}������J�d�Z�P1����<,p��%���s�F�jH���a\�*fm��}� X�B�{���~:z!T���l_��e�Y.�[��4�k�k����RY�(������
+G(�,�e�MG_?��WQ�G���@Х�y@�R��e���D�~|`--�����jmjӡ̚Ѐ�v��+�-��#�ޣw�yj���Ü����p��u���KcB��%9�x�֖��k�1�Zn��
+~Q�N�y��;ƹ���U��eh-ƚQ�h�*�Uf]&�ސ��fT�]��L!�<uƯW	ȥlx�$�4٦r�?�F`͑,L�G�����[��Uc�j`i�q�%c�ғX���i�v�w��J�(�#����ʬDg����I��S��DDƺ��׷��:�0{�4�'
+��j�0��(XEn�ۀ~�{�p��;��W6����:�����樁�|Z��p	h.��;�Ǡ3W�NGs��@Ĥ1��`'�lx�JK����+��񟽼m�ء.�y�G�nX3��6Ys
+�-�;V��
+h����Yں-)��Ώ�x;�5������G���.tl��L�
+��k�����rZ����e	x	xy^�/L`���"����l��R_R�\�@		��L�ZŸ�^�d��
+�������G�L��3y5Yug��K�s�O4J?�czW^P�-�}_p�B��������|
+�M��W�V�a3���N�o!�{��];�m��=<����e��]�.�k-~��L1I�&�7���@���E��:�o@���E��3Љ������	t֘C����k����ѵ��u��7��0�".!� v>�p�_GP��Й�5*�^j�����|��%�~����S�7o�!nZ�З٥4i�Bv�V��c$d�
+���`�\�������,�Ŝs)�Q�"��M��]Y
+Y�s����\�ޛ�QY�>Ǽ� ��F���Kc�A�3\=���ZA�����;�G�ENAْ)p�-��{z��ܒYww	���Nx���3�5{�W��?O�7ؤ
+�͆�m�M�^D욯�s��u�Ӽ~�
+��hǷNMJ��\|
+�P��X��������d{Ƥu�����v�|&ZYu���l�3�`;�}��`�@����ӥV݈���q�fTn����5�j�K3�{R����c��X��x��ۧC9�uk|�j����O�x�俯G�i�|[�*����.�ۯ�C��
+�T.%M��ǰW7FfE]{1ϟ͟�9�\Y1��Pl���>��w_���%�]��{�U���Ǒ3G��;G����H�ORs��2٣��_���D}r.J�s��7�$o��rQ���ҸVѓd|�������F���G�<|���!W�}`O��X3����ARWi��ڲ%�������iШl���A�V0��[�k�$(��e�q
+116��.EJ!�Ш�A�eEp4�Ξi�-�ۋ�2��S~!-����բ�WƑ[x��zm�>�����x�C���+��5&sgK�\�9b{bM�)��X�J��`5���n�zA���	D)��X<e�:w�lW��lR��1�\��F�f��bn�㗞H�������2Ļ�Za������E������J%/��IrשZ������F�$��8x�^2�G����f��
+c�{��;��ڰv�-��5��>U��vcr��h��*��LA!����6
+��7�);�h��ʄv}?�6��z��d��
+��	�E�}���4�W6��n�G,���j��s�l�M���{С�$�c	:&�ߤ/ '���`[ȓ�Yݔ����RhG��:�n�)޼�FrW�R���R�E�53u6�V؀VV�3";e���H�f�3HiP,�Z;笼$�w�2�O�4R{/W6gU+�V?���K��̖�����5 �(&T>t��ۂ�m�P�f�t%Wx֫���:
+�P|g��5?āl�I|��Ioy۷�hE�60���ó��5-ܴ>���T��ܼ��l@�j�p�Ul��
+�~}�<�+X�������?� �u�2��7�B:���Y�m�_�[�s�o)vV��T���qK��a=+M���f��Ga��T�cY��}(�#����)yj���;���7}�H�^ֆ.�jq�������qD���{�}��x#�UYVK^��cX�&�_�L���t�=l��K큡+Q�ϙҧ�P��ð����_��{쟎>�C-���{�f�D;�}��n2���1�+�bDooUwܺ]�:Q�H�cT�����n�j��+�x����'a�w�л����'�1���zh΃�Xu7X�d� ,�:̡��������@�]��W)�΄����$m�A��u���E/~G1!��x2�;{(ǁT؈�]BN$Js�%xa�a���e�&�L1�ݺ�j��+�G�[��
+�8��\�9�|��ϖ�l�N�b����>@�bӢ[>�AwLn�����V�P=��Ħ1��&iݠ�ԥ��(�A�_�N�e�H�`aɸb[���@�@�;ư6�������A2�%TJ�n��^#zv���-�G�Da,��m�1�w+�7hVb��B(��R�lj����j2N��١
+�q��`sk&��26��3/-�#��\���}`Hu�~Vo�1�
+�E�R���Xʊ84�\�Ȅ��6(ˎ�SY����a��|U>��T�3��{�>E0��z��F]�f��;�=�����z�P�b�e!&b9̭d�?p�!�,�6v�E���	����N1{�'Mj�o���G1�B��<s�6�yr�5�|�!(25NQ���U*��|>ѽ�ɸbJ
+�P=�9���ZU^(��y���������lj}�0X�"��1B�Ni�쪆��+6]�y�N������
+��S!���n�|w�����g��h�0t�*����,�b=����
+ڬA��n�54�u���n2��;mĨ�+�U��Y	��++;d��md&y� �A�ZEh���tbr�E��Lb��ϫ)RfVe��f[`��~m��8x�;�^;w�e���A�S7�k۰x�L��M��7 /��K:�"��a�O\=��4ލ�A��5Xڌ�[o���<��Ki�2�b(�٧L9f��
+�^��5%�>ŷ��y;��Mn�C[�VW�r�#8���X��V-ps�`w<o�yƬ������;)��������tt���iaD�zl�(��X����V\c����(Z ��Nŵ�6�N���#%g�4e��nT����'u(A@��V�|dU�C2��US����|@���e�^���D}��P���f0>Սȡ�3e�Q�s��sE���!���D�t����d�),@[T`�NR>�����%�f��j�0��8�X�M�Iy0���&x1l��uk(�=�w�?����*͌΁�!��`�W���U�\�65j�sn�oN
+L�s��k���w_�m�7�n_1��VE�Vp��~H-L���T݊>��F��+S�n�O��U�PI}2y@}:n��%������2B���GM�f��Kp��dyt���RHDa����32��:r���R3j`U�2"H���Ai��zȴ��=*���ɝ���X�����9;Y.a3�9E~u �T����<_����2Si�>����)�e�
+����w� �X���K��o�D5*#�a�x�
+^���=xQ
+F�v�pK0�(�֗8�7��w,��r���ј=���ac��{�ТJ�a�[m.���/l��؏pz;X�U[��H�cr\S��res��Ia~U��6��3[��=Ҡ��};a!����M�
+���B�B\W���LRc,���[^W��Av��r���}�?Lf�ʳ��I=�vJ���p�U��-O��T�hT��od��ڕH7ج
++7]W��4ŗ��jqu�v�f��uÒ�Thꎞ�<���p�?W�b���=��l�I	����œ�$3Iy�5�dQ�lH�SVIw��]il���7)9�A!�J���D����t�쁊�,/_|Z����l�'��:T�|�s�⊲�q���h�����B�aָ��g
+ܿ�G�)Gz��$��8b�?&���{/�cax�
++�э��=�\���d�5�c�~Y)���}v�R��E�/O� W��}C�͊�(�aQ�[�����Мm�l�6�v��܌0�&%� K6��K+w�P�sN&`�4R��j(S��J�ZweDLT\��]�Em�|~�AO<��b4`y�,[mq��EgFQڌd��;��Nl�2�8�-��{P�rK��P9�G�999��毻�)c}��
+�:�
+F�v'�;d�������͇�l*�4��˸�5�}u�ޯԧ�ÿ�<�(��9՘*�,˚�D�wSZf�1sN�{�1:,��:��-,+'5�|�$�, ��Q��CGE�[�C ;ҥ��ϗ��z����U%4��rDhG)m����CZ�p���}��ff�[�@��v��e�AF��ޞ����Ypr6b�\�?�*�\�ΔP�S�ln?l>e��juy�~C�9��!&T����,�(k+f�cς�W��#ß�ٲ�����cE��{҉\: E�E�a����H�&�LE���ٳ�V�n�e�,��ɧ6MK-Á.]A��O��C��奀�U~�?��w��I��U+�r��T7����c����8f��;�W���_)���T8|s�������2=��Z!��t"�����JY�l�Ө�B�*����J!�?p�Fj	d4q�.Ӊ�O���0;G��$I�HK�tH<*�՜���EԥI�k����-Q)�-�pu�����"�A��w�JRr��)Y��<�e�i�G'���Un���݅J4	d�3ս\OAP��q��.�r���Wq~$=��6��/��K�Q?^१����Q�%v�qkf5�|h��'#�L�Z
+ڵt����-<R�����*�sN��qX�,T�5Ŷ�5��dO��������rS��r3��)IIū��?q�qe��4�G�>1s=�%�p��� �j�G����)h��$;�	��� ;��f��Z;bb�Ҥq����1&*eD�ƺ�՗����|��[�Bھ����i���]{�2�z�*�,mF(�ܷ�|�<ð��	�:�\�e����)�ed��JO��NJY�ڇө�Ƀ`����X���ޖz��K��sOM�"���t�z���u�C�>1���[��V
+J��H�K�
+JA�O?�� �&�F�Լ����2(�t�n����h�?��rF��b�q�;�y�X�;?Rs��ٶ�w���/���s������U7&��:���氢��ԛnT�OC��]����f4Œ�f�il��C�~.E��-���)Ɣh1���>��F�1���P]ڎ���%��bӥ���O.��R��&"��b-T6�5W�#x�v�:�Y�2���l'�|�u�u��`��Lt���Z�~�٬Q�0S��M}�G�&�N`6��[����U-v��}�H�wtBB�l�qMXɢFߑ��[R	#���Σ��g8)^�U��B��*��v�G�"�J���/dʗ�yɡ�YyE�}x��6Tx��SbMB<�K�r�\&y��~�R�G��/�T��)�fZ}7�h�������{���Z��Vk,�
+Z�g
+��A��`��P���ܓ����r�����l�z��Q����nE�0��ngt�F.\������TCH�MV�s��d��1�/668�rsۡ�m���vs�ڸ/�3�Cz��DK)n�]3���d���RDטCW�ڞm78�bn{3eH��VEj:�j�� ���$��4\���隴t߾}Q˶^�j�K)�V<ȇu
+�{ɭ�f��W���t��gi`
+0���M@� ke�K��e��)rfQB�Kd,�%��q�"� �2��S���Y�V#d�Kʸ4�Vȓ���FAuY�ۚ0v���G)�o�l�8}dS o���b�����N�l�a��]*��o)�����S����}�V����:�s�̜��[�Rʼ��~�R��Z"�럈x.�Љ� ���$��MWc��{
+��v�g �J���g6���D
+�bk/)� K����d��8`��u���{�"�2y����(��Z��W���&�kt�s��3�^��R�E�����%`�#�n��jp��ۏ芬F=�^\�l�
+���LYt[��v	���P|�f��F�$������Z�����N�Z�sb-�u�h�m,�/��s=��q�/�q���xcX*��z2�mʺ#��H��+�?2��t��J9]E�<g�~i׬]Y_Jǂ�{��y?�o/�0��H{(�-�eq��Jpu��R�Č\��-׼���B�k��ẻ�4Nv4�p-\F��n�Y��y�����U����ٱM���s0��F�P��0,|�� K6A�"�d��M�ɲu���G,o�������ղ%�\�Ƚ�eo �.����tM$�:P
+�R�X���� /r w�Z}�x�[�a=R�*�����j��J��J*�(�9@�A�`\���)&�i,���O|���Ȏ��%�bZL�86P��u�w5t�R-bj�z��舯�s�<���Yi���X����&U�D~�=�}�l�?ef`�"��������q!O�U�d�~��<�!��o9��Ă��U���T��!_�ƕ��A��ոΔBy��}��O16���j�3:I��R�?��y��ܣ*M��#nt���M��;�<��<ҦР�)��Ƽ�&��팰#��q��=U����ֶ��sg����9�����x�����4�_�g�}�_�W&ǔ�E)$�}ږ]�T
+��U;H8���W���Y���
+��%��
+�����2�w���R���>U��PB����{oW���tҘ���@JC�ɥ�,O'U�!a�fI�� ��?���d��آD׸z(φ}�[�鿛�<1�D��w��
+�􊷙�)��>/G)����C�xi�����2;��U�"u���=�e��?M�x�,R��gқF�l,l�X�)�H��V7r�j���-�%��?�W�;�~������U�"��~���-u��Ce���<U7������d�Z�'p��/g�`;C�+� /e�\O�z0�7d�D�}�6d�#�r���2À��	Ѹ�[�V�x\�7׌��%�>�9�����2��PRn�,�m >/��0+�9�X(�4��Cׅ⧛�z9���D�xA����V�1�H�B��t�?ӂ��k4�'8�/-P+O��f4~��K�'M:�L,C��L<L�$L��O]��[�:WX (��#m�)
+�3���P
+sgvmQz�n�/���,U�Ź��CV4�5c�(_'�N.B�Yj�[��*x�o�w	&y��(��i��<Pr���A�@nQ�E��Hi��p�cI
+�	�����HLJ������K.�\�6�6�'�E��kעݦS��*~��qC�w3����{¡ݘ3�)�?���驻���Ҳm��;���9�9GcK</����mk�(�T�/���Ƒ���z/��I�0������fM�"(��ڰ=`(vQ^(�;�/)���6vR2��E�b{�����0��訹`�7.����+'��e��޵��\�~А��$�N�֤�(�&�*�T��/ɑ)�sLc�D�x�_?q��MT���U��<�$�G�T%sb�� �X���Մk
+��c�R�[����-�X����jtPH�ϫ&��������aio_�JI����s���' ����271޹��Ɉ�0
+�[X鰈�c\�s���綃/Ieek��p�u�'���a�b��h��&	���t;�V�t�wȊ��X�����&E߯����11^���N'�?�נ ��������`�U�kY�`��`,b��
+�U��J-�}��该�j��{
+�y�uU�C�;%6F�8qCMmc�w�}��ygf`=���Nf��_�61>��ӳ�F����34���H�O���6H���9�i#��JVD	�F绖L{��[�d���6��j>���	3ے����P�rR�5 1�'q�����?��>�B��=3U:nD:8��B3�k�����æ�ͺ�5���Q4��
+h�0o��v�m[���a�ߦ�~�ˉ�4=(�[�١�j�6�n��D
+�D��G�5�(��U�OAL��ـ�S�G�w,޳U��>0:1�nɇ ���N$�����S�HG�&|���7O�w���Ӓ�:l�� ��A��9#�LƵ8�z�������f$���XTDz}�M�T�%k/��K��R6�����5���X���vmG/>67�kϓ��ۊ~�d~��  c>����j�2�<�TT�$Y�`M3'��I<(`��S��9tꃎh)P�t&�6���������b�2���"�2=G���w�+�;bblK5�Q�� ������Ɗ�ڰҧ��#�WQ�(�bL�un��m���ޔ-�{�~�_�R�q�Oq���H�D�H�s�������T��(�-�0Z�5K�z�Wn��6��ۏ�.Xx
+�
+�2�/�z�[Ӎ&8�E׫)�[RN����J�A�h!�zڴ��ի�xڔ6����e���b�79Z���������d�$\�9+�X��	}�;��ܐ�u��j��)Y-���6j ��|�v��*�s��!8�^Hz���N�&M}}�%s�V�� ��^�sZuX����؀v1c���S�����;�����+�F�~�B��/�~JhT��v��gɐV�[�Bʗ���YT���&Ȍ�u��>ћ��X5`��� Y�A3�MV�QT8p�J1X�\�E@Q�Z붃v]0��S������s\j)Q$j��{�s����bYr���筸�v$�;� �*��W�3:V`
+ȍ��˸|���HMa^�^������&���+�ڶa	�[�Ū�
+�Ͷ��b��b��a�g�'dܭ��K�5��重M��śH�;��#��,S��%BC�
+ĩ���� O�jษ��߃���&GHa��r���Ȓx�x��j����{����(	@A��{��lI9�\��92k&�w^K�1��t��Dv��0��
+�?&���m�<<8D��d����B�j��Cv�n�P*��-U��<�,}�K�21��E��r��b�i� vT�lh��8R��F��R�
+������֘��ˬ���PX�����,�^������9&=n�?`��o�qm�$k���a���I��'�U���Cg6�����o�SL5�ʣX�`:e��c����*9|�Z�ء)���������V�x	Ϫ?�M0��)�Dm2��o�g��C,׿}�
+Ӧ���k��4Q�0^�'�qeo����<x�+YD~�9�m���� "�b�P�H���	ިVa�kܹ���ɪ��k�&�2d�-*���4�Cr�zp��h^�m,�������t�H,%�M%8����-�n9OA�{����5����E��F�� ���U������_{�%�U$TU�QuK�������E�SrƷIaf��
+_���3T(#�ӝ�`Q�mNC�l�G)(��P�1�h�St�x!����P�	-���l��������p@'���X��F�>IW�Y�̒FLa$}EfҢe��A߃�f�@�Y���F���RԦ��&�S���3���fJ��R��(T�W�Ȏ`Ȏf�b#\O	���x79�K��G��)����޻�$3�aB
+T�dt�#�
+_�";��*�N��y3>A���y$�������R�n��j����B>6�V�q�O͗���w���&�I��FHB�ʙ�Dń�S�(���̷Lf�Z仐#�\�a�"d
+&�����g�u|
+��fWj���[�B
+W����ܲY��
+'P޸̬�@Z�($�W*����X�����\BN@�&Tt��˒�͒�Fb3d�fE�P�I����*^�5��ZkԒ�R��kܽ���}��|�F��+-�;���@�Bf��C�ć#(��竩ѱ��%��f�js��oW
+c� 1{%
+`,�ް��F��c��(;� $�V�i�1���Έ���"����$�L�*�S��,���EY+n�r�u躕��jU��kJ�Ô,i�F���]J:*�&���g
+#-����ك�R�҉^���o,/.JzHe��˧�����X��+��N�����b�q�输�!-BoZh��,�S_".ċf<�����1���|X��m�E��NBL��"h�d�rúTXw��f@ܑY�vV*e����3� ��xj[Z'{}�<�w�������e��S�V]*�n���TF���
+Z��=7�]�*�S�W�����
+�Gn�6f��tD�$��$�t��N:%
+:��ԊD��h,-ԶC���<d���s��b�6�k��:'aÓm���B�ټ�������m�9)�Y�y�2YJ��)���'�����,	��W��U�KS� �] аf�}��l�
+O�S��o�}$�{���NB�Ŷ�[\S���S��4��a�/>P~�;5��\�|!���V�e��������ۗ��z��/=D�ޤu8�i�����UA���"M^���%$��[(G��9��T����{��e�D�_��;���؉U�?t��d��6�=[��yĬ,�c e�Ú��(�� �$�k�4���[b��}��ẍ́W�lp�55⨙u�س��fR�l	�s�?:�s댸ƨ��ܘ���I_�衔�j�s,�X3�P�N��IqLR��n !+ 義5'�)�&�$5��T`�Iif��޲ͼH����^n�;��PF\3��޳aHk��ʊ���K���_j�O��߮Q�XL�I��άU���ڕ�_�6w7N��ݬY�%�HVm��]J�C�ЀHĩ�R�dj%�����.�)�9�:�O޸��<�Kы�r�v'����cTZ���O-��#��B<�p��zHBG�E���*tj�řِ�t�P��Nu���jB��m���<�V9�|������£v���mQ�t�����
+�@~NC d.So�=,L��5�F�������x��+{p�G�CeN^|L7�d�MĄH��ăƘ�"&H}�~��K�[w�D��%� �5D��V��0x�/�]���'xac�����n�"��)SQy�D��j���31FO�	�3[:W��ì�R!dW�wE��M�]��,7��9'�5o��&6Y
+��9���
+U��@J�.��`���#G]K�����Ą�4逴*;���E�A��iK��kba񀒟}挟4�1��ʭ��:P8޷za�{K��ܷ���1h	:>�SJ�C��t��Z�-��&�7r.�2^�
+7ƴG@����^Pbح�6E�vR(��rR��M �&
+{�W�P���ր�R++h��-(�`��[��Ea���C��D?AEvXAv8AvL��h#Ȏg�%lȲ���O�m��;�篇��6(n��b�V��E7�sG���cY;E��v���\�-vH}Q��&R}�>/W�v�LLHd.(f��q@�cA�0�o)ҩ�Z�$��IĽ�g�ّ)*t:���N!�I��#;��R'S�.ǭY�-���m�zd��YMdq�D��9~A�Z\i�v��@�����Ơ
+���qC<�(~�t�E��ٶ{֪�Cq�7�eS}J2j����9��W��#�1~`5�%lɲ��%)ݧ?s��Xq'�6�
+���NZ��v�рy,^��̭pʚ%�3���b�M���o<�*���q�g��L�QS˭��`
+�(ie���V����$�B"z}bn�1�n��m?0w��	�B<>"A�S)3��Ո�{(��ՠ���fl�KKd�~M@�|�BH��򮌄o�֏����n]Z��2m�I�[�[se*�Ӧ��±u�4o#��Q�#����
+��|��q��
+���V�961��_A�r%Ә�l��6�T��FIӱ�2j�0�f��_r���J��q	B���J�*�xz�A��{!ț���N(�+d��d�hc��ba���%eDJ�Ne��e�����+>0y^�ݣ4	��K��>v �WAG��DE;��9���Ny�):sA���,�����pf;bйNt���b�����apP�;��$�'������B����O�r\�$�[�
+�܋d
+�r�vo��DIt���������I��뎚yb�Z��9
+A�����<��/�Ȫ����/:
+^�����w��n�"�gWQ@�p,P��ŷ�/��Ԝ�+� �Is��!�L
+�	�[���rdu~t�U%ڑ�R[�*�>����%L�̝G��~�t(	c��AW>~��{*\�~�����ݞ
+�+լ���J�'��D�dCm�e�0n*�k��	t6�S�0�
+��kͮ[}'O>ƬjZ���w��{s'<�AT���9�^��ءdfo�{�i}�}��~���[N�E����~a�ve��f����c�Bv4�C�&;����\
+�\�05��y��{�}��L�$V�]�b϶e���8K�xA$�g�ӹ#�=Ť�Pp�/�xm,,)�����c|��ϝ��_k/�����K��ծ���>�X��~��[����dɘ�Z��9�4iRݡ;�[��O6���񴑠��-\�歄��O��X8�'/>7zт����{mrIFasX����b�.�c���,i\:#�`�վ���OʁPS ����w͂��,��}Ò�����'���:�O�<�[%�ER{�p�����6�?:�%�K��˟����U��وC<��W��������n�oP����%�
+���w�l���kVҨQ��PL����0F)�B�¢�?w��?��f����+q��:̅e#zV��7G�w�wu���^��2I�3�����������F�t�2�H�4г������4|!]��<de����!8L��?�ʒ����ɂn&���2YE�I�ފ�oZb�ؾU�#u�n��zڒ�Ӑ����_�.�Bv�0�F��Ǘl��GH��|��v���÷}'�
+Y,�c�<N9�����������E������i�/*�89�c`G�5Z�`����+pd��IsȤR�wiCF���}�tl��_�~��)�8,P�~�u�HS3�z���O�_
+E��+�wv7+ȹ��+���r���d�ɺ�y���]ˬ��!بEɭ;�n�tv���qF�:@g��!5����@�NN3XY�>=�n!��"������R,�1R2F�>�wϕf,=,6��+��@�p)}�-n��YΖ��K���G��	�D+�ֻ��>�||G�bR�-0Yd;��S����[�#%m�w ���	���#�'Y��]������훔Z۰FA?XLTӪ�퀕�m��� �4㦰ȝ���A�BG��/B����Z<�����n�DБ�P3�}� ��B"�"�8�업�Q��[�^������se����kW�:ȅ׷���Ƶ��r)s��.�a�?Xer��U��wȹ�����6\ma�?�&���`ڕ�Y����M�j�S�1�K����W������X}��dr��� W���@;Px�h��F]P
+��蒳�� m(��E�e��;����m��ѣU7�6e��;�)�L��O!�śב�t]��G[a�1��,+؄m�&LTHD���5Y����EyJ��G�N�������x�B�J�`��[�w:����7GdB�۔��cǁ]wZ���{R�i��.��y4�2z��� (��[��s�V:���mfU҆��S��e6��Q�y���yOk�1q��g����O�o�x��q���H�$���ﶥn��g�r�3� ��~#&��A��SL�XJ� (�,<`����z�٩E���&��M6���9}��s�HGHx��V([�Ʈnꉰ��Z|�x��#�c,e֥>X��f�g1
+��m�M���Mْn-<W�[��)��@�J��L(u��ڎ]�ܞ/�i�Jf��Hecc����s�ga���J���&��B�o�/�
+�]gK�m�:	�#����(zlD"��D:Vt�t��#��,�=&�a���
+I���o�� NJ��"�E��$�ՀR�w��[$(�Ǉ�B_��\_��ʰ��$[Ď��F{��|M�˨
+ 2��
+V��@��JL�(��s�y��$$���,tVH4�0���2֔�C��X�Z�HxI0vzU�m)Ж�=�Ԋ\Lh�%�bT)K������t�#c3 ~3{�S/6c:�/���RO�z�������N��_�J���8�O�6��b���Ձ�.��U�Řa�@��)�N,�tR����t�t�I�^ì�9E}Ox���P{D:�%�5]����s<�OI���rB�7)N�>D���=c:g��f�f$��@v��\���!���Gs�Y��>��+���O5�`8Iz8
+c*8cN�7�t���ڗ ������C�;��uĵ��qb�	}o�lܠ��ƻ��6ک�FP
+�;����0�4��2�=�������x�8-{;�.��f���%�%`B}F��d��nZ��W����Y�y�
+n�,ӧ��	q�p>���g�_�?�}G�B�{�
+����ti=ar�DR[���N�� �]��*�C��3S��k�5�,&���6Q?�f�Ie�S��
+|��sF��ot���'��ߚr��e���K��i}.29k�J.�)􅵰��x���z�G	e�sAmn���"/�)":#���똔�"�w�y��̸�${;;���!K����ዩ:��� G�#��ep-�=śI	��E����?q8M��a��z9� G�����<[�� G�#�\��M�orl6��Ip�2�)�1}��3r�Cp[�1�6Nn��<G�#��p8���"p�w��:�$�<?���'.=� |��g�Tn��_�o
+G�#�+��`�
+!�.G�#����� ��T::,P�ɪ��g'��>���]��"F�온�������!����}}�9�p8� a�/�Q�#2؈
+!n*�r�Ԁ�8#;��a�p8� G�#��?� eN��x:i���x���9k� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#��p8� G�#�PG��]�oW&�e    IEND�B`�/********** HTML FILE **********/
+* {
+    box-sizing: border-box;
+    font-family: "Arial", "Arial Black";
+}
+
+/********** BODY **********/
+html, body{
+    height: 100%;
+    width: 100%;
+    background-color: #d5eafc;
+}
+
+/********** MAIN **********/
+main{
+    height:95%;
+    width: 95%;
+    margin: auto;
+    padding-top:10px;
+}
+
+/********** STYLE BASE TEMPLATE **********/
+h1 {
+    font-size: 55px;
+    text-align: center;
+    font-weight: bolder;
+    color: #415a75;
+    font-family: 'Arial Black';
+    width: 95%;
+    padding: 30px;
+    margin: auto;
+}
+
+
+h2 {
+    text-align: center;
+    color:#415a75;
+    font-size: large;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+p {
+    font-size: 17px;
+}
+
+#messages {
+    color: red;
+}
+
+
+.banner-text {
+    margin: auto;
+    font-size: 6vw;
+    color:#fff;
+    font-weight: bolder;
+    text-align: center;
+    text-shadow: 3px 3px #5b8ae9c4;
+}
+
+
+.home-btn {
+    color: white;
+    font-size: large;
+    background-color: rgb(39, 39, 39);
+    border-radius: 5px;
+    border: none;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/********** STYLE FORM **********/
+form {
+    text-align: center;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.flex-form-container {
+    padding-top: 8px;
+    padding-bottom: 2px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 6px;
+    padding-right: 5px;
+    padding-left: 5px;
+    border-width: 1px;
+    border-style: dashed;
+}
+
+.major-container {
+    justify-content: center;
+    width: 250px;
+    margin: 6px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: dashed;
+}
+
+.class-input {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+input {
+    margin-right: 5px;
+    margin-left: 21px;
+}
+
+.year-1 {
+    margin: 5px;
+    background-color: #ffaaaa;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.year-2 {
+    margin: 5px;
+    background-color: #daeab3;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.year-3 {
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #ffedb4;
+    padding: 10px;
+}
+
+.year-4 {
+    margin: 5px;
+    background-color: #edd5ff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Text input on forms */
+input[type=text] {
+    width: 72px;
+    color: gray;
+    border-color: black;
+    border-width: 1px;
+}
+
+/* Form submit button button */
+input[type='submit'] {
+    background-color: white;
+    font-size: x-large;
+    font-weight: bolder;
+    color: #415a75;
+    border: 1px black dashed;
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  /* Form submit hover */
+  input[type='submit']:hover{
+      background-color: #415a75;
+      border-style: solid;
+      color: white;
+  }
+
+  select{
+    color: gray;
+    border-color: black;
+    border-width: 1px;
+  }

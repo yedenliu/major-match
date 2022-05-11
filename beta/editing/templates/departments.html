@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+{% block header %}
+<h1>Departments</h1>
+{% endblock %}
+
+{% block main_content %}
+
+<h2>Click on a department to see it's courses and insert a new course</h2>
+
+<table class="depts-table">
+    {% for dept in departments %}
+    <tr><td><a id="dept_pg" href="{{ url_for('department_page', dept_id=dept[0]) }}">{{ dept[1] }} </a></td>
+        <td><a id="catalog_pg" href="{{ dept[4] }}">catalog page</a></td></tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

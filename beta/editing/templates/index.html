@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+
+{% if username %}
+
+    <form method="GET" action="{{url_for('cas.logout')}}">
+          <button>logout {{username}}</button>
+    </form>
+
+   <p>CAS username: {{username}}</p>
+   <p>CAS attributes:</p>
+   
+   <ul>
+       {% for key,val in cas_attributes.items() %}
+       <li>{{key}} &rArr; {{val}}</li>
+       {% endfor %}
+   </ul>
+
+{% else %}
+
+   <form method="GET" action="{{url_for('cas.login')}}">
+     <button>login</button>
+   </form>
+
+{% endif %} 
+
+{% block main_content %}
+<h2>Click through the navigation bar or the list below to interact with our courses database</h2>
+
+<img src="{{url_for('static', filename = 'cap.png')}}" alt="graduation cap logo" >
+{% endblock %}
