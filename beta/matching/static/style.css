@@ -71,7 +71,74 @@ p {
     padding-bottom: 5px;
 }
 
+/********** STYLE POPUP **********/
+/* Popup container - can be anything you want */
+#popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  /* The actual popup */
+  #popup.liste .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+  }
+  /* Popup arrow */
+  #popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  #popup:hover span {
+    outline: none;
+    text-decoration: none;
+    font-size: 70%;
+    color: #000;
+    opacity: 1;
+}
+/* Toggle this class - hide and show the popup */
+#popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+  }
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+  }
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }
+
+
 /********** STYLE RESULTS **********/
+
+
+#modal-flex{
+    padding: 2px;
+}
+
 .listed-courses{
     margin-bottom: 6px;
     position: relative;
@@ -132,11 +199,15 @@ p {
   
   /* Modal Content */
   .modal-content {
-    background-color: #fefefe;
+    background-color: white;
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 5px;
+    border-style: dashed;
     width: 80%;
+    text-align: center;
   }
   
   /* The Close Button */
@@ -153,6 +224,17 @@ p {
     text-decoration: none;
     cursor: pointer;
   }
+
+  .flex-container-modal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.taken-div{
+    margin-right: 50px;
+}
 
 /********** STYLE FORM **********/
 form {

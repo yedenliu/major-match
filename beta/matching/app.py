@@ -42,7 +42,7 @@ def index():
             if dept not in [None, ''] and cnum not in [None, '']:
                 cnum = cnum.upper().strip()
                 
-                # if course exists doesnt exist
+                # if course doesnt exist
                 if not check_course_exists(conn, dept, cnum):
                     flash(str(dept) + ' ' + str(cnum) + 
                           " doesn't exist in our database")
@@ -52,12 +52,21 @@ def index():
                 results = major_match(conn)
                 course_matches = matched_courses(conn)
         delete_form_data(conn)
-        # get_dept_courses(conn, dept_id) --> get the dept IDS
+        # get the dept ids in order to get their courses to use as percentage bar in results page
+        dept_ids = [get_dept_id(conn, name[0])[0] for name in results]
+        dept_courses = [get_dept_courses(conn, id) for id in dept_ids]
+        to_take_courses = list(set(dept_courses) - set(course_matches))
+        # print(to_take_courses[0],'\n','\n', course_matches)
+        major_courses_totake = [(results[i][0], to_take_courses[i]) for i in range(len(results))]
+        # print(major_courses_totake[4][0])
+        # print(course_matches)
+        print(results)
         return render_template('results.html',
                                 page_title='Results',
                                 classes = classes,
                                 results = results,
-                                course_matches = course_matches)
+                                course_matches = course_matches,
+                                major_courses_totake = major_courses_totake)
 
 ################################################################################
 @app.before_first_request

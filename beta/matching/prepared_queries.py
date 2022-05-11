@@ -85,7 +85,7 @@ def get_dept_courses(conn, dept_id):
     '''
     curs = dbi.cursor(conn)
     
-    sql =   ''' select dept, cnum, courses.name, courses.cid 
+    sql =   ''' select dept, cnum, courses.name, courses.cid
                 from courses 
                 inner join major_pairs using(cid)
                 inner join programs using (dept_id)
@@ -93,3 +93,14 @@ def get_dept_courses(conn, dept_id):
             '''
     curs.execute(sql, [dept_id])
     return curs.fetchall()
+
+
+def get_dept_id(conn, dept_name):
+    '''uses the department name to fetch and return the dept_id'''
+    curs = dbi.cursor(conn)
+    sql = ''' select dept_id
+              from programs 
+              where name = %s'''
+    curs.execute(sql, [dept_name])
+    return curs.fetchone()
+    
