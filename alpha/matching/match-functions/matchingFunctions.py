@@ -29,6 +29,7 @@ def grabMajors(userInput):
 def cleanCrosslisted(course1, course2):
     print('hi')
 
+''' Takes a major name as a string, and then gets all the courses that count towards that major.'''
 def grabCourses(dept):
     allCourses = []
     with open(majorReqs, "r") as courses:
@@ -44,7 +45,13 @@ def grabCourses(dept):
 
 ''' findElectives() takes two lists: the courses that are required for a
 major, and the courses that count towards that major. It returns a list of
-the courses that count as elective courses for that major.'''
+the courses that count as elective courses for that major.
+
+For example, the CS major requires that students take "two 300 level CS courses, 
+and at least two additional computer science course at the 200 or 300 level." To avoid
+having CS 230, CS 231, CS 235, or CS 240 count for the elective instead of the core,
+this function will "remove" those courses from the list of 200-level CS courses so
+the remaining courses are the ones that could fulfill that elective requirement.'''
 def findElectives(requiredList, allCoursesList):
     electiveList = []
     for element in allCoursesList:
@@ -260,17 +267,22 @@ def chem(userInput):
         suggestComplete(flexMathTaken, 1, flexMath, False, 0)
         suggestComplete(flexPhysTaken, 1, flexPhys, False, 0)
 
+# TODO electives don't seem to be working, 342 and 304 aren't counting
+# TODO suggestComplete is buggy here too
 def cs(userInput):
     print('Checking your requirements against the Computer Science major...')
     needed = 10
     has = 0
+
     introductory = ['CS 111','CS 230']
     math = ['MATH 225']
     core = ['CS 231','CS 235','CS 240']
+
     required = introductory + math + core
     allCourses = grabCourses('Computer Science')
     electives = findElectives(required, allCourses)
     threes = courseLevelUntangler(electives,3)
+
     numThrees = 0
     numElectives = 0
     introsTaken = []
@@ -278,6 +290,7 @@ def cs(userInput):
     coresTaken = []
     threesTaken = []
     electivesTaken = []
+    
     for course in userInput:
         if course in introductory:
             introsTaken.append(course)

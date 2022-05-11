@@ -1,8 +1,8 @@
 import pandas as pd
 import csv
 
-majorReqs = '/students/kswint/major-match/alpha/DDL/majorReqsDF.tsv'
-coursesToMajors = '/students/kswint/major-match/alpha/DDL/coursesToMajors.tsv'
+majorReqs = '/students/kswint/major-match/beta/DDL/majorReqsDF.tsv'
+coursesToMajors = '/students/kswint/major-match/beta/DDL/coursesToMajors.tsv'
 
 ''' grabMajors() determines which majors a user has made progress towards.
 This lets us avoid checking every single major against every course a user
