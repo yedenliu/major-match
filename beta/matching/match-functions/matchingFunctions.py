@@ -1,3 +1,4 @@
+from pkgutil import iter_importers
 import pandas as pd
 import csv
 
@@ -75,7 +76,7 @@ def courseLevelUntangler(electiveList, level):
                 if courseNum == level:
                    levelElectives.append(elective)
             except IndexError:
-                print('*******', elective, '*******')
+                pass
     return(levelElectives)
 
 '''compareUserAndReqs() compares the courses a user has taken against the
@@ -544,12 +545,89 @@ def math(userInput):
         suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
         suggestComplete(electivesTaken, int(2 - len(electivesTaken)), electives, False, 0)
 
+
+''' Let's get one thing straight: this helper function is an absolute dumpster fire. I am embarassed for
+anyone to see this. It's genuinely atrocious. I'm not even sure if it will ever get to the recursive function,
+but I'm leaving it in because I can't think and removing it would haunt me.
+
+This helper function is *supposed* to look at the number of courses a philosophy student has taken in 
+subfield B and the number of courses they have taken in subfield C, and then allocate further courses in a clever
+way. Philosophy majors must take two courses within subfield B and two courses within subfield C.Let me paint 
+a picture:
+        Kat is an up-and-coming philosophy student who is passionate about metaphysics, and has taken all of her
+        philosophy classes within subfield C. This may not be an issue, since lots of classes in subfield C also
+        are in subfield B. First, philosophy(userInput) will look at all the classes she's taken and will find the
+        ones that are *only* in subfield B or are *only* in subfield C and will allocate them appropriately. It will
+        then say "gee, the rest of the classes she's taken could cover either the subfield B or the subfield C requirement!
+        how do i sort that out?" and will call subfieldSort(). subfieldSort() will gracefully take the burden from 
+        philosophy(). It sees that Kat has taken enough classes for her subfield C requirement and only needs to
+        fill her subfield B requirement. No problem. It goes through the list of courses she's taken, and grabs however many
+        she needs (in this case, 2) to fulfill her subfield B requirement. Once it's done, it lets philosophy() know
+        that it doesn't need to worry about how it allocates the rest of the classes to each subfield since Kat has
+        already fulfilled the requirement.'''
+def subfieldSort(remainingBandC, numBs, numCs, bTaken, cTaken):
+    # these are designated by the philosophy dept
+    subfieldB = ['PHIL 102','PHIL 105','PHIL 106','PHIL 108','PHIL 111','PHIL 115','PHIL 203','PHIL 205','PHIL 213','PHIL 220','PHIL 222','PHIL 226','PHIL 228','PHIL 229','PHIL 231','PHIL 233','PHIL 234','PHIL 236','PHIL 249','PHIL 300','PHIL 301','PHIL 303','PHIL 304','PHIL 306','PHIL 307','PHIL 310','PHIL 316','PHIL 317','PHIL 323','PHIL 330','PHIL 331','PHIL 333','PHIL 338','PHIL 340','PHIL 341','PHIL 342','PHIL 345','PHIL 366']
+    subfieldC = ['PHIL 103','PHIL 112','PHIL 200','PHIL 207','PHIL 215','PHIL 216','PHIL 218','PHIL 220','PHIL 229','PHIL 245','PHIL 300','PHIL 306','PHIL 310','PHIL 311','PHIL 317','PHIL 319','PHIL 323','PHIL 325','PHIL 331','PHIL 333','PHIL 341','PHIL 345']
+    
+    inCourses = remainingBandC              # I get errors when I just try and use remainingBandC
+    b = numBs                               # I get errors when I just try and use numBs
+    c = numCs                               # I get errors when I just try and use numCs
+
+    addBs = []                              # the first of many unnecessary new lists
+    addCs = []                              # the second of many unnecessary new lists
+
+    '''Potential flaws in my logic begin here. This will always "fill up" subfield B before it fills subfield C. I feel
+    like this is an issue, but it might not be. A few scenarios:
+        (a) Kat has taken 2 unique subfield B courses and 1 unique subfield C course. This is fine, since the
+            missing subfield C course will be filled in with a course that is in both subfield B and subfield C.
+        (b) Kat has taken 1 unique subfield B course and 2 unique subfield C courses. This is fine, since the
+            missing subfield B course will be filled in with a course that is in both subfield B and subfield C.
+        (c) Kat has taken <1 unique subfield B course and <1 unique subfield C course. This is fine, since Kat
+            needs to fill in both subfield B and subfield C. So even if she only has one additional course that
+            could fulfill either subfield, it doesn't really change her actual major completion.
+            
+    I might be wrong.'''
+    for course in inCourses:
+        if (course in subfieldB) and (b < 2):
+            b += 1
+            addBs.append(course)
+            inCourses.remove(course)
+
+    for course in inCourses:
+        if (course in subfieldC) and (c < 2): 
+            c += 1
+            addCs.append(course)
+            inCourses.remove(course)
+
+
+    addBs = addBs + bTaken          # the unique subfield B courses given by philosophy() + our new allocated subfield B courses
+    addCs = addCs + cTaken          # the unique subfield C courses given by philosophy() + our new allocated subfield C courses
+
+    recursedB = []                  # idk. I felt like I needed new lists here.
+    recursedC = []
+
+    '''I don't think this recursive call will ever be reached, since the for loops will continue populating until
+    both categories have two courses. Logically, I should remove this, but emotionally I cannot.'''
+    if (b < 2) or (c < 2):
+        newBandC = subfieldSort(inCourses, b, c, addBs, addCs)
+        recursedB = newBandC[0]
+        recursedC = newBandC[1]
+
+    outBs = addBs + recursedB
+    outCs = addCs + recursedC
+
+    output = [outBs, outCs]
+
+    return(output)   
+
 # TODO make sure 300s are in different subfields
 # TODO figure out how to move courses... like phil 200 should be showing up as an elective
 def philosophy(userInput):
     print('Checking your requirements against the Philosophy major...')
     needed = 9
     has = 0
+    hasList = []
 
     # these are designated by the philosophy dept
     core = ['PHIL 201','PHIL 221']
@@ -562,6 +640,9 @@ def philosophy(userInput):
     subfieldBUnique = ['PHIL 105', 'PHIL 106', 'PHIL 108', 'PHIL 111', 'PHIL 115', 'PHIL 203', 'PHIL 205', 'PHIL 213', 'PHIL 222', 'PHIL 226', 'PHIL 228', 'PHIL 233', 'PHIL 234', 'PHIL 236', 'PHIL 249', 'PHIL 303', 'PHIL 304', 'PHIL 316', 'PHIL 330', 'PHIL 338', 'PHIL 340', 'PHIL 342', 'PHIL 366']
     subfieldCUnique = ['PHIL 103', 'PHIL 112', 'PHIL 207', 'PHIL 215', 'PHIL 216', 'PHIL 218', 'PHIL 245', 'PHIL 311', 'PHIL 319', 'PHIL 325']
     
+    # these are the courses that belong to multiple subfields
+    multiSubfield = ['EDUC 102', 'PHIL 102', 'PHIL 200', 'PHIL 22', 'PHIL 220', 'PHIL 229', 'PHIL 231', 'PHIL 300', 'PHIL 301', 'PHIL 306', 'PHIL 307', 'PHIL 310', 'PHIL 317', 'PHIL 323', 'PHIL 331', 'PHIL 333', 'PHIL 341', 'PHIL 345', 'WRIT 114']
+
     allCourses = grabCourses('Philosophy')
     extras = findElectives(core, allCourses)
     threes = courseLevelUntangler(allCourses,3)
@@ -575,6 +656,11 @@ def philosophy(userInput):
     threesTaken = []
     extraTaken = []
     
+    '''Philosophy majors must take 300-level philosophy courses within multiple subfields. This little
+    Boolean dance is how I'm checking it. If it's super efficient and impressive, praise my for my 
+    ingenuity. Otherwise, I will be honest and say that I am coding like an infant right now and that
+    this was the simplest way I could figure it out. Never tell Ben Wood, he would be so disappointed that
+    I didn't retain more from 240'''
     multiSubs = False
     threeA = False
     threeB = False
@@ -588,6 +674,7 @@ def philosophy(userInput):
             if (course in subfieldC) and (threeC == False):
                 threeC = True
 
+    '''We've done the Boolean jig, now we perform the finale'''
     if threeA:
         if threeB or threeC:
             multiSubs = True
@@ -595,39 +682,69 @@ def philosophy(userInput):
         if threeC:
             multiSubs = True
 
+
+    tempTaken = userInput                   # I get errors if I just use userInput
+
     for course in userInput:
-        if course in subfieldAUnique:
-            subfieldATaken.append(course)
-            has += 1
-        if course in subfieldBUnique:
+        if (course in subfieldAUnique):         # ignore that the Phil dept doesn't require a subfield A course. I just wanted it
+            tempTaken.remove(course)            # remove it from our wee tempTaken list that we will later pass to subfieldSort()
+            subfieldATaken.append(course)       # if the course is only in subfield A, then we can safely allocate it to subfield A 
+            hasList.append(course)              # I have to use hasList to get rid of duplicates. Yes it's embarassing
+        if (course in subfieldBUnique):         # similar logic as for A and C
+            tempTaken.remove(course)
             subfieldBTaken.append(course)
-            has += 1
-        if course in subfieldCUnique:
+            hasList.append(course)
+        if (course in subfieldCUnique):
+            tempTaken.remove(course)
             subfieldCTaken.append(course)
-            has += 1
-        if course in core:
+            hasList.append(course)
+        if course in core:                      # if i'm understanding reqs correctly, core/electives/300s can overlap w subfield reqs
             coreTaken.append(course)
-            has += 1
-        if course in threes:
+            hasList.append(course)
+        elif course in threes:
             threesTaken.append(course)
-            has += 1
-        if (course in subfieldB) and (len(subfieldB) < 2):
-            if course in subfieldB:
-                subfieldBTaken.append(course)
-                has += 1
-        elif (course in subfieldC) and (len(subfieldC) < 2):
-            if course in subfieldC:
-                subfieldCTaken.append(course)
-                has += 1
-        elif course in subfieldA:
-            subfieldATaken.append(course)
-            has += 1
-        elif course in subfieldB:
-            subfieldBTaken.append(course)
-            has += 1
-        elif course in subfieldC:
-            subfieldCTaken.append(course)
-            has += 1
+            hasList.append(course)
+        elif course in extras:
+            extraTaken.append(course)
+            hasList.append(course)
+
+    
+    recursed = subfieldSort(tempTaken, 0, 2, subfieldBTaken, subfieldCTaken)
+    
+    newB = recursed[0]
+    newC = recursed[1]
+
+    bLen = len(newB)        # otherwise I get an infinite loop
+    if len(newB) > 0:       # if we've added any new B courses
+        i = 0
+        while i < len(newC):
+            subfieldBTaken.append(course)   # add those new courses to the original subfieldBTaken list
+            hasList.append(course)
+            i += 1
+    
+    
+    cLen = len(newC)        # otherwise I get an infinite loop
+    if cLen > 0:            # if we've added any new C courses
+        i = 0
+        while i < cLen:
+            subfieldCTaken.append(newC[i])  # add those new courses to the original subfieldBTaken list
+            hasList.append(newC[i])
+            i += 1
+
+    # for some reason I get duplicates out of this process. I don't have the brain power to fix it at the source.
+    # I'm sure it will cause lots of bugs. Woo!
+    bDeDuplicate = []
+    cDeDuplicate = []
+    [bDeDuplicate.append(x) for x in subfieldBTaken if x not in bDeDuplicate]
+    [cDeDuplicate.append(x) for x in subfieldCTaken if x not in cDeDuplicate]
+    subfieldBTaken = bDeDuplicate
+    subfieldCTaken = cDeDuplicate
+
+    # now we de-dupe the list of the courses someone has taken so we get the real count
+    hasListTwo = []
+    [hasListTwo.append(x) for x in hasList if x not in hasListTwo]
+    hasListTwo.sort()
+    has = len(hasListTwo)
 
     compareUserAndReqs(coreTaken, core, 'core',2)
     compareUserAndReqs(subfieldBTaken, subfieldB, 'Subfield B: Value Theory', 2)
@@ -697,6 +814,7 @@ j = ['CS 112', 'POL3 351', 'PEAC 206', 'HIST 221', 'SOC 312', 'PEAC 261', 'MATH 
 k = ['ECON 101','ECON 203','ECON 222','EDUC 226','ECON 233','ECON 314','ECON 318','ECON 320','CS 242','CS 301','CS 304','CS 342','FREN 101','FREN 102','FREN 201','FREN 202','HIST 245','HIST 220','JPN 290','MATH 205','MATH 206','MATH 223','MATH 225','NEUR 100','PHIL 215','POL1 200','WRIT 166']
 
 phil = ['PHIL 201','PHIL 221','PHIL 207','PHIL 215','PHIL 311','PHIL 319','PHIL 229','PHIL 306']
+bAndC = ['PHIL 200','PHIL 229','PHIL 207','PHIL 215','PHIL 216','PHIL 220','PHIL 229','PHIL 300','PHIL 306','PHIL 103', 'PHIL 112', 'PHIL 218', 'PHIL 245', 'PHIL 311', 'PHIL 319', 'PHIL 325']
 
 #subfieldAUnique = ['PHIL 305']
 #subfieldBUnique = ['PHIL 105', 'PHIL 106', 'PHIL 108', 'PHIL 111', 'PHIL 115', 'PHIL 203', 'PHIL 205', 'PHIL 213', 'PHIL 222', 'PHIL 226', 'PHIL 228', 'PHIL 233', 'PHIL 234', 'PHIL 236', 'PHIL 249', 'PHIL 303', 'PHIL 304', 'PHIL 316', 'PHIL 330', 'PHIL 338', 'PHIL 340', 'PHIL 342', 'PHIL 366']
@@ -710,4 +828,4 @@ phil = ['PHIL 201','PHIL 221','PHIL 207','PHIL 215','PHIL 311','PHIL 319','PHIL 
 #chem(kat)
 #cs(julie)
 
-masterCheck(phil)
+masterCheck(bAndC)
