@@ -1,3 +1,4 @@
+from pkgutil import iter_importers
 import pandas as pd
 import csv
 
@@ -75,7 +76,7 @@ def courseLevelUntangler(electiveList, level):
                 if courseNum == level:
                    levelElectives.append(elective)
             except IndexError:
-                print('*******', elective, '*******')
+                pass
     return(levelElectives)
 
 '''compareUserAndReqs() compares the courses a user has taken against the
@@ -544,12 +545,79 @@ def math(userInput):
         suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
         suggestComplete(electivesTaken, int(2 - len(electivesTaken)), electives, False, 0)
 
+def subfieldSort(userInput, subfieldBTaken, subfieldCTaken):
+    # these are designated by the philosophy dept
+    subfieldB = ['PHIL 102','PHIL 105','PHIL 106','PHIL 108','PHIL 111','PHIL 115','PHIL 203','PHIL 205','PHIL 213','PHIL 220','PHIL 222','PHIL 226','PHIL 228','PHIL 229','PHIL 231','PHIL 233','PHIL 234','PHIL 236','PHIL 249','PHIL 300','PHIL 301','PHIL 303','PHIL 304','PHIL 306','PHIL 307','PHIL 310','PHIL 316','PHIL 317','PHIL 323','PHIL 330','PHIL 331','PHIL 333','PHIL 338','PHIL 340','PHIL 341','PHIL 342','PHIL 345','PHIL 366']
+    subfieldC = ['PHIL 103','PHIL 112','PHIL 200','PHIL 207','PHIL 215','PHIL 216','PHIL 218','PHIL 220','PHIL 229','PHIL 245','PHIL 300','PHIL 306','PHIL 310','PHIL 311','PHIL 317','PHIL 319','PHIL 323','PHIL 325','PHIL 331','PHIL 333','PHIL 341','PHIL 345']
+    subfieldBandC = subfieldB + subfieldC
+    
+    bTaken = subfieldBTaken
+    cTaken = subfieldCTaken
+
+    bIn = len(subfieldBTaken)
+    cIn = len(subfieldCTaken)
+
+    holdingPile = []
+
+    taken = userInput
+
+    for course in taken:
+        if (course in bTaken) or (course in cTaken):
+            taken.remove(course)
+
+    for course in taken:
+        b = bIn + len(bTaken)
+        c = cIn + len(cTaken)
+        print('b =', b)
+        print('c =', c)
+        if course in subfieldBandC:
+            if (b >= 2) and (c >= 2):
+                print('1: b =', b, '\tc =', c)
+                break
+            elif (b >= 2) and (c < 2) and (course in subfieldC):
+                print('2: b =', b, '\tc =', c)
+                cTaken.append(course)
+                break
+            elif (b < 2) and (c >= 2) and (course in subfieldB):
+                print('2: b =', b, '\tc =', c)
+                bTaken.append(course)
+                break
+            elif (b < 2) and (c < 2):
+                print('2: b =', b, '\tc =', c)
+                holdingPile.append(course)
+                break
+            else:
+                break
+        else:
+            break
+
+    print('holdingPile:', len(holdingPile))
+    
+    if len(holdingPile) > 0:
+        print('going one level deeper')
+        recursed = subfieldSort(holdingPile, bTaken, cTaken)
+    
+        if len(recursed[0]) > 0:
+            for item in recursed[0]:
+                bTaken.append(item)
+                print(item)
+    
+        if len(recursed[1]) > 0:
+            for item in recursed[1]:
+                cTaken.append(item)
+                print(item)
+    
+    subfieldsTaken = [bTaken, cTaken]
+    print(subfieldsTaken)
+    return(subfieldsTaken)           
+
 # TODO make sure 300s are in different subfields
 # TODO figure out how to move courses... like phil 200 should be showing up as an elective
 def philosophy(userInput):
     print('Checking your requirements against the Philosophy major...')
     needed = 9
     has = 0
+    hasList = []
 
     # these are designated by the philosophy dept
     core = ['PHIL 201','PHIL 221']
@@ -562,6 +630,8 @@ def philosophy(userInput):
     subfieldBUnique = ['PHIL 105', 'PHIL 106', 'PHIL 108', 'PHIL 111', 'PHIL 115', 'PHIL 203', 'PHIL 205', 'PHIL 213', 'PHIL 222', 'PHIL 226', 'PHIL 228', 'PHIL 233', 'PHIL 234', 'PHIL 236', 'PHIL 249', 'PHIL 303', 'PHIL 304', 'PHIL 316', 'PHIL 330', 'PHIL 338', 'PHIL 340', 'PHIL 342', 'PHIL 366']
     subfieldCUnique = ['PHIL 103', 'PHIL 112', 'PHIL 207', 'PHIL 215', 'PHIL 216', 'PHIL 218', 'PHIL 245', 'PHIL 311', 'PHIL 319', 'PHIL 325']
     
+    multiSubfield = ['EDUC 102', 'PHIL 102', 'PHIL 200', 'PHIL 22', 'PHIL 220', 'PHIL 229', 'PHIL 231', 'PHIL 300', 'PHIL 301', 'PHIL 306', 'PHIL 307', 'PHIL 310', 'PHIL 317', 'PHIL 323', 'PHIL 331', 'PHIL 333', 'PHIL 341', 'PHIL 345', 'WRIT 114']
+
     allCourses = grabCourses('Philosophy')
     extras = findElectives(core, allCourses)
     threes = courseLevelUntangler(allCourses,3)
@@ -596,38 +666,83 @@ def philosophy(userInput):
             multiSubs = True
 
     for course in userInput:
-        if course in subfieldAUnique:
+        if (course in subfieldAUnique):
             subfieldATaken.append(course)
-            has += 1
-        if course in subfieldBUnique:
+            hasList.append(course)
+        if (course in subfieldBUnique):
             subfieldBTaken.append(course)
-            has += 1
-        if course in subfieldCUnique:
+            hasList.append(course)
+        if (course in subfieldCUnique):
             subfieldCTaken.append(course)
-            has += 1
+            hasList.append(course)
         if course in core:
             coreTaken.append(course)
-            has += 1
+            hasList.append(course)
         if course in threes:
             threesTaken.append(course)
-            has += 1
-        if (course in subfieldB) and (len(subfieldB) < 2):
-            if course in subfieldB:
-                subfieldBTaken.append(course)
-                has += 1
-        elif (course in subfieldC) and (len(subfieldC) < 2):
-            if course in subfieldC:
-                subfieldCTaken.append(course)
-                has += 1
-        elif course in subfieldA:
-            subfieldATaken.append(course)
-            has += 1
-        elif course in subfieldB:
+            hasList.append(course)
+        if course in extras:
+            extraTaken.append(course)
+            hasList.append(course)
+
+
+        # elif (course in subfieldB) and (len(subfieldB) < 2):
+        #     if course in subfieldB:
+        #         subfieldBTaken.append(course)
+        #         hasList.append(course)
+        # elif (course in subfieldC) and (len(subfieldC) < 2):
+        #     if course in subfieldC:
+        #         subfieldCTaken.append(course)
+        #         hasList.append(course)
+        # elif course in subfieldA:
+        #     subfieldATaken.append(course)
+        #     has += 1
+        # elif course in subfieldB:
+        #     subfieldBTaken.append(course)
+        #     has += 1
+        # elif course in subfieldC:
+        #     subfieldCTaken.append(course)
+        #     has += 1
+
+    recursed = subfieldSort(userInput, subfieldBTaken, subfieldCTaken)
+    
+    print('made it to line 708')
+    
+    newB = recursed[0]
+    newC = recursed[1]
+
+    if len(newB) > 0:
+        print(newB)
+        i = 0
+        while i < len(newC):
             subfieldBTaken.append(course)
-            has += 1
-        elif course in subfieldC:
-            subfieldCTaken.append(course)
-            has += 1
+            hasList.append(course)
+            i += 1
+    
+    print('made it to line 715')
+    
+    cLen = len(newC)
+
+    if cLen > 0:
+        print(newC)
+        cLen = len(newC)
+        i = 0
+        while i < cLen:
+            #print('in for loop')
+            print(newC[i])
+            subfieldCTaken.append(newC[i])
+            #print('appended to subfieldCTaken')
+            hasList.append(newC[i])
+            #print('appended to hasList')
+            i += 1
+            print(i)
+
+    print('made it to line 722')
+
+    hasListTwo = []
+    [hasListTwo.append(x) for x in hasList if x not in hasListTwo]
+    hasListTwo.sort()
+    has = len(hasListTwo)
 
     compareUserAndReqs(coreTaken, core, 'core',2)
     compareUserAndReqs(subfieldBTaken, subfieldB, 'Subfield B: Value Theory', 2)
@@ -697,6 +812,7 @@ j = ['CS 112', 'POL3 351', 'PEAC 206', 'HIST 221', 'SOC 312', 'PEAC 261', 'MATH 
 k = ['ECON 101','ECON 203','ECON 222','EDUC 226','ECON 233','ECON 314','ECON 318','ECON 320','CS 242','CS 301','CS 304','CS 342','FREN 101','FREN 102','FREN 201','FREN 202','HIST 245','HIST 220','JPN 290','MATH 205','MATH 206','MATH 223','MATH 225','NEUR 100','PHIL 215','POL1 200','WRIT 166']
 
 phil = ['PHIL 201','PHIL 221','PHIL 207','PHIL 215','PHIL 311','PHIL 319','PHIL 229','PHIL 306']
+bAndC = ['PHIL 200','PHIL 229','PHIL 207','PHIL 215','PHIL 216','PHIL 220','PHIL 229','PHIL 300','PHIL 306','PHIL 103', 'PHIL 112', 'PHIL 218', 'PHIL 245', 'PHIL 311', 'PHIL 319', 'PHIL 325']
 
 #subfieldAUnique = ['PHIL 305']
 #subfieldBUnique = ['PHIL 105', 'PHIL 106', 'PHIL 108', 'PHIL 111', 'PHIL 115', 'PHIL 203', 'PHIL 205', 'PHIL 213', 'PHIL 222', 'PHIL 226', 'PHIL 228', 'PHIL 233', 'PHIL 234', 'PHIL 236', 'PHIL 249', 'PHIL 303', 'PHIL 304', 'PHIL 316', 'PHIL 330', 'PHIL 338', 'PHIL 340', 'PHIL 342', 'PHIL 366']
@@ -710,4 +826,4 @@ phil = ['PHIL 201','PHIL 221','PHIL 207','PHIL 215','PHIL 311','PHIL 319','PHIL 
 #chem(kat)
 #cs(julie)
 
-masterCheck(phil)
+masterCheck(bAndC)
