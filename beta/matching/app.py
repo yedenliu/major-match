@@ -67,7 +67,6 @@ def index():
                                 results = results,
                                 course_matches = course_matches,
                                 major_courses_totake = major_courses_totake)
-
 ################################################################################
 @app.before_first_request
 def init_db():

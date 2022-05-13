@@ -72,9 +72,11 @@ def select():
     conn = dbi.connect()
     if request.method == 'GET':
         course_list = get_incomplete(conn)
+        unassigned = get_unassigned(conn)
         return render_template('select.html',
                                 page_title='Select Incomplete Courses', 
-                                course_list = course_list)
+                                course_list = course_list,
+                                unassigned = unassigned)
     else: 
         cid = request.form['cid']
         return redirect(url_for('update', cid=cid))
@@ -292,6 +294,7 @@ def update(cid):
             flash("Error")
 
 ################################################################################
+
 @app.before_first_request
 def init_db():
     dbi.cache_cnf()
