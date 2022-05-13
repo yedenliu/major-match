@@ -1,7 +1,6 @@
 ################################################################################
 #   Import modules
 ################################################################################
-
 from pdb import find_function
 from flask import (Flask, render_template, make_response, url_for, request,
                    redirect, flash, session, send_from_directory, jsonify)
@@ -11,6 +10,7 @@ app = Flask(__name__)
 import cs304dbi as dbi
 import random
 from prepared_queries import *
+
 ################################################################################
 app.secret_key = 'your secret here'
 # replace that with a random key
@@ -23,63 +23,13 @@ app.secret_key = ''.join([ random.choice(('ABCDEFGHIJKLMNOPQRSTUVXYZ' +
 app.config['TRAP_BAD_REQUEST_ERRORS'] = True
 
 ################################################################################
-#   CAS NOT IMPLEMENTED FOR DRAFT VERSION
-################################################################################
-# Note : must use a port from 1943 to 1952.
-# bash install-scott-routing.sh doesn't install into our venv
-# new for CAS
-from flask_cas import CAS
-
-CAS(app)
-
-app.config['CAS_SERVER'] = 'https://login.wellesley.edu:443'
-app.config['CAS_LOGIN_ROUTE'] = '/module.php/casserver/cas.php/login'
-app.config['CAS_LOGOUT_ROUTE'] = '/module.php/casserver/cas.php/logout'
-app.config['CAS_VALIDATE_ROUTE'] = '/module.php/casserver/serviceValidate.php'
-app.config['CAS_AFTER_LOGIN'] = 'logged_in'
-# the following doesn't work :-(
-app.config['CAS_AFTER_LOGOUT'] = 'after_logout'
-
-
-@app.route('/logged_in/')
-def logged_in():
-    flash('successfully logged in!')
-    return redirect( url_for('index') )
-
-@app.route('/after_logout/')
-def after_logout():
-    flash('successfully logged out!')
-    return redirect( url_for('index') )
-
-application = app
-################################################################################
 #   Routing functions
 ################################################################################
 @app.route('/')
 def index():
-    print('Session keys: ',list(session.keys()))
-    for k in list(session.keys()):
-        print(k,' => ',session[k])
-    if '_CAS_TOKEN' in session:
-        token = session['_CAS_TOKEN']
-    if 'CAS_ATTRIBUTES' in session:
-        attribs = session['CAS_ATTRIBUTES']
-        print('CAS_attributes: ')
-        for k in attribs:
-            print('\t',k,' => ',attribs[k])
-    if 'CAS_USERNAME' in session:
-        is_logged_in = True
-        username = session['CAS_USERNAME']
-        print(('CAS_USERNAME is: ',username))
-    else:
-        is_logged_in = False
-        username = None
-        print('CAS_USERNAME is not in the session')
     return render_template('index.html',
-                            page_title='Mainpage',
-                            username=username,
-                            is_logged_in=is_logged_in,
-                            cas_attributes = session.get('CAS_ATTRIBUTES'))
+                            page_title='Mainpage')
+################################################################################
 
 @app.route('/insert/', methods=['GET','POST'])
 def insert():
@@ -102,14 +52,15 @@ def insert():
         if len(dept) == 0 or len(cnum) == 0 or len(name) == 0:
             flash('Missing required field(s)')
             return render_template('insert.html',page_title='Insert New Course')
-        if not (course_exists(conn, dept, cnum)): # if movie doesn't exist
+        if not (course_exists(conn, cid)): # if movie doesn't exist
             insert_course(conn, dept, cnum, name, units, max_enroll, prereq, 
                           instruct, dr, sem_offered, year_offered)
-            cid = find_cid(conn, dept, cnum)
+            cid = get_cid(conn, dept, cnum)
             return redirect(url_for('update', cid=cid))
         flash('Course already exists')
         return render_template('insert.html',page_title='Insert New Course')
 
+################################################################################
 
 @app.route('/select/', methods=['GET','POST'])
 def select():
@@ -120,35 +71,37 @@ def select():
     '''
     conn = dbi.connect()
     if request.method == 'GET':
-        course_list = find_incomplete(conn)
+        course_list = get_incomplete(conn)
         return render_template('select.html',
                                 page_title='Select Incomplete Courses', 
                                 course_list = course_list)
     else: 
         cid = request.form['cid']
         return redirect(url_for('update', cid=cid))
+################################################################################
 
 @app.route('/departments/')
 def departments():
     conn = dbi.connect()
     departments = get_departments(conn)
+    ################################################################################
+    # CHECK
     alphas = alpha_depts(conn)
     return render_template('departments.html',
                             page_title='Departments',
                             departments = departments,
                             alphas=alphas)
+################################################################################
 
 @app.route('/departments/<dept_id>', methods=['GET', 'POST'])
 def department_page(dept_id):
     conn = dbi.connect()
-    name = find_dept_name(conn, dept_id) 
-    courses = find_dept_courses(conn, dept_id) # dept, cnum, courses.name, cid
-    if request.method == 'GET':
-        pass
-    else:
+    name = get_dept_name(conn, dept_id) 
+    courses = get_dept_courses(conn, dept_id) # dept, cnum, courses.name, cid
+    if request.method == 'POST':
         dept = request.form.get('dept')
         cnum = request.form.get('cnum')
-        cid = find_cid(conn, dept, cnum)
+        cid = get_cid(conn, dept, cnum)
         add_pair(conn, dept_id, cid)
         flash('Course successfully paired to this major!')
         return redirect(url_for('department_page', dept_id = dept_id))
@@ -156,10 +109,14 @@ def department_page(dept_id):
                             page_title = name + ' Department Page',
                             name = name,
                             courses = courses)
+################################################################################
 
 @app.route('/update/<cid>', methods=['GET','POST'])
 def update(cid):
     conn = dbi.connect()
+    if course_exists(conn, cid)==False:
+        flash('This course does not exist')
+        return redirect(url_for('index'))
     if request.method == 'GET':
         info = get_course_info(conn, cid)
         dept = info[1]
@@ -173,7 +130,7 @@ def update(cid):
         sem_offered = info[9]
         year_offered = info[10]
         major_freq = info[11]
-        majors = find_pairs(conn, cid)
+        majors = get_pairs(conn, cid)
         return render_template('update.html',
                                 page_title='Update Course',
                                 dept = dept,
@@ -195,50 +152,112 @@ def update(cid):
             old_cid = cid
             dept = request.form.get('dept')
             cnum = request.form.get('cnum')
-            new_cid = find_cid(conn, dept, cnum)
-
-            if old_cid != new_cid and course_exists(conn, dept, cnum): # if course already exists
+            new_cid = get_cid(conn, dept, cnum)
+            
+            # tt has been updated to a tt that already exists
+            if old_cid != new_cid and course_exists(conn, new_cid): # if course already exists
                 flash("The Department & Course Number pair you entered already exists")
-                return redirect(url_for('update', cid=old_cid))
+                info = get_course_info(conn, cid)
+                dept = info[1]
+                cnum = info[2]
+                name = info[3]
+                units = info[4]
+                max_enroll = info[5]
+                prereq = info[6]
+                instruct = info[7]
+                dr = info[8]
+                sem_offered = info[9]
+                year_offered = info[10]
+                major_freq = info[11]
+                majors = get_pairs(conn, cid)
+                return render_template('update.html',
+                                        page_title='Update Course',
+                                        dept = dept,
+                                        cnum = cnum,
+                                        name = name,
+                                        units = units,
+                                        max_enroll = max_enroll,
+                                        prereq = prereq,
+                                        instruct = instruct,
+                                        dr = dr,
+                                        sem_offered = sem_offered,
+                                        year_offered = year_offered,
+                                        major_freq = major_freq,
+                                        cid = old_cid, # back to original cid
+                                        majors = majors)
+                
+            
+            # if cid updated to a new_cid that does not exist in the DB yet
+            elif old_cid != new_cid and course_exists(conn, new_cid) == False:
+                name = request.form.get('name')
+                units = request.form.get('units')
+                max_enroll = request.form.get('max_enroll')
+                prereq = request.form.get('prereq')
+                instruct = request.form.get('instruct')
+                dr = request.form.get('dr')
+                sem_offered = request.form.get('sem_offered')
+                year_offered = request.form.get('year_offered')
+                major_freq = request.form.get('major_freq')
+                majors = get_pairs(conn, new_cid)
+        
+                update_course(conn, new_cid, dept, cnum, name, units, max_enroll, 
+                prereq, instruct, dr, sem_offered, year_offered, major_freq)
 
-            name = request.form.get('name')
-            units = request.form.get('units')
-            max_enroll = request.form.get('max_enroll')
-            prereq = request.form.get('prereq')
-            instruct = request.form.get('instruct')
-            dr = request.form.get('dr')
-            sem_offered = request.form.get('sem_offered')
-            year_offered = request.form.get('year_offered')
-            major_freq = request.form.get('major_freq')
-            majors = find_pairs(conn, cid)
-    
-            update_course(conn, new_cid, dept, cnum, name, units, max_enroll, 
-            prereq, instruct, dr, sem_offered, year_offered, major_freq)
+                flash('Successfully updated!')
+                return redirect(url_for('update', cid = new_cid))
+            
+            # cid did not change (but other fields may have)
+            else: 
+                name = request.form.get('name')
+                units = request.form.get('units')
+                max_enroll = request.form.get('max_enroll')
+                prereq = request.form.get('prereq')
+                instruct = request.form.get('instruct')
+                dr = request.form.get('dr')
+                sem_offered = request.form.get('sem_offered')
+                year_offered = request.form.get('year_offered')
+                major_freq = request.form.get('major_freq')
+                majors = get_pairs(conn, new_cid)
+        
+                update_course(conn, new_cid, dept, cnum, name, units, max_enroll, 
+                prereq, instruct, dr, sem_offered, year_offered, major_freq)
 
-            flash('Successfully updated!')
-            return render_template('update.html',
-                                page_title='Update Course',
-                                dept = dept,
-                                cnum = cnum,
-                                name = name,
-                                units = units,
-                                max_enroll = max_enroll,
-                                prereq = prereq,
-                                instruct = instruct,
-                                dr = dr,
-                                sem_offered = sem_offered,
-                                year_offered = year_offered,
-                                major_freq = major_freq,
-                                cid = cid,
-                                majors = majors)
+                flash('Successfully updated!')
+                return render_template('update.html',
+                                    page_title='Update Course',
+                                    dept = dept,
+                                    cnum = cnum,
+                                    name = name,
+                                    units = units,
+                                    max_enroll = max_enroll,
+                                    prereq = prereq,
+                                    instruct = instruct,
+                                    dr = dr,
+                                    sem_offered = sem_offered,
+                                    year_offered = year_offered,
+                                    major_freq = major_freq,
+                                    cid = new_cid,
+                                    majors = majors)
         elif request.form['submit'] == 'delete':
             delete_course(conn, cid)
-            flash("Movie successfully deleted!")
+            flash("Course successfully deleted!")
             return redirect(url_for('index'))
+        elif 'delete-pair' in request.form['submit']:
+            value = request.form['submit']
+            print(value)
+            # get dept id
+            dept_id = value.strip('delete-pair-')
+            print(dept_id)
+            # delete pair
+            remove_pair(conn, dept_id, cid)
+            flash("Course pairing deleted")
+            return redirect(url_for('update', cid=cid))
+        
         elif request.form['submit'] == 'add':
+            # takes department name 
             new_dept = request.form.get('new_dept')
-            new_dept_id = find_dept_id(conn, new_dept)
-            print(str(new_dept) + ' id: ' + str(new_dept_id))
+            # finds dept ID
+            new_dept_id = get_dept_id(conn, new_dept)
             add_pair(conn, new_dept_id, cid)
             flash("Matched to department successfully!")
             info = get_course_info(conn, cid)
@@ -253,7 +272,7 @@ def update(cid):
             sem_offered = info[9]
             year_offered = info[10]
             major_freq = info[11]
-            majors = find_pairs(conn, cid)
+            majors = get_pairs(conn, cid)
             return render_template('update.html',
                                 page_title='Update Course',
                                 dept = dept,
@@ -271,6 +290,7 @@ def update(cid):
                                 majors = majors)
         else:
             flash("Error")
+
 ################################################################################
 @app.before_first_request
 def init_db():

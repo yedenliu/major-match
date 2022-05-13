@@ -14,17 +14,21 @@
     <!-- name, count() -->
     <h2>{{ major[0] }}</h2>
     <!-- FOR DEBUGGING -->
+<<<<<<< HEAD
     {% for course in course_matches %}
         {% if course[1] == major[0] %}
         <li>{{ course[0] }}</li>
         {% endif %}
     {% endfor %}
     <p>Count: {{ major[1] }}</p>
+=======
+    <!-- <p>Count: {{ major[1] }}</p> -->
+>>>>>>> af95c4377f5428758c191b57ed7b270b149b7bc4
     </div>
     {% endfor %}
 </div>
 </ul>
-
+<!-- 
 
 <p>FOR DEBUGGING: This is what you inputted</p>
 <ul> 
@@ -39,7 +43,7 @@
     {% for course in course_matches %}
     <li>Course Name: {{ course[0] }} || Major: {{ course[1] }}</li>
     {% endfor %}
-</ul>
+</ul> -->
 
 
 {% endblock %}

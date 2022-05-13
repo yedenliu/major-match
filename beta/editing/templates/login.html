@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block nav %}
+{% endblock %}
+
+{% block header %}
+<!-- insert title of page -->
+<h1>Login</h1>
+{% endblock %}
+
+{% block main_content %}
+<form id="login" method="post" action="{{url_for('login')}}">
+    <p>
+        <label>
+            <input type="text" name="user" placeholder="Username">
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="text" name="pw" placeholder="Password">
+        </label>
+    </p>
+    <p>
+        <input type="submit" value="submit">
+    </p>
+</form>
+{% endblock %}

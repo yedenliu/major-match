@@ -1,60 +1,4 @@
-# -*- coding: utf-8 -*-
-'''
-CS304 Course Catalog Scraping
-
-INSTALL:
-pip install bs4 --> NEED TO UPDATE OR ELSE FIND FUNCTIONS DON'T WORK
-pip install soupsieve
-'''
 ########################################################################################################
-#   IMPORT MODULES
-########################################################################################################
-from bs4 import BeautifulSoup as BS 
-import csv, os
-from scrape_helpers import *
-
-########################################################################################################
-#   FUNCTIONS TO COMPILE DATA
-########################################################################################################
-
-fields=['Department', 
-        'Course Number', 
-        'Course Name',
-        'Units', 
-        'Max Enrollment', 
-        'Prerequisites', 
-        'Instructor', 
-        'Distribution Requirements', 
-        'Typical Periods Offered', 
-        'Semesters Offered this Academic Year']
-
-def create_tsv(url):
-    soup = html_object(url)
-    sections = find_sections(soup)
-    data = all_courses(sections)
-    cwd = os.getcwd()
-    pd = os.path.abspath(os.path.join(cwd, os.pardir))
-    with open(os.path.join(pd, 'DDL', 'all_courses.tsv'), 'a', encoding='UTF8', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=fields, delimiter='\t')
-        # write the data
-        writer.writerows(data)
-
-########################################################################################################
-#   DATA IMPORT + EXPORT
-########################################################################################################
-def parse_majors():
-    # iterate through the catalog_urls.tsv file for (1) dept num (2) catalog page URL
-    import pandas as pd
-    cwd = os.getcwd()
-    file_path = os.path.join(cwd, 'catalog_urls.tsv')
-    col_list = ['abbrev', 'cat_url']
-    df = pd.read_csv(file_path, delimiter='\t', usecols=col_list,)
-    for i in range(len(df.index)):
-        #abbrev = df.iat[i, 0]
-        cat_url = df.iat[i, 1]
-        create_tsv(cat_url)
-
-parse_majors()########################################################################################################
 #   IMPORT MODULES
 ########################################################################################################
 from bs4 import BeautifulSoup as BS 
@@ -121,33 +65,28 @@ def get_name_list(s):
     Return - List of strings of the course name items
     '''
     name_list = [] 
-    try:
-        content = s.split(' - ')
-        long_name = content[1]
-        short_name = content[0].split(' ')
-        dept = short_name[0].replace('\n', '') 
-        cnum = short_name[1].replace('/', '')
-        name_list = [dept, cnum, long_name]
-    except:
-        traceback.print_exc()
+    content = s.split(' - ')
+    long_name = content[1]
+    short_name = content[0].split(' ')
+    dept = short_name[0].replace('\n', '') 
+    cnum = short_name[1].replace('/', '')
+    name_list = [dept, cnum, long_name]
     return name_list
 
 def is_crosslisted(section):
     return "Crosslisted" in str(section)
 
 def get_cross_list(s):
-    name_list2 = [] 
-    try:
-        content = s.split(' - ')
-        long_name = content[1].strip()
-        short_name = content[0].split(' ')
-        dept2 = short_name[2]
-        cnum2 = short_name[3]
-        name_list2 = [dept2, cnum2, long_name]
-    except:
-        traceback.print_exc()
+    section = s.find('div',{'class': 'coursename_big'})
+    name_list2 = []
+    c2 = str(section).split('/ ')
+    content = c2[1].split(' - ')
+    long_name = content[1].replace('</div>', '').strip()
+    short_name = content[0].split(' ')
+    dept2 = short_name[0]
+    cnum2 = short_name[1]
+    name_list2 = [dept2, cnum2, long_name]
     return name_list2
-
 
 def find_info_tags(section):
     '''
@@ -172,63 +111,46 @@ def get_info_list(s_list):
     dr = ''
     sem_offer = ''
     year_offer = '' 
-    try:
-        for item in s_list:
-            item = item.replace('<', '')
-            item = item.replace('>', '')
-            if 'Units' in item:
-                units = item.split(': ')
-                units = units[1]
-            if 'Max Enroll' in item:
-                max_enroll = item.split(': ')
-                max_enroll = max_enroll[1]
-            if 'Prerequisites' in item:
-                item = item.strip('<span>')
-                prereq = item.split(': ')
-                prereq = prereq[1]
-            if 'Instructor' in item:
-                instruct = item.split(': ')
-                instruct = instruct[1]
-            if 'Distribution' in item:
-                dr = item.split(': ')
-                dr = dr[1]
-            if 'Typical' in item:
-                sem_offer = item.split(': ')
-                sem_offer = sem_offer[1]
-            if 'Semesters' in item:
-                year_offer = item.split(': ')
-                year_offer = year_offer[1]
-    except:
-        traceback.print_exc()
+
+    for item in s_list:
+        item = item.replace('<', '')
+        item = item.replace('>', '')
+        if 'Units' in item:
+            units = item.split(': ')
+            units = units[1]
+        if 'Max Enroll' in item:
+            max_enroll = item.split(': ')
+            max_enroll = max_enroll[1]
+        if 'Prerequisites' in item:
+            item = item.strip('<span>')
+            prereq = item.split(': ')
+            prereq = prereq[1]
+        if 'Instructor' in item:
+            instruct = item.split(': ')
+            instruct = instruct[1]
+        if 'Distribution' in item:
+            dr = item.split(': ')
+            dr = dr[1]
+        if 'Typical' in item:
+            sem_offer = item.split(': ')
+            sem_offer = sem_offer[1]
+        if 'Semesters' in item:
+            year_offer = item.split(': ')
+            year_offer = year_offer[1]
+    
     return [units, max_enroll, prereq, instruct, dr, sem_offer, year_offer]
 
 def get_course_dict(section, iteration):
     # run helper functions
     s = find_name_tag(section)
     s_list = find_info_tags(section)
-    info_list = get_info_list(s_list)
-    
+    try:
+        info_list = get_info_list(s_list)
+    except:
+        info_list = [None] * 10
+        print('Info list for "' + str(s) + '" did not work')
+   
     # defining variables
-    dept = None
-    cnum = None
-    name = None
-    if iteration == 2:
-        try:
-            name_list = get_cross_list(s)
-            dept = name_list[0]
-            cnum = name_list[1]
-            name = name_list[2]
-        except:
-            traceback.print_exc()
-    else:
-        try:
-            name_list = get_name_list(s)
-            dept = name_list[0]
-            cnum = name_list[1]
-            name = name_list[2]
-        except:
-            traceback.print_exc()
-    
     units = info_list[0]
     max_enroll = info_list[1]
     prereq = info_list[2]
@@ -236,6 +158,27 @@ def get_course_dict(section, iteration):
     dr = info_list[4]
     sem_offer = info_list[5]
     year_offer = info_list[6]
+    
+    # initialize
+    dept = None
+    cnum = None
+    name = None
+    if iteration == 2:
+        try:
+            name_list = get_cross_list(section)
+            dept = name_list[0]
+            cnum = name_list[1]
+            name = name_list[2]
+        except:
+            print('Cross list for "' + str(s) + '" did not work')
+    elif iteration == 1:
+        try:
+            name_list = get_name_list(s)
+            dept = name_list[0]
+            cnum = name_list[1]
+            name = name_list[2]
+        except:
+            print('Name list for "' + str(section) + '" did not work')
 
     # defining dictionary
     course_dict =  {'Department': dept,
@@ -253,9 +196,11 @@ def get_course_dict(section, iteration):
 def all_courses(sections):
     course_list = []
     for section in sections:
-        course = get_course_dict(section, 1)
-        course_list.append(course)
         if is_crosslisted(section):
             course2 = get_course_dict(section, 2)
             course_list.append(course2)
+        else:
+            course = get_course_dict(section, 1)
+            course_list.append(course)
+        
     return course_list

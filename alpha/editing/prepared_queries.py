@@ -1,7 +1,6 @@
 ################################################################################
 #   Import Modules
 ################################################################################
-from tkinter import ttk
 import cs304dbi as dbi
 
 ################################################################################
@@ -25,7 +24,7 @@ def insert_course(conn, dept, cnum, name, units, max_enroll,
                         prereq, instruct, dr, sem_offered, year_offered])
     conn.commit()
 
-def course_exists(conn, dept, cnum):
+def course_exists(conn, cid):
     '''
     Checks if course already exists in database
 
@@ -33,8 +32,8 @@ def course_exists(conn, dept, cnum):
     Return - true if course already exists
     '''
     curs = dbi.cursor(conn)
-    sql = ''' select * from courses where dept = %s and cnum = %s '''
-    curs.execute(sql, [dept, cnum])
+    sql = ''' select * from courses where cid = %s '''
+    curs.execute(sql, [cid])
     movie = curs.fetchall()
     return len(movie) > 0
 
@@ -100,9 +99,9 @@ def delete_course(conn, cid):
     curs.execute(sql, [cid])
     conn.commit()
 
-def find_incomplete(conn):
+def get_incomplete(conn):
     '''
-    Finds incomplete courses, where they have NULL fields
+    Finds incomplete courses, where they have NULL fields (in required fields)
 
     Param - connection object
     Return - List of courses with incomplete information
@@ -112,13 +111,6 @@ def find_incomplete(conn):
     sql = '''   select dept, cnum, cid from courses 
                 where dept is NULL 
                 or `name` is NULL
-                or units is NULL
-                or max_enroll is NULL
-                or prereq is NULL
-                or instruct is NULL
-                or dr is NULL
-                or sem_offered is NULL
-                or year_offered is NULL
           '''
     curs.execute(sql)
     return curs.fetchall()
@@ -139,7 +131,7 @@ def get_departments(conn):
     curs.execute(sql)
     return curs.fetchall()
 
-def find_dept_name(conn, dept_id):
+def get_dept_name(conn, dept_id):
     '''
     Finds a department's name from their department ID
     
@@ -154,7 +146,22 @@ def find_dept_name(conn, dept_id):
     row = curs.fetchone()
     return row[0]
 
-def find_dept_courses(conn, dept_id):
+def get_dept_id(conn, name):
+    '''
+    Finds a department's name from their department ID
+    
+    Param - connection object, department ID
+    Return - department name 
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   select dept_id from programs
+                where name = %s
+            '''
+    curs.execute(sql, [name])
+    row = curs.fetchone()
+    return row[0]
+
+def get_dept_courses(conn, dept_id):
     '''
     Finds the courses that count towards majors in a department 
     
@@ -202,7 +209,7 @@ def remove_pair(conn, dept_id, cid):
     curs.execute(sql, [dept_id, cid])
     conn.commit()
 
-def find_pairs(conn, cid):
+def get_pairs(conn, cid):
     '''
     Finds majors that a course counts towards given its cid
     
@@ -221,7 +228,7 @@ def find_pairs(conn, cid):
     return majors
 
 
-def find_cid(conn, dept, cnum):
+def get_cid(conn, dept, cnum):
     '''
     Finds a course ID based on the department abbreviation and course number
     
@@ -243,6 +250,11 @@ def find_cid(conn, dept, cnum):
 #   Helpers for departments html 
 ################################################################################
 
+
+################################################################################
+################################################################################
+################################################################################
+# CHECK HERE
 def alpha_depts(conn):
     '''Alphabetizes the departments and provides hyperlinks
      as a table of contents to the departments page'''

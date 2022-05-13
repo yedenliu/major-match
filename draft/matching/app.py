@@ -7,6 +7,17 @@ app = Flask(__name__)
 import cs304dbi as dbi
 import random
 from prepared_queries import *
+from flask_cas import CAS 
+
+CAS(app)
+
+app.config['CAS_SERVER'] = 'https://login.wellesley.edu:443'
+app.config['CAS_LOGIN_ROUTE'] = '/module.php/casserver/cas.php/login'
+app.config['CAS_LOGOUT_ROUTE'] = '/module.php/casserver/cas.php/logout'
+app.config['CAS_VALIDATE_ROUTE'] = '/module.php/casserver/serviceValidate.php'
+app.config['CAS_AFTER_LOGIN'] = 'logged_in'
+# the following doesn't work :-(
+app.config['CAS_AFTER_LOGOUT'] = 'after_logout'
 
 ################################################################################
 app.secret_key = 'your secret here'
@@ -22,8 +33,11 @@ app.config['TRAP_BAD_REQUEST_ERRORS'] = True
 @app.route('/', methods=['GET','POST'])
 def index():
     conn = dbi.connect()
+    print(request.cookies.keys())
     if request.method == 'GET':
-        return render_template('index.html',page_title='Home')
+        resp = make_response( render_template('index.html',
+                                              page_title='Home') )
+        return resp
     else:
         classes = []
         for n in range(8): # range is the number of total courses they can input

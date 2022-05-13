@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+<h1>Departments</h1>
+
+<table>
+    {% for dept in departments %}
+    <tr><td><a href="{{ url_for('department_page', dept_id=dept[0]) }}">{{ dept[1] }} (dept ID: {{ dept[0] }})</a></td>
+        <td><a href="{{ dept[4] }}">(catalog page)</a></td></tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
