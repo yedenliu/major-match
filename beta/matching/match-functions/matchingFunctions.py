@@ -382,17 +382,17 @@ def chem(userInput):
 
     print('You have completed', has, '/', needed, 'requirements for the Chemistry major.')
 
-    if has != needed:
-        print('If you would like to complete the Chemistry major...')
-        suggestComplete(core1Taken, coreNeeded, core1, True, 1)
-        suggestComplete(core2Taken, coreNeeded, core2, True, 2)
-        suggestComplete(core3Taken, 1, core3, True, 3)
-        print('\tRegardless of the core path...')
-        suggestComplete(core4Taken, 3, core4, True, 0)
-        suggestComplete(threesTaken, 1, threes, False, 0)
-        suggestComplete(flexChemTaken, 3, flexChem, False, 0)
-        suggestComplete(flexMathTaken, 1, flexMath, False, 0)
-        suggestComplete(flexPhysTaken, 1, flexPhys, False, 0)
+    # if has != needed:
+    #     print('If you would like to complete the Chemistry major...')
+    #     suggestComplete(core1Taken, coreNeeded, core1, True, 1)
+    #     suggestComplete(core2Taken, coreNeeded, core2, True, 2)
+    #     suggestComplete(core3Taken, 1, core3, True, 3)
+    #     print('\tRegardless of the core path...')
+    #     suggestComplete(core4Taken, 3, core4, True, 0)
+    #     suggestComplete(threesTaken, 1, threes, False, 0)
+    #     suggestComplete(flexChemTaken, 3, flexChem, False, 0)
+    #     suggestComplete(flexMathTaken, 1, flexMath, False, 0)
+    #     suggestComplete(flexPhysTaken, 1, flexPhys, False, 0)
 
 def camsPre2020(userInput):
     dept = 'Cinema and Media Studies - entering in Fall 2020 and before'
@@ -517,14 +517,14 @@ def cs(userInput):
 
     print('You have completed', has, '/', needed, 'requirements for the Computer Science major.')
 
-    taken = coresTaken + threesTaken + electivesTaken
-    if has != needed: 
-        print('If you would like to complete the Computer Science major, you need to take:\n')
-        suggestComplete(introsTaken, int(len(introductory) - len(introsTaken)), introductory, True, 0)
-        suggestComplete(mathTaken, int(len(math) - len(mathTaken)), math, True, 0)
-        suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, True, 0)
-        suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
-        suggestComplete(electivesTaken, int(2 - numElectives), electives, False, 0)
+    # taken = coresTaken + threesTaken + electivesTaken
+    # if has != needed: 
+    #     print('If you would like to complete the Computer Science major, you need to take:\n')
+    #     suggestComplete(introsTaken, int(len(introductory) - len(introsTaken)), introductory, True, 0)
+    #     suggestComplete(mathTaken, int(len(math) - len(mathTaken)), math, True, 0)
+    #     suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, True, 0)
+    #     suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
+    #     suggestComplete(electivesTaken, int(2 - numElectives), electives, False, 0)
 
 def dataScience(userInput):
     dept = 'Data Science'
@@ -588,12 +588,12 @@ def econ(userInput):
 
     print('You have completed', has, '/', needed, 'requirements for the Economics major.')
 
-    taken = coresTaken + threesTaken + electivesTaken
-    if has != needed:
-        print('If you would like to complete the Economics major, you need to take:\n')
-        suggestComplete(taken, coreNeeded, core, True, 0)
-        suggestComplete(taken, threesNeeded, threes, False, 0)
-        suggestComplete(taken, electivesNeeded, electives, False, 0)
+    # taken = coresTaken + threesTaken + electivesTaken
+    # if has != needed:
+    #     print('If you would like to complete the Economics major, you need to take:\n')
+    #     suggestComplete(taken, coreNeeded, core, True, 0)
+    #     suggestComplete(taken, threesNeeded, threes, False, 0)
+    #     suggestComplete(taken, electivesNeeded, electives, False, 0)
 
 def educationStudies(userInput):
     dept = 'Education Studies'
@@ -681,13 +681,13 @@ def french(userInput):
 
     print('You have completed', has, '/', needed, 'requirements for the French and Francophone Studies major.')
 
-    if has != needed: 
-        print('If you would like to complete the French and Francophone Studies major, you need to take:\n')
-        suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, False, 0)
-        suggestComplete(flexLangTaken, int(len(flexLang) - len(flexLangTaken)), flexLang, False, 0)
-        suggestComplete(flexCultureTaken, int(len(flexCulture) - len(flexCultureTaken)), flexCulture, False, 0)
-        suggestComplete(flexLitTaken, int(len(flexLitTaken) - len(flexLit)), flexLit, False, 0)
-        suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
+    # if has != needed: 
+    #     print('If you would like to complete the French and Francophone Studies major, you need to take:\n')
+    #     suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, False, 0)
+    #     suggestComplete(flexLangTaken, int(len(flexLang) - len(flexLangTaken)), flexLang, False, 0)
+    #     suggestComplete(flexCultureTaken, int(len(flexCulture) - len(flexCultureTaken)), flexCulture, False, 0)
+    #     suggestComplete(flexLitTaken, int(len(flexLitTaken) - len(flexLit)), flexLit, False, 0)
+    #     suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
 
 def frenchCulturalStudies(userInput):
     dept = 'French Cultural Studies'
@@ -767,13 +767,13 @@ def history(userInput):
 
     remainingElectivesNeeded = 6 - len(threesTaken) - len(electivesTaken)
 
-    if has != needed: 
-        print('If you would like to complete the History major, you need to take:\n')
-        suggestComplete(flexAfrChiJapLatAmMidEaSouAsTaken, int(1 - len(flexAfrChiJapLatAmMidEaSouAsTaken)), flexAfrChiJapLatAmMidEaSouAs, False, 0)
-        suggestComplete(flexEurUniStRusTaken, int(1 - len(flexEurUniStRusTaken)), flexEurUniStRus, False, 0)
-        suggestComplete(flexPreModTaken, int(1 - len(flexPreModTaken)), flexPreMod, False, 0)
-        suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
-        suggestComplete(electivesTaken, remainingElectivesNeeded, electives, False, 0)
+    # if has != needed: 
+    #     print('If you would like to complete the History major, you need to take:\n')
+    #     suggestComplete(flexAfrChiJapLatAmMidEaSouAsTaken, int(1 - len(flexAfrChiJapLatAmMidEaSouAsTaken)), flexAfrChiJapLatAmMidEaSouAs, False, 0)
+    #     suggestComplete(flexEurUniStRusTaken, int(1 - len(flexEurUniStRusTaken)), flexEurUniStRus, False, 0)
+    #     suggestComplete(flexPreModTaken, int(1 - len(flexPreModTaken)), flexPreMod, False, 0)
+    #     suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
+    #     suggestComplete(electivesTaken, remainingElectivesNeeded, electives, False, 0)
 
 def internationalRelationsEcon(userInput):
     dept = 'International Relations - Economics'
@@ -1475,5 +1475,5 @@ bAndC = ['PHIL 200','PHIL 229','PHIL 207','PHIL 215','PHIL 216','PHIL 220','PHIL
 #econ(emily)
 #chem(kat)
 #cs(julie)
-
-masterCheck(kat)
+ 
+masterCheck(julie)
