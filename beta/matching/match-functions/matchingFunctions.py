@@ -1,6 +1,9 @@
+from os import major
 from pkgutil import iter_importers
 import pandas as pd
 import csv
+
+# why is git broken
 
 majorReqs = '/students/kswint/major-match/beta/DDL/majorReqsDF.tsv'
 coursesToMajors = '/students/kswint/major-match/beta/DDL/coursesToMajors.tsv'
@@ -946,21 +949,170 @@ def womensGenderStudies(userInput):
 
 def masterCheck(userInput):
     majorsToCheck = grabMajors(userInput)
-    # print(majorsToCheck)
+
+    if 'Africana Studies - Africa Concentration' in majorsToCheck:
+        africanaStudiesAfrica(userInput)
+    if 'Africana Studies - General Africana Studies Concentration' in majorsToCheck:
+        africanaStudiesGeneral(userInput)
+    if 'Africana Studies - The Caribbean and Latin America Concentration' in majorsToCheck:
+        africanaStudiesCaribbeanLatinAmerica(userInput)
+    if 'Africana Studies - United States Concentration' in majorsToCheck:
+        africanaStudiesUnitedStates(userInput)
+    
+    if 'American Studies' in majorsToCheck:
+        americanStudies(userInput)
+    
+    if 'Anthropology' in majorsToCheck:
+        anthropology(userInput)
+    
+    if 'Architecture' in majorsToCheck:
+        architecture(userInput)
+    
+    if 'Art History' in majorsToCheck:
+        artHistory(userInput)
+    
+    if 'Astronomy' in majorsToCheck:
+        astronomy(userInput)
+    if 'Astrophysics' in majorsToCheck:
+        astrophysics(userInput)
+    
+    if 'Biochemistry' in majorsToCheck:
+        biochem(userInput)
+    if 'Biological Sciences' in majorsToCheck:
+        biology(userInput)
+    
+    if 'Chemical Physics' in majorsToCheck:
+        chemicalPhysics(userInput)
     if 'Chemistry' in majorsToCheck:
         chem(userInput)
+    
+    if 'Cinema and Media Studies - entering in Fall 2020 and before' in majorsToCheck:
+        camsPre2020(userInput)
+    if 'Cinema and Media Studies - entering in Spring 2021 and after' in majorsToCheck:
+        camsCurrent(userInput)
+    
+    if 'Classical Civilization' in majorsToCheck:
+        classicalCivilization(userInput)
+    
+    if 'Cognitive and Linguistic Sciences - Computer Science Concentration' in majorsToCheck:
+        cogSciCS(userInput)
+    if 'Cognitive and Linguistic Sciences - Linguistics Concentration' in majorsToCheck:
+        cogSciLing(userInput)
+    if 'Cognitive and Linguistic Sciences - Philosophy Concentration' in majorsToCheck:
+        cogSciPhil(userInput)
+    if 'Cognitive and Linguistic Sciences - Psychology Concentration' in majorsToCheck:
+        cogSciPsych(userInput)
+    
+    if 'Comparative Literary Studies' in majorsToCheck:
+        compLit(userInput)
+    
     if 'Computer Science' in majorsToCheck:
         cs(userInput)
+    
+    if 'Data Science' in majorsToCheck:
+        dataScience(userInput)
+    
+    if 'East Asian Languages and Cultures' in majorsToCheck:
+        eastAsianLangCult(userInput)
+    if 'East Asian Studies' in majorsToCheck:
+        eastAsianStudies(userInput)
+    
     if 'Economics' in majorsToCheck:
         econ(userInput)
+    
+    if 'English' in majorsToCheck:
+        english(userInput)
+    if 'English and Creative Writing' in majorsToCheck:
+        englishCreativeWriting(userInput)
+    
+    if 'Environmental Studies' in majorsToCheck:
+        environmentalStudies(userInput)
+    
     if 'French and Francophone Studies' in majorsToCheck:
         french(userInput)
+    if 'French Cultural Studies' in majorsToCheck:
+        frenchCulturalStudies(userInput)
+    
+    if 'Geosciences' in majorsToCheck:
+        geosciences(userInput)
+    
+    if 'German Studies' in majorsToCheck:
+        german(userInput)
+    
     if 'History' in majorsToCheck:
         history(userInput)
+    
+    if 'International Relations - Economics' in majorsToCheck:
+        internationalRelationsEcon(userInput)
+    if 'International Relations - History' in majorsToCheck:
+        internationalRelationsHistory(userInput)
+    if 'International Relations - Political Science' in majorsToCheck:
+        internationalRelationsPoliSci(userInput)
+    
+    if 'Italian Studies' in majorsToCheck:
+        italian(userInput)
+    
+    if 'Jewish Studies' in majorsToCheck:
+        jewishStudies(userInput)
+    
+    if 'Latin American Studies' in majorsToCheck:
+        latinAmericanStudies(userInput)
+    
     if 'Mathematics' in majorsToCheck:
         math(userInput)
+    
+    if 'Media Arts and Sciences' in majorsToCheck:
+        mediaArtsSciences(userInput)
+
+    if 'Medieval Renaissance Studies' in majorsToCheck:
+        medievalRenaissanceStudies(userInput)
+
+    if 'Middle Eastern Studies' in majorsToCheck:
+        middleEasternStudies(userInput)
+
+    if 'Music' in majorsToCheck:
+        music(userInput)
+
+    if 'Neuroscience' in majorsToCheck:
+        neuroscience(userInput)
+
+    if 'Peace and Justice Studies' in majorsToCheck:
+        peaceJusticeStudies(userInput)
+
     if 'Philosophy' in majorsToCheck:
         philosophy(userInput)
+
+    if 'Physics - entering after Fall 2018' in majorsToCheck:
+        physics(userInput)
+
+    if 'Political Science' in majorsToCheck:
+        poliSci(userInput)
+
+    if 'Psychology' in majorsToCheck:
+        psychology(userInput)
+
+    if 'Religion' in majorsToCheck:
+        religion(userInput)
+
+    if 'Russian' in majorsToCheck:
+        russian(userInput)
+    if 'Russian Area Studies' in majorsToCheck:
+        russianAreaStudies(userInput)
+
+    if 'Sociology' in majorsToCheck:
+        sociology(userInput)
+
+    if 'South Asia Studies' in majorsToCheck:
+        southAsiaStudies(userInput)
+
+    if 'Spanish' in majorsToCheck:
+        spanish(userInput)
+
+    if 'Theatre Studies' in majorsToCheck:
+        theatreStudies(userInput)
+
+    if "Women's and Gender Studies" in majorsToCheck:
+        womensGenderStudies(userInput)
 
 kat = ['ARTH 267','ES 267','CS 111','CS 220','CS 230','CS 231','CS 235','CS 240','CS 242','CS 301','CS 304','CS 342','FREN 101','FREN 102','FREN 201','FREN 202','HIST 245','HIST 220','JPN 290','MATH 205','MATH 206','MATH 223','MATH 225','NEUR 100','PHIL 215','POL1 200','WRIT 166','MATH 220','PHIL 200','HIST 254','HIST 312','PHIL 325']
 julie = ['MATH 205', 'POL 123', 'WRIT 187', 'MATH 206', 'STAT 218', 'SPAN 241', 'CS 111', 'MATH 305', 'PHIL 216', 'CS 230', 'SPAN 253', 'MATH 349', 'MATH 225', 'WGST 218', 'CS 232', 'STAT 260', 'MATH 220', 'MATH 302', 'MATH 215', 'MATH 340', 'PHYS 107', 'STAT 309', 'MATH 322', 'PHYS 313', 'PORT 103', 'MATH 309']
