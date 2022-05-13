@@ -63,6 +63,32 @@ def grabMajorCourses(conn, major_name):
         courses.append(str(e[0]) + ' ' + str(e[1]))
     return courses # majorCourses
 # ------------------------------------------------------------------------------
+# Prepared Queries - DELETE LATER
+# ------------------------------------------------------------------------------
+def find_cid(conn, dept, cnum):
+    curs = dbi.cursor(conn)
+    sql = '''   select cid from courses
+                where dept = %s and cnum = %s
+            '''
+    curs.execute(sql, [dept, cnum])
+    return curs.fetchone()
+
+def insert_data(conn, dept, cnum):
+    curs = dbi.cursor(conn)
+    if dept != None and cnum != None:
+        cid = find_cid(conn, dept, cnum)
+        sql = '''   insert into form_data(dept, cnum, cid)
+                    values (%s, %s, %s)
+                ''' 
+        curs.execute(sql, [dept, cnum, cid])
+        conn.commit()
+
+def delete_form_data(conn):
+    curs = dbi.cursor(conn)
+    sql = 'delete from form_data'
+    curs.execute(sql)
+    conn.commit()
+# ------------------------------------------------------------------------------
 # Course Sorting Functions
 # ------------------------------------------------------------------------------
 def findElectives(requiredList, allCoursesList):

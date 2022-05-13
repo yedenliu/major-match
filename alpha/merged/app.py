@@ -87,6 +87,12 @@ def departments():
 ################################################################################
 #   Routing functions - editing 
 ################################################################################
+<<<<<<< HEAD:editing/app.py
+@app.route('/')
+def index():
+    return render_template('index.html',
+                            page_title='Mainpage')
+=======
 @app.route('/admin/')
 def index_editing():
     print('Session keys: ',list(session.keys()))
@@ -112,6 +118,7 @@ def index_editing():
                             username=username,
                             is_logged_in=is_logged_in,
                             cas_attributes = session.get('CAS_ATTRIBUTES'))
+>>>>>>> 66f84048e48fe9307d6565d95334bbd2596b756d:alpha/merged/app.py
 
 @app.route('/insert/', methods=['GET','POST'])
 def insert():

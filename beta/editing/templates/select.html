@@ -19,4 +19,18 @@
     <input type="submit" name="submit-btn" value="Update Course">
 </form>
 
+<h2 style="padding-top:10px">These are courses that don't point to any major</h2>
+<form method=POST action="/select/">
+  <label for="cid">Courses without a major:</label>
+  <select id="cid" name="cid">
+    <option value="none" selected disabled>Choose One</option>
+    <!--Fills out the drop down menu with incomplete movies-->
+    {% for course in unassigned %}
+      <option value="{{course[2]}}">{{course[0]}} {{course[1]}}</option>
+    {% endfor %}
+  </select>
+  <input type="submit" name="submit-btn" value="Update Course">
+</form>
+
+
 {% endblock %}

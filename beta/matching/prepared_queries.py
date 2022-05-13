@@ -57,7 +57,6 @@ def major_match(conn):
     curs.execute(sql)
     return curs.fetchall()
 
-# FOR DEBUGGING
 def matched_courses(conn):
     curs = dbi.cursor(conn)
     sql = '''   select courses.name, programs.name from courses
@@ -74,3 +73,32 @@ def delete_form_data(conn):
     sql = 'delete from form_data'
     curs.execute(sql)
     conn.commit()
+
+def get_dept_courses(conn, dept_id):
+    '''
+    Finds the courses that count towards majors in a department 
+    
+    Param - connection object, department 
+    Return - list of courses 
+    '''
+    curs = dbi.cursor(conn)
+    
+    sql =   ''' select dept, cnum, courses.name, courses.cid
+                from courses 
+                inner join major_pairs using(cid)
+                inner join programs using (dept_id)
+                where dept_id = %s
+            '''
+    curs.execute(sql, [dept_id])
+    return curs.fetchall()
+
+
+def get_dept_id(conn, dept_name):
+    '''uses the department name to fetch and return the dept_id'''
+    curs = dbi.cursor(conn)
+    sql = ''' select dept_id
+              from programs 
+              where name = %s'''
+    curs.execute(sql, [dept_name])
+    return curs.fetchone()
+    
