@@ -136,6 +136,45 @@ def multilistedSatisfied(courseToCompare, coursesToCompareTo):
     else:
         return(False)
 
+def africanaStudiesAfrica(userInput):
+    pass
+
+def africanaStudiesGeneral(userInput):
+    pass
+
+def africanaStudiesCaribbeanLatinAmerica(userInput):
+    pass
+
+def africanaStudiesUnitedStates(userInput):
+    pass
+
+def americanStudies(userInput):
+    pass
+
+def anthropology(userInput):
+    pass
+
+def architecture(userInput):
+    pass
+
+def artHistory(userInput):
+    pass
+
+def astronomy(userInput):
+    pass
+
+def astrophysics(userInput):
+    pass
+
+def biochem(userInput):
+    pass
+
+def biology(userInput):
+    pass
+
+def chemicalPhysics(userInput):
+    pass
+
 def chem(userInput):
     print('Checking your requirements against the Chemistry major...')
     coreNeeded = 0
@@ -268,6 +307,30 @@ def chem(userInput):
         suggestComplete(flexMathTaken, 1, flexMath, False, 0)
         suggestComplete(flexPhysTaken, 1, flexPhys, False, 0)
 
+def camsPre2020(userInput):
+    pass
+
+def camsCurrent(userInput):
+    pass
+
+def classicalCivilization(userInput):
+    pass
+
+def cogSciCS(userInput):
+    pass
+
+def cogSciLing(userInput):
+    pass
+
+def cogSciPhil(userInput):
+    pass
+
+def cogSciPsych(userInput):
+    pass
+
+def compLit(userInput):
+    pass
+
 # TODO electives don't seem to be working, 342 and 304 aren't counting
 # TODO suggestComplete is buggy here too
 def cs(userInput):
@@ -328,6 +391,15 @@ def cs(userInput):
         suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
         suggestComplete(electivesTaken, int(2 - numElectives), electives, False, 0)
 
+def dataScience(userInput):
+    pass
+
+def eastAsianLangCult(userInput):
+    pass
+
+def eastAsianStudies(userInput):
+    pass
+
 def econ(userInput):
     print('Checking your requirements against the Economics major...')
     coreNeeded = 6
@@ -369,6 +441,18 @@ def econ(userInput):
         suggestComplete(taken, coreNeeded, core, True, 0)
         suggestComplete(taken, threesNeeded, threes, False, 0)
         suggestComplete(taken, electivesNeeded, electives, False, 0)
+
+def educationStudies(userInput):
+    pass
+
+def english(userInput):
+    pass
+
+def englishCreativeWriting(userInput):
+    pass
+
+def environmentalStudies(userInput):
+    pass
 
 def french(userInput):
     print('Checking your requirements against the French and Francophone Studies major...')
@@ -427,6 +511,15 @@ def french(userInput):
         suggestComplete(flexCultureTaken, int(len(flexCulture) - len(flexCultureTaken)), flexCulture, False, 0)
         suggestComplete(flexLitTaken, int(len(flexLitTaken) - len(flexLit)), flexLit, False, 0)
         suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
+
+def frenchCulturalStudies(userInput):
+    pass
+
+def geosciences(userInput):
+    pass
+
+def german(userInput):
+    pass
 
 def history(userInput):
     print('Checking your requirements against the History major...')
@@ -487,6 +580,24 @@ def history(userInput):
         suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
         suggestComplete(electivesTaken, remainingElectivesNeeded, electives, False, 0)
 
+def internationalRelationsEcon(userInput):
+    pass
+
+def internationalRelationsHistory(userInput):
+    pass
+
+def internationalRelationsPoliSci(userInput):
+    pass
+
+def italian(userInput):
+    pass
+
+def jewishStudies(userInput):
+    pass
+
+def latinAmericanStudies(userInput):
+    pass
+
 def math(userInput):
     print('Checking your requirements against the Mathematics major...')
     needed = 10
@@ -545,6 +656,23 @@ def math(userInput):
         suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
         suggestComplete(electivesTaken, int(2 - len(electivesTaken)), electives, False, 0)
 
+def mediaArtsSciences(userInput):
+    pass
+
+def medievalRenaissanceStudies(userInput):
+    pass
+
+def middleEasternStudies(userInput):
+    pass
+
+def music(userInput):
+    pass
+
+def neuroscience(userInput):
+    pass
+
+def peaceJusticeStudies(userInput):
+    pass
 
 ''' Let's get one thing straight: this helper function is an absolute dumpster fire. I am embarassed for
 anyone to see this. It's genuinely atrocious. I'm not even sure if it will ever get to the recursive function,
@@ -565,6 +693,7 @@ a picture:
         she needs (in this case, 2) to fulfill her subfield B requirement. Once it's done, it lets philosophy() know
         that it doesn't need to worry about how it allocates the rest of the classes to each subfield since Kat has
         already fulfilled the requirement.'''
+# TODO Idk. i think that i'm still not allocating Bs correctly. IDK
 def subfieldSort(remainingBandC, numBs, numCs, bTaken, cTaken):
     # these are designated by the philosophy dept
     subfieldB = ['PHIL 102','PHIL 105','PHIL 106','PHIL 108','PHIL 111','PHIL 115','PHIL 203','PHIL 205','PHIL 213','PHIL 220','PHIL 222','PHIL 226','PHIL 228','PHIL 229','PHIL 231','PHIL 233','PHIL 234','PHIL 236','PHIL 249','PHIL 300','PHIL 301','PHIL 303','PHIL 304','PHIL 306','PHIL 307','PHIL 310','PHIL 316','PHIL 317','PHIL 323','PHIL 330','PHIL 331','PHIL 333','PHIL 338','PHIL 340','PHIL 341','PHIL 342','PHIL 345','PHIL 366']
@@ -600,7 +729,6 @@ def subfieldSort(remainingBandC, numBs, numCs, bTaken, cTaken):
             addCs.append(course)
             inCourses.remove(course)
 
-
     addBs = addBs + bTaken          # the unique subfield B courses given by philosophy() + our new allocated subfield B courses
     addCs = addCs + cTaken          # the unique subfield C courses given by philosophy() + our new allocated subfield C courses
 
@@ -621,7 +749,6 @@ def subfieldSort(remainingBandC, numBs, numCs, bTaken, cTaken):
 
     return(output)   
 
-# TODO make sure 300s are in different subfields
 # TODO figure out how to move courses... like phil 200 should be showing up as an elective
 def philosophy(userInput):
     print('Checking your requirements against the Philosophy major...')
@@ -751,7 +878,7 @@ def philosophy(userInput):
     compareUserAndReqs(subfieldCTaken, subfieldC, 'Subfield C: Metaphysics and Theory of Knowledge',2)
     compareUserAndReqs(threesTaken, threes, '300-level elective', 2)
     if multiSubs:
-        print('You have completed 300-level electives in more than one subfield.')
+        print('You have completed 300-level electives in more than one subfield.\n')
     else:
         otherSubs = 'subfield A, subfield B, or subfield C'
         if threeA:
@@ -780,6 +907,42 @@ def philosophy(userInput):
         suggestComplete(subfieldCTaken, int(2 - len(subfieldCTaken)), subfieldC, False, 0)
         suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
         suggestComplete(extraTaken, remainingElectivesNeeded, extras, False, 0)
+
+def physics(userInput):
+    pass
+
+def poliSci(userInput):
+    pass
+
+def psychology(userInput):
+    pass
+
+def religion(userInput):
+    pass
+
+def russian(userInput):
+    pass
+
+def russianAreaStudies(userInput):
+    pass
+
+def sociology(userInput):
+    pass
+
+def southAsiaStudies(userInput):
+    pass
+
+def spanish(userInput):
+    pass
+
+def studioArt(userInput):
+    pass
+
+def theatreStudies(userInput):
+    pass
+
+def womensGenderStudies(userInput):
+    pass
 
 def masterCheck(userInput):
     majorsToCheck = grabMajors(userInput)
