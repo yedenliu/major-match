@@ -10,7 +10,7 @@ majorKey = {}           # a dictionary w/ a major as a key, and a list of course
 ''' read in majors and the courses that count toward them from a CSV. Takes courses that are
 listed in two departments (but not more than two) and reorders the courses such that the
 name is in lexicographic order. Does not remove duplicate courses from the final list.'''
-with open("/students/kswint/major-match/DDL/majorReqs.csv","r") as courses:
+with open("/students/kswint/major-match/beta/DDL/majorReqs.csv","r") as courses:
     r = csv.reader(courses)
     for row in r:
         major = row[0]          # first item in a row is the major
@@ -42,7 +42,7 @@ def populateRegExCourses(file, dept, deptAprev, level, quantity):
 
 ''' Manually calling the populateRegExCourses() function manually for relevant departments and
 levels. '''
-allCoursesTSV = '/students/kswint/major-match/DDL/all_courses.tsv'
+allCoursesTSV = '/students/kswint/major-match/beta/DDL/all_courses.tsv'
 
 populateRegExCourses(allCoursesTSV,'American Studies','AMST',2,6)
 populateRegExCourses(allCoursesTSV,'American Studies','AMST',3,6)
@@ -242,7 +242,7 @@ def countFrequency(courseList, majorDict, freqDict):
         freqDict[course] = len(majorDict[course])
 
 ''' using pandas to read the CSV into a dataframe'''
-df = pd.read_csv('/students/kswint/major-match/DDL/majorReqs.csv', sep = ',', lineterminator = '\n', error_bad_lines = False)
+df = pd.read_csv('/students/kswint/major-match/beta/DDL/majorReqs.csv', sep = ',', lineterminator = '\n', error_bad_lines = False)
 
 ''' create a dictionary where the keys are the courses and the values are a list of majors
 the course counts towards. '''
@@ -270,17 +270,17 @@ courseToMajorsDF.rename(
 courseToMajorsDF = courseToMajorsDF.sort_values(by = 'course')                               # sort the courses lexicographically
 
 '''Courses with the majors they fullfil as a TSV'''
-courseToMajorsDF.to_csv('/students/kswint/major-match/DDL/coursesToMajors.tsv', sep = '\t')
+courseToMajorsDF.to_csv('/students/kswint/major-match/beta/DDL/coursesToMajors.tsv', sep = '\t')
 
 majorReqsDF = pd.DataFrame.from_dict(majorKey, orient = 'index')
-majorReqsDF.to_csv('/students/kswint/major-match/DDL/majorReqsDF.tsv', sep = '\t')
+majorReqsDF.to_csv('/students/kswint/major-match/beta/DDL/majorReqsDF.tsv', sep = '\t')
 
 ''' creates a dataframe with columns = each course and the number of majors it counts
 towards.'''
 courseFreqDF = pd.DataFrame(list(freq.items()), columns = ['course','freq'])
 
 '''Courses with the number of majors they fullfil as a TSV'''
-courseFreqDF.to_csv('/students/kswint/major-match/DDL/courseMajFreq.tsv', sep = '\t')
+courseFreqDF.to_csv('/students/kswint/major-match/beta/DDL/courseMajFreq.tsv', sep = '\t')
 
 ''' sorts courseFreqDF by the number of majors a course counts towards, with the most number
 of majors at the top and least at the bottom'''
@@ -306,4 +306,4 @@ print('\n', masterDF)
 
 ''' Master TSV! Columns are the course, the department (abrev), the course number (three digit, not CRN),
 the number of majors that course counts towards, and a list of the majors that course counts towards.'''
-masterDF.to_csv('/students/kswint/major-match/DDL/completeMajorTable.tsv', sep = '\t')
+masterDF.to_csv('/students/kswint/major-match/beta/DDL/completeMajorTable.tsv', sep = '\t')

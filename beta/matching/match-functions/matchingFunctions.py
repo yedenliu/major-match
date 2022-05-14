@@ -1475,5 +1475,5 @@ bAndC = ['PHIL 200','PHIL 229','PHIL 207','PHIL 215','PHIL 216','PHIL 220','PHIL
 #econ(emily)
 #chem(kat)
 #cs(julie)
- 
+
 masterCheck(julie)
