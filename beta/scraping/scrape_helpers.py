@@ -169,6 +169,7 @@ def get_course_dict(section, iteration):
             dept = name_list[0]
             cnum = name_list[1]
             name = name_list[2]
+            print('SUCCESS: Cross list for "' + str(s))
         except:
             print('Cross list for "' + str(s) + '" did not work')
     elif iteration == 1:
@@ -197,6 +198,8 @@ def all_courses(sections):
     course_list = []
     for section in sections:
         if is_crosslisted(section):
+            course = get_course_dict(section, 1)
+            course_list.append(course)
             course2 = get_course_dict(section, 2)
             course_list.append(course2)
         else:

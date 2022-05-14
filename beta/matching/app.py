@@ -30,10 +30,10 @@ app.config['TRAP_BAD_REQUEST_ERRORS'] = True
 def index():
     conn = dbi.connect()
     if request.method == 'GET':
-        depts = get_depts(conn)
-        return render_template('index.html',page_title='Home', depts=depts)
+        # depts = get_depts(conn)
+        return render_template('index.html',page_title='Home')#, #depts=depts)
     else:
-        classes = []
+        taken = []
         results = []
         course_matches = []
         for n in range(0, 32): # range is the number of total courses they can input
@@ -47,23 +47,22 @@ def index():
                     flash(str(dept) + ' ' + str(cnum) + 
                           " doesn't exist in our database")
 
-                classes.append((dept,cnum))
+                taken.append((dept,cnum))
                 insert_data(conn, dept, cnum)
                 results = major_match(conn)
                 course_matches = matched_courses(conn)
         delete_form_data(conn)
-        # get the dept ids in order to get their courses to use as percentage bar in results page
-        dept_ids = [get_dept_id(conn, name[0])[0] for name in results]
-        dept_courses = [get_dept_courses(conn, id) for id in dept_ids]
-        to_take_courses = list(set(dept_courses) - set(course_matches))
-        # print(to_take_courses[0],'\n','\n', course_matches)
-        major_courses_totake = [(results[i][0], to_take_courses[i]) for i in range(len(results))]
-        # print(major_courses_totake[4][0])
-        # print(course_matches)
-        print(results)
+        # # get the dept ids in order to get their courses to use as percentage bar in results page
+        # dept_ids = [get_dept_id(conn, name[0])[0] for name in results]
+        # dept_courses = [get_dept_courses(conn, id) for id in dept_ids]
+        # to_take_courses = list(set(dept_courses) - set(course_matches))
+        # # print(to_take_courses[0],'\n','\n', course_matches)
+        # major_courses_totake = [(results[i][0], to_take_courses[i]) for i in range(len(results))]
+        # # print(major_courses_totake[4][0])
+        # # print(course_matches)
+        # print(results)
         return render_template('results.html',
                                 page_title='Results',
-                                classes = classes,
                                 results = results,
                                 course_matches = course_matches,
                                 major_courses_totake = major_courses_totake)

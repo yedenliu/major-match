@@ -1,4 +1,4 @@
-majormatch_db;
+use majormatch_db;
 
 load data local infile 'majors.csv'
 into table programs 

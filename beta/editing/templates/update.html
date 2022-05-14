@@ -73,7 +73,7 @@
     
     <p></p>
     
-    <form method=POST action="">
+    <form method=POST action="{{ url_for('update', cid=cid) }}">
       <table class="table-form">
         <tr>
           <td><label for="new_dept">Department Name</label></td>
@@ -81,69 +81,9 @@
           <!-- make this a drop down -->
           <input list="abbrev"  name='new_dept' value="{{ new_dept }}" placeholder="Start typing...">
           <datalist id="abbrev">
-            <option>Africana Studies</option>
-            <option>American Studies</option>
-            <option>Anthropology</option>
-            <option>Architecture</option>
-            <option>Art History</option>
-            <option>Asian American Studies</option>
-            <option>Astronomy</option>
-            <option>Astrophysics</option>
-            <option>Biochemistry</option>
-            <option>Biological Sciences</option>
-            <option>Chemical Physics</option>
-            <option>Chemistry</option>
-            <option>Chinese Language and Culture</option>
-            <option>Cinema and Media Studies</option>
-            <option>Classical Civilization</option>
-            <option>Classics</option>
-            <option>Cognitive and Linguistic Sciences</option>
-            <option>Comparative Literary Studies</option>
-            <option>Comparative Race and Ethnicity</option>
-            <option>Computer Science</option>
-            <option>Data Science</option>
-            <option>East Asian Languages and Cultures</option>
-            <option>East Asian Studies</option>
-            <option>Economics</option>
-            <option>Education Studies</option>
-            <option>English and Creative Writing</option>
-            <option>Environmental Studies</option>
-            <option>French & Francophone Studies</option>
-            <option>French Cultural Studies</option>
-            <option>Geosciences</option>
-            <option>German Studies</option>
-            <option>Global Portuguese Studies</option>
-            <option>Health and Society</option>
-            <option>International Relations - Economics</option>
-            <option>International Relations - History</option>
-            <option>International Relations - Political Science</option>
-            <option>Italian Studies</option>
-            <option>Japanese Language and Culture</option>
-            <option>Jewish Studies</option>
-            <option>Korean Language and Culture</option>
-            <option>Latin American Studies</option>
-            <option>Latina/o Studies</option>
-            <option>Mathematics</option>
-            <option>Media Arts and Sciences</option>
-            <option>Medieval/Renaissance Studies</option>
-            <option>Middle Eastern Studies</option>
-            <option>Neuroscience</option>
-            <option>Peace and Justice Studies</option>
-            <option>Philosophy</option>
-            <option>Physics</option>
-            <option>Political Science</option>
-            <option>Psychology</option>
-            <option>Religion</option>
-            <option>Russian</option>
-            <option>Russian Area Studies</option>
-            <option>Sociology</option>
-            <option>South Asia Studies</option>
-            <option>Spanish</option>
-            <option>Statistics</option>
-            <option>Studio Art</option>
-            <option>Teaching and Learning Studies</option>
-            <option>Theatre Studies</option>
-            <option>Women's and Gender Studies</option>
+            {% for dept in depts %}
+            <option value="{{dept[1]}}">{{dept[1]}}</option>
+            {% endfor %}
           </datalist>
         </td> 
       </table>
