@@ -70,6 +70,23 @@ p {
     padding-top: 5px;
     padding-bottom: 5px;
 }
+/********** STYLE SKILLSBARS **********/
+/* Container for skill bars */
+.skill-container {
+    width: 100%; /* Full width */
+    background-color: #ddd; /* Grey background */
+    border-radius: 10px;
+
+}
+  
+.skills {
+    text-align: right; /* Right-align text */
+    padding-top: 10px; /* Add top padding */
+    padding-bottom: 10px; /* Add bottom padding */
+    color: black; /* White text color */
+    font-weight: bold;
+}
+  
 
 /********** STYLE POPUP **********/
 /* Popup container - can be anything you want */
@@ -83,7 +100,7 @@ p {
     user-select: none;
   }
   /* The actual popup */
-  #popup.liste .popuptext {
+  #popup .popuptext {
     visibility: hidden;
     width: 160px;
     background-color: #555;
@@ -144,7 +161,6 @@ p {
     position: relative;
     top: 2px;
     padding: 7px;
-    position: relative;
 }
 
 .major-name{
@@ -226,15 +242,21 @@ p {
   }
 
   .flex-container-modal {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-}
+    margin-bottom: 10px;
+    }
 
-.taken-div{
-    margin-right: 50px;
-}
+    .flex-container-modal > div {
+        margin: 20px;
+    }
+
+    .ul-courses {
+        padding: 0%;
+    }
+
 
 /********** STYLE FORM **********/
 form {

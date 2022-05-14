@@ -46,7 +46,7 @@ def check_course_exists(conn, dept, cnum):
 
 def major_match(conn):
     curs = dbi.cursor(conn)
-    sql = '''   select programs.name, count(major_pairs.dept_id) 
+    sql = '''   select programs.name, count(major_pairs.dept_id), major_pairs.dept_id 
                 from programs
                 inner join major_pairs using(dept_id)
                 inner join form_data using(cid)
@@ -93,12 +93,12 @@ def get_dept_courses(conn, dept_id):
     return curs.fetchall()
 
 
-def get_dept_id(conn, dept_name):
-    '''uses the department name to fetch and return the dept_id'''
-    curs = dbi.cursor(conn)
-    sql = ''' select dept_id
-              from programs 
-              where name = %s'''
-    curs.execute(sql, [dept_name])
-    return curs.fetchone()
+# def get_dept_id(conn, dept_name):
+#     '''uses the department name to fetch and return the dept_id'''
+#     curs = dbi.cursor(conn)
+#     sql = ''' select dept_id
+#               from programs 
+#               where name = %s'''
+#     curs.execute(sql, [dept_name])
+#     return curs.fetchone()
     
