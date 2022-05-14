@@ -175,13 +175,13 @@ def update(cid):
                                     majors = majors)
         else:
             if request.form['submit'] == 'update':
-                # must be able to update TT but must be a unique cid
+                # must be able to update cid but must be a unique cid
                 old_cid = cid
                 dept = request.form.get('dept')
                 cnum = request.form.get('cnum')
                 new_cid = get_cid(conn, dept, cnum)
                 
-                # tt has been updated to a tt that already exists
+                # cid has been updated to a cid that already exists
                 if old_cid != new_cid and course_exists(conn, new_cid): # if course already exists
                     flash("The Department & Course Number pair you entered already exists")
                     info = get_course_info(conn, cid)

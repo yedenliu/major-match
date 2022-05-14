@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main_content %}
-    <form class="update-form" method=POST action="/update/{{cid}}">
+    <form class="update-form" method=POST action="{{ url_for('update', cid=cid) }}">
       <table class="table-form">
         <tr>
           <td><label for="dept">Department</label></td>
@@ -24,7 +24,7 @@
           <td><label>Counted Majors</label></td>
           <td><ul>
             {% for major in majors %}
-              <li style="text-align:left"><a href="{{url_for('department_page', dept_id=major[1])}}">{{ major[0] }}</a>
+              <li style="text-align:left"><a href="{{ url_for('department_page', dept_id=major[1]) }}">{{ major[0] }}</a>
               <!-- button for delete -->
               <button type="submit" name="submit" value="delete-pair-{{major[1]}}">remove</button>
               </li>
