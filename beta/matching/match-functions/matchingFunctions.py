@@ -1,9 +1,8 @@
 from os import major
 from pkgutil import iter_importers
+from unittest.util import unorderable_list_difference
 import pandas as pd
 import csv
-
-# why is git broken
 
 majorReqs = '/students/kswint/major-match/beta/DDL/majorReqsDF.tsv'
 coursesToMajors = '/students/kswint/major-match/beta/DDL/coursesToMajors.tsv'
@@ -139,44 +138,129 @@ def multilistedSatisfied(courseToCompare, coursesToCompareTo):
     else:
         return(False)
 
+def matchBandaid(userInput, majorCourses):
+    has = 0
+    for course in userInput:
+        if course in majorCourses:
+            has += 1
+    return(has)
+
 def africanaStudiesAfrica(userInput):
-    pass
+    dept = 'Africana Studies - Africa Concentration'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def africanaStudiesGeneral(userInput):
-    pass
+    dept = 'Africana Studies - General Africana Studies Concentration'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def africanaStudiesCaribbeanLatinAmerica(userInput):
-    pass
+    dept = 'Africana Studies - The Caribbean and Latin America Concentration'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def africanaStudiesUnitedStates(userInput):
-    pass
+    dept = 'Africana Studies - United States Concentration'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def americanStudies(userInput):
-    pass
+    dept = 'American Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def anthropology(userInput):
-    pass
+    dept = 'Anthropology'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def architecture(userInput):
-    pass
+    dept = 'Architecture'
+    majorCourses = grabCourses(dept)
+    
+    needed = 11
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def artHistory(userInput):
-    pass
+    dept = 'Art History'
+    majorCourses = grabCourses(dept)
+    
+    needed = 10
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def astronomy(userInput):
-    pass
+    dept = 'Astronomy'
+    majorCourses = grabCourses(dept)
+    
+    needed = 12
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def astrophysics(userInput):
-    pass
+    dept = 'Astrophysics'
+    majorCourses = grabCourses(dept)
+    
+    needed = 15
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def biochem(userInput):
-    pass
+    dept = 'Biochemistry'
+    majorCourses = grabCourses(dept)
+    
+    needed = 13
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def biology(userInput):
-    pass
+    dept = 'Biological Sciences'
+    majorCourses = grabCourses(dept)
+    
+    needed = 11
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def chemicalPhysics(userInput):
-    pass
+    dept = 'Chemical Physics'
+    majorCourses = grabCourses(dept)
+    
+    needed = 13
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def chem(userInput):
     print('Checking your requirements against the Chemistry major...')
@@ -298,41 +382,89 @@ def chem(userInput):
 
     print('You have completed', has, '/', needed, 'requirements for the Chemistry major.')
 
-    if has != needed:
-        print('If you would like to complete the Chemistry major...')
-        suggestComplete(core1Taken, coreNeeded, core1, True, 1)
-        suggestComplete(core2Taken, coreNeeded, core2, True, 2)
-        suggestComplete(core3Taken, 1, core3, True, 3)
-        print('\tRegardless of the core path...')
-        suggestComplete(core4Taken, 3, core4, True, 0)
-        suggestComplete(threesTaken, 1, threes, False, 0)
-        suggestComplete(flexChemTaken, 3, flexChem, False, 0)
-        suggestComplete(flexMathTaken, 1, flexMath, False, 0)
-        suggestComplete(flexPhysTaken, 1, flexPhys, False, 0)
+    # if has != needed:
+    #     print('If you would like to complete the Chemistry major...')
+    #     suggestComplete(core1Taken, coreNeeded, core1, True, 1)
+    #     suggestComplete(core2Taken, coreNeeded, core2, True, 2)
+    #     suggestComplete(core3Taken, 1, core3, True, 3)
+    #     print('\tRegardless of the core path...')
+    #     suggestComplete(core4Taken, 3, core4, True, 0)
+    #     suggestComplete(threesTaken, 1, threes, False, 0)
+    #     suggestComplete(flexChemTaken, 3, flexChem, False, 0)
+    #     suggestComplete(flexMathTaken, 1, flexMath, False, 0)
+    #     suggestComplete(flexPhysTaken, 1, flexPhys, False, 0)
 
 def camsPre2020(userInput):
-    pass
+    dept = 'Cinema and Media Studies - entering in Fall 2020 and before'
+    majorCourses = grabCourses(dept)
+    
+    needed = 10
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def camsCurrent(userInput):
-    pass
+    dept = 'Cinema and Media Studies - entering in Spring 2021 and after'
+    majorCourses = grabCourses(dept)
+    
+    needed = 10
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def classicalCivilization(userInput):
-    pass
+    dept = 'Classical Civilization'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def cogSciCS(userInput):
-    pass
+    dept = 'Cognitive and Linguistic Sciences - Computer Science Concentration'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def cogSciLing(userInput):
-    pass
+    dept = 'Cognitive and Linguistic Sciences - Linguistics Concentration'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def cogSciPhil(userInput):
-    pass
+    dept = 'Cognitive and Linguistic Sciences - Philosophy Concentration'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def cogSciPsych(userInput):
-    pass
+    dept = 'Cognitive and Linguistic Sciences - Psychology Concentration'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def compLit(userInput):
-    pass
+    dept = 'Comparative Literary Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 # TODO electives don't seem to be working, 342 and 304 aren't counting
 # TODO suggestComplete is buggy here too
@@ -385,23 +517,41 @@ def cs(userInput):
 
     print('You have completed', has, '/', needed, 'requirements for the Computer Science major.')
 
-    taken = coresTaken + threesTaken + electivesTaken
-    if has != needed: 
-        print('If you would like to complete the Computer Science major, you need to take:\n')
-        suggestComplete(introsTaken, int(len(introductory) - len(introsTaken)), introductory, True, 0)
-        suggestComplete(mathTaken, int(len(math) - len(mathTaken)), math, True, 0)
-        suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, True, 0)
-        suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
-        suggestComplete(electivesTaken, int(2 - numElectives), electives, False, 0)
+    # taken = coresTaken + threesTaken + electivesTaken
+    # if has != needed: 
+    #     print('If you would like to complete the Computer Science major, you need to take:\n')
+    #     suggestComplete(introsTaken, int(len(introductory) - len(introsTaken)), introductory, True, 0)
+    #     suggestComplete(mathTaken, int(len(math) - len(mathTaken)), math, True, 0)
+    #     suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, True, 0)
+    #     suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
+    #     suggestComplete(electivesTaken, int(2 - numElectives), electives, False, 0)
 
 def dataScience(userInput):
-    pass
+    dept = 'Data Science'
+    majorCourses = grabCourses(dept)
+    
+    needed = 12
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def eastAsianLangCult(userInput):
-    pass
+    dept = 'East Asian Languages and Cultures'
+    majorCourses = grabCourses(dept)
+    
+    needed = 8
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def eastAsianStudies(userInput):
-    pass
+    dept = 'East Asian Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 10
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def econ(userInput):
     print('Checking your requirements against the Economics major...')
@@ -438,24 +588,48 @@ def econ(userInput):
 
     print('You have completed', has, '/', needed, 'requirements for the Economics major.')
 
-    taken = coresTaken + threesTaken + electivesTaken
-    if has != needed:
-        print('If you would like to complete the Economics major, you need to take:\n')
-        suggestComplete(taken, coreNeeded, core, True, 0)
-        suggestComplete(taken, threesNeeded, threes, False, 0)
-        suggestComplete(taken, electivesNeeded, electives, False, 0)
+    # taken = coresTaken + threesTaken + electivesTaken
+    # if has != needed:
+    #     print('If you would like to complete the Economics major, you need to take:\n')
+    #     suggestComplete(taken, coreNeeded, core, True, 0)
+    #     suggestComplete(taken, threesNeeded, threes, False, 0)
+    #     suggestComplete(taken, electivesNeeded, electives, False, 0)
 
 def educationStudies(userInput):
-    pass
+    dept = 'Education Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def english(userInput):
-    pass
+    dept = 'English'
+    majorCourses = grabCourses(dept)
+    
+    needed = 10
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def englishCreativeWriting(userInput):
-    pass
+    dept = 'English and Creative Writing'
+    majorCourses = grabCourses(dept)
+    
+    needed = 12
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def environmentalStudies(userInput):
-    pass
+    dept = 'Environmental Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 10
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def french(userInput):
     print('Checking your requirements against the French and Francophone Studies major...')
@@ -507,22 +681,40 @@ def french(userInput):
 
     print('You have completed', has, '/', needed, 'requirements for the French and Francophone Studies major.')
 
-    if has != needed: 
-        print('If you would like to complete the French and Francophone Studies major, you need to take:\n')
-        suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, False, 0)
-        suggestComplete(flexLangTaken, int(len(flexLang) - len(flexLangTaken)), flexLang, False, 0)
-        suggestComplete(flexCultureTaken, int(len(flexCulture) - len(flexCultureTaken)), flexCulture, False, 0)
-        suggestComplete(flexLitTaken, int(len(flexLitTaken) - len(flexLit)), flexLit, False, 0)
-        suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
+    # if has != needed: 
+    #     print('If you would like to complete the French and Francophone Studies major, you need to take:\n')
+    #     suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, False, 0)
+    #     suggestComplete(flexLangTaken, int(len(flexLang) - len(flexLangTaken)), flexLang, False, 0)
+    #     suggestComplete(flexCultureTaken, int(len(flexCulture) - len(flexCultureTaken)), flexCulture, False, 0)
+    #     suggestComplete(flexLitTaken, int(len(flexLitTaken) - len(flexLit)), flexLit, False, 0)
+    #     suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
 
 def frenchCulturalStudies(userInput):
-    pass
+    dept = 'French Cultural Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 8
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def geosciences(userInput):
-    pass
+    dept = 'Geosciences'
+    majorCourses = grabCourses(dept)
+    
+    needed = 12
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def german(userInput):
-    pass
+    dept = 'German Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9                                          # they dont actually specify how many are needed
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def history(userInput):
     print('Checking your requirements against the History major...')
@@ -575,31 +767,67 @@ def history(userInput):
 
     remainingElectivesNeeded = 6 - len(threesTaken) - len(electivesTaken)
 
-    if has != needed: 
-        print('If you would like to complete the History major, you need to take:\n')
-        suggestComplete(flexAfrChiJapLatAmMidEaSouAsTaken, int(1 - len(flexAfrChiJapLatAmMidEaSouAsTaken)), flexAfrChiJapLatAmMidEaSouAs, False, 0)
-        suggestComplete(flexEurUniStRusTaken, int(1 - len(flexEurUniStRusTaken)), flexEurUniStRus, False, 0)
-        suggestComplete(flexPreModTaken, int(1 - len(flexPreModTaken)), flexPreMod, False, 0)
-        suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
-        suggestComplete(electivesTaken, remainingElectivesNeeded, electives, False, 0)
+    # if has != needed: 
+    #     print('If you would like to complete the History major, you need to take:\n')
+    #     suggestComplete(flexAfrChiJapLatAmMidEaSouAsTaken, int(1 - len(flexAfrChiJapLatAmMidEaSouAsTaken)), flexAfrChiJapLatAmMidEaSouAs, False, 0)
+    #     suggestComplete(flexEurUniStRusTaken, int(1 - len(flexEurUniStRusTaken)), flexEurUniStRus, False, 0)
+    #     suggestComplete(flexPreModTaken, int(1 - len(flexPreModTaken)), flexPreMod, False, 0)
+    #     suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
+    #     suggestComplete(electivesTaken, remainingElectivesNeeded, electives, False, 0)
 
 def internationalRelationsEcon(userInput):
-    pass
+    dept = 'International Relations - Economics'
+    majorCourses = grabCourses(dept)
+    
+    needed = 14
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def internationalRelationsHistory(userInput):
-    pass
+    dept = 'International Relations - History'
+    majorCourses = grabCourses(dept)
+    
+    needed = 14
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def internationalRelationsPoliSci(userInput):
-    pass
+    dept = 'International Relations - Political Science'
+    majorCourses = grabCourses(dept)
+    
+    needed = 14
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def italian(userInput):
-    pass
+    dept = 'Italian Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def jewishStudies(userInput):
-    pass
+    dept = 'Jewish Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def latinAmericanStudies(userInput):
-    pass
+    dept = 'Latin American Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def math(userInput):
     print('Checking your requirements against the Mathematics major...')
@@ -660,22 +888,58 @@ def math(userInput):
         suggestComplete(electivesTaken, int(2 - len(electivesTaken)), electives, False, 0)
 
 def mediaArtsSciences(userInput):
-    pass
+    dept = 'Media Arts and Sciences'
+    majorCourses = grabCourses(dept)
+    
+    needed = 12
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def medievalRenaissanceStudies(userInput):
-    pass
+    dept = 'Medieval Renaissance Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def middleEasternStudies(userInput):
-    pass
+    dept = 'Middle Eastern Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def music(userInput):
-    pass
+    dept = 'Music'
+    majorCourses = grabCourses(dept)
+    
+    needed = 10
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def neuroscience(userInput):
-    pass
+    dept = 'Neuroscience'
+    majorCourses = grabCourses(dept)
+    
+    needed = 11
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def peaceJusticeStudies(userInput):
-    pass
+    dept = 'Peace and Justice Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 10
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 ''' Let's get one thing straight: this helper function is an absolute dumpster fire. I am embarassed for
 anyone to see this. It's genuinely atrocious. I'm not even sure if it will ever get to the recursive function,
@@ -735,18 +999,18 @@ def subfieldSort(remainingBandC, numBs, numCs, bTaken, cTaken):
     addBs = addBs + bTaken          # the unique subfield B courses given by philosophy() + our new allocated subfield B courses
     addCs = addCs + cTaken          # the unique subfield C courses given by philosophy() + our new allocated subfield C courses
 
-    recursedB = []                  # idk. I felt like I needed new lists here.
-    recursedC = []
+    #recursedB = []                  # idk. I felt like I needed new lists here.
+    #recursedC = []
 
     '''I don't think this recursive call will ever be reached, since the for loops will continue populating until
     both categories have two courses. Logically, I should remove this, but emotionally I cannot.'''
-    if (b < 2) or (c < 2):
-        newBandC = subfieldSort(inCourses, b, c, addBs, addCs)
-        recursedB = newBandC[0]
-        recursedC = newBandC[1]
+    #if (b < 2) or (c < 2):
+    #    newBandC = subfieldSort(inCourses, b, c, addBs, addCs)
+    #    recursedB = newBandC[0]
+    #    recursedC = newBandC[1]
 
-    outBs = addBs + recursedB
-    outCs = addCs + recursedC
+    outBs = addBs #+ recursedB
+    outCs = addCs #+ recursedC
 
     output = [outBs, outCs]
 
@@ -839,10 +1103,7 @@ def philosophy(userInput):
             hasList.append(course)
 
     
-    recursed = subfieldSort(tempTaken, 0, 2, subfieldBTaken, subfieldCTaken)
-    
-    newB = recursed[0]
-    newC = recursed[1]
+    newB, newC = subfieldSort(tempTaken, 0, 2, subfieldBTaken, subfieldCTaken)
 
     bLen = len(newB)        # otherwise I get an infinite loop
     if len(newB) > 0:       # if we've added any new B courses
@@ -903,49 +1164,121 @@ def philosophy(userInput):
 
     print('You have completed', has, '/', needed, 'requirements for the Philosophy major.')
 
-    if has != needed: 
-        print('If you would like to complete the Philosophy major, you need to take:\n')
-        suggestComplete(coreTaken, int(2 - len(coreTaken)), core, True, 0)
-        suggestComplete(subfieldBTaken, int(2 - len(subfieldBTaken)), subfieldB, False, 0)
-        suggestComplete(subfieldCTaken, int(2 - len(subfieldCTaken)), subfieldC, False, 0)
-        suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
-        suggestComplete(extraTaken, remainingElectivesNeeded, extras, False, 0)
+    # if has != needed: 
+    #     print('If you would like to complete the Philosophy major, you need to take:\n')
+    #     suggestComplete(coreTaken, int(2 - len(coreTaken)), core, True, 0)
+    #     suggestComplete(subfieldBTaken, int(2 - len(subfieldBTaken)), subfieldB, False, 0)
+    #     suggestComplete(subfieldCTaken, int(2 - len(subfieldCTaken)), subfieldC, False, 0)
+    #     suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
+    #     suggestComplete(extraTaken, remainingElectivesNeeded, extras, False, 0)
 
 def physics(userInput):
-    pass
+    dept = 'Physics - entering after Fall 2018'
+    majorCourses = grabCourses(dept)
+    
+    needed = 11
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def poliSci(userInput):
-    pass
+    dept = 'Political Science'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def psychology(userInput):
-    pass
+    dept = 'Psychology'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def religion(userInput):
-    pass
+    dept = 'Religion'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def russian(userInput):
-    pass
+    dept = 'Russian'
+    majorCourses = grabCourses(dept)
+    
+    needed = 8
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def russianAreaStudies(userInput):
-    pass
+    dept = 'Russian Area Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 8
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def sociology(userInput):
-    pass
+    dept = 'Sociology'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def southAsiaStudies(userInput):
-    pass
+    dept = 'South Asia Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def spanish(userInput):
-    pass
+    dept = 'Spanish'
+    majorCourses = grabCourses(dept)
+    
+    needed = 8
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def studioArt(userInput):
-    pass
+    dept = 'Studio Art - students entering before Fall 2021'
+    majorCourses = grabCourses(dept)
+    
+    needed = 10
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def theatreStudies(userInput):
-    pass
+    dept = 'Theatre Studies'
+    majorCourses = grabCourses(dept)
+    
+    needed = 10
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def womensGenderStudies(userInput):
-    pass
+    dept = "Women's and Gender Studies"
+    majorCourses = grabCourses(dept)
+    
+    needed = 9
+    has = matchBandaid(userInput, majorCourses)
+    
+    print(dept + ': ' + str(has) + '/' + str(needed))
 
 def masterCheck(userInput):
     majorsToCheck = grabMajors(userInput)
@@ -1143,4 +1476,4 @@ bAndC = ['PHIL 200','PHIL 229','PHIL 207','PHIL 215','PHIL 216','PHIL 220','PHIL
 #chem(kat)
 #cs(julie)
 
-masterCheck(bAndC)
+masterCheck(julie)
