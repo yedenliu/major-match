@@ -36,39 +36,20 @@
                         <h3>Courses Taken</h3>
                         {% for course in course_matches %}
                             {% if major[0] == course[1] %}
-                            <ul class="ul-courses">
-                                <div class="listed-courses" id="popup-{{course[0]}}"> {{ course[0] }}
-                                    <span class="popuptext" id="myPopup">Popup text...</span>
-                                </div>
-                            </ul>
+                                <ul class="listed-courses" id="popup-{{course[0]}}"> {{ course[0] }}</ul>
                             {% endif %}
-                            
-                            
                         {% endfor %}
-                        <script>
-                            $(".ul-courses").one().on('click','div', function (event) {
-                            console.log('clicked popup')
-                            // When the user clicks the text, show the popup 
-                            var clickee = event.target;
-                            $(clickee).closest("div.listed-courses").find("span.popuptext").show();
-                            // var popup = clickee.parentNode.getElementsByClassName('popuptext');
-                            // p.style.display("block");
 
-                            // var pop = document.getElementById('myPopup');
-                            // popup.classList.toggle("show");
-                            });
-                        </script>
+                           
                     </div>
 
                     <div>
-                        <!-- Get the Department Courses and set subtract the taken courses -->
+                        <!-- TODO: Get the Department Courses and set subtract the taken courses -->
                         <h3>Courses To Take</h3>
                             <div class="taken-div">
                                 {% for course in course_matches %}
                                     {% if major[0] == course[1] %}
-                                    <ul class="ul-courses">
-                                        <li class="listed-courses" id="popup">{{ course[0] }}</li>
-                                    </ul>
+                                        <ul class="listed-courses" id="popup">{{ course[0] }}</ul>
                                     {% endif %}
                                 {% endfor %}
                             </div>
@@ -114,3 +95,23 @@
 
 {% endblock %}
 
+ <!-- <ul class="ul-courses">
+                                <div class="listed-courses" id="popup-{{course[0]}}"> {{ course[0] }}
+                                     <span class="popuptext" id="myPopup">Popup text...</span> 
+                                </div> 
+                                 </ul> --> 
+                            
+                            
+                        <!-- <script>
+                            $(".ul-courses").one().on('click','div', function (event) {
+                            console.log('clicked popup')
+                            // When the user clicks the text, show the popup 
+                            var clickee = event.target;
+                            $(clickee).closest("div.listed-courses").find("span.popuptext").show();
+                            // var popup = clickee.parentNode.getElementsByClassName('popuptext');
+                            // p.style.display("block");
+
+                            // var pop = document.getElementById('myPopup');
+                            // popup.classList.toggle("show");
+                            });
+                        </script> -->
