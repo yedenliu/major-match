@@ -36,23 +36,19 @@
                         <h3>Courses Taken</h3>
                         {% for course in course_matches %}
                             {% if major[0] == course[1] %}
-                                <ul class="listed-courses" id="popup-{{course[0]}}"> {{ course[0] }}</ul>
+                                <ul class="listed-courses">{{ course[0] }}</ul>
                             {% endif %}
                         {% endfor %}
-
-                           
                     </div>
 
                     <div>
                         <!-- TODO: Get the Department Courses and set subtract the taken courses -->
                         <h3>Courses To Take</h3>
-                            <div class="taken-div">
-                                {% for course in course_matches %}
-                                    {% if major[0] == course[1] %}
-                                        <ul class="listed-courses" id="popup">{{ course[0] }}</ul>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
+                            {% for course in course_matches %}
+                                {% if major[0] == course[1] %}
+                                    <ul class="listed-courses">{{ course[0] }}</ul>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
