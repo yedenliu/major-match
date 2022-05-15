@@ -75,26 +75,16 @@ def index():
             courses_taken_dict[course_matches[i][1]].append(course_matches[i][0])
 
         # subtract courses taken from dept courses and put dept courses still needed into dict
-
-        
-        # for major in courses_to_take_dict:
-            # print(major)
+        for major in courses_to_take_dict:
             # get the taken courses and subtract from the dept courses
-            # print((courses_to_take_dict[major]),'\n', (courses_taken_dict[major]))
-            # toTake = list(set(courses_to_take_dict[major]) - set(courses_taken_dict[major]))
-            # print('totake: ',len(toTake))
-            # put the leftover courses into dict
-            # courses_to_take_dict[major] = toTake
-            # print(len(courses_to_take_dict[major]))
-
-        # print(courses_to_take_dict['Computer Science'])
-        
+            courses_to_take_dict[major] = list(set(courses_to_take_dict[major]) - set(courses_taken_dict[major]))
 
         return render_template('results.html',
                                 page_title='Results',
                                 classes = classes,
                                 results = results,
                                 course_matches = course_matches,
+                                courses_to_take_dict = courses_to_take_dict
                                 )
 ################################################################################
 @app.before_first_request
