@@ -168,7 +168,7 @@ input[type=text] {
 
 /* Form submit button */
 input[type='submit'] {
-    background-color: gray;
+    background-color: rgb(88, 88, 88);
     font-family: 'Gill Sans';
     font-size:medium;
     color: white;

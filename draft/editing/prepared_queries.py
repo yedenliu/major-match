@@ -189,3 +189,10 @@ def find_cid(conn, dept, cnum):
     row = curs.fetchone()
     return row[0]
 
+<<<<<<< HEAD
+<<<<<<< HEAD:editing/prepared_queries.py
+
+=======
+>>>>>>> e5710f1a4b334af85fde39cf55da5f78ea685369:draft/editing/prepared_queries.py
+=======
+>>>>>>> 02ec4aa6f7033d23df2c9ec1e738724b7c44589e

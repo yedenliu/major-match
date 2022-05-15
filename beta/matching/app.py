@@ -2,6 +2,7 @@
 #   Import Modules
 ################################################################################
 from pdb import find_function
+from re import split
 from flask import (Flask, render_template, make_response, url_for, request,
                    redirect, flash, session, send_from_directory, jsonify)
 from werkzeug.utils import secure_filename
@@ -52,20 +53,28 @@ def index():
                 results = major_match(conn)
                 course_matches = matched_courses(conn)
         delete_form_data(conn)
-        # # get the dept ids in order to get their courses to use as percentage bar in results page
+
+        # get the dept ids in order to get their courses to use as percentage bar in results page
         # dept_ids = [get_dept_id(conn, name[0])[0] for name in results]
-        # dept_courses = [get_dept_courses(conn, id) for id in dept_ids]
-        # to_take_courses = list(set(dept_courses) - set(course_matches))
-        # # print(to_take_courses[0],'\n','\n', course_matches)
+        dept_courses = [get_dept_courses(conn, results[i][2]) for i in range(len(results))]
+        
+        # NEEDS TO BE FIXED
+        # to_take_courses = [list(set(dept_courses[i]) - set(course_matches[i])) for i in range(len(results))]
+
+        percentage = [format((results[i][1] / len(dept_courses[i])), '.0') for i in range(len(results))]
+        p = [(int((float(x)*100)),'') for x in percentage]
+
+        # results = (major, count matched courses, dept_id, percent courses taken, empty string)
+        results = [results[i]+ tuple(p[i]) for i in range(len(results))]
+
+       
         # major_courses_totake = [(results[i][0], to_take_courses[i]) for i in range(len(results))]
-        # # print(major_courses_totake[4][0])
-        # # print(course_matches)
-        # print(results)
+
+        print(results)
         return render_template('results.html',
                                 page_title='Results',
                                 results = results,
-                                course_matches = course_matches,
-                                major_courses_totake = major_courses_totake)
+                                course_matches = course_matches)
 
 @app.route('/contact/')
 def contact():

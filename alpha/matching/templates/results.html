@@ -6,7 +6,7 @@
 
 {% block main_content %}
 
-<p>These are your top matched majors</p>
+<p style="text-align:center; margin:auto">These are your top matched majors</p>
 <ul>
 <div class="flex-container">
     {% for major in results %}
@@ -14,7 +14,16 @@
     <!-- name, count() -->
     <h2>{{ major[0] }}</h2>
     <!-- FOR DEBUGGING -->
+<<<<<<< HEAD
+    {% for course in course_matches %}
+        {% if course[1] == major[0] %}
+        <li>{{ course[0] }}</li>
+        {% endif %}
+    {% endfor %}
+    <p>Count: {{ major[1] }}</p>
+=======
     <!-- <p>Count: {{ major[1] }}</p> -->
+>>>>>>> af95c4377f5428758c191b57ed7b270b149b7bc4
     </div>
     {% endfor %}
 </div>
@@ -24,6 +33,7 @@
 <p>FOR DEBUGGING: This is what you inputted</p>
 <ul> 
     {% for class in classes %}
+    <li>{{class}}</li>
     <li>{{ class[0] }} {{ class[1] }}</li>
     {% endfor %}
 </ul>

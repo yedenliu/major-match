@@ -58,6 +58,13 @@ def index():
                                 results = results,
                                 course_matches = course_matches)
 
+
+
+@app.route('/contact', methods=['POST'])
+def contact():
+    return render_template(contact.html,
+                            page_title='Contact Us')
+
 ################################################################################
 @app.before_first_request
 def init_db():

@@ -11,47 +11,55 @@
     <table class="table-form">
       <tr>
         <td><label for="dept">Department</label></td>
-        <td><input type="text" name='dept' value="{{ dept }}" required></td> 
+        <td><input type="text" name='dept' id="dept" value="{{ dept }}" required></td> 
       </tr>
       <tr>
         <td><label for="cnum">Course Number</label></td>
-        <td><input type="text" name='cnum' value="{{ cnum }}" required></td>
+        <td><input type="text" name='cnum' id="cnum" value="{{ cnum }}" required></td>
       </tr>
       <tr>
         <td><label for="name">Course Name</label></td>
-        <td><input type="text" name='name' value="{{ name }}" required></td>
+        <td><input type="text" name='name' id="name" value="{{ name }}" required></td>
       </tr>
       <tr>
         <td><label for="units">Units</label></td>
-        <td><input type="text" name='units' value="{{ units }}"></td> 
+        <td><input type="text" name='units' id="units" value="{{ units }}"></td> 
       </tr>
       <tr>
         <td><label for="max_enroll">Max. Enrollment</label></td>
-        <td><input type="text" name='max_enroll' value="{{ max_enroll }}"></td> 
+        <td><input type="text" name='max_enroll' id="max_enroll" value="{{ max_enroll }}"></td> 
       </tr>
       <tr>
         <td><label for="prereq">Prequisites</label></td>
-        <td><input type="text" name='prereq' value="{{ prereq }}"></td> 
+        <td><input type="text" name='prereq' id="prereq" value="{{ prereq }}"></td> 
       </tr>
       <tr>
         <td><label for="instruct">Instructor</label></td>
-        <td><input type="text" name='instruct' value="{{ instruct }}"></td> 
+        <td><input type="text" name='instruct' id="instruct" value="{{ instruct }}"></td> 
       </tr>
       <tr>
         <td><label for="dr">Distribution Requirement</label></td>
-        <td><input type="text" name='dr' value="{{ dr }}"></td> 
+        <td><input type="text" name='dr' id="dr" value="{{ dr }}"></td> 
       </tr>
       <tr>
         <td><label for="sem_offered">Semesters Offered</label></td>
-        <td><input type="text" name='max_enroll' value="{{ max_enroll }}"></td> 
+        <td><input type="text" name='sem_offered' id="sem_offered" value="{{ sem_offered }}"></td> 
       </tr>
       <tr>
         <td><label for="year_offered">Offered This Year?</label></td>
-        <td><input type="text" name='year_offered' value="{{ year_offered }}"></td> 
+        <td><input type="text" name='year_offered' id="year_offered" value="{{ year_offered }}"></td> 
+      </tr>
+      <tr>
+        <td><label for="type">Type</label></td>
+        <td><input type="text" name='type' id="type" value="{{ type }}"></td> 
+      </tr>
+      <tr>
+        <td><label for="type_notes">Type Notes</label></td>
+        <td><input type="text" name='type_notes' id="type_notes" value="{{ type_notes }}"></td> 
       </tr>
       <tr>
         <td><label for="major_freq">Major Freq</label></td>
-        <td><input type="text" name='major_freq' value="{{ major_freq }}"></td> 
+        <td><input type="text" name='major_freq' id="major_freq" value="{{ major_freq }}"></td> 
       </tr>
     </table>
     <input type="submit" name="submit" value="submit">
