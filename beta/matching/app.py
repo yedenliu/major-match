@@ -31,13 +31,10 @@ app.config['TRAP_BAD_REQUEST_ERRORS'] = True
 def index():
     conn = dbi.connect()
     if request.method == 'GET':
-        # depts = get_depts(conn)
-        return render_template('index.html',page_title='Home')#, #depts=depts)
+        depts = get_depts(conn)
+        return render_template('index.html', page_title='Home', depts=depts)
     else:
-        taken = []
-        results = []
-        course_matches = []
-        for n in range(0, 32): # range is the number of total courses they can input
+        for n in range(0, 32): # range is the n# of total courses they can input
             dept = request.form.get('dept-'+str(n))
             cnum = request.form.get('cnum-'+str(n))
             if dept not in [None, ''] and cnum not in [None, '']:
@@ -47,38 +44,56 @@ def index():
                 if not check_course_exists(conn, dept, cnum):
                     flash(str(dept) + ' ' + str(cnum) + 
                           " doesn't exist in our database")
-
-                taken.append((dept,cnum))
+                # if course does exist
                 insert_data(conn, dept, cnum)
-                results = major_match(conn)
-                course_matches = matched_courses(conn)
+        results = major_match(conn)
+        course_matches = matched_courses(conn)        
         delete_form_data(conn)
         
         # get all the courses in each department
-        dept_courses = [(get_dept_courses(conn, results[i][2])) for i in range(len(results))]
-        courses_to_take_dict = {results[i][0]:dept_courses[i] for i in range(len(results))}
-        for i in range(len(dept_courses)):
-            course_list = []
-            for j in range(len(dept_courses[i])):
-                course_list.append(dept_courses[i][j][2])
-            courses_to_take_dict[list(courses_to_take_dict.keys())[i]] = course_list
+        dept_courses = (
+        [(get_dept_courses(conn, results[i][2])) for i in range(len(results))]
+        )
+
+        courses_to_take_dict = {
+            results[i][0]: dept_courses[i] for i in range(len(results))
+        }
+
+        # for i in range(len(dept_courses)):
+        #     course_list = []
+        #     for j in range(len(dept_courses[i])):
+        #         course_list.append(dept_courses[i][j][2])
+        #     courses_to_take_dict[
+        #         list(courses_to_take_dict.keys())[i]
+        #         ] = course_list
         
-        # find the percentage of courses that have been taken for each matched major
-        percentage = [format((results[i][1] / len(dept_courses[i])), '.0') for i in range(len(results))]
+        # find the % of courses that have been taken for each matched major
+        percentage = [
+            format((results[i][1] / len(dept_courses[i])), '.0') 
+            for i in range(len(results))
+            ]
         p = [(int((float(x)*100)),'') for x in percentage]
-        # results = (major, count matched courses, dept_id, percent courses taken, empty string)
+        # results = (major, 
+        #            count matched courses, 
+        #            dept_id, percent courses taken,
+        #            empty string)
         results = [results[i]+ tuple(p[i]) for i in range(len(results))]
 
         # put the courses with the majors they fulfill 
-        courses_taken_dict = {course_matches[i][1]:[] for i in range(len(course_matches))}
+        courses_taken_dict = {
+            course_matches[i][1]:[] for i in range(len(course_matches))
+        }
         for i in range(len(course_matches)):
-            courses_taken_dict[course_matches[i][1]].append(course_matches[i][0])
+            courses_taken_dict[course_matches[i][1]].append(
+                course_matches[i][0]
+            )
 
-        # subtract courses taken from dept courses and put dept courses still needed into dict
+        # (-) courses taken from dept courses and put still needed into dict
         for major in courses_to_take_dict:
             # get the taken courses and subtract from the dept courses
-            courses_to_take_dict[major] = list(set(courses_to_take_dict[major]) - set(courses_taken_dict[major]))
-
+            courses_to_take_dict[major] = list(
+                set(courses_to_take_dict[major])-set(courses_taken_dict[major])
+                )
         return render_template('results.html',
                                 page_title='Results',
                                 results = results,

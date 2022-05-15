@@ -7,16 +7,17 @@ import cs304dbi as dbi
 4. Get count of each major that is listed the most 
 '''
 
-# def get_depts(conn):
-#     curs = dbi.cursor(conn)
-#     sql =   ''' select distinct dept 
-#                 from courses 
-#                 where dept <> '' 
-#             '''
-#     curs.execute(sql)
-#     deptsTups = curs.fetchall()
-#     deptsList = [i[0] for i in deptsTups]
-#     return deptsList
+def get_depts(conn):
+    curs = dbi.cursor(conn)
+    sql =   ''' select distinct dept 
+                from courses 
+                where dept <> ""
+                order by dept asc 
+            '''
+    curs.execute(sql)
+    deptsTups = curs.fetchall()
+    deptsList = [i[0] for i in deptsTups]
+    return deptsList
 
 def find_cid(conn, dept, cnum):
     curs = dbi.cursor(conn)
@@ -46,8 +47,9 @@ def check_course_exists(conn, dept, cnum):
 
 def major_match(conn):
     curs = dbi.cursor(conn)
-    sql = '''   select programs.name, count(major_pairs.dept_id), major_pairs.dept_id 
-                from programs
+    sql = '''   select programs.name, 
+                count(major_pairs.dept_id), 
+                major_pairs.dept_id from programs
                 inner join major_pairs using(dept_id)
                 inner join form_data using(cid)
                 group by major_pairs.dept_id
@@ -59,7 +61,8 @@ def major_match(conn):
 
 def matched_courses(conn):
     curs = dbi.cursor(conn)
-    sql = '''   select courses.name, programs.name from courses
+    sql = '''   select courses.name, programs.name
+                from courses
                 inner join form_data using(cid)
                 inner join major_pairs using(cid)
                 inner join programs using(dept_id)
@@ -83,7 +86,11 @@ def get_dept_courses(conn, dept_id):
     '''
     curs = dbi.cursor(conn)
     
-    sql =   ''' select dept, cnum, courses.name, courses.cid
+    sql =   ''' select dept, cnum, courses.name, courses.cid,
+                courses.units, courses.max_enroll,
+                courses.prereq, courses.instruct,
+                courses.dr, courses.sem_offered,
+                courses.year_offered, courses.major_freq
                 from courses 
                 inner join major_pairs using(cid)
                 inner join programs using (dept_id)
