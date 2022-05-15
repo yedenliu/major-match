@@ -2,6 +2,7 @@
 #   Import Modules
 ################################################################################
 from pdb import find_function
+from re import split
 from flask import (Flask, render_template, make_response, url_for, request,
                    redirect, flash, session, send_from_directory, jsonify)
 from werkzeug.utils import secure_filename
@@ -52,26 +53,38 @@ def index():
                 results = major_match(conn)
                 course_matches = matched_courses(conn)
         delete_form_data(conn)
-        # # get the dept ids in order to get their courses to use as percentage bar in results page
-        # dept_ids = [get_dept_id(conn, name[0])[0] for name in results]
-        # dept_courses = [get_dept_courses(conn, id) for id in dept_ids]
-        # to_take_courses = list(set(dept_courses) - set(course_matches))
-        # # print(to_take_courses[0],'\n','\n', course_matches)
-        # major_courses_totake = [(results[i][0], to_take_courses[i]) for i in range(len(results))]
-        # # print(major_courses_totake[4][0])
-        # # print(course_matches)
-        # print(results)
+        
+        # get all the courses in each department
+        dept_courses = [(get_dept_courses(conn, results[i][2])) for i in range(len(results))]
+        courses_to_take_dict = {results[i][0]:dept_courses[i] for i in range(len(results))}
+        for i in range(len(dept_courses)):
+            course_list = []
+            for j in range(len(dept_courses[i])):
+                course_list.append(dept_courses[i][j][2])
+            courses_to_take_dict[list(courses_to_take_dict.keys())[i]] = course_list
+        
+        # find the percentage of courses that have been taken for each matched major
+        percentage = [format((results[i][1] / len(dept_courses[i])), '.0') for i in range(len(results))]
+        p = [(int((float(x)*100)),'') for x in percentage]
+        # results = (major, count matched courses, dept_id, percent courses taken, empty string)
+        results = [results[i]+ tuple(p[i]) for i in range(len(results))]
+
+        # put the courses with the majors they fulfill 
+        courses_taken_dict = {course_matches[i][1]:[] for i in range(len(course_matches))}
+        for i in range(len(course_matches)):
+            courses_taken_dict[course_matches[i][1]].append(course_matches[i][0])
+
+        # subtract courses taken from dept courses and put dept courses still needed into dict
+        for major in courses_to_take_dict:
+            # get the taken courses and subtract from the dept courses
+            courses_to_take_dict[major] = list(set(courses_to_take_dict[major]) - set(courses_taken_dict[major]))
+
         return render_template('results.html',
                                 page_title='Results',
                                 results = results,
                                 course_matches = course_matches,
-                                major_courses_totake = major_courses_totake)
-
-@app.route('/contact/')
-def contact():
-    return render_template('contact.html',
-                            page_title='Contact Us!')
-
+                                courses_to_take_dict = courses_to_take_dict
+                                )
 ################################################################################
 @app.before_first_request
 def init_db():

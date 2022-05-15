@@ -13,9 +13,13 @@
         <td><label for="dept">Dept.</label></td>
         <td>
         <!-- make this a drop down -->
-        <input list="abbrev"  name='dept' value="{{ dept }}" placeholder="Start typing...">
+        <input list="abbrev"  name='dept' id="dept" value="{{ dept }}" placeholder="Start typing...">
         <datalist id="abbrev">
           <!-- hard coded for to reduce bugs, will make this a loop -->
+          <!-- {% for dept in depts %}
+            <option value="{{dept}}">{{dept}}</option>
+          {% endfor %}
+        </datalist> -->
           <option>AFR</option>
           <option>SWA</option>
           <option>AMST</option>
@@ -79,7 +83,7 @@
       </tr>
       <tr>
         <td><label for="cnum">Course #</label></td>
-        <td><input type="text" name='cnum' value="{{ cnum }}"></td> 
+        <td><input type="text" name='cnum' id="cnum" value="{{ cnum }}"></td> 
       </tr>
     </table>
     <input type="submit" name="submit" value="submit">

@@ -7,28 +7,30 @@
 {% block main_content %}
 <h2 style="padding-bottom:10px">Select a course to update any of its empty fields and help us update our database!</h2>
 
-<form method=POST action="{{ url_for('select') }}">
-    <label for="cid">Courses with missing fields:</label>
-    <select id="cid" name="cid">
-      <option value="none" selected disabled>Choose One</option>
-      <!--Fills out the drop down menu with incomplete movies-->
-      {% for course in course_list %}
-        <option value="{{course[2]}}">{{course[0]}} {{course[1]}}</option>
-      {% endfor %}
-    </select>
+<form method=POST action="/select/">
+    <label>Courses with missing fields:
+      <select id="cid" name="cid">
+        <option value="none" selected disabled>Choose One</option>
+        <!--Fills out the drop down menu with incomplete movies-->
+        {% for course in course_list %}
+          <option value="{{course[2]}}">{{course[0]}} {{course[1]}}</option>
+        {% endfor %}
+      </select>
+    </label>
     <input type="submit" name="submit-btn" value="Update Course">
 </form>
 
 <h2 style="padding-top:10px">These are courses that don't point to any major</h2>
-<form method=POST action="{{ url_for('select') }}">
-  <label for="cid">Courses without a major:</label>
-  <select id="cid" name="cid">
-    <option value="none" selected disabled>Choose One</option>
-    <!--Fills out the drop down menu with incomplete movies-->
-    {% for course in unassigned %}
-      <option value="{{course[2]}}">{{course[0]}} {{course[1]}}</option>
-    {% endfor %}
-  </select>
+<form method=POST action="/select/">
+  <label>Courses without a major:
+    <select id="cid" name="cid">
+      <option value="none" selected disabled>Choose One</option>
+      <!--Fills out the drop down menu with incomplete movies-->
+      {% for course in unassigned %}
+        <option value="{{course[2]}}">{{course[0]}} {{course[1]}}</option>
+      {% endfor %}
+    </select>
+  </label>
   <input type="submit" name="submit-btn" value="Update Course">
 </form>
 

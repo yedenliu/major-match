@@ -14,13 +14,19 @@
             <div class="year-1">
                 {% for i in range(8) %}
                 <div class="class-input">
-                    <select name="dept-{{i}}">{{dept}}>
-                            <option value="dept">Dept</option>>
+                    <label>
+                        Dept
+                    <select name="dept-{{i}}" style="color: black;">{{dept}}>
+                            <option value="dept"></option>>
                     {% for dept in depts %}
                             <option value="{{depts[1]}}">{{depts[1]}}</option>
                     {% endfor %}
                     </select>
-                    <input type="text" name="cnum-{{i}}" placeholder="Course #">
+                    </label>
+                    <label style="padding-left:10px">
+                        Course #
+                        <input type="text" name="cnum-{{i}}">
+                    </label>
                 </div>
                 {% endfor %}
             </div>
@@ -32,13 +38,19 @@
             <div class="year-2">
                 {% for i in range(8,16) %}
                 <div class="class-input">
-                    <select name="dept-{{i}}">{{dept}}>
-                        <option value="dept">Dept</option>>
+                    <label>
+                        Dept
+                    <select name="dept-{{i}}" style="color: black;">{{dept}}>
+                        <option value="dept"></option>>
                     {% for dept in depts %}
                             <option value="{{dept}}">{{dept}}</option>
                     {% endfor %}
                     </select>
-                    <input type="text" name="cnum-{{i}}"  placeholder="Course #">
+                    </label>
+                    <label style="padding-left: 10px;">
+                        Course #
+                        <input type="text" name="cnum-{{i}}" >
+                    </label>
                 </div>
                 {% endfor %}
             </div>
@@ -51,13 +63,19 @@
                 {% for i in range(16,24) %}
                 <div class="class-input">
                     <!-- <label>Dept</label> -->
-                    <select name="dept-{{i}}">{{dept}}>
-                        <option value="dept">Dept</option>>
+                    <label>
+                        Dept
+                    <select name="dept-{{i}}" style="color: black;">{{dept}}>
+                        <option value="dept"></option>>
                     {% for dept in depts %}
                             <option value="{{dept}}">{{dept}}</option>
                     {% endfor %}
                     </select>
-                    <input type="text" name="cnum-{{i}}"  placeholder="Course #">
+                    </label>
+                    <label style="padding-left: 10px;">
+                        Course #
+                        <input type="text" name="cnum-{{i}}" >
+                    </label>
                 </div>
                 {% endfor %}
             </div>
@@ -71,13 +89,19 @@
                 {% for i in range(24, 32) %}
                 <div class="class-input">
                     <!-- <label>Dept</label> -->
-                    <select name="dept-{{i}}">{{dept}}>
-                        <option value="dept">Dept</option>>
+                    <label>
+                        Dept
+                    <select name="dept-{{i}}" style="color: black;">{{dept}}>
+                        <option value="dept"></option>>
                     {% for dept in depts %}
                             <option value="{{dept}}">{{dept}}</option>
                     {% endfor %}
                     </select>
-                    <input type="text" name="cnum-{{i}}"  placeholder="Course #">
+                    </label>
+                    <label style="padding-left: 10px;">
+                        Course #
+                        <input type="text" name="cnum-{{i}}" >
+                    </label>
                 </div>
                 {% endfor %}
             </div>
