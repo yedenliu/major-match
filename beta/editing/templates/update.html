@@ -9,15 +9,15 @@
       <table class="table-form">
         <tr>
           <td><label for="dept">Department</label></td>
-          <td><input type="text" name='dept' value="{{ dept }}"></td> 
+          <td><input type="text" name='dept' id="dept" value="{{ dept }}"></td> 
         </tr>
         <tr>
           <td><label for="cnum">Course Number</label></td>
-          <td><input type="text" name='cnum' value="{{ cnum }}"></td>
+          <td><input type="text" name='cnum' id="cnum" value="{{ cnum }}"></td>
         </tr>
         <tr>
           <td><label for="name">Course Name</label></td>
-          <td><input type="text" name='name' value="{{ name }}"></td>
+          <td><input type="text" name='name' id="name" value="{{ name }}"></td>
         </tr>
 
         <tr>
@@ -36,35 +36,35 @@
       <table class="table-form">
         <tr>
           <td><label for="units">Units</label></td>
-          <td><input type="text" name='units' value="{{ units }}"></td> 
+          <td><input type="text" name='units' id="units" value="{{ units }}"></td> 
         </tr>
         <tr>
           <td><label for="max_enroll">Max. Enrollment</label></td>
-          <td><input type="text" name='max_enroll' value="{{ max_enroll }}"></td> 
+          <td><input type="text" name='max_enroll' id="max_enroll" value="{{ max_enroll }}"></td> 
         </tr>
         <tr>
           <td><label for="prereq">Prequisites</label></td>
-          <td><input type="text" name='prereq' value="{{ prereq }}"></td> 
+          <td><input type="text" name='prereq' id="prereq" value="{{ prereq }}"></td> 
         </tr>
         <tr>
           <td><label for="instruct">Instructor</label></td>
-          <td><input type="text" name='instruct' value="{{ instruct }}"></td> 
+          <td><input type="text" name='instruct' id="instruct" value="{{ instruct }}"></td> 
         </tr>
         <tr>
           <td><label for="dr">Distribution Requirement</label></td>
-          <td><input type="text" name='dr' value="{{ dr }}"></td> 
+          <td><input type="text" name='dr' id="dr" value="{{ dr }}"></td> 
         </tr>
         <tr>
           <td><label for="sem_offered">Semesters Offered</label></td>
-          <td><input type="text" name='max_enroll' value="{{ max_enroll }}"></td> 
+          <td><input type="text" name='sem_offered' id="sem_offered" value="{{ sem_offered }}"></td> 
         </tr>
         <tr>
           <td><label for="year_offered">Offered This Year?</label></td>
-          <td><input type="text" name='year_offered' value="{{ year_offered }}"></td> 
+          <td><input type="text" name='year_offered' id="year_offered" value="{{ year_offered }}"></td> 
         </tr>
         <tr>
           <td><label for="major_freq">Major Freq</label></td>
-          <td><input type="text" name='major_freq' value="{{ major_freq }}"></td> 
+          <td><input type="text" name='major_freq' id="major_freq" value="{{ major_freq }}"></td> 
         </tr>
       </table>
       <input type="submit" name="submit" value="update">
@@ -79,7 +79,7 @@
           <td><label for="new_dept">Department Name</label></td>
           <td>
           <!-- make this a drop down -->
-          <input list="abbrev"  name='new_dept' value="{{ new_dept }}" placeholder="Start typing...">
+          <input list="abbrev"  name='new_dept' id="new_dept" value="{{ new_dept }}" placeholder="Start typing...">
           <datalist id="abbrev">
             <option>Africana Studies</option>
             <option>American Studies</option>
