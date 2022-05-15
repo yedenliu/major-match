@@ -7,16 +7,16 @@ import cs304dbi as dbi
 4. Get count of each major that is listed the most 
 '''
 
-def get_depts(conn):
-    curs = dbi.cursor(conn)
-    sql =   ''' select distinct dept 
-                from courses 
-                where dept <> '' 
-            '''
-    curs.execute(sql)
-    deptsTups = curs.fetchall()
-    deptsList = [i[0] for i in deptsTups]
-    return deptsList
+# def get_depts(conn):
+#     curs = dbi.cursor(conn)
+#     sql =   ''' select distinct dept 
+#                 from courses 
+#                 where dept <> '' 
+#             '''
+#     curs.execute(sql)
+#     deptsTups = curs.fetchall()
+#     deptsList = [i[0] for i in deptsTups]
+#     return deptsList
 
 def find_cid(conn, dept, cnum):
     curs = dbi.cursor(conn)

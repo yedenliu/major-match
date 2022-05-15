@@ -24,6 +24,19 @@ def insert_course(conn, dept, cnum, name, units, max_enroll,
                         prereq, instruct, dr, sem_offered, year_offered])
     conn.commit()
 
+def course_name_exists(conn, dept, cnum):
+    '''
+    Checks if course already exists in database
+
+    Param - connection ojbect, department abbreviation + course number
+    Return - true if course already exists
+    '''
+    curs = dbi.cursor(conn)
+    sql = ''' select * from courses where dept = %s and cnum = %s '''
+    curs.execute(sql, [dept, cnum])
+    movie = curs.fetchall()
+    return len(movie) > 0
+
 def course_exists(conn, cid):
     '''
     Checks if course already exists in database
@@ -32,7 +45,7 @@ def course_exists(conn, cid):
     Return - true if course already exists
     '''
     curs = dbi.cursor(conn)
-    sql = ''' select * from courses where cid = %s '''
+    sql = ''' select * from courses where cid = %s'''
     curs.execute(sql, [cid])
     movie = curs.fetchall()
     return len(movie) > 0
@@ -109,8 +122,8 @@ def get_incomplete(conn):
     # prepared query
     curs = dbi.cursor(conn)
     sql = '''   select dept, cnum, cid from courses 
-                where dept is NULL 
-                or `name` is NULL
+                where dept="" 
+                or `name`=""
           '''
     curs.execute(sql)
     return curs.fetchall()
@@ -176,8 +189,8 @@ def get_dept_id(conn, name):
                 where name = %s
             '''
     curs.execute(sql, [name])
-    row = curs.fetchone()
-    return row[0]
+    return curs.fetchone()
+    
 
 def get_dept_courses(conn, dept_id):
     '''

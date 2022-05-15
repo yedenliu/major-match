@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1>CONTACT US</h1>
+<h2>If you have any questions or suggestions, please use this form to reach us. We would love to hear advice on how to improve our website.</h2>
+<newline></newline>
+<p style="color: darkgray; text-align: center">This website was made for a CS 304 Final Project (Spring 2022). Our team consists of Eden Liu ('23), Kat Swint ('22), Julie Fucarino ('22), and Hannah Whellan ('22)</p>
+
+<!-- major-match-team@wellesley.edu -->
+{% endblock %}
+
+<h2>Send us an email!</h2>
+{% block main_content %}
+<div class="contact">
+    <form id="contact-form" action="mailto:major-match-team@wellesley.edu" method="post" enctype="text/plain">
+        Name:<br>
+        <input type="text" name="name"><br>
+        E-mail:<br>
+        <input type="text" name="mail"><br>
+        Message:<br>
+        <input type="text" name="msg"><br><br>
+        <input type="submit" value="Send">
+    </form> 
+</div>
+
+{% endblock %}

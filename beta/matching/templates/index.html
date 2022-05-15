@@ -2,7 +2,7 @@
 
 {% block header %}
 <h1>WELLESLEY MAJOR MATCHING</h1>
-<h2>Enter in courses taken and future courses to see the major requirements you have fulfilled</h2>
+<h2>Enter in courses to see the major requirements you have fulfilled! The order does not matter.</h2>
 {% endblock %}
 
 {% block main_content %}
@@ -19,7 +19,7 @@
                     <select name="dept-{{i}}" style="color: black;">{{dept}}>
                             <option value="dept"></option>>
                     {% for dept in depts %}
-                            <option value="{{dept}}">{{dept}}</option>
+                            <option value="{{depts[1]}}">{{depts[1]}}</option>
                     {% endfor %}
                     </select>
                     </label>
@@ -110,5 +110,6 @@
     <div class="submit-btn"><input type='submit' value='Match Me!'> </div>
     </form>
     <!-- TODO: make span tag to make disclaimer bold and text not bold -->
-    <h2 style="margin-top:25px; color: rgb(95, 94, 94);">DISCLAIMERS: No summer courses, cross-registerd courses, and only 32 course slots available</h2 style="margin-top:10px">
+    <p style="margin-top:25px; color: rgb(95, 94, 94); text-align: center;">DISCLAIMERS: No summer courses, cross-registerd courses, and only 32 course slots available</p>
+    <p style="margin-top:25px; color: rgb(95, 94, 94); text-align: center;">If you have any questions or feedback, please use our contact form!</p>
 {% endblock %}

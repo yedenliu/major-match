@@ -366,3 +366,19 @@ input[type='submit'] {
     border-color: black;
     border-width: 1px;
   }
+
+/**** CONTACT FORM ****/
+/* Style inputs with type="text", select elements and textareas */
+#contact-form input[type=text] {
+    width: 200px; /* Full width */
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  }
+  
+  #contact-form {
+      background-color: white;
+  }

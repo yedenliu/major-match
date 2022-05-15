@@ -84,6 +84,7 @@ def match(conn):
     Param - connection object
     '''
     with open('completeMajorTable.tsv', 'r') as file:
+        # 'buggy_courses.tsv' // 'completeMajorTable.tsv'
         tsv_reader = csv.reader(file, delimiter='\t')
         for row in tsv_reader:
             abbrev = row[1]

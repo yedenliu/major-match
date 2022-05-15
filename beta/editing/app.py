@@ -61,7 +61,7 @@ def insert():
             if len(dept) == 0 or len(cnum) == 0 or len(name) == 0:
                 flash('Missing required field(s)')
                 return render_template('insert.html',page_title='Insert New Course')
-            if not (course_exists(conn, cid)): # if movie doesn't exist
+            if not (course_name_exists(conn, dept, cnum)): # if course doesn't exist
                 insert_course(conn, dept, cnum, name, units, max_enroll, prereq, 
                             instruct, dr, sem_offered, year_offered)
                 cid = get_cid(conn, dept, cnum)
@@ -143,6 +143,7 @@ def update(cid):
         return redirect( url_for('login') )
     else:
         conn = dbi.connect()
+        depts = get_departments(conn)
         if course_exists(conn, cid)==False:
             flash('This course does not exist')
             return redirect(url_for('index'))
@@ -174,16 +175,17 @@ def update(cid):
                                     year_offered = year_offered,
                                     major_freq = major_freq,
                                     cid = cid,
-                                    majors = majors)
+                                    majors = majors,
+                                    depts = depts)
         else:
             if request.form['submit'] == 'update':
-                # must be able to update TT but must be a unique cid
+                # must be able to update cid but must be a unique cid
                 old_cid = cid
-                dept = request.form.get('dept')
+                depts = request.form.get('dept')
                 cnum = request.form.get('cnum')
                 new_cid = get_cid(conn, dept, cnum)
                 
-                # tt has been updated to a tt that already exists
+                # cid has been updated to a cid that already exists
                 if old_cid != new_cid and course_exists(conn, new_cid): # if course already exists
                     flash("The Department & Course Number pair you entered already exists")
                     info = get_course_info(conn, cid)
@@ -213,7 +215,8 @@ def update(cid):
                                             year_offered = year_offered,
                                             major_freq = major_freq,
                                             cid = old_cid, # back to original cid
-                                            majors = majors)
+                                            majors = majors,
+                                            depts = depts)
                     
                 
                 # if cid updated to a new_cid that does not exist in the DB yet
@@ -266,7 +269,8 @@ def update(cid):
                                         year_offered = year_offered,
                                         major_freq = major_freq,
                                         cid = new_cid,
-                                        majors = majors)
+                                        majors = majors,
+                                        depts = depts)
             elif request.form['submit'] == 'delete':
                 delete_course(conn, cid)
                 flash("Course successfully deleted!")
