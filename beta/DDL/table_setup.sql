@@ -15,7 +15,7 @@ create table courses (
     max_enroll int,
     prereq varchar(100),
     instruct varchar(30),
-    dr varchar(30),
+    dr varchar(100),
     sem_offered varchar(30),
     year_offered varchar(30),
     major_freq int,
