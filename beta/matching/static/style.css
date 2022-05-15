@@ -45,7 +45,7 @@ p {
 }
 
 #messages {
-    color: red;
+    color: rgb(140, 13, 13);
 }
 
 
@@ -161,6 +161,13 @@ p {
     position: relative;
     top: 2px;
     padding: 7px;
+    overflow: scroll;
+}
+
+.course-div {
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: dashed;
 }
 
 .major-name{
@@ -249,7 +256,7 @@ p {
     margin-bottom: 10px;
     }
 
-    .flex-container-modal > div {
+    .flex-container-modal > div{
         margin: 20px;
     }
 

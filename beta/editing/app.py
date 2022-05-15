@@ -119,6 +119,7 @@ def department_page(dept_id):
         return redirect( url_for('login') )
     else:
         conn = dbi.connect()
+        departments = get_departments(conn)
         name = get_dept_name(conn, dept_id) 
         courses = get_dept_courses(conn, dept_id) # dept, cnum, courses.name, cid
         if request.method == 'POST':
@@ -131,7 +132,8 @@ def department_page(dept_id):
         return render_template('department_page.html',
                                 page_title = name + ' Department Page',
                                 name = name,
-                                courses = courses)
+                                courses = courses,
+                                depts = departments)
 ################################################################################
 
 @app.route('/update/<cid>', methods=['GET','POST'])

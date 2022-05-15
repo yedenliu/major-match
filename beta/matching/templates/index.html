@@ -38,16 +38,10 @@
             <div class="year-2">
                 {% for i in range(8,16) %}
                 <div class="class-input">
-<<<<<<< HEAD
-                    <select name="dept-{{i}}">{{dept}}>
-                        <option value="dept">Dept</option>>
-=======
-                    <!-- <label>Dept</label> -->
                     <label>
                         Dept
                     <select name="dept-{{i}}" style="color: black;">{{dept}}>
                         <option value="dept"></option>>
->>>>>>> bc6361047185ac1520b7ae79bb9aff4ba2dbacda
                     {% for dept in depts %}
                             <option value="{{dept}}">{{dept}}</option>
                     {% endfor %}
