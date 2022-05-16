@@ -159,7 +159,6 @@ def update(cid):
             dr = info[8]
             sem_offered = info[9]
             year_offered = info[10]
-            major_freq = info[11]
             majors = get_pairs(conn, cid)
             return render_template('update.html',
                                     page_title='Update Course',
@@ -173,114 +172,50 @@ def update(cid):
                                     dr = dr,
                                     sem_offered = sem_offered,
                                     year_offered = year_offered,
-                                    major_freq = major_freq,
                                     cid = cid,
                                     majors = majors,
                                     depts = depts)
         else:
             if request.form['submit'] == 'update':
-                # must be able to update cid but must be a unique cid
-                old_cid = cid
-                depts = request.form.get('dept')
+                dept = request.form.get('dept')
                 cnum = request.form.get('cnum')
-                new_cid = get_cid(conn, dept, cnum)
-                
-                # cid has been updated to a cid that already exists
-                if old_cid != new_cid and course_exists(conn, new_cid): # if course already exists
-                    flash("The Department & Course Number pair you entered already exists")
-                    info = get_course_info(conn, cid)
-                    dept = info[1]
-                    cnum = info[2]
-                    name = info[3]
-                    units = info[4]
-                    max_enroll = info[5]
-                    prereq = info[6]
-                    instruct = info[7]
-                    dr = info[8]
-                    sem_offered = info[9]
-                    year_offered = info[10]
-                    major_freq = info[11]
-                    majors = get_pairs(conn, cid)
-                    return render_template('update.html',
-                                            page_title='Update Course',
-                                            dept = dept,
-                                            cnum = cnum,
-                                            name = name,
-                                            units = units,
-                                            max_enroll = max_enroll,
-                                            prereq = prereq,
-                                            instruct = instruct,
-                                            dr = dr,
-                                            sem_offered = sem_offered,
-                                            year_offered = year_offered,
-                                            major_freq = major_freq,
-                                            cid = old_cid, # back to original cid
-                                            majors = majors,
-                                            depts = depts)
-                    
-                
-                # if cid updated to a new_cid that does not exist in the DB yet
-                elif old_cid != new_cid and course_exists(conn, new_cid) == False:
-                    name = request.form.get('name')
-                    units = request.form.get('units')
-                    max_enroll = request.form.get('max_enroll')
-                    prereq = request.form.get('prereq')
-                    instruct = request.form.get('instruct')
-                    dr = request.form.get('dr')
-                    sem_offered = request.form.get('sem_offered')
-                    year_offered = request.form.get('year_offered')
-                    major_freq = request.form.get('major_freq')
-                    majors = get_pairs(conn, new_cid)
-            
-                    update_course(conn, new_cid, dept, cnum, name, units, max_enroll, 
-                    prereq, instruct, dr, sem_offered, year_offered, major_freq)
+                name = request.form.get('name')
+                units = request.form.get('units')
+                max_enroll = request.form.get('max_enroll')
+                prereq = request.form.get('prereq')
+                instruct = request.form.get('instruct')
+                dr = request.form.get('dr')
+                sem_offered = request.form.get('sem_offered')
+                year_offered = request.form.get('year_offered')
+                majors = get_pairs(conn, cid)
+        
+                update_course(conn, cid, dept, cnum, name, units, max_enroll, 
+                prereq, instruct, dr, sem_offered, year_offered)
 
-                    flash('Successfully updated!')
-                    return redirect(url_for('update', cid = new_cid))
-                
-                # cid did not change (but other fields may have)
-                else: 
-                    name = request.form.get('name')
-                    units = request.form.get('units')
-                    max_enroll = request.form.get('max_enroll')
-                    prereq = request.form.get('prereq')
-                    instruct = request.form.get('instruct')
-                    dr = request.form.get('dr')
-                    sem_offered = request.form.get('sem_offered')
-                    year_offered = request.form.get('year_offered')
-                    major_freq = request.form.get('major_freq')
-                    majors = get_pairs(conn, new_cid)
-            
-                    update_course(conn, new_cid, dept, cnum, name, units, max_enroll, 
-                    prereq, instruct, dr, sem_offered, year_offered, major_freq)
-
-                    flash('Successfully updated!')
-                    return render_template('update.html',
-                                        page_title='Update Course',
-                                        dept = dept,
-                                        cnum = cnum,
-                                        name = name,
-                                        units = units,
-                                        max_enroll = max_enroll,
-                                        prereq = prereq,
-                                        instruct = instruct,
-                                        dr = dr,
-                                        sem_offered = sem_offered,
-                                        year_offered = year_offered,
-                                        major_freq = major_freq,
-                                        cid = new_cid,
-                                        majors = majors,
-                                        depts = depts)
+                flash('Successfully updated!')
+                return render_template('update.html',
+                                    page_title='Update Course',
+                                    dept = dept,
+                                    cnum = cnum,
+                                    name = name,
+                                    units = units,
+                                    max_enroll = max_enroll,
+                                    prereq = prereq,
+                                    instruct = instruct,
+                                    dr = dr,
+                                    sem_offered = sem_offered,
+                                    year_offered = year_offered,
+                                    cid = cid,
+                                    majors = majors,
+                                    depts = depts)
             elif request.form['submit'] == 'delete':
                 delete_course(conn, cid)
                 flash("Course successfully deleted!")
                 return redirect(url_for('index'))
             elif 'delete-pair' in request.form['submit']:
                 value = request.form['submit']
-                print(value)
                 # get dept id
                 dept_id = value.strip('delete-pair-')
-                print(dept_id)
                 # delete pair
                 remove_pair(conn, dept_id, cid)
                 flash("Course pairing deleted")
@@ -304,7 +239,6 @@ def update(cid):
                 dr = info[8]
                 sem_offered = info[9]
                 year_offered = info[10]
-                major_freq = info[11]
                 majors = get_pairs(conn, cid)
                 return render_template('update.html',
                                     page_title='Update Course',
@@ -318,9 +252,9 @@ def update(cid):
                                     dr = dr,
                                     sem_offered = sem_offered,
                                     year_offered = year_offered,
-                                    major_freq = major_freq,
                                     cid = cid,
-                                    majors = majors)
+                                    majors = majors,
+                                    depts = depts)
             else:
                 flash("Error")
 

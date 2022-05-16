@@ -65,7 +65,7 @@ def get_course_info(conn, cid):
     return curs.fetchone()
 
 def update_course(conn, cid, dept, cnum, name, units, max_enroll, prereq, 
-instruct, dr, sem_offered, year_offered, major_freq):
+instruct, dr, sem_offered, year_offered):
     '''
     Checks if course already exists in database
 
@@ -86,7 +86,6 @@ instruct, dr, sem_offered, year_offered, major_freq):
                 dr = %s, 
                 sem_offered = %s, 
                 year_offered = %s, 
-                major_freq = %s
                 where cid = %s
             '''
     curs.execute(sql, [ dept, 
@@ -99,7 +98,6 @@ instruct, dr, sem_offered, year_offered, major_freq):
                         dr, 
                         sem_offered, 
                         year_offered, 
-                        major_freq,
                         cid])
     conn.commit()
 
@@ -122,8 +120,8 @@ def get_incomplete(conn):
     # prepared query
     curs = dbi.cursor(conn)
     sql = '''   select dept, cnum, cid from courses 
-                where dept="" 
-                or `name`=""
+                where dept="" or dept is NULL
+                or `name`="" or `name` is NULL
           '''
     curs.execute(sql)
     return curs.fetchall()
@@ -282,8 +280,6 @@ def get_cid(conn, dept, cnum):
 ################################################################################
 
 
-################################################################################
-################################################################################
 ################################################################################
 # CHECK HERE
 def alpha_depts(conn):
