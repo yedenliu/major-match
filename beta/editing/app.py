@@ -103,7 +103,6 @@ def departments():
     else:
         conn = dbi.connect()
         departments = get_departments(conn)
-        ################################################################################
         # CHECK
         alphas = alpha_depts(conn)
         return render_template('departments.html',
@@ -121,7 +120,7 @@ def department_page(dept_id):
         conn = dbi.connect()
         departments = get_departments(conn)
         name = get_dept_name(conn, dept_id) 
-        courses = get_dept_courses(conn, dept_id) # dept, cnum, courses.name, cid
+        courses = get_dept_courses(conn, dept_id) # dept, cnum, name, cid
         if request.method == 'POST':
             dept = request.form.get('dept')
             cnum = request.form.get('cnum')
@@ -263,7 +262,8 @@ def update(cid):
 @app.route('/login', methods=["GET", "POST"])
 def login():
     if request.method=="GET":
-        return render_template('login.html')
+        return render_template('login.html',
+        page_title='Login')
     else:
         user = request.form.get('user')
         pw = request.form.get('pw')

@@ -7,7 +7,7 @@
 {% block main_content %}
 <h2>Enter new courses into our database</h2>
 
-<form class="insert-form" method=POST action="/insert/">
+<form class="insert-form" method=POST action="{{ url_for('insert' )}}">
     <table class="table-form">
       <tr>
         <td><label for="dept">Department</label></td>

@@ -90,7 +90,7 @@ def get_dept_courses(conn, dept_id):
                 courses.units, courses.max_enroll,
                 courses.prereq, courses.instruct,
                 courses.dr, courses.sem_offered,
-                courses.year_offered, courses.major_freq
+                courses.year_offered
                 from courses 
                 inner join major_pairs using(cid)
                 inner join programs using (dept_id)

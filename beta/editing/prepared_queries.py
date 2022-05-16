@@ -85,7 +85,7 @@ instruct, dr, sem_offered, year_offered):
                 instruct = %s, 
                 dr = %s, 
                 sem_offered = %s, 
-                year_offered = %s, 
+                year_offered = %s 
                 where cid = %s
             '''
     curs.execute(sql, [ dept, 
@@ -98,7 +98,8 @@ instruct, dr, sem_offered, year_offered):
                         dr, 
                         sem_offered, 
                         year_offered, 
-                        cid])
+                        cid]
+                        )
     conn.commit()
 
 def delete_course(conn, cid):
