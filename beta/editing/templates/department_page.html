@@ -7,7 +7,7 @@
 {% block main_content %}
 
 <p style="margin:auto; text-align:center; padding-bottom:5px">Add courses that belong to this page</p>
-<form method=POST action="">
+<form method=POST action="{{ url_for('department_page', dept_id = dept_id) }}">
     <table class="table-form">
       <tr>
         <td><label for="dept">Dept.</label></td>

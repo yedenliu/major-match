@@ -10,7 +10,8 @@ app = Flask(__name__)
 import cs304dbi as dbi
 import random
 from prepared_queries import *
-
+import bcrypt
+# git hub
 ################################################################################
 app.secret_key = 'your secret here'
 # replace that with a random key
@@ -27,38 +28,46 @@ app.config['TRAP_BAD_REQUEST_ERRORS'] = True
 ################################################################################
 @app.route('/')
 def index():
-    return render_template('index.html',
-                            page_title='Mainpage')
+    if (not session) or (session.get('user') != 'admin'):
+        flash('Unauthorized. Log in to access page.')
+        return redirect( url_for('login') )
+    else:
+        return render_template('index.html',
+                                page_title='Mainpage')
 ################################################################################
 
 @app.route('/insert/', methods=['GET','POST'])
 def insert():
-    conn = dbi.connect()
-    if request.method == 'GET':
-        return render_template('insert.html',page_title='Insert New Course')
+    if (not session) or (session.get('user') != 'admin'):
+        flash('Unauthorized. Log in to access page.')
+        return redirect( url_for('login') )
     else:
-        dept = request.form.get('dept') # required
-        cnum = request.form.get('cnum') # required
-        name = request.form.get('name') # required
-        units = request.form.get('units')
-        max_enroll = request.form.get('max_enroll')
-        prereq = request.form.get('prereq')
-        instruct = request.form.get('instruct')
-        dr = request.form.get('dr')
-        sem_offered = request.form.get('sem_offered')
-        year_offered = request.form.get('year_offered')
-        
-        # all required fields must be filled out
-        if len(dept) == 0 or len(cnum) == 0 or len(name) == 0:
-            flash('Missing required field(s)')
+        conn = dbi.connect()
+        if request.method == 'GET':
             return render_template('insert.html',page_title='Insert New Course')
-        if not (course_exists(conn, cid)): # if movie doesn't exist
-            insert_course(conn, dept, cnum, name, units, max_enroll, prereq, 
-                          instruct, dr, sem_offered, year_offered)
-            cid = get_cid(conn, dept, cnum)
-            return redirect(url_for('update', cid=cid))
-        flash('Course already exists')
-        return render_template('insert.html',page_title='Insert New Course')
+        else:
+            dept = request.form.get('dept') # required
+            cnum = request.form.get('cnum') # required
+            name = request.form.get('name') # required
+            units = request.form.get('units')
+            max_enroll = request.form.get('max_enroll')
+            prereq = request.form.get('prereq')
+            instruct = request.form.get('instruct')
+            dr = request.form.get('dr')
+            sem_offered = request.form.get('sem_offered')
+            year_offered = request.form.get('year_offered')
+            
+            # all required fields must be filled out
+            if len(dept) == 0 or len(cnum) == 0 or len(name) == 0:
+                flash('Missing required field(s)')
+                return render_template('insert.html',page_title='Insert New Course')
+            if not (course_name_exists(conn, dept, cnum)): # if course doesn't exist
+                insert_course(conn, dept, cnum, name, units, max_enroll, prereq, 
+                            instruct, dr, sem_offered, year_offered)
+                cid = get_cid(conn, dept, cnum)
+                return redirect(url_for('update', cid=cid))
+            flash('Course already exists')
+            return render_template('insert.html',page_title='Insert New Course')
 
 ################################################################################
 
@@ -67,160 +76,109 @@ def select():
     '''
     on GET shows a menu of incomplete courses 
     on POST redirects to the /update/<cid> page for that course.
-    Incomplete means as either the director or the release date is null
+    Incomplete means missing required fields
+    Unmatched means they have yet to be assigned to a major
     '''
-    conn = dbi.connect()
-    if request.method == 'GET':
-        course_list = get_incomplete(conn)
-        return render_template('select.html',
-                                page_title='Select Incomplete Courses', 
-                                course_list = course_list)
-    else: 
-        cid = request.form['cid']
-        return redirect(url_for('update', cid=cid))
+    if (not session) or (session.get('user') != 'admin'):
+        flash('Unauthorized. Log in to access page.')
+        return redirect( url_for('login') )
+    else:
+        conn = dbi.connect()
+        if request.method == 'GET':
+            course_list = get_incomplete(conn)
+            unassigned = get_unassigned(conn)
+            return render_template('select.html',
+                                    page_title='Select Incomplete Courses', 
+                                    course_list = course_list,
+                                    unassigned = unassigned)
+        else: 
+            cid = request.form['cid']
+            return redirect(url_for('update', cid=cid))
 ################################################################################
 
 @app.route('/departments/')
 def departments():
-    conn = dbi.connect()
-    departments = get_departments(conn)
-    ################################################################################
-    # CHECK
-    alphas = alpha_depts(conn)
-    return render_template('departments.html',
-                            page_title='Departments',
-                            departments = departments,
-                            alphas=alphas)
+    if (not session) or (session.get('user') != 'admin'):
+        flash('Unauthorized. Log in to access page.')
+        return redirect( url_for('login') )
+    else:
+        conn = dbi.connect()
+        departments = get_departments(conn)
+        return render_template('departments.html',
+                                page_title='Departments',
+                                departments = departments)
 ################################################################################
 
 @app.route('/departments/<dept_id>', methods=['GET', 'POST'])
 def department_page(dept_id):
-    conn = dbi.connect()
-    name = get_dept_name(conn, dept_id) 
-    courses = get_dept_courses(conn, dept_id) # dept, cnum, courses.name, cid
-    if request.method == 'POST':
-        dept = request.form.get('dept')
-        cnum = request.form.get('cnum')
-        cid = get_cid(conn, dept, cnum)
-        add_pair(conn, dept_id, cid)
-        flash('Course successfully paired to this major!')
-        return redirect(url_for('department_page', dept_id = dept_id))
-    return render_template('department_page.html',
-                            page_title = name + ' Department Page',
-                            name = name,
-                            courses = courses)
+    if (not session) or (session.get('user') != 'admin'):
+        flash('Unauthorized. Log in to access page.')
+        return redirect( url_for('login') )
+    else:
+        conn = dbi.connect()
+        departments = get_departments(conn)
+        name = get_dept_name(conn, dept_id) 
+        courses = get_dept_courses(conn, dept_id) # dept, cnum, name, cid
+        if request.method == 'POST':
+            dept = request.form.get('dept')
+            cnum = request.form.get('cnum')
+            cid = get_cid(conn, dept, cnum)
+            add_pair(conn, dept_id, cid)
+            flash('Course successfully paired to this major!')
+            return redirect(url_for('department_page', dept_id = dept_id))
+        return render_template('department_page.html',
+                                page_title = name + ' Department Page',
+                                name = name,
+                                courses = courses,
+                                depts = departments)
 ################################################################################
 
 @app.route('/update/<cid>', methods=['GET','POST'])
 def update(cid):
-    conn = dbi.connect()
-    if course_exists(conn, cid)==False:
-        flash('This course does not exist')
-        return redirect(url_for('index'))
-    if request.method == 'GET':
-        info = get_course_info(conn, cid)
-        dept = info[1]
-        cnum = info[2]
-        name = info[3]
-        units = info[4]
-        max_enroll = info[5]
-        prereq = info[6]
-        instruct = info[7]
-        dr = info[8]
-        sem_offered = info[9]
-        year_offered = info[10]
-        major_freq = info[11]
-        majors = get_pairs(conn, cid)
-        return render_template('update.html',
-                                page_title='Update Course',
-                                dept = dept,
-                                cnum = cnum,
-                                name = name,
-                                units = units,
-                                max_enroll = max_enroll,
-                                prereq = prereq,
-                                instruct = instruct,
-                                dr = dr,
-                                sem_offered = sem_offered,
-                                year_offered = year_offered,
-                                major_freq = major_freq,
-                                cid = cid,
-                                majors = majors)
+    if (not session) or (session.get('user') != 'admin'):
+        flash('Unauthorized. Log in to access page.')
+        return redirect( url_for('login') )
     else:
-        if request.form['submit'] == 'update':
-            # must be able to update TT but must be a unique cid
-            old_cid = cid
-            dept = request.form.get('dept')
-            cnum = request.form.get('cnum')
-            new_cid = get_cid(conn, dept, cnum)
-            
-            # tt has been updated to a tt that already exists
-            if old_cid != new_cid and course_exists(conn, new_cid): # if course already exists
-                flash("The Department & Course Number pair you entered already exists")
-                info = get_course_info(conn, cid)
-                dept = info[1]
-                cnum = info[2]
-                name = info[3]
-                units = info[4]
-                max_enroll = info[5]
-                prereq = info[6]
-                instruct = info[7]
-                dr = info[8]
-                sem_offered = info[9]
-                year_offered = info[10]
-                major_freq = info[11]
+        conn = dbi.connect()
+        depts = get_departments(conn)
+        if course_exists(conn, cid)==False:
+            flash('This course does not exist')
+            return redirect(url_for('index'))
+        if request.method == 'GET':
+            info = get_course_info(conn, cid)
+            _,dept,cnum,name,units,max_enroll,prereq,instruct,dr,sem_offered,year_offered = info
+            majors = get_pairs(conn, cid)
+            return render_template('update.html',
+                                    page_title='Update Course',
+                                    dept = dept,
+                                    cnum = cnum,
+                                    name = name,
+                                    units = units,
+                                    max_enroll = max_enroll,
+                                    prereq = prereq,
+                                    instruct = instruct,
+                                    dr = dr,
+                                    sem_offered = sem_offered,
+                                    year_offered = year_offered,
+                                    cid = cid,
+                                    majors = majors,
+                                    depts = depts)
+        else:
+            if request.form['submit'] == 'update':
+                dept = request.form.get('dept')
+                cnum = request.form.get('cnum')
+                name = request.form.get('name')
+                units = request.form.get('units')
+                max_enroll = request.form.get('max_enroll')
+                prereq = request.form.get('prereq')
+                instruct = request.form.get('instruct')
+                dr = request.form.get('dr')
+                sem_offered = request.form.get('sem_offered')
+                year_offered = request.form.get('year_offered')
                 majors = get_pairs(conn, cid)
-                return render_template('update.html',
-                                        page_title='Update Course',
-                                        dept = dept,
-                                        cnum = cnum,
-                                        name = name,
-                                        units = units,
-                                        max_enroll = max_enroll,
-                                        prereq = prereq,
-                                        instruct = instruct,
-                                        dr = dr,
-                                        sem_offered = sem_offered,
-                                        year_offered = year_offered,
-                                        major_freq = major_freq,
-                                        cid = old_cid, # back to original cid
-                                        majors = majors)
-                
-            
-            # if cid updated to a new_cid that does not exist in the DB yet
-            elif old_cid != new_cid and course_exists(conn, new_cid) == False:
-                name = request.form.get('name')
-                units = request.form.get('units')
-                max_enroll = request.form.get('max_enroll')
-                prereq = request.form.get('prereq')
-                instruct = request.form.get('instruct')
-                dr = request.form.get('dr')
-                sem_offered = request.form.get('sem_offered')
-                year_offered = request.form.get('year_offered')
-                major_freq = request.form.get('major_freq')
-                majors = get_pairs(conn, new_cid)
         
-                update_course(conn, new_cid, dept, cnum, name, units, max_enroll, 
-                prereq, instruct, dr, sem_offered, year_offered, major_freq)
-
-                flash('Successfully updated!')
-                return redirect(url_for('update', cid = new_cid))
-            
-            # cid did not change (but other fields may have)
-            else: 
-                name = request.form.get('name')
-                units = request.form.get('units')
-                max_enroll = request.form.get('max_enroll')
-                prereq = request.form.get('prereq')
-                instruct = request.form.get('instruct')
-                dr = request.form.get('dr')
-                sem_offered = request.form.get('sem_offered')
-                year_offered = request.form.get('year_offered')
-                major_freq = request.form.get('major_freq')
-                majors = get_pairs(conn, new_cid)
-        
-                update_course(conn, new_cid, dept, cnum, name, units, max_enroll, 
-                prereq, instruct, dr, sem_offered, year_offered, major_freq)
+                update_course(conn, cid, dept, cnum, name, units, max_enroll, 
+                prereq, instruct, dr, sem_offered, year_offered)
 
                 flash('Successfully updated!')
                 return render_template('update.html',
@@ -235,63 +193,97 @@ def update(cid):
                                     dr = dr,
                                     sem_offered = sem_offered,
                                     year_offered = year_offered,
-                                    major_freq = major_freq,
-                                    cid = new_cid,
-                                    majors = majors)
-        elif request.form['submit'] == 'delete':
-            delete_course(conn, cid)
-            flash("Course successfully deleted!")
-            return redirect(url_for('index'))
-        elif 'delete-pair' in request.form['submit']:
-            value = request.form['submit']
-            print(value)
-            # get dept id
-            dept_id = value.strip('delete-pair-')
-            print(dept_id)
-            # delete pair
-            remove_pair(conn, dept_id, cid)
-            flash("Course pairing deleted")
-            return redirect(url_for('update', cid=cid))
-        
-        elif request.form['submit'] == 'add':
-            # takes department name 
-            new_dept = request.form.get('new_dept')
-            # finds dept ID
-            new_dept_id = get_dept_id(conn, new_dept)
-            add_pair(conn, new_dept_id, cid)
-            flash("Matched to department successfully!")
-            info = get_course_info(conn, cid)
-            dept = info[1]
-            cnum = info[2]
-            name = info[3]
-            units = info[4]
-            max_enroll = info[5]
-            prereq = info[6]
-            instruct = info[7]
-            dr = info[8]
-            sem_offered = info[9]
-            year_offered = info[10]
-            major_freq = info[11]
-            majors = get_pairs(conn, cid)
-            return render_template('update.html',
-                                page_title='Update Course',
-                                dept = dept,
-                                cnum = cnum,
-                                name = name,
-                                units = units,
-                                max_enroll = max_enroll,
-                                prereq = prereq,
-                                instruct = instruct,
-                                dr = dr,
-                                sem_offered = sem_offered,
-                                year_offered = year_offered,
-                                major_freq = major_freq,
-                                cid = cid,
-                                majors = majors)
-        else:
-            flash("Error")
+                                    cid = cid,
+                                    majors = majors,
+                                    depts = depts)
+            elif request.form['submit'] == 'delete':
+                delete_course(conn, cid)
+                flash("Course successfully deleted!")
+                return redirect(url_for('index'))
+            elif 'delete-pair' in request.form['submit']:
+                value = request.form['submit']
+                # get dept id
+                dept_id = value.strip('delete-pair-')
+                # delete pair
+                remove_pair(conn, dept_id, cid)
+                flash("Course pairing deleted")
+                return redirect(url_for('update', cid=cid))
+            
+            elif request.form['submit'] == 'add':
+                # takes department name 
+                new_dept = request.form.get('new_dept')
+                # finds dept ID
+                new_dept_id = get_dept_id(conn, new_dept)
+                add_pair(conn, new_dept_id, cid)
+                flash("Matched to department successfully!")
+                info = get_course_info(conn, cid)
+                dept = info[1]
+                cnum = info[2]
+                name = info[3]
+                units = info[4]
+                max_enroll = info[5]
+                prereq = info[6]
+                instruct = info[7]
+                dr = info[8]
+                sem_offered = info[9]
+                year_offered = info[10]
+                majors = get_pairs(conn, cid)
+                return render_template('update.html',
+                                    page_title='Update Course',
+                                    dept = dept,
+                                    cnum = cnum,
+                                    name = name,
+                                    units = units,
+                                    max_enroll = max_enroll,
+                                    prereq = prereq,
+                                    instruct = instruct,
+                                    dr = dr,
+                                    sem_offered = sem_offered,
+                                    year_offered = year_offered,
+                                    cid = cid,
+                                    majors = majors,
+                                    depts = depts)
+            else:
+                flash("Error")
 
 ################################################################################
+
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    if request.method=="GET":
+        return render_template('login.html',
+        page_title='Login')
+    else:
+        user = request.form.get('user')
+        pw = request.form.get('pw')
+        conn = dbi.connect()
+        curs = dbi.dict_cursor(conn)
+        curs.execute("select hashedpw from account where user=%s", [user])
+        stored = curs.fetchone().get('hashedpw')
+        hashed = bcrypt.hashpw(pw.encode('utf-8'), stored.encode('utf-8'))
+        hashedStr = hashed.decode('utf-8')
+        if hashedStr != stored:
+            flash("Login attempt failed.")
+            return redirect( url_for('login') )
+        else:
+            session['Logged in'] = True
+            session['user'] = user
+            return redirect( url_for('index') )
+
+################################################################################ 
+
+@app.route('/logout/')
+def logout():
+    if 'user' in session:
+        session.pop('user')
+        flash('You are logged out.')
+        return redirect( url_for('login') )
+    else:
+        flash('You are not logged in. Please log in.')
+        return redirect( url_for('login') )
+
+ ################################################################################ 
+           
 @app.before_first_request
 def init_db():
     dbi.cache_cnf()
@@ -309,7 +301,8 @@ if __name__ == '__main__':
     else:
         port = os.getuid()
     app.debug = True
-    app.run('0.0.0.0',port)################################################################################
+    app.run('0.0.0.0',port)
+################################################################################
 #   Import Modules
 ################################################################################
 import cs304dbi as dbi
@@ -335,6 +328,19 @@ def insert_course(conn, dept, cnum, name, units, max_enroll,
                         prereq, instruct, dr, sem_offered, year_offered])
     conn.commit()
 
+def course_name_exists(conn, dept, cnum):
+    '''
+    Checks if course already exists in database
+
+    Param - connection ojbect, department abbreviation + course number
+    Return - true if course already exists
+    '''
+    curs = dbi.cursor(conn)
+    sql = ''' select * from courses where dept = %s and cnum = %s '''
+    curs.execute(sql, [dept, cnum])
+    movie = curs.fetchall()
+    return len(movie) > 0
+
 def course_exists(conn, cid):
     '''
     Checks if course already exists in database
@@ -343,7 +349,7 @@ def course_exists(conn, cid):
     Return - true if course already exists
     '''
     curs = dbi.cursor(conn)
-    sql = ''' select * from courses where cid = %s '''
+    sql = ''' select * from courses where cid = %s'''
     curs.execute(sql, [cid])
     movie = curs.fetchall()
     return len(movie) > 0
@@ -363,7 +369,7 @@ def get_course_info(conn, cid):
     return curs.fetchone()
 
 def update_course(conn, cid, dept, cnum, name, units, max_enroll, prereq, 
-instruct, dr, sem_offered, year_offered, major_freq):
+instruct, dr, sem_offered, year_offered):
     '''
     Checks if course already exists in database
 
@@ -383,8 +389,7 @@ instruct, dr, sem_offered, year_offered, major_freq):
                 instruct = %s, 
                 dr = %s, 
                 sem_offered = %s, 
-                year_offered = %s, 
-                major_freq = %s
+                year_offered = %s 
                 where cid = %s
             '''
     curs.execute(sql, [ dept, 
@@ -397,8 +402,8 @@ instruct, dr, sem_offered, year_offered, major_freq):
                         dr, 
                         sem_offered, 
                         year_offered, 
-                        major_freq,
-                        cid])
+                        cid]
+                        )
     conn.commit()
 
 def delete_course(conn, cid):
@@ -420,11 +425,29 @@ def get_incomplete(conn):
     # prepared query
     curs = dbi.cursor(conn)
     sql = '''   select dept, cnum, cid from courses 
-                where dept is NULL 
-                or `name` is NULL
+                where dept="" or dept is NULL
+                or `name`="" or `name` is NULL
           '''
     curs.execute(sql)
     return curs.fetchall()
+
+def get_unassigned(conn):
+    '''
+    Finds incomplete courses, where they have NULL fields (in required fields)
+
+    Param - connection object
+    Return - List of courses with incomplete information
+    ''' 
+    # prepared query
+    curs = dbi.cursor(conn)
+    sql = '''   select dept, cnum, courses.cid from courses 
+                where not exists 
+                (select major_pairs.cid from major_pairs 
+                where courses.cid = major_pairs.cid)
+          '''
+    curs.execute(sql)
+    return curs.fetchall()
+
 
 ################################################################################
 #   Helpers for programs table 
@@ -432,7 +455,7 @@ def get_incomplete(conn):
 
 def get_departments(conn):
     '''
-    Finds the courses that count towards majors in a department 
+    Gets departments + their information 
     
     Param - connection object
     Return - list of departments 
@@ -442,24 +465,10 @@ def get_departments(conn):
     curs.execute(sql)
     return curs.fetchall()
 
-def get_dept_name(conn, dept_id):
-    '''
-    Finds a department's name from their department ID
-    
-    Param - connection object, department ID
-    Return - department name 
-    '''
-    curs = dbi.cursor(conn)
-    sql = '''   select name from programs
-                where dept_id = %s
-            '''
-    curs.execute(sql, [dept_id])
-    row = curs.fetchone()
-    return row[0]
 
 def get_dept_id(conn, name):
     '''
-    Finds a department's name from their department ID
+    More specific getter: Finds a department's ID from their department name
     
     Param - connection object, department ID
     Return - department name 
@@ -469,6 +478,20 @@ def get_dept_id(conn, name):
                 where name = %s
             '''
     curs.execute(sql, [name])
+    return curs.fetchone()
+    
+def get_dept_name(conn, dept_id):
+    '''
+    More specific getter: Finds a department's name from their department ID
+    
+    Param - connection object, department ID
+    Return - department name 
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   select name from programs
+                where dept_id = %s
+            '''
+    curs.execute(sql, [dept_id])
     row = curs.fetchone()
     return row[0]
 
@@ -533,10 +556,7 @@ def get_pairs(conn, cid):
                 where major_pairs.cid = %s
             '''
     curs.execute(sql, [cid])
-    majors = []
-    for major in curs.fetchall():
-        majors.append(major)
-    return majors
+    return curs.fetchall()
 
 
 def get_cid(conn, dept, cnum):
@@ -553,27 +573,6 @@ def get_cid(conn, dept, cnum):
     curs.execute(sql, [dept, cnum])
     row = curs.fetchone()
     return row[0]
-
-
-
-
-################################################################################
-#   Helpers for departments html 
-################################################################################
-
-
-################################################################################
-################################################################################
-################################################################################
-# CHECK HERE
-def alpha_depts(conn):
-    '''Alphabetizes the departments and provides hyperlinks
-     as a table of contents to the departments page'''
-    depts = get_departments(conn)
-    letters = list(set([dept[1][0] for dept in depts]))
-    letters.sort()
-    return letters
-
 
 <!doctype html>
 <html lang='en'>
@@ -639,15 +638,14 @@ def alpha_depts(conn):
 {% block main_content %}
 
 <p style="margin:auto; text-align:center; padding-bottom:5px">Add courses that belong to this page</p>
-<form method=POST action="">
+<form method=POST action="{{ url_for('department_page', dept_id = dept_id) }}">
     <table class="table-form">
       <tr>
         <td><label for="dept">Dept.</label></td>
         <td>
         <!-- make this a drop down -->
-        <input list="abbrev"  name='dept' value="{{ dept }}" placeholder="Start typing...">
+        <input list="abbrev"  name='dept' id="dept" value="{{ dept }}" placeholder="Start typing...">
         <datalist id="abbrev">
-          <!-- hard coded for to reduce bugs, will make this a loop -->
           <option>AFR</option>
           <option>SWA</option>
           <option>AMST</option>
@@ -711,11 +709,12 @@ def alpha_depts(conn):
       </tr>
       <tr>
         <td><label for="cnum">Course #</label></td>
-        <td><input type="text" name='cnum' value="{{ cnum }}"></td> 
+        <td><input type="text" name='cnum' id="cnum" value="{{ cnum }}"></td> 
       </tr>
     </table>
     <input type="submit" name="submit" value="submit">
 </form>
+
 <p>Courses that count for this major</p>
 <table>
     {% for course in courses %}
@@ -733,7 +732,7 @@ def alpha_depts(conn):
 
 {% block main_content %}
 
-<h2>Click on a department to see it's courses and insert a new course</h2>
+<h2>Click on a department to see its courses and insert a new course</h2>
 
 <table class="depts-table">
     {% for dept in departments %}
@@ -744,33 +743,9 @@ def alpha_depts(conn):
 
 {% endblock %}{% extends "base.html" %}
 
-
-
-{% if username %}
-
-    <form method="GET" action="{{url_for('cas.logout')}}">
-          <button>logout {{username}}</button>
-    </form>
-
-   <p>CAS username: {{username}}</p>
-   <p>CAS attributes:</p>
-   
-   <ul>
-       {% for key,val in cas_attributes.items() %}
-       <li>{{key}} &rArr; {{val}}</li>
-       {% endfor %}
-   </ul>
-
-{% else %}
-
-   <form method="GET" action="{{url_for('cas.login')}}">
-     <button>login</button>
-   </form>
-
-{% endif %} 
-
 {% block main_content %}
-<h2>Click through the navigation bar or the list below to interact with our courses database</h2>
+
+<h2>Click through the top navigation bar to interact with our courses database</h2>
 
 <img src="{{url_for('static', filename = 'cap.png')}}" alt="graduation cap logo" >
 {% endblock %}
@@ -783,51 +758,47 @@ def alpha_depts(conn):
 {% block main_content %}
 <h2>Enter new courses into our database</h2>
 
-<form class="insert-form" method=POST action="/insert/">
+<form class="insert-form" method=POST action="{{ url_for('insert' )}}">
     <table class="table-form">
       <tr>
         <td><label for="dept">Department</label></td>
-        <td><input type="text" name='dept' value="{{ dept }}" required></td> 
+        <td><input type="text" name='dept' id="dept" value="{{ dept }}" required></td> 
       </tr>
       <tr>
         <td><label for="cnum">Course Number</label></td>
-        <td><input type="text" name='cnum' value="{{ cnum }}" required></td>
+        <td><input type="text" name='cnum' id="cnum" value="{{ cnum }}" required></td>
       </tr>
       <tr>
         <td><label for="name">Course Name</label></td>
-        <td><input type="text" name='name' value="{{ name }}" required></td>
+        <td><input type="text" name='name' id="name" value="{{ name }}" required></td>
       </tr>
       <tr>
         <td><label for="units">Units</label></td>
-        <td><input type="text" name='units' value="{{ units }}"></td> 
+        <td><input type="text" name='units' id="units" value="{{ units }}"></td> 
       </tr>
       <tr>
         <td><label for="max_enroll">Max. Enrollment</label></td>
-        <td><input type="text" name='max_enroll' value="{{ max_enroll }}"></td> 
+        <td><input type="text" name='max_enroll' id="max_enroll" value="{{ max_enroll }}"></td> 
       </tr>
       <tr>
         <td><label for="prereq">Prequisites</label></td>
-        <td><input type="text" name='prereq' value="{{ prereq }}"></td> 
+        <td><input type="text" name='prereq' id="prereq" value="{{ prereq }}"></td> 
       </tr>
       <tr>
         <td><label for="instruct">Instructor</label></td>
-        <td><input type="text" name='instruct' value="{{ instruct }}"></td> 
+        <td><input type="text" name='instruct' id="instruct" value="{{ instruct }}"></td> 
       </tr>
       <tr>
         <td><label for="dr">Distribution Requirement</label></td>
-        <td><input type="text" name='dr' value="{{ dr }}"></td> 
+        <td><input type="text" name='dr' id="dr" value="{{ dr }}"></td> 
       </tr>
       <tr>
         <td><label for="sem_offered">Semesters Offered</label></td>
-        <td><input type="text" name='max_enroll' value="{{ max_enroll }}"></td> 
+        <td><input type="text" name='sem_offered' id="sem_offered" value="{{ sem_offered }}"></td> 
       </tr>
       <tr>
         <td><label for="year_offered">Offered This Year?</label></td>
-        <td><input type="text" name='year_offered' value="{{ year_offered }}"></td> 
-      </tr>
-      <tr>
-        <td><label for="major_freq">Major Freq</label></td>
-        <td><input type="text" name='major_freq' value="{{ major_freq }}"></td> 
+        <td><input type="text" name='year_offered' id="year_offered" value="{{ year_offered }}"></td> 
       </tr>
     </table>
     <input type="submit" name="submit" value="submit">
@@ -836,6 +807,32 @@ def alpha_depts(conn):
 {% endblock %}
 {% extends "base.html" %}
 
+{% block nav %}
+{% endblock %}
+
+{% block header %}
+<!-- insert title of page -->
+<h1>Login</h1>
+{% endblock %}
+
+{% block main_content %}
+<form id="login" method="post" action="{{url_for('login')}}">
+    <p>
+        <label>
+            <input type="text" name="user" placeholder="Username">
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="text" name="pw" placeholder="Password">
+        </label>
+    </p>
+    <p>
+        <input type="submit" value="submit">
+    </p>
+</form>
+{% endblock %}{% extends "base.html" %}
+
 {% block header %}
 <h1>Select Incomplete Courses</h1>
 {% endblock %}
@@ -843,17 +840,32 @@ def alpha_depts(conn):
 {% block main_content %}
 <h2 style="padding-bottom:10px">Select a course to update any of its empty fields and help us update our database!</h2>
 
-<form method=POST action="/select/">
-    <label for="cid">Courses with missing fields:</label>
+<form method=POST action="{{ url_for('select') }}">
+    <label>Courses with missing required fields:
+      <select id="cid" name="cid">
+        <option value="none" selected disabled>Choose One</option>
+        <!--Fills out the drop down menu with incomplete movies-->
+        {% for course in course_list %}
+          <option value="{{course[2]}}">{{course[0]}} {{course[1]}}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <input type="submit" name="submit-btn" value="Update Course">
+</form>
+
+<h2 style="padding-top:10px">These are courses that don't point to any major</h2>
+<form method=POST action="{{ url_for('select') }}">
+  <label>Courses without a major:
     <select id="cid" name="cid">
       <option value="none" selected disabled>Choose One</option>
       <!--Fills out the drop down menu with incomplete movies-->
-      {% for course in course_list %}
+      {% for course in unassigned %}
         <option value="{{course[2]}}">{{course[0]}} {{course[1]}}</option>
       {% endfor %}
     </select>
     <input type="submit" name="submit-btn" value="Update Course">
 </form>
+
 
 {% endblock %}{% extends "base.html" %}
 
@@ -862,26 +874,26 @@ def alpha_depts(conn):
 {% endblock %}
 
 {% block main_content %}
-    <form class="update-form" method=POST action="/update/{{cid}}">
+    <form class="update-form" method=POST action="{{ url_for('update', cid=cid) }}">
       <table class="table-form">
         <tr>
           <td><label for="dept">Department</label></td>
-          <td><input type="text" name='dept' value="{{ dept }}"></td> 
+          <td><input type="text" name='dept' id="dept" value="{{ dept }}"></td> 
         </tr>
         <tr>
           <td><label for="cnum">Course Number</label></td>
-          <td><input type="text" name='cnum' value="{{ cnum }}"></td>
+          <td><input type="text" name='cnum' id="cnum" value="{{ cnum }}"></td>
         </tr>
         <tr>
           <td><label for="name">Course Name</label></td>
-          <td><input type="text" name='name' value="{{ name }}"></td>
+          <td><input type="text" name='name' id="name" value="{{ name }}"></td>
         </tr>
 
         <tr>
           <td><label>Counted Majors</label></td>
           <td><ul>
             {% for major in majors %}
-              <li style="text-align:left"><a href="{{url_for('department_page', dept_id=major[1])}}">{{ major[0] }}</a>
+              <li style="text-align:left"><a href="{{ url_for('department_page', dept_id=major[1]) }}">{{ major[0] }}</a>
               <!-- button for delete -->
               <button type="submit" name="submit" value="delete-pair-{{major[1]}}">remove</button>
               </li>
@@ -893,35 +905,31 @@ def alpha_depts(conn):
       <table class="table-form">
         <tr>
           <td><label for="units">Units</label></td>
-          <td><input type="text" name='units' value="{{ units }}"></td> 
+          <td><input type="text" name='units' id="units" value="{{ units }}"></td> 
         </tr>
         <tr>
           <td><label for="max_enroll">Max. Enrollment</label></td>
-          <td><input type="text" name='max_enroll' value="{{ max_enroll }}"></td> 
+          <td><input type="text" name='max_enroll' id="max_enroll" value="{{ max_enroll }}"></td> 
         </tr>
         <tr>
           <td><label for="prereq">Prequisites</label></td>
-          <td><input type="text" name='prereq' value="{{ prereq }}"></td> 
+          <td><input type="text" name='prereq' id="prereq" value="{{ prereq }}"></td> 
         </tr>
         <tr>
           <td><label for="instruct">Instructor</label></td>
-          <td><input type="text" name='instruct' value="{{ instruct }}"></td> 
+          <td><input type="text" name='instruct' id="instruct" value="{{ instruct }}"></td> 
         </tr>
         <tr>
           <td><label for="dr">Distribution Requirement</label></td>
-          <td><input type="text" name='dr' value="{{ dr }}"></td> 
+          <td><input type="text" name='dr' id="dr" value="{{ dr }}"></td> 
         </tr>
         <tr>
           <td><label for="sem_offered">Semesters Offered</label></td>
-          <td><input type="text" name='max_enroll' value="{{ max_enroll }}"></td> 
+          <td><input type="text" name='sem_offered' id="sem_offered" value="{{ sem_offered }}"></td> 
         </tr>
         <tr>
           <td><label for="year_offered">Offered This Year?</label></td>
-          <td><input type="text" name='year_offered' value="{{ year_offered }}"></td> 
-        </tr>
-        <tr>
-          <td><label for="major_freq">Major Freq</label></td>
-          <td><input type="text" name='major_freq' value="{{ major_freq }}"></td> 
+          <td><input type="text" name='year_offered' id="year_offered" value="{{ year_offered }}"></td> 
         </tr>
       </table>
       <input type="submit" name="submit" value="update">
@@ -930,149 +938,23 @@ def alpha_depts(conn):
     
     <p></p>
     
-    <form method=POST action="">
+    <form method=POST action="{{ url_for('update', cid=cid) }}">
       <table class="table-form">
         <tr>
           <td><label for="new_dept">Department Name</label></td>
           <td>
           <!-- make this a drop down -->
-          <input list="abbrev"  name='new_dept' value="{{ new_dept }}" placeholder="Start typing...">
+          <input list="abbrev"  name='new_dept' id="new_dept" value="{{ new_dept }}" placeholder="Start typing...">
           <datalist id="abbrev">
-            <option>Africana Studies</option>
-            <option>American Studies</option>
-            <option>Anthropology</option>
-            <option>Architecture</option>
-            <option>Art History</option>
-            <option>Asian American Studies</option>
-            <option>Astronomy</option>
-            <option>Astrophysics</option>
-            <option>Biochemistry</option>
-            <option>Biological Sciences</option>
-            <option>Chemical Physics</option>
-            <option>Chemistry</option>
-            <option>Chinese Language and Culture</option>
-            <option>Cinema and Media Studies</option>
-            <option>Classical Civilization</option>
-            <option>Classics</option>
-            <option>Cognitive and Linguistic Sciences</option>
-            <option>Comparative Literary Studies</option>
-            <option>Comparative Race and Ethnicity</option>
-            <option>Computer Science</option>
-            <option>Data Science</option>
-            <option>East Asian Languages and Cultures</option>
-            <option>East Asian Studies</option>
-            <option>Economics</option>
-            <option>Education Studies</option>
-            <option>English and Creative Writing</option>
-            <option>Environmental Studies</option>
-            <option>French & Francophone Studies</option>
-            <option>French Cultural Studies</option>
-            <option>Geosciences</option>
-            <option>German Studies</option>
-            <option>Global Portuguese Studies</option>
-            <option>Health and Society</option>
-            <option>International Relations - Economics</option>
-            <option>International Relations - History</option>
-            <option>International Relations - Political Science</option>
-            <option>Italian Studies</option>
-            <option>Japanese Language and Culture</option>
-            <option>Jewish Studies</option>
-            <option>Korean Language and Culture</option>
-            <option>Latin American Studies</option>
-            <option>Latina/o Studies</option>
-            <option>Mathematics</option>
-            <option>Media Arts and Sciences</option>
-            <option>Medieval/Renaissance Studies</option>
-            <option>Middle Eastern Studies</option>
-            <option>Neuroscience</option>
-            <option>Peace and Justice Studies</option>
-            <option>Philosophy</option>
-            <option>Physics</option>
-            <option>Political Science</option>
-            <option>Psychology</option>
-            <option>Religion</option>
-            <option>Russian</option>
-            <option>Russian Area Studies</option>
-            <option>Sociology</option>
-            <option>South Asia Studies</option>
-            <option>Spanish</option>
-            <option>Statistics</option>
-            <option>Studio Art</option>
-            <option>Teaching and Learning Studies</option>
-            <option>Theatre Studies</option>
-            <option>Women's and Gender Studies</option>
+            {% for dept in depts %}
+            <option value="{{dept[1]}}">{{dept[1]}}</option>
+            {% endfor %}
           </datalist>
         </td> 
       </table>
       <input type="submit" name="submit" value="add">
   </form>
-{% endblock %}‰PNG
-
-   IHDR     â   ¨b¹!  1iCCPICC Profile  xœ•YTK³îÙÙLŞ%çœArÎ9ç"°¤%IEQ‚"¨€ ¨ˆDTA(JPPD‚ŠzA%È‚Şûÿ÷œ÷ÎëszæÛêêêªêîê®Y ¸”|##ÃPŒ „GÄF;˜ğ»¹{ğã&¸ -Ğr¾”˜H};;+€”ßïÿ,‹ƒ7RÉ¬ËúwûÿZ˜üb( @vöó¡„#ø hJdt, ˜„.”‰`,¢%`FD°ğ:ÚÄjëØo[mğ89"Ø <­¯ot ôëzñÇS‚9ô¹H)ÂŸ°A°%Ø× ÎQ„G:<|'‚¹h,î÷9Aÿ!ÓïL_ß ?xÓ–‚7¢ÆD†ùîúºãÿ.áaq¿ÇB*mp´™ÃºÍë~İi¹İ¡‡~6¶&!ø9ÕƒOÇ™9oñÿ Ä">¬  hı},Ì`Áˆ0«-ºN ÕÄÁˆïQNÔXs§Í¾(ÿè[òQ‰1Æ¿±oôÆXë<Ùq¡Îú[2Ë‚ÌË¼™ìäº©'ª7êbƒ`zÇ„:Znñ|L
-6´ùÍç°®32ç0Œ6qØä…Ãc~ÛkSÍm¶°Ul°“Ùf_Ø›â»¡;‚CbÜ¬~ëé`d¼iœá¼¥?\kà°Å_f·Å·„™®Óü4&Şñwß¹Xd±mÚ‹‘±vN›º¡™C|-ì6u@K+`Œ ?ˆCªØ	B õéLÓòk³Åø‚h€Ìåw×–äé’Àg€˜?ı6Z@<B_ıCİ|Ê€ÀÖø¡`ÁáÀ„!¿ã6zEüÍ¼G(ÔNAtCêzÛ¿hü¿iXc¬Ök‚•@s¢uĞšh+ä©‡T´Zı·^óc&1}˜w˜Ì(æÕjzôiÎ¬Á(¢£É–u~ÿ´-ŠHUF µùˆl4+šÈ •‘ôÑºÈØÊõŸºÆı±øo_nÉ"ÈP6‚Aü¿5 —¤Wş#eİSÿôÅ¦^~¼eø§å¿í0ü‡ÿü‘·åsÂáøÜwÁ-pà‡Ûàf¸¾½ÿ¬÷kã÷hú„"r¨ÿÏwkÌu¯ÅÈÕÉ}[Ùj±‰±ë›Åpgä®hjPp,¿>­øÍ#(²Òü
-r
-
- ¬ÇşÍĞòÍa#¦C¬=Ó(ûP€°ô7-ü —‰Hè³ş›&âl, Õ“”¸èøMzıDÀ€ìÀ‹Ä.qÄ" ‚œ1zÀX [àÜ7âç`dFƒÒ@&ÈGÀqPNƒs \WAhíà>xzÁ x¬•	ğ	ÌE°A¢ƒÈÄ‰@R¤é@Æä ¹C>PÅA)Ğ>(*€J ³PtºµC]Pô
-ƒ>@_¡%Œ¢E1£xP¢¨m(5”>Êå„Ú
-BE¡’P¨Ã¨bT9êªÕzŒ@¢>¡` ÓÀ¬° ,«Á†°-ìÂÑğ8.„ËáKğMd¦ŸÁ£ğüE“Ñühd½š¡Ñtz:]‚®F7¢;ÑÏĞcè9ô/†#…ÑÀ˜cÜ0A˜L&¦S‰¹¹‡ì	Ì"‹eÅŠaU‘½çÁ&cs±§°õØ;Ø>ì8v‡Ãqà¤pÚ8[œ/.—‰;»€kÃõã&p?ğ4x>¼ŞïÀ§ãñµøV|?~
-¿L`$ˆ4¶Â.B¡‚p“ĞC˜ ,™ˆbDm¢1„˜F,&^"Ş#¿ÑĞĞÒ¨ÓØÓPiöÒÓ\¦yH3Fó“–D+IkHëEG{˜¶Šöí+Úottt¢tztt±t‡éjèîÒĞı 'ÓËÒ›ÓûÓ§Ò—Ò7Ò÷Óa 0ˆ0è3x3$1240ô0Ì0E}÷0–2Ş`|Á¸ÀDf’g²e
-gÊeªeêbš&áH¢$c’?)ƒtt—4N†ÉBdC2…¼\A¾G`Æ2‹1›3‡0ç0_d~Ê<ÇBbQbqaId)e¹Í2Ê
-³Š²š³†±æ±^ed]bãaÓg`Ëb»ÄÖÏö‹]=€=›½}€}‰ƒŸÃ˜#”#Ÿ£‰ã'šS’Ó3³Œóç3—&…+›ë*×7Š[’Û;™ûw7÷/)O$Ï	»<3¼¬¼z¼!¼Çx[y?ğ‘ùtø¨|ÇøÚø>ò³ğëó‡ñówòÏ	p˜	Ä	œx*°,(&è,˜.X/øFˆ(¤&(tL¨ChN˜OØZ8E¸NxH„ ¢&,R$ò@ä»¨˜¨«èÑ&Ñi1v1s±$±:±aq:q]ñ(ñrñçX	5‰P‰S½’(IeÉ`ÉRÉ)””ŠUê”TŸ4FZ]:Bº\ú…­Œ¾L¼LÌ˜,«¬•lºl“ì—mÂÛ<¶åo{°í—œ²\˜\…Üky’¼…|ºüMù¯
-’
-…R…çŠtŠ&Š©ŠÍŠóJRJJeJ/•ÉÊÖÊ”;”WUTU¢U.©|PVõQ=©úBYÍN-Wí¡:Fİ@=U½Eı§†ŠF¬ÆUYMÍPÍZÍi-1­ ­
-­qmAm_í³Ú£:ü:>:gtFut}uËußé	éùëUêMéKè‡è_Ğÿb gmpİà»¡†ánÃ;F°‘©Q¶ÑSc’±³q‰ñˆ‰ IIÉœ©²i²é3Œ™¥Y¾ÙssŠyùœ…ªÅn‹NKZKGËËwV’VÑV7­QÖÖG­‡mDl"lšl­¹íQÛ7vbvQv·ì±övö¥ö“ò)É;kœòœ^;‹;Ç9w¸0¸x¹Ô¸|w5r-puÛæ¶Ûí±;§;Õ½ÙçáâQé±àiìyÜsÂKÙ+Ókp»ØöÄí]ŞœŞaŞ·w0ìğİÑàƒñqõ©õYñµõ-÷]ğ3÷;é7G1¤Q>ùëùóÿ P0¨X8¤t4èC°npağÕZB19ò=Ô6´*t-Ì5¬>î~#‚Ñ¹“wgâÎ¾H©ÈÌÈÑ(¨ãQsÑ–Ñ•1PÌö˜æXfä’İ'·?n,^'¾4şG‚KBC"SbDb÷.É]Y»¦’L’Î'£“)É))i)c»õwŸİíñÛÓ‘*”š‘:±×tou1-4íIº\zAú_û\÷İÌàÉØ›1¾ßt]&}ftæ‹šND¤|š¥˜u"ëW¶ö£¹œÂœ•\Jî£Cò‡Š­<ü4O%¯ìöHÄ‘Á|İüê¦‚¤‚ñ£ÖGñË>ö×ñÇ»
-•
-O‹âŠF‹­Š›OŸ8rb¥$¸d Ô ´ş$÷É¬“ßOùŸê/Ó+»tšçtÎé¥3Ô3/Ïšm,-/<‡=n²Â¥âÁyµó5•œ•9•«UU£ÕÕ5ª55µÜµyu¨º¸º¼.ô^4ºØ|IæÒÙzÖúœËàrÜåW|®^µ¼ÚÑ ÖpéšÈµ“×É×³¡Æ]sMÁM£ÍîÍ}7,ntÜÔ¼yı–ì­ª–ÒÛ,·óZ‰­­kmImw"ïÌ´µwìèx}×íîóNûÎ§÷,ï=¼orÿîımµ¶titİx¤ö¨é±ÊãÆnåîëO”Ÿ\ªò´±Gµ§¹W½÷fŸV_k¿nû3£g÷Ÿ›?<`3Ğ7è<øò…×‹Ñ—ş/§_…½šŠZ~½w3œı†ñMá÷Hù[‰·õ£*£·ÇŒÆºß9¾{=Nÿô>æıÊDÆ$İdáßTÍ´ÂtË“½=?N|Šü´<“ù™éóÉ/â_®ÍêÍvÏ¹ÍMÌGÏ¯}ÍıÆñ­ê/¥¿:ìFÃ—¿gÿàøQıSíçƒ%×¥©å„ÜJñªÄêÍ_–¿†×Â×Ö"}£}7®0RQ |­€Î r/ DÏÍÜl«ÀÈå…¼] Yè*9Q{Ğ™,Œ}Œ+ÆG¬ˆ48šÚ~º&ú*†JÆz¦fRù1s/ËKÖ·lÓìŸ8æ9—¸VyP¼8>"? I$Ä*Ì.Â&Ê.Æ-Î#Á/É/%(-,#*+¶MZNN^QAEQCIWÙXÅ\Õ\ÍDİDÃDÓPK_[KGCWIOV_Ô€ÇÙˆh´füÍdÒô•Y·y‹EµåQ«Të7[c;e{1.GF'¼3ì¹¢ÜĞîFO/áí2Ş;„}ø|9ıX(dR 95ˆ+X*¢jæNHÙYYu&º8&?67.+>;ápbñ®ê¤Öä×»ÁéÔ{O¤½Ş'˜±sûìA¡,…lƒÇÜÀCI‡óóªÜÉ*X8Æt\¦Ğ¢(°xß‰²’¥ı'ßŸZ8;ÃqV²\ëœm…ßùØÊıU…ÕÕ57jÕ]øxñg=ş2Ûñ«ºî×¢®g5jªon»Ñu³çVoËãÛ­WÚJï¤¶ïèĞ¸Kº;Ùyã^íı“r&vù=2,ÛMß=óäŞÓ“=‘½}ä¾ñş«ÏÒÛˆ¢?¼è~Yÿª`(öµË°ÚÎ7+##oÛGÏe½Û9îü^kBYe‹SÏ§¯}(ú˜ú)l†ò™ò%r6gîúüì7½¿Î.’¿ÿ”Zzº’úKcmíó¯ O£0–Xì\>—D4¢‘¤e ]¡›¢Éğ’ñ-Ó{Ògò7æE–UÖe¶Uö_«œ‹\ß¸gy&y‡ùúùï	Ü¬Ê±•#ˆ}ï’¨‘Ì–¢J[ÊÈÈÒÉÎnë“»&_¤¢HQ²W6PQPP#©­©ÑÖìÒjÔ.×ÉÕMĞóÑ·0P0ä4B}0~jrÙ4ß,ÆÜÉBÅ’ÍrÙê­õ]›ZÛ|»dû@GG}'yg²+ÎuÉí“û°G·çm¯úíg¼î8à“âíG¥øú{8ÚÙ[R-CÌB5ÃdÃ"XvÒD¢"W¢~DÿŒYÃÄ“„5v9%Å$¦´ìL¥ÙË—&“®½Ï&ÃoBæ¡•Û²†²¿ç2R8lŸqäP~]ÁÃ£ï­r)Û-Ù_zúdó©Ş²éÓ¿Î2—KœÓ®°;O©Œ«:P]ŒÄ¹îºÙ‹¤KŠõ—£®ä]­kè¼6|ık¶™ã†äM[-n·[cÛRï¤µïëØ7³óÀ½ƒ÷³ä><ÔuèÑ¡Ç‡ºsŸä<Íê9Ğ›Ñ—Ö¿ûYüó¨ƒ‘/b_&¿Ú?tôuùpÃ›û#¯Ş~ïHã‚ïå't&Í§ü¦Ï|øüIy&ùsë—_sšóñ_/}{¿À¾hù=õGÃÏ©eî‡Õì_[óoŒÒ‡·Á_Ğí˜XGœ8nƒIt á¦¡=GN¯Î€bhgÌ`² 1zÉG˜mYX°f³™°CìÍœBœ/¹r¸u¸?ó”òšñşÅWÆoÆÿEà˜ †à°Ğna~áVo‘Ñb1%±nñ ñ‰£’R’mRR“Òi2"2/es·lûK®JŞSN¡M1RI@©_9]EAeL5OM[í³z©†¹Æ‚æ9-{­_Úu:îº8İëz}’şƒHC~Ã^£tc%ã)“S[äŞqË<ÊBÊâ½e™•‡5«õ3›[;²İ ı	oGaÇNWœ“\Œ]\‡Ü*İc<<i=½NoöVğ^ŞqÏ'ß×ËOÂo‘Òé4À7P14\KMq
-•Ã„½¿Q¼3!Ò5J#š73;×_ŸP–˜·+-)!94Å÷ö=n©N{ÒìÓí÷9d8íwÏÜ~ à`hVLvjÎÁÜ‚Ce‡kòÜÍï+9úå8ºP¢È«øÈ‰{%Ë'eOù•?ıèÌJ¹Â¹€Š’ó=Uèj­š„ÚúºO%/…Ô×^½ªÒ°÷Zw#GSXsçM¾[©-ïZ­ÚZÚå;.tJİ»òÀàáĞ£Än¾'½=‡úœ‰€ÁO/ß}|ŞŠŒí¯ÄL'}Ÿ+æ(ßtÕ~:¯¯Ïÿæ7ºõ‚Uàø Ö¿Ó8Ô { ±] °!¹§ Nê %`
- … Yhÿ9? $ñ$2à’@˜!ùe’SzĞÆÁ*Ä)CPtj†Ş 9Ÿ4Ê•†ªGÀ°œ _„'‘,Í]Š~db>˜ó˜ÏXlö)kÃ“ñT|;“Gè'*‹ˆ+4š'´ê´Õtìt¹ô(údúïq‹ŒILS6‰•TAV#÷2‡°àXÎ³³N²d—bïåˆåäàlåòç¦á¾ÊãÁó^äóD2‚><A[!&¡gÂE"¢¢“bÄc$4$!É.©|iOduÎÉöok‘«”/PØ£HUrTÖPáS…TGÕZÔi„hjkÑkk×èÄêêêáõúô®6İ4n5¹kÚeÖc>h1b9e5o½l‹·cµuPs´r¢8§¸»¶ºM{=õ½"·—{ø}õı’)ÍşßÕ‚’ƒÛCˆ¡Îaá;Í"Ë¢fc´bsâF”ìšOvM¹¿G;µ5Í2}<#+Sû ÈêË¹|èd^A¾ÙQøØ½Âüâ€Ã“Òe‚gDÊ•*l*£ªKk_õªWlÜ¯7¥Ü8~ëêíş¶ÅŞN³û±Ï<zÚ½Ú#Ó·ıÙá;/ÉC”á‹#3cÜãjzSòè?¾˜9üeÛlû¼Ù×Î¿J—~Øÿ<¿4¿¢±šúëÎFüØœ2ÿ@˜ Wö€c t‚ğ"Cr W(€’@²ütÔÔ;$·‚3à6x­Ş‡îÆ°c1XÖÛˆcÄ…áã¥ñyø‚á>Q–XDÓDÑŒÑ:Ó>¢3¤k¥×¢¿d±íG<utŒ,K~ÂdÍ¬¾l4lÍì¬8wqIsqñØòây;øöò`
-ù
-Ë
-¯ˆt‹–‰E‰KpI|•|$uN:UÆSVs›„»<A~EaVq\é…ò#•[ªÔJÔhDkzjjKê0ê,èéµê×\1l0j2¾eÒfÚiöÈ¼×â…å[«)ëy›e;¼=«ƒ˜£º“µ³¿Ën×·îC«^‚Û-¼cwœñéñƒ(*ş5“Á¢Ô+¡Ká¦…;§£´¢wÇ´Å¡ã­Š'“Ô“§Lí1N­N£Oßµo
-‰'½-²ä˜åvvÈÍO=Ê{ìNa`1ı‰æRÿSä²ûgv—«œûzşJU\VöÂÀ¥ó—S®z]Si¤o¿qíÖ¾Û6mìwÆ:j:£ïk=Äu>®y²·Ç«Oç™È ÓàÃ—Î¯&^'½a¹:ê4¶2^=á>Å0İõñàŒåÆÙóg¾…,¨|GıèY*]	ú¥¸5ÿ0ÀÚ TàÂÁ~pÜCÈş„, 8¨DÑ Œßãa{ø4üm®Â0Ñ˜·X'd·ÛàğüOB!Q8As‚Vv˜.™Ÿ¾‹!Q’qœé4É,AşÎü€¥Œ5™Í“]CŠ“‹†Å½Â³Ä»ÂpÈ”GXVD[ÔA,H|¯Ä	ÉëHŞ='Ë¸MAÎU~B…bÒ²Š„ª»Zz¿&³–»v…Î¬¶ş!ƒ·FŠÆ9&cfZæ…_­ì¬/ÚÒÚ…Ù?r”tÊqşèjáVëAğ¤z=ğİ±ßgÂÏR úİ¥Š†d†N‡[EÔG²D%FÆÅ]J`OÜ³ëS²²OUR«Ò8Òg ÷§d~=è‘u%{-×éPÕá¥#ù—Qß/’*Î=1[êzòv™èé|$öûŸë>¯YYUÍT“T;yÁñbK½èå¼+‹Ş×î7Ê4i»iëÒmbk`[k;©#ànã=ô}»¥ÇI<¦vW>ëáìµïÛßíÙ»â Ü‡—Ñ¯Õ¼¾;<ğfrdşíÊô7} K“Ÿ§F¦Ÿ|hşXşéàLÄgë/R³¸Ù·sÍóY_=¾I|ûúWËBú¢Ñwì÷Î©?5Î/_öX!®4®R~Ñıººæ¾>ÿ1Š
-ÇDk  fdmí›( ¸ Vó×Ö–Ë×ÖVÏ!ÉÆ0 wÂ6ÿ÷Ù8k8Ãµú./üëÿ—ÿ¤^Å™ 
-On  'AIDATx^íœUÕµğ×9wnïÓ;Í¡ŒŠ¢ŠŠ”gøYò‚%ÑÏ¼øŒš'¢Ï$F1Æèó%ÆÏø‚QÅš˜ X¤I„Áé…©·ÎmsÏùÖAÀ¹enŸ¹çœ»ö/çw1³ËÚÿµÎ:»o 
-D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ 'FÕ¢Z…àyy½?ÈX‡8¾(ÈA~Çñ&= åyF-¤cŞËxXœ,Ë8Ø,ä±L¯JÁ(Œ‹ÁHDY~È!ÈL§¾!Î2€Ó<~¾oê½CüD ŠıA0`U•øä¥Yå ¦¨`S)¡]“Ç4ªó`VÉ|¦SÂ6uëL3JEä²?İ¢ƒ¯uúø:—Ÿ¿xĞİ~®~ˆcŒéæ›Nú<–ïÕ«ØÏujøÀ bŞ6ª™ËÓÉ“ÒrcÇ:í’„f¿Ë§Ø}Ü5©Û'a¦Øºuğê5°Ë¤fÖ˜Õì*£†9(jis\8r"7 ty6/®ÍÃ_o÷ğKß4ı%”
-°›µÌ?,ZæOó)Eàğ± ‡ M“ ƒ]ıƒüíƒÜØĞŠPÌ´EÂî…ÛªcßÊ×1›4ì—igH¤M€BÚ3—ÎX{ÜÜm}nş6o ò3—³øsÒ(¡©@Ï<V¤gWâ,†GüËSBr"Ğ«ËÇŸŒà—½.şˆ“m‚…æ5tÔÌl“kå“CÈ¢Æíî¼n'ÿ0ÌÉ¢¢-Ç¶™;ÍZöÑ
-)3ÁÈ!dA¡6wÅÿ0ÎLÎBñ’+Ò¨eö”˜-ûä„—˜ÀäÆPaN/v§ƒû½İË×a±²)Ê¬aö–™ØpêòsÙTJd!‡0
-ñ¸ªv'ÿBŸ‹_0ÅÉ¾ˆ³ºÂÈü@­dÈ¾²c\Ar£\XCĞáäê°ñwb19›u¹…y¸ÜÈş”Ö2dÎÈ!deHN8Npy›{Ú€ÒQ*‚²EZœ®¬´°WãøÂ’>ré3ÉwZíü‹İNîògMÙÅ PldŸª23wàîLaó…	CH\´dØ*øNË ·wZ2˜-e• ÜuÙQme€­…5	&¡haÈ!dÀ$„¥Æíî¿;íümÈ²H“@™™ùC…‰½•ÎlH$9„ä™…¤À„òFÿ¡ÓÃOK3+JA¸vaçs>ÎDd0[ÙgE!x¸+›ú‚ÏËuóQhD‘7OŒ/P\aÕ²‹B 	!ö½ô¢EØå>ÒĞÃ½JÎ@´*Ôu´uõcñJ).É¨…¤>p¼@ÕlãV÷8ù’LJÑ³H ÈÈ<?ÎÂŞ@ã
-±•@!	#Å)Eãá~n³m¯M"E	‹Ù0)Ÿ½ §&½"ItbCHP%ş!®úp/·Ñå‡Ê“P40¨`ß¤Bv*£©‡BFëpµ‡Ğà¡%–¢S‘ÀÃXZk
-Ù35J¶]ä¢¹xäâ ÷øù™{‚Ÿá1æú1×8jğùîÉEŠ¹ZÓ0j…H0cšeˆ¡4t'£3ØHÎ@‚–GdÔi±àèQÇ5ò«]ê5¢Âì°›0å«nîócœ¤N˜RŠš ¶º¦³õØ} ­Ô¨)j!D1W@,Ç1ƒäDı.gD8Ôq)êz3ê<§µ	9„02ÂnEœMØ€ˆ…±8ÊDôP×ãQç£î…«îr:C¦~\t¤ÄuÂÔâ„œ¶Š¬<ê|&êş9Xõ*“C†W ¾ƒ‹fæºQäjıQ÷7—«õêMá˜ö;ÁÇp9òÂ\6ª; ÚÀ­¸÷áÆ\eA³¨y¼.íê†^îå\5ªwÿIEì¹¸Kò³\c“ó§‹ö	6âÎ8Zx”kÖ£¾¸uº¥¶DQ‡ç)8r	KÎwšûù5ärÉä«+ÚD5|ófb±å+§B«{oO:U>ê¤šd’ ‚u~›=xo&ó{^9ÛeÀQêáè$±[höåó×±sñàÖœ¸-*'[AWãéÈ/fßÖH	P¡­¼€‹–ò$ kÚ"æ¤CÀ®Â3xT:k¶ùäFh+Óğ®Çr¡¶9×eÀƒQÏÆsöÖç‚r©%0„]‡Ó±ë°3£¹Š,³œj!÷'àõj™HiÈCÛy^¢¦.eN9¼Šı^ÜÈBûR·—œN‰÷tÖµ;‚wÊBÎtpRéN®•©HE¡-ı^èğ¥’”ÒˆŒÀ„-ááŠ)ÛÌ2¶,9SL/êd91r*tû¹•É:ƒ†nüùÓxo?^şÓKõŠÚ’“NS¥‡+ë
-á{óJÁªKj×³¥İÉ?Åİ”d‘’ˆ-‡—»
-O?Z•¨Fzœ~x~C'¼²¾ÀL4Å“ ¦TËÏ¯€¥§•$#ıĞÔbÅL£†ÙŸL")Ä•½CÀÖ íµ{ù¸cŞ!^@Gğ¬àr¤{pÓe•pY}>œu’z]Cğé!üö½8°ß.ûÍ˜Œu3óáÆy0o²9¡<ÍæİÉÅŠKŠ,¡H²w¸"q:„¸£Ã¯l=O¯ïw»KBêK]Ô¼rl¸c:Ì™hˆšÉ¯Şn‡{WæŞÄóçÃuóÊ`V•1.\œ†<§!eµÚUÖ[ìÁnî}Ü¯pşHÚ]³§V~ÒM‡bÇMÉ‡|«%®‘H!‚µşÒu¥PS»ïü»õ6xn«üÆÎvîÃ±e‡?¦ªŸS×Í/ƒ	…Úã™ÔÌ¦)%Š³¤ óDe”µCÀÖÁl¼€0NòYû§°kw_\V§/¨›J>gpŞ\ğ“9q«}tøäRyi•a£É<ØÛ¶}à‹1F¤ÍƒkĞ1#ÌJN.bÏ0kÙ=ñiJ#†l‚Ó,ØÚä»µ©ß¿ÔëNAuœø¾şy7|¼)Î©Û™b3X«&KC“IHùş2-Ì®HLõ~
-ğ—}Id.¡¨ùj¶·	6onàc^ ›Ï.ƒesË@²tÇkÑ0ÿ]S¬¸GBÕ)jbV!‘Úv;–7¶÷İğä‡÷à XQJb£òÁ_\À|,+I)wQ$r½<ôx!A"áG¿÷“DbJ7ß¾÷ìÚƒÉ1‚0Uyëür¸êô3èI`û´ÅÕ5.o%—Å:„Ö_áSvı¸ø'Ÿß}).Âæ!˜°¿hÃô>YèvDûÄe	Û.“kYİ‚ß/¨—L€æÆøjOôÖ£·Õ½t^İÖßGÇ°hf0ÑŞãæ„ƒy·'UÄ%ï|¿ãæªå;IÙ rJj
-áHç Àù E³½Mn8{JüQt!í¾[o†EkòâëP6N)½í_CËW½QKhÁèŸãóúÌüœªôâTå¹8„Ä?†Ÿ‰ìV¼Ö|ÿ#/7ş<Õ¼¦Î,…mèúsêØ<X4¿Ş¾}j\l¸8óB<z6Î€|Ü|¤¡³CSStà t¬ LU.¿¸âÿ^6ËüG©Öõ¸Ü’uÛŞwñw~¹gM*
-¨Â)D¯Ò
-=TRË#Íêëaq-—Ä?Bº¶È£¾éÔBïé…–ÖèkŠİ‚üÙ²IÏ<pyÕ-é”•í´’tŸ58N=kù¤´23ÁÄêqàÖÊg
-1UÒâ˜â§ü[^ÎfBËà§ë >†Ì(œ Pâ?Ûµ7Æâµs
-wŞ¿¤ê'¦™%¹`I’aÜİÛ;›9K¶ÕÌœP^SRëÕÎ^Êg Ì¯˜…hú±÷ô¼‡Óó9²r;iÕ©pUïê€-qqn~)üğòªgŸ^6éæ¤ÈrÉ9„‡şÙv×}Ï5<š7ÜÅ6cz5¸• ”üğiB5¦HcD@˜ªÔ¹Û`ã^tÂÌT”pıâŠÿüıšec$RFŠ‘”C8b÷ç—,ßÑ=ñ·"O­+‚¼’ZğçÀ´YF,2I‰@ĞÇCàÈ>h9}Fâõ{ë®\:»àõ”2ÏB"I}7_ÚÜ{U<g lg?Ñ
-uã
-  ‡
-´Âj4
-D`´p<lŞgRClks ß…ı®aaé¾zmW³»®~œ~ïh‰É|%åßÔ}CÌÊëóà¾ËjabİÊ–I#¡¼b`áò3*F¸¨Ó¾´Wºâ*×ãÁæ‡gÖwı;ş§ğˆ>HªË ÿº.æZâ[¯™	§ÖXE”/í‡à÷/ZÁBl¦şñLI¼k’éa·ôûŠc™ÑÄ©rò}Ï$S3áƒ4m1$ôú`ÕÖË¤P	É8„n{ <Ğóf”I7É˜F±ÅÏ\ó¥PuÉ8„Á¡˜}IåÔU‚Áå‚ŒÑl±ßH|İL!IÆ!Äd„ƒ‰¥–¤NÎÍ"r*ZîÚ"ÚäğĞç’DV¡¼täc®än|T?q¨À»ÂµÆJUeb‡}Œ•<TP‡@ãç8I|µdÑBÊôd#z­¤K ŠMJâ]“„ÇÌbÄy\“®áäò$Å&%a¥Rr#Z; 	Öò´|ªUTá6)•» ¥äFl!ôÉá“Nè…%p›¬¶ªqS¹øƒ”ÂÈ4=CĞi“÷Á¨â7%’ğ8£¶ˆ69<TXUR $‡€¤·ãÍˆ€n·EH-rÖMÌÍ!ŸˆsñJ†…¡ìˆÀH>=Ğñ§Š¤"ş ›ÂÁ/û¡¹;t/ºøñ“„r# Ø `‹!¡@-Ü®½I
-u•C`?ğÖ>hKõ¢)h‹d5Áö+.,ÿm•Uİ-já	'¥Râî'çğ€ŠŸ¿¹ÕÃÂú
-È7Ğ
-F)¡ÔeìwáÃ]íğÎ¾nl0¼uğ£…¥<"‘JJÉ!DrÇ•ãá‰×šBP
-YİÙ«?’ÄDÌ„ÄL•Àç•­ÂÖAôSÍtÓIºË \ä=ûäÂQÄCYÔ	ÔÍÌ‡û–Tß‘zcŸRJ!¢… ,}úº©0aŠyìÉQ‰D £VŞX{I-£•¶C8æ"^ıa|oÑ80àuİˆ@V	(YXtv9l{p FÇñ’úZIi!BÏÃ›·]XÂ³á öwº`ë×°{CW‹Ï ñ+û·yá6ÕÊq†¬Ú˜
-wãİŠIÜQ“EîkÃ»ıBÇô›0RKT“ÇBU¾JŒ*XrJŒ/<qgf=Ò.©£¼¤ä"ºÑÚbx57ÏMç|s4vx8íÍ!ÿ—ïqxøÚzÀ¦]Îaÿ/6æ<† ‚C;ÀÖòí¯-nØö«3’Tƒ6Z”L‚lÇ•t—Iå%[c>¹HKÎà˜Ò¦ÑĞ×±Üv¦I˜í$ğòZx©J h¢HÚ!$Kqo”[{+ŠhÜ!Y¹ß¤ìJF³¡8<Nô¤ÀMJ!¢‡À'ÙİİÛæŠĞIe>HÁP³"£:ŠCˆbC±dc>ú@VV*¿P)9„ˆB²Â·öGŞÒkÒÓåñÍ$7c1‘÷h6‹Úhü›‰E„7Ùw*›¢G8„$àˆÒÔªéøöl*UÌe˜HÛˆfC1’:½GJ!âıg’ôNï·SHÇ•¨SIi¢EÌ¯üdóò‘¶Í†b:–!‡0J¦á¼˜$İYôB’™ŒRå([ñŠòÁI¶… ``Ø¢ñÕ1\")½í·d÷2º†-29BC=ñ[i–$TD1°h6K<=Y?¥b%Ñ^ŞxÈqÖoŞí¸3¼†oíî­FõãŒ0¡P÷`¤¤$J$]y,#‰sµCxu[ï•ÿõ·–'æŞ½#ê²Ã¯:àa|„pÆiEpË¹•0½œÖH÷õ‘äA•‚ÿÆ@%DéüCœò?şÒøÇÿó«½×'Êqó¶Ø¼»¾·ğ›=ˆ€øTy¬¤ÎõChğ•ÏÿõŞ5[¶÷ÏLZ¡~^|§Špëé5gJânÍ¤«H	¤C ÷†Hjü@ +ªAEt%sÚÓÓ«¡z’!&èÇ_i€Ãº”‘¤2! R‚$NZ[T-„§>ìúQG£+rt0_/ÜX³tñLËêƒÒ×r¬Û›\³îzµùÑµ›{.·¡GŞm†Ó'™À¤UebêTDhò˜‰ÄSÑ´°uPôÈû?‡³`Ná»½Oœ–¿ì¬¢7g0üï§7ì^»|úE+ï¨½
-Ô¡U±·ºáÉ÷ZÅÄšdÉ1ê<øBjUCXµ¹÷J;B]]¦…÷îœ¶¤Ğ¨Œy-Óó‹_ıõ÷&İÿÛ%×…“šı¼1h•ÌV©Cøû®ş«BàáºäuwL›­V*º´ñîEO4ÕÔ’‡Ã[Kj¡˜Ôì‡äA@§„ıR$‡°q[ßÙÃáMšl<pæI¦íÉ ]~QÅÏÃão>,©iàdªKqEL åíê<Vr_#Q8„N›?âÜ¹Yú¤œ`3Êµ;Âm¤Ûé±Ùhr% W±‡¤X7Q8„.›¿$?¥T“tsë¬SÄ¨n/9)Ú¥äeÖ©a­+!
-‡àâÂO¢`{}5ÉİÕìÆO§§&‹‘âg€€AÅ¼™lÆ<Q8„•ú/Ãkşñ!û¢dil8ä8/<Mm9‘–,GŠŸ6Î¨fv¥K2…C0j²‰†ûï4º‹Şİc;'Q&!ı¯Õ­¿Î&Ñ,(È½v+X&ò¼¾Œä>º™ˆÂ!U¼nNÑ“áU½øwû×9<Á„Şèå¯7ÿÌŞ2¨Gşx\\W0º)w"FÀ¤fŞ*Ñ8¼2û{}ğèšöÅƒÛç
-xµ9bÊñ6Ü=<œTâ/şéË–È“˜ã•GÏ:ØÕîXíh6NÃ¬fWI•h^™İ›–šÃAÎ­1n‰—4»4‘[ æÖ„^«73Êİïî<¾3"^)ô÷\" X“··1¢ÊÑlhx$¥Œæ°TY‰Æ!`×@ÕrØ:K`QÁµæO{ç‚²áñÖî]ñ<£2Ê9û»{à·oíƒım’Ú¶Š“ôe#p`ïv|ú"rˆfCÃ#™µÌG)+š$¢qëØ„S¹anÑ³y
-6¡ë´¿;§ğ•ğô„mQa€ººüø{Ñ)<ºrüúoû`ãş~ğ%´XZ4:$AÒ `PÔ£IÔ©z¡Üİ {wm‡õ _GdW²~V6+X´ÌÊ4ÄÉzRÑì^{À¾0œÆÒÙ…¯=— ¢é•º&¸e@÷·ƒ»ŸïéÛ` ,¸¨üxxèŠ‰pyø®ÈÁ== <ÿkUÃyÓa|±J,z(/ĞƒA›ä™ï	ÊMÑÆ†@>ŞÇ#<àõ€ßç—Ó	}7ìè„½ñïR)Ç­ô]{i.Wv[4ÌûcS£Ñ)E4áÃ}¶KCª¨VÀÂZSR«½®®/øßUïwüàD>C¬ÿÊÿrò·ğ–[4ğôU'Á-OÆØ™:àƒµÚC‰¨ab„&â}•øèñÈfFzaë5şOåòÙÑÑkÎä*0· k9?äXü…!?}øâÀãÀ ×›ñ# 	¼øÑÀÕÎ°Âƒß™fmì×Åªc_f&òò	iC4aï—öiÃ¹-¨·¾;“‚{Iõ‡€nÁÍMÃ‚PÆ©LğÜ]õğÒ¦#ğÁ†ÎÄÔ…[³¿ƒ¶èkRõˆR¯„"ƒ
-ñ×Š­³V…Œ:¶0T`<úo%èñßøù‘Ñ_s5Çô‡/7ï÷‚Çç—×N·º\>:±5è½şĞ*øÁür¸¬¾0!É×1O$QÄ‘DáÖî³Ï;ï¾!˜ğå~k]’àğD¥·Â“|ŞêŒš‹Ğ|x©®=³äÇ°×E9Ó0.7Şé‰OO·'±ƒôXì‚àÙ*teøäãcÖ«À"8ü5bëÃ¨ÅÖ‡.xÔ¼^« <£O²A…-(ì‰}‚+Â—<àŸÏ‡­x8½>°»}ø¢ûÁiÇİMiL™.b…ÙŒ°hVb@P
-ª«Ó¤a÷IVAÇ‡Cˆ2 xîTÓÆdáâA*\ñÛº›İ'vO4»`À +¾pÑÂqÇpß’ñ°©ÁŸ€wvâÁ*é8‡DÇ¯Ÿ`ô~|„¹ÖˆùÖhyhĞ#`$F…Ï–,ĞAo”[uP–¯ì½€m¶BîH©Æ177Œ¼ŞApz`Àá6›öÚÑá
-/ûP…'k…êÊô0g æOµ¤|¿GùÙâÉrEá>Úo[R)N¯Oéø©ËfZÿú§fwÈéI»[]°`jÄëĞ"ñó{~­õèó‹xô`<ÖZú¼ĞÚïÅî‚Úq¡Ø²¸"U¸›Ÿ~ì÷£Ùn	&TkaR‘ª…ÁPİÑAÑbt8œ’±.ÊÑ¯=çfÈ…Myz¡ÏéM^Ø$ôÕÅ„–˜Y…&åÑ1 ixoGM©¦à3¾0òvçEçŠôlÄJÛóÊj2Q8„M{íg§pV­eƒ‚eSúŒœ?ÍòÑŸşÙâ¾ÀÕˆñB¸NŸd†Ó£¨Æä ¯•oGã?‚_÷.üêuâW¯Eş:°©;Ú­‹‘LOˆj†Ès9Š±	|r•	j+L0±Ìùf5Ğ¿Äƒl@Á4Üvè·Ùàë;lÂCg¢\‹7¦–Œİ-Y	•èKŒøà/¶ñşĞ_a,g´C¡ù£RÁHî0”h\²î¶vÖÏ¹+ô,”…µ–~–¢/˜n~/<é®¶èã©¡ÂËú&âXxF
-C¸åº_Ì#è$„ß.tı8¾àòÁáç±ß¼ŞæÅO·pM½ğõ$´ä"±¡»Ñ	ï	›=Á®Ç4¼o:‰šRŒ/µàôì7S«¥jp8úá@»v`·kÌ2”YUPnR}É‹>J(^tüîÜ(ÆÅ¬ğåIÀÖÁ¯D"JÚbdİ!||À±eùÜ©æOH±jh0Íloû··pïKƒF¹óğÊßJ4láI&¸|A8‚¤û„#	`+Äø´áÿ×cÃ>x¦º,8:¿n	Ï‰€İ@Ÿt°w”n0?ö²ã2u(ÇnL)¶RÊğ·›ô¥¸*µÿ[j×|dP3²Yÿu‡°ñ°3bA(nNÇ0.l~éïíkOäMûVlæW]™"Ş`Àµlyc ±B;mt`—¥Û±‹Ò†c-øß‡„S«ñß)ÚáIZ¿æ¥Âzì›Wc½yÌ«òµ¢gŸj½‹Ìƒ©¦cº¬;„uK†ƒ©˜hh[”4·Ó'>ûûÇğ­CÀ¾ÀéG±;„D+Z_Xá9m„İo…à8ÚĞQ|Ñæ‚m‡±Û”¡ÖƒrçN4Á4œ¢«^|tÂW_'åyÑDá‹gÔ2ÍZv}
-IE›$«ÁîRš¿»!ÎYë^K^àqØªğR,Nb^9M²š¼ûßÂs28õ'ŒìÀ±„M8HØ”ØØ@%.Ğ9c¢f7Â)889uY˜`á¥æ£J&ZVÂÖ¯]ùøuß”®C˜=^¿-\û;"÷¶KFKTX¶-<—sŒÂàçÎflovÂçè$„O!ñú»9øâŸ:Ştô¡IÀŒc-›ĞN\)ñË®ChtÎ	‡5²)íÛnğ|„!ím[ÀÓömŸx;mog-~†_~ás¥d¶Ù—µÌÄŞ™})2/AV·?oşÚqfâ“Œ»3QÍs'˜ŞÉûÏÂÎG
-D ]æY<%¥…sé–=Úé³êp@1d‡cÉ}Æ®Yª¯¼èå`ç ,Œ¶QPş1	x*ŒÌÊ•QV‚³ÛR¾˜Œ­{-7+#¶1¶ö
-»'#ÏÅ’«v©^'PnaP+ÙŒ}¸2.`šfÕ!—iC@G£«øÏº¯H³NĞíşøÍæ§ÃóY\gº7
-'âfg+]º£ôY%€¶³³Â¤x$«BŒráYu‹fX^¯ßõï{ıÎWš~+öBçÌñ×Í½ß)¾k{O°+´±İ˜?ÙüF¥…}³ŠØ”`ö-w	Ñv–É½úY]~°Ë3~ò½;Áıƒm¬ÔÂÅS-«u{§/˜bZ½x¦uõŒ
-İ^‹NáŞÛî™j÷8u¦Âã×ü}Wßµ¿vM_ôı ÷/›ôÄı—Wnànîvrã?ºóAîF@õ‹O ØÈ>6ÎÊŞ?¦´cdÕ!èğ‹¾ô»îMwéAL-\2¯xıš;kôEÇĞ»8í~‘´ÕGÒuìŸQª¨ÃUIà5²eºŒ¬v„Ê|÷ŒÂ×ÿº|Æ•Åãô£²PàêË_wB¹ÕVövü	=§=Ót)?9¢­\—Î@PVÖ[Ç-Æ68dxäíöÙÚskÛaWè+)˜Õ¥g—¬¹åÜÒ'.eı`¤ämöà]v^S @¢(33÷Tšå=8¼â¢qÃ…Z½{`ñsºøÆG¡')Å1Úüj¬¸°bÅÒÓò_Âó
-Z±ñ=ÁµNOëô•cqpóÒš©EŠ¤o!—2&Q:„a­ÍÇûí;ìş²@u»ÍWİ1à¯²û‚æJ‹ºµÜªl©0«ÚÊ­êö2\wpÁtKRÇ¶åø\á¾#ÁıC“ø‰šRÖ8É¼c¡¹¶D1×dlmLBg9’¨ÂX±ğp‹z¸Ğ¥ÎcU8•#Fş“ŠØ¹V-û¹…M™²>¨8š•K4oTü;Ufy¢ñ)¼	 -|? UrÇl»Ô¤øM‘‘yQŞ¦Nµ‹G màQ´…¿Ä‹'×¿S—a˜fygú¸Olƒü\¹*œê52<dvUM¡âš\fD!LûÇk¿êîÂ„&ç²aäZİñ ç¦+.Äõ£wôµ R—!LIhI…ì™x5WºG;J@ı$¢@ u½u~Y®;Cá}På±ı5…ìl<3/|¤ g¨ãC¨ësPçi9-JÔBA%Û5¹HqLŸ<TMµ'€º=Œ:>u-Ûó’Õ:!Ä!æñóãö·âÍeEÉÂ¥øâ%€Îà :ƒ¹Z3ì¦ñÊ;V’Q!i4˜¦)Ål=ö3es;ÏX—XËA]nAÎ!g©!r	X-6);¦±³p$zoÑ)Šˆ	 W£.Ï¦nBt%Q—!	ãÅ)Iõá~n®S ÍPIpKT\gğ®3¸Q,òˆQj!$¡œ–òTÀ«Ùş”D2Šš}<êìgäâ+‚ZñEÑåŞŞjã‹$§š"Ã1JæÀ½	7ârdáp]
-qCHÃDp—äü¦¾à*Ü:]F6”t”àæ†ñŠÅ¸Qéà(!»lÉ!¤©R<OÁÜhã_ÃCV.H3+JAx¸É›,Ìµx/ƒÙÊ>+jî¦©b48;ªs!µõ³4³¢ä™!àG]Ü:¹‚œAò@©…<³SØ<Üy-ÜJ<Íy\³¥¬$€§#oÃQˆ·2oO0	E#@!Ã&S“ÊV;ÿ8Şûpk†³¦ìF&àÅ{~‰÷&<DÒ#@!=~±ZóÚlÜÿxpò(AÙ"¼^mŞ¨t¶
-HúÈ!¤Ï0fíàİ6^ørårQ¹–}?^¼ºïZ|6×*>šõ%‡0štå3¥íNş™>¿dŠ“{Ş³¯d_ƒ†N¹Wv¬ëGa‰;½üÉîì^~Ş+›¢Ìæµ2{»QÃtÈ¦R"«9„,(g#u¹ø_àÚ…ÙY(^rEšÔÌêó l“œğ˜Bf÷pgv;ùl^~aÅkÑœEÃ¼Rld~jÖ²‡Å*¤Üä"‡ º|üì7·¢×Åÿ>‚³ĞÀ¼X¤g6¨:×rŒí“ÂU\ ÈÑ1ÜÒçæoó RD¢º(xhÉzæ÷èW*ÿ¨HD%@A¤†áğróúù›¹Er½w7µ[uì?òuÌS&û¥HU‘Sb‘C¹ºñòÇÎ²yø³{ø% Hyg%¯TÀA³–yË¢e^Æ]ˆ»D?çÄ#‡ 1•ãÔe­İÇ]æğñ¹½p
-Šoq„KOúôØ†3ï›ÕìßpÊÎ¦±ÂÈ!ˆX9ñDr|ÓÇOuùù…ƒ>8ßíçNÃîEA&±Ğ©W±ÛujXoP1ÕLƒ‚eøxu¡¿‹ƒ 9qè!#Rİ/ÀDO€¯Ç]—3½CüT?Pâ1ò…Xˆ
-å1‡¡ÀßDõ/|éƒøáÀÇÇ˜Q)¡Y“ÇÀ]†û´Jf‡N	‡ÕytÇAF”™¥L5ˆ,‰GÅfŠ€à,pCï2ú!790y0áîLÇƒßx-FQå1ïÁƒ2Y–q)°+X°çá¿U
-Ş·y3%åCˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@ˆ  D€"@¤Dàÿ²’v‚^’    IEND®B`‚* {
+{% endblock %}* {
     box-sizing: border-box;
     font-family: "Arial Black", "Arial";
 }
@@ -1168,33 +1050,11 @@ p {
     color: red;
 }
 
-/********** FOOTER **********/
-.validation_icons{
-    padding-top: 10%;
-    position: absolute;
-    bottom: 10px;
-    margin-left: 8px;
-}
-
-.sr-only {
-    display: none;
-    visibility: hidden;
-}
-
-.footer-tag {
-    color:rgb(34, 53, 139);
-    padding-top: 10%;
-    position: absolute;
-    bottom: 40px;
-}
-
 /********** STYLE FORM **********/
 form{
     margin:auto;
     text-align: center;
 }
-
-
 
 .update-form {
     margin-left: 8px;
@@ -1218,22 +1078,10 @@ form{
     padding: 20px;
 }
 
-
-
 td{
     padding: 5px;
     padding-left: 2px;
 }
-
-.row-titles {
-    background-color: rgb(241, 241, 241);
-    font-style: italic;
-    text-align: right;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-  }
 
 /* Text input on forms */
 input[type=text] {
@@ -1242,7 +1090,7 @@ input[type=text] {
 
 /* Form submit button */
 input[type='submit'] {
-    background-color: gray;
+    background-color: rgb(63, 63, 63);
     font-family: 'Gill Sans';
     font-size:medium;
     color: white;

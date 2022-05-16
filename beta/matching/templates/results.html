@@ -19,7 +19,7 @@
                 <div class="skill-container">
                     <div class="skills" style="width: {{major[3]}}%; background-color: #04AA6D; border-radius: 10px;">{{major[3]}}%</div>
                 </div>
-                <button class="modal-btn" id="modal-btn">See More</button>
+                <button class="modal-btn">See More</button>
             </div>
         </div>
     {% endfor %}
@@ -29,7 +29,7 @@
         <div id="myModal-{{major[0]}}" class="modal">
             <!-- Modal content -->  
             <div class="modal-content">
-                <span id="close" class="close-{{ major[0] }}">&times;</span>
+                <div class="close"><span class="close-{{ major[0] }}">&times;</span></div>
                 <h2 class="major-name">{{ major[0] }}</h2>
                 <div class="flex-container-modal">
                     <div class="course-div">
@@ -47,7 +47,7 @@
                                 {% if major[0] == major_key %}
                                 <div style="overflow:scroll; height: 25vw;">
                                     {% for c in courses_to_take_dict[major_key]%}
-                                    <div id="popup">
+                                    <div class="popup">
                                     <ul class="listed-courses">{{ c[2] }}
                                         <span>
                                             <h2>{{ c[0] }} {{ c[1] }}</h2><br>
@@ -71,7 +71,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     {% endfor %}
 
     <script>
