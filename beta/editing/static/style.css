@@ -94,33 +94,11 @@ p {
     color: red;
 }
 
-/********** FOOTER **********/
-.validation_icons{
-    padding-top: 10%;
-    position: absolute;
-    bottom: 10px;
-    margin-left: 8px;
-}
-
-.sr-only {
-    display: none;
-    visibility: hidden;
-}
-
-.footer-tag {
-    color:rgb(34, 53, 139);
-    padding-top: 10%;
-    position: absolute;
-    bottom: 40px;
-}
-
 /********** STYLE FORM **********/
 form{
     margin:auto;
     text-align: center;
 }
-
-
 
 .update-form {
     margin-left: 8px;
@@ -144,22 +122,10 @@ form{
     padding: 20px;
 }
 
-
-
 td{
     padding: 5px;
     padding-left: 2px;
 }
-
-.row-titles {
-    background-color: rgb(241, 241, 241);
-    font-style: italic;
-    text-align: right;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-  }
 
 /* Text input on forms */
 input[type=text] {
