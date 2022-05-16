@@ -92,7 +92,8 @@ def select():
                                     course_list = course_list,
                                     unassigned = unassigned)
         else: 
-            cid = request.form['cid']
+            print(request.form)
+            cid = request.form['majorless_cid']
             return redirect(url_for('update', cid=cid))
 ################################################################################
 
