@@ -7,7 +7,7 @@
 {% block main_content %}
 
 <p style="margin:auto; text-align:center; padding-bottom:5px">Add courses that belong to this page</p>
-<form method=POST action="">
+<form method=POST action="{{ url_for('department_page') }}">
     <table class="table-form">
       <tr>
         <td><label for="dept">Dept.</label></td>
@@ -15,11 +15,6 @@
         <!-- make this a drop down -->
         <input list="abbrev"  name='dept' id="dept" value="{{ dept }}" placeholder="Start typing...">
         <datalist id="abbrev">
-          <!-- hard coded for to reduce bugs, will make this a loop -->
-          <!-- {% for dept in depts %}
-            <option value="{{dept}}">{{dept}}</option>
-          {% endfor %}
-        </datalist> -->
           <option>AFR</option>
           <option>SWA</option>
           <option>AMST</option>
@@ -88,6 +83,7 @@
     </table>
     <input type="submit" name="submit" value="submit">
 </form>
+
 <p>Courses that count for this major</p>
 <table>
     {% for course in courses %}

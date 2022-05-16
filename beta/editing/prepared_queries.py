@@ -151,7 +151,7 @@ def get_unassigned(conn):
 
 def get_departments(conn):
     '''
-    Finds the courses that count towards majors in a department 
+    Gets departments + their information 
     
     Param - connection object
     Return - list of departments 
@@ -161,24 +161,10 @@ def get_departments(conn):
     curs.execute(sql)
     return curs.fetchall()
 
-def get_dept_name(conn, dept_id):
-    '''
-    Finds a department's name from their department ID
-    
-    Param - connection object, department ID
-    Return - department name 
-    '''
-    curs = dbi.cursor(conn)
-    sql = '''   select name from programs
-                where dept_id = %s
-            '''
-    curs.execute(sql, [dept_id])
-    row = curs.fetchone()
-    return row[0]
 
 def get_dept_id(conn, name):
     '''
-    Finds a department's name from their department ID
+    More specific getter: Finds a department's ID from their department name
     
     Param - connection object, department ID
     Return - department name 
@@ -190,6 +176,20 @@ def get_dept_id(conn, name):
     curs.execute(sql, [name])
     return curs.fetchone()
     
+def get_dept_name(conn, dept_id):
+    '''
+    More specific getter: Finds a department's name from their department ID
+    
+    Param - connection object, department ID
+    Return - department name 
+    '''
+    curs = dbi.cursor(conn)
+    sql = '''   select name from programs
+                where dept_id = %s
+            '''
+    curs.execute(sql, [dept_id])
+    row = curs.fetchone()
+    return row[0]
 
 def get_dept_courses(conn, dept_id):
     '''
@@ -252,10 +252,7 @@ def get_pairs(conn, cid):
                 where major_pairs.cid = %s
             '''
     curs.execute(sql, [cid])
-    majors = []
-    for major in curs.fetchall():
-        majors.append(major)
-    return majors
+    return curs.fetchall()
 
 
 def get_cid(conn, dept, cnum):
@@ -272,23 +269,4 @@ def get_cid(conn, dept, cnum):
     curs.execute(sql, [dept, cnum])
     row = curs.fetchone()
     return row[0]
-
-
-
-
-################################################################################
-#   Helpers for departments html 
-################################################################################
-
-
-################################################################################
-# CHECK HERE
-def alpha_depts(conn):
-    '''Alphabetizes the departments and provides hyperlinks
-     as a table of contents to the departments page'''
-    depts = get_departments(conn)
-    letters = list(set([dept[1][0] for dept in depts]))
-    letters.sort()
-    return letters
-
 

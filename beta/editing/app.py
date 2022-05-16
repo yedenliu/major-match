@@ -76,7 +76,8 @@ def select():
     '''
     on GET shows a menu of incomplete courses 
     on POST redirects to the /update/<cid> page for that course.
-    Incomplete means as either the director or the release date is null
+    Incomplete means missing required fields
+    Unmatched means they have yet to be assigned to a major
     '''
     if (not session) or (session.get('user') != 'admin'):
         flash('Unauthorized. Log in to access page.')
@@ -103,12 +104,9 @@ def departments():
     else:
         conn = dbi.connect()
         departments = get_departments(conn)
-        # CHECK
-        alphas = alpha_depts(conn)
         return render_template('departments.html',
                                 page_title='Departments',
-                                departments = departments,
-                                alphas=alphas)
+                                departments = departments)
 ################################################################################
 
 @app.route('/departments/<dept_id>', methods=['GET', 'POST'])
@@ -148,16 +146,7 @@ def update(cid):
             return redirect(url_for('index'))
         if request.method == 'GET':
             info = get_course_info(conn, cid)
-            dept = info[1]
-            cnum = info[2]
-            name = info[3]
-            units = info[4]
-            max_enroll = info[5]
-            prereq = info[6]
-            instruct = info[7]
-            dr = info[8]
-            sem_offered = info[9]
-            year_offered = info[10]
+            _,dept,cnum,name,units,max_enroll,prereq,instruct,dr,sem_offered,year_offered = info
             majors = get_pairs(conn, cid)
             return render_template('update.html',
                                     page_title='Update Course',

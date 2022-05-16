@@ -59,14 +59,6 @@ def index():
             results[i][0]: dept_courses[i] for i in range(len(results))
         }
 
-        # for i in range(len(dept_courses)):
-        #     course_list = []
-        #     for j in range(len(dept_courses[i])):
-        #         course_list.append(dept_courses[i][j][2])
-        #     courses_to_take_dict[
-        #         list(courses_to_take_dict.keys())[i]
-        #         ] = course_list
-        
         # find the % of courses that have been taken for each matched major
         percentage = [
             format((results[i][1] / len(dept_courses[i])), '.0') 
