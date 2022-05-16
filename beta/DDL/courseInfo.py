@@ -73,9 +73,6 @@ populateRegExCourses(allCoursesTSV,'Classical Civilization','CLSC',3,1)
 populateRegExCourses(allCoursesTSV,'Data Science','STAT',1,1)
 populateRegExCourses(allCoursesTSV,'Data Science','STAT',2,1)
 populateRegExCourses(allCoursesTSV,'Data Science','STAT',3,1)
-#populateRegExCourses(allCoursesTSV,'Data Science','CS',1,1)
-#populateRegExCourses(allCoursesTSV,'Data Science','CS',2,1)
-#populateRegExCourses(allCoursesTSV,'Data Science','CS',3,1)
 
 populateRegExCourses(allCoursesTSV,'Economics','ECON',1,1)
 populateRegExCourses(allCoursesTSV,'Economics','ECON',2,1)
@@ -230,9 +227,6 @@ populateRegExCourses(allCoursesTSV,'Sociology','SOC',1,3)
 populateRegExCourses(allCoursesTSV,'Sociology','SOC',2,3)
 populateRegExCourses(allCoursesTSV,'Sociology','SOC',3,5)
 
-#populateRegExCourses(allCoursesTSV,'Statistics','STAT',1,3)
-#populateRegExCourses(allCoursesTSV,'Statistics','STAT',1,3)
-
 populateRegExCourses(allCoursesTSV,'South Asia Studies','SAS',1,2)
 populateRegExCourses(allCoursesTSV,'South Asia Studies','SAS',2,5)
 populateRegExCourses(allCoursesTSV,'South Asia Studies','SAS',3,7)
@@ -260,65 +254,6 @@ def removeCourseFromMajor(major, course):
         removeCourseFromMajor(major,course)
     else:
         pass
-
-# removeCourseFromMajor('American Studies','AMST 350')
-# removeCourseFromMajor('American Studies','AMST 360')
-# removeCourseFromMajor('American Studies','AMST 370')
-
-# removeCourseFromMajor('Art History','ARTH 350')
-
-# removeCourseFromMajor('Biological Sciences','BISC 250')
-# removeCourseFromMajor('Biological Sciences','BISC 250H')
-# removeCourseFromMajor('Biological Sciences','BISC 350')
-# removeCourseFromMajor('Biological Sciences','BISC 350H')
-# removeCourseFromMajor('Biological Sciences','BISC 355')
-# removeCourseFromMajor('Biological Sciences','BISC 360')
-# removeCourseFromMajor('Biological Sciences','BISC 365')
-# removeCourseFromMajor('Biological Sciences','BISC 370')
-
-# removeCourseFromMajor('Chemistry','CHEM 250')
-# removeCourseFromMajor('Chemistry','CHEM 250H')
-# removeCourseFromMajor('Chemistry','CHEM 350')
-# removeCourseFromMajor('Chemistry','CHEM 350H')
-# removeCourseFromMajor('Chemistry','CHEM 360')
-# removeCourseFromMajor('Chemistry','CHEM 370')
-
-# removeCourseFromMajor('Computer Science','CS 250')
-# removeCourseFromMajor('Computer Science','CS 250H')
-# removeCourseFromMajor('Computer Science','CS 350')
-# removeCourseFromMajor('Computer Science','CS 350H')
-# removeCourseFromMajor('Computer Science','CS 360')
-# removeCourseFromMajor('Computer Science','CS 370')
-
-# removeCourseFromMajor('Economics','ECON 350')
-# removeCourseFromMajor('Economics','ECON 360')
-# removeCourseFromMajor('Economics','ECON 370')
-
-# removeCourseFromMajor('English','ENG 350')
-# removeCourseFromMajor('English','ENG 360')
-# removeCourseFromMajor('English','ENG 370')
-
-# removeCourseFromMajor('Environmental Studies','ES 350')
-
-# removeCourseFromMajor('Neuroscience','NEUR 240')
-# removeCourseFromMajor('Neuroscience','NEUR 250')
-# removeCourseFromMajor('Neuroscience','NEUR 250H')
-# removeCourseFromMajor('Neuroscience','NEUR 340')
-# removeCourseFromMajor('Neuroscience','NEUR 350')
-# removeCourseFromMajor('Neuroscience','NEUR 350H')
-# removeCourseFromMajor('Neuroscience','NEUR 360')
-# removeCourseFromMajor('Neuroscience','NEUR 370')
-
-# removeCourseFromMajor('Psychology','PSYC 299')
-# removeCourseFromMajor('Psychology','PSYC 299H')
-
-# removeCourseFromMajor('Russian','RUSS 101')
-# removeCourseFromMajor('Russian','RUSS 102')
-# removeCourseFromMajor('Russian','RUSS 203')
-# removeCourseFromMajor('Russian','RUSS 303')
-
-# removeCourseFromMajor('Spanish','SPAN 201')
-# removeCourseFromMajor('Spanish','SPAN 202')
 
 freq = {}
 """ countFrequency(courseList, freqDict) is a function that takes a list of courses and

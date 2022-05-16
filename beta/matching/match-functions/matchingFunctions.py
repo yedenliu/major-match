@@ -29,9 +29,6 @@ def grabMajors(userInput):
     majorsToCheck.sort()
     return(majorsToCheck)
 
-def cleanCrosslisted(course1, course2):
-    print('hi')
-
 ''' Takes a major name as a string, and then gets all the courses that count towards that major.'''
 def grabCourses(dept):
     allCourses = []
@@ -123,6 +120,9 @@ def suggestComplete(taken, neededNum, options, core, pathNum):
                 print('\t\t', course)
             print('')
 
+'''If there are multiple ways to complete a distribution requirement, this
+checks the courses the user has taken to see if any of those paths have been
+completed.'''
 def completedPath(taken, path):
     for course in taken:
         if taken in path:
@@ -132,12 +132,10 @@ def completedPath(taken, path):
     else:
         return(False)
 
-def multilistedSatisfied(courseToCompare, coursesToCompareTo):
-    if courseToCompare in coursesToCompareTo:
-        return(True)
-    else:
-        return(False)
-
+'''This is a simple, silly function that matches courses to majors without any
+nuance. For every course that a user has taken that counts towards a major,
+that user makes progress in that major. It doesn't account for distribution
+requirements, nor core vs elective courses.'''
 def matchBandaid(userInput, majorCourses):
     has = 0
     for course in userInput:
@@ -588,13 +586,6 @@ def econ(userInput):
 
     print('You have completed', has, '/', needed, 'requirements for the Economics major.')
 
-    # taken = coresTaken + threesTaken + electivesTaken
-    # if has != needed:
-    #     print('If you would like to complete the Economics major, you need to take:\n')
-    #     suggestComplete(taken, coreNeeded, core, True, 0)
-    #     suggestComplete(taken, threesNeeded, threes, False, 0)
-    #     suggestComplete(taken, electivesNeeded, electives, False, 0)
-
 def educationStudies(userInput):
     dept = 'Education Studies'
     majorCourses = grabCourses(dept)
@@ -681,14 +672,6 @@ def french(userInput):
 
     print('You have completed', has, '/', needed, 'requirements for the French and Francophone Studies major.')
 
-    # if has != needed: 
-    #     print('If you would like to complete the French and Francophone Studies major, you need to take:\n')
-    #     suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, False, 0)
-    #     suggestComplete(flexLangTaken, int(len(flexLang) - len(flexLangTaken)), flexLang, False, 0)
-    #     suggestComplete(flexCultureTaken, int(len(flexCulture) - len(flexCultureTaken)), flexCulture, False, 0)
-    #     suggestComplete(flexLitTaken, int(len(flexLitTaken) - len(flexLit)), flexLit, False, 0)
-    #     suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
-
 def frenchCulturalStudies(userInput):
     dept = 'French Cultural Studies'
     majorCourses = grabCourses(dept)
@@ -766,14 +749,6 @@ def history(userInput):
     print('You have completed', has, '/', needed, 'requirements for the History major.')
 
     remainingElectivesNeeded = 6 - len(threesTaken) - len(electivesTaken)
-
-    # if has != needed: 
-    #     print('If you would like to complete the History major, you need to take:\n')
-    #     suggestComplete(flexAfrChiJapLatAmMidEaSouAsTaken, int(1 - len(flexAfrChiJapLatAmMidEaSouAsTaken)), flexAfrChiJapLatAmMidEaSouAs, False, 0)
-    #     suggestComplete(flexEurUniStRusTaken, int(1 - len(flexEurUniStRusTaken)), flexEurUniStRus, False, 0)
-    #     suggestComplete(flexPreModTaken, int(1 - len(flexPreModTaken)), flexPreMod, False, 0)
-    #     suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
-    #     suggestComplete(electivesTaken, remainingElectivesNeeded, electives, False, 0)
 
 def internationalRelationsEcon(userInput):
     dept = 'International Relations - Economics'
@@ -878,14 +853,6 @@ def math(userInput):
     compareUserAndReqs(electivesTaken, electives, '200 or 300-level elective', 2)
 
     print('You have completed', has, '/', needed, 'requirements for the Mathematics major.')
-
-    if has != needed: 
-        print('If you would like to complete the Mathematics major, you need to take:\n')
-        suggestComplete(introsOneTaken, int(1 - len(introsOneTaken)), introductoryOne, False, 0)
-        suggestComplete(introsTwoTaken, int(1 - len(introsTwoTaken)), introductoryTwo, False, 0)
-        suggestComplete(coresTaken, int(len(core) - len(coresTaken)), core, True, 0)
-        suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
-        suggestComplete(electivesTaken, int(2 - len(electivesTaken)), electives, False, 0)
 
 def mediaArtsSciences(userInput):
     dept = 'Media Arts and Sciences'
@@ -1002,13 +969,6 @@ def subfieldSort(remainingBandC, numBs, numCs, bTaken, cTaken):
     #recursedB = []                  # idk. I felt like I needed new lists here.
     #recursedC = []
 
-    '''I don't think this recursive call will ever be reached, since the for loops will continue populating until
-    both categories have two courses. Logically, I should remove this, but emotionally I cannot.'''
-    #if (b < 2) or (c < 2):
-    #    newBandC = subfieldSort(inCourses, b, c, addBs, addCs)
-    #    recursedB = newBandC[0]
-    #    recursedC = newBandC[1]
-
     outBs = addBs #+ recursedB
     outCs = addCs #+ recursedC
 
@@ -1016,7 +976,6 @@ def subfieldSort(remainingBandC, numBs, numCs, bTaken, cTaken):
 
     return(output)   
 
-# TODO figure out how to move courses... like phil 200 should be showing up as an elective
 def philosophy(userInput):
     print('Checking your requirements against the Philosophy major...')
     needed = 9
@@ -1163,14 +1122,6 @@ def philosophy(userInput):
         remainingElectivesNeeded = remainingElectivesNeeded - 1
 
     print('You have completed', has, '/', needed, 'requirements for the Philosophy major.')
-
-    # if has != needed: 
-    #     print('If you would like to complete the Philosophy major, you need to take:\n')
-    #     suggestComplete(coreTaken, int(2 - len(coreTaken)), core, True, 0)
-    #     suggestComplete(subfieldBTaken, int(2 - len(subfieldBTaken)), subfieldB, False, 0)
-    #     suggestComplete(subfieldCTaken, int(2 - len(subfieldCTaken)), subfieldC, False, 0)
-    #     suggestComplete(threesTaken, int(2 - numThrees), threes, False, 0)
-    #     suggestComplete(extraTaken, remainingElectivesNeeded, extras, False, 0)
 
 def physics(userInput):
     dept = 'Physics - entering after Fall 2018'
@@ -1447,6 +1398,8 @@ def masterCheck(userInput):
     if "Women's and Gender Studies" in majorsToCheck:
         womensGenderStudies(userInput)
 
+        
+'''From here down is testing code.'''        
 kat = ['ARTH 267','ES 267','CS 111','CS 220','CS 230','CS 231','CS 235','CS 240','CS 242','CS 301','CS 304','CS 342','FREN 101','FREN 102','FREN 201','FREN 202','HIST 245','HIST 220','JPN 290','MATH 205','MATH 206','MATH 223','MATH 225','NEUR 100','PHIL 215','POL1 200','WRIT 166','MATH 220','PHIL 200','HIST 254','HIST 312','PHIL 325']
 julie = ['MATH 205', 'POL 123', 'WRIT 187', 'MATH 206', 'STAT 218', 'SPAN 241', 'CS 111', 'MATH 305', 'PHIL 216', 'CS 230', 'SPAN 253', 'MATH 349', 'MATH 225', 'WGST 218', 'CS 232', 'STAT 260', 'MATH 220', 'MATH 302', 'MATH 215', 'MATH 340', 'PHYS 107', 'STAT 309', 'MATH 322', 'PHYS 313', 'PORT 103', 'MATH 309']
 a = ['AFR 204', 'AFR 204', 'ARTH 237', 'ARTH 226', 'ARTH 244', 'ARTH 247', 'ARTH 317', 'ARTH 222', 'ARTH 309', 'ARTH 256', 'ARTH 335', 'CHEM 335', 'CHEM 341', 'CHEM 325', 'CHEM 335', 'ENG 311', 'ENG 382', 'ES 201', 'HIST 213', 'SOC 322', 'HIST 256', 'HIST 231', 'AFR 209', 'ARTH 307', 'SPAN 303', 'SPAN 377', 'HIST 215', 'ARTH 201']
@@ -1476,4 +1429,4 @@ bAndC = ['PHIL 200','PHIL 229','PHIL 207','PHIL 215','PHIL 216','PHIL 220','PHIL
 #chem(kat)
 #cs(julie)
 
-masterCheck(julie)
+#masterCheck(julie)

@@ -50,6 +50,7 @@ p {
 .nav-btn {
     color: white;
     font-size: large;
+    text-decoration: none;
     background-color: rgb(95, 95, 95);
     border-radius: 5px;
     border: none;
@@ -62,6 +63,12 @@ p {
 .nav-btn:hover {
     background-color: #000;
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
+    opacity: 1; /* Firefox */
+  }
+  
 /********** STYLE SKILLSBARS **********/
 /* Container for skill bars */
 .skill-container {
@@ -81,19 +88,20 @@ p {
     border-radius: 10px;
 }
 /********** STYLE POPUP **********/
-#popup ul span {
+.popup ul span {
 	display: none;
 }
 
-#popup ul:hover span{ 
+.popup ul:hover span{ 
     display: flex;
-	width: 500;
+	width: 500px;
 	padding: 10px;
 	color: rgb(0, 0, 0);
 	background: rgb(230, 230, 230);
 	text-align: left;
 	border: 1px solid rgb(102, 102, 102);
 }
+
 /********** STYLE RESULTS **********/
 #modal-flex{
     padding: 2px;
@@ -104,6 +112,7 @@ p {
     position: relative;
     top: 2px;
     padding: 7px;
+    width: 500px;
     overflow: scroll;
 }
 
@@ -176,14 +185,14 @@ p {
 }
 
 /* The Close Button */
-#close {
+.close {
     color: #aaaaaa;
-    float: right;
+    float: left;
     font-size: 28px;
     font-weight: bold;
 }
 
-#close:hover, #close:focus {
+.close:hover, .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
