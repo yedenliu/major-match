@@ -1,3 +1,6 @@
+'''This file generates lists of courses pulled from ten departments to help us test our matching process
+on longer and more varied course histories. It is for testing purposes only.'''
+
 import pandas as pd
 import csv
 from random import randint
