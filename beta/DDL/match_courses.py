@@ -41,23 +41,6 @@ def find_dept_id(conn, dept_name):
 ################################################################################
 #   Table Functions 
 ################################################################################
-   
-def update_freq(conn, freq, cid):
-    '''
-    Update the major frequency attribute of a given course
-    (i.e., how many majors it counts towards)
-    
-    Param - connection oject, major frequency, course ID
-    '''
-    curs = dbi.cursor(conn)
-    # prepared query
-    sql =   ''' update courses
-                set major_freq = %s
-                where cid = %s
-            '''
-    curs.execute(sql, [freq, cid])
-    conn.commit()
-    
 def insert_pair(conn, dept_id, cid):
     '''
     Adds a pair of dept ID and course ID to the major pairs table 
@@ -84,20 +67,17 @@ def match(conn):
     Param - connection object
     '''
     with open('completeMajorTable.tsv', 'r') as file:
-        # 'buggy_courses.tsv' // 'completeMajorTable.tsv'
+        # 'completeMajorTable.tsv'
         tsv_reader = csv.reader(file, delimiter='\t')
         for row in tsv_reader:
             abbrev = row[1]
             cnum = row[2]
-            freq = row[3]
             majors = row[4]
             # clean major column
             majors = majors.strip('[').strip(']')
             majors = majors.split(',')
-            
-            # update the courses table with the major freq
+
             cid = find_cid(conn, abbrev, cnum)
-            update_freq(conn, freq, cid)
             
             for major in majors:
                 dept_name = major.strip().strip("'").strip()

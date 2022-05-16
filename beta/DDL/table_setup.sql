@@ -18,7 +18,6 @@ create table courses (
     dr varchar(100),
     sem_offered varchar(30),
     year_offered varchar(30),
-    major_freq int,
     primary key (cid)
 )
 ENGINE = InnoDB;
