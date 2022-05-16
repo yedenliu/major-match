@@ -263,7 +263,7 @@ def update(cid):
 @app.route('/login', methods=["GET", "POST"])
 def login():
     if request.method=="GET":
-        return render_template('login.html')
+        return render_template('login.html', page_title="Login")
     else:
         user = request.form.get('user')
         pw = request.form.get('pw')
