@@ -11,7 +11,7 @@ import cs304dbi as dbi
 import random
 from prepared_queries import *
 import bcrypt
-
+# git hub
 ################################################################################
 app.secret_key = 'your secret here'
 # replace that with a random key
