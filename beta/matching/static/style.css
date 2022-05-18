@@ -50,7 +50,6 @@ p {
 .nav-btn {
     color: white;
     font-size: large;
-    text-decoration: none;
     background-color: rgb(95, 95, 95);
     border-radius: 5px;
     border: none;
@@ -58,6 +57,10 @@ p {
     padding-right: 8px;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+nav a {
+    text-decoration: none;
 }
 
 .nav-btn:hover {
