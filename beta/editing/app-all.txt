@@ -92,7 +92,8 @@ def select():
                                     course_list = course_list,
                                     unassigned = unassigned)
         else: 
-            cid = request.form['cid']
+            print(request.form)
+            cid = request.form['majorless_cid']
             return redirect(url_for('update', cid=cid))
 ################################################################################
 
@@ -736,8 +737,8 @@ def get_cid(conn, dept, cnum):
 
 <table class="depts-table">
     {% for dept in departments %}
-    <tr><td><a id="dept_pg" href="{{ url_for('department_page', dept_id=dept[0]) }}">{{ dept[1] }} </a></td>
-        <td><a id="catalog_pg" href="{{ dept[4] }}">catalog page</a></td></tr>
+    <tr><td><a id="dept_pg{{ dept[0] }}" href="{{ url_for('department_page', dept_id=dept[0]) }}">{{ dept[1] }} </a></td>
+        <td><a id="catalog_pg{{ dept[0] }}" href="{{ dept[4] }}">catalog page</a></td></tr>
     {% endfor %}
 </table>
 
@@ -842,7 +843,7 @@ def get_cid(conn, dept, cnum):
 
 <form method=POST action="{{ url_for('select') }}">
     <label>Courses with missing required fields:
-      <select id="cid" name="cid">
+      <select id="missing_req_cid" name="missing_req_cid">
         <option value="none" selected disabled>Choose One</option>
         <!--Fills out the drop down menu with incomplete movies-->
         {% for course in course_list %}
@@ -856,13 +857,14 @@ def get_cid(conn, dept, cnum):
 <h2 style="padding-top:10px">These are courses that don't point to any major</h2>
 <form method=POST action="{{ url_for('select') }}">
   <label>Courses without a major:
-    <select id="cid" name="cid">
+    <select id="majorless_cid" name="majorless_cid">
       <option value="none" selected disabled>Choose One</option>
       <!--Fills out the drop down menu with incomplete movies-->
       {% for course in unassigned %}
         <option value="{{course[2]}}">{{course[0]}} {{course[1]}}</option>
       {% endfor %}
     </select>
+    </label>>
     <input type="submit" name="submit-btn" value="Update Course">
 </form>
 

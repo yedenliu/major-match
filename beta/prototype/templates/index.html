@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1>Add Rules</h1>
+{% endblock %}
+
+{% block main_content %}
+<form method=POST action="{{ url_for('index')}}">
+    <table class="table-form">
+      <tr>
+        <td><label for="description">Enter rule description</label></td>
+        <td><input type="text" name='description' id="description" value="{{ description }}" ></td> 
+      </tr>
+      <tr>
+        <td>e.g. Introductory level sequence</td>
+      </tr>
+      
+      <tr>
+        <td><label for="op">How many courses are required for this rule?</label></td>
+        <td><input type="text" name='op' id="op" value="{{ op }}" ></td>
+      </tr>
+
+      <tr>
+        <td><label for="abbrev">Department Abbreviation</label></td>
+        <td><input type="text" name='abbrev' id="abbrev" value="{{ abbrev }}" ></td>
+        <td><label for="cnum">Course Number</label></td>
+        <td><input type="text" name='cnum' id="cnum" value="{{ cnum }}" ></td>
+      </tr>
+      <tr>
+        <p>Courses counted: {{ arg }}</p>
+      </tr>
+      
+      <!-- Also add args, which courses count toward this major -->
+    </table>
+    <input type="submit" name="submit" value="submit">
+</form>
+<br>
+<h2>RESULTS</h2>
+<p>{{ json }}</p>
+
+{% endblock %}
